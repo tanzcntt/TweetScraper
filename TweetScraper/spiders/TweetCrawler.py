@@ -1,3 +1,4 @@
+import datetime
 import re, json, logging
 from urllib.parse import quote
 
@@ -96,11 +97,23 @@ class TweetScraper(CrawlSpider):
         """
         Generate the search request
         """
+
+        today = datetime.date.today()
+        min_day = today - datetime.timedelta(days=5)
+        max_day = today + datetime.timedelta(days=1)
+        y = max_day.year.__str__()
+        m = max_day.strftime("%m")
+        d = max_day.day.__str__()
+        min_y = min_day.year.__str__()
+        min_m = min_day.strftime("%m")
+        min_d = min_day.day.__str__()
+        query_util = self.query + " until:{y}-{m}-{d} since:{minY}-{minM}-{minD}".format(y=y, m=m, d=d, minY=min_y, minM=min_m, minD=min_d)
+        print(query_util)
         if cursor:
             url = self.url + '&cursor={cursor}'
-            url = url.format(query=quote(self.query), cursor=quote(cursor))
+            url = url.format(query=quote(query_util), cursor=quote(cursor))
         else:
-            url = self.url.format(query=quote(self.query))
+            url = self.url.format(query=quote(query_util))
         request = http.Request(url, callback=self.parse_result_page, cookies=self.cookies, headers=self.headers)
         yield request
 

@@ -1,4 +1,6 @@
-scrapy
+scrapy~=2.5.0
 scrapy-selenium
 ipython
 ipdb
+pymongo~=3.11.4
+gql~=3.0.0a5

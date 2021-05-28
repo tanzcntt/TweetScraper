@@ -42,3 +42,10 @@ Keeping the crawler up to date requires continuous efforts, please support our w
 
 # License #
 TweetScraper is released under the [GNU GENERAL PUBLIC LICENSE, Version 2](https://github.com/jonbakerfish/TweetScraper/blob/master/LICENSE)
+
+
+# start on local #
+cd TweetScraper
+conda activate tweetscraper
+./start.sh >> logs/command.log 2>&1 &
+./push.sh >> logs/pushdhunt.log 2>&1 &
