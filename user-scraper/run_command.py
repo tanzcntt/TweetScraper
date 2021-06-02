@@ -83,7 +83,7 @@ def get_many_users(limit_user):
 	return list_users
 
 
-def auto_crawl(n=0, limit_user=10, limit_threads=10, take_users=200):
+def auto_crawl(limit_user=10, limit_threads=10, take_users=200, n=0):
 	while True:
 		listUsers = get_many_users(limit_user)
 		threads = list()
@@ -115,6 +115,7 @@ def get_user_by(sort_by="statuses_count"):
 
 
 if __name__ == "__main__":
+	put_data_to_follow_user()
 	start = time.time()
 	auto_crawl()
 	end = time.time()
