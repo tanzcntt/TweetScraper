@@ -1,0 +1,133 @@
+31/05/21
+So for the first time, we look back a little bit what exactly TweetScraper to do.?
+    1. It crawl data from twitter following command:
+        scrapy crawl TweetScraper -a query="foo,#bar"
+            query: hashtag, screen name, keyword,...
+        therefore save data into
+            ./Data/tweet:
+                save all tweets for the first time we run this source
+                this data does not change for next time and so on,...
+                it was set to update "data changed" directly to mongodb
+            ./Data/user:
+                it saves all user related to our Query
+                and the rest does the same ./Data/tweet
+    2. So what precisely I want.?
+        Example firstly:
+            Take 10 users from screen_name and                                  1
+            Crawl user's data through the link https://twitter.com/screen_name  1
+            Write other easy crawl script to get all data like:                 1
+                normal_followers_count: followers
+                friends_count: following
+                listed_count
+                favourites_count
+                media_count
+                statuses_count
+            After that,
+                Save data to new table: trackUser in mongodb
+                Preprocessing by:
+                    Visualize data: plot realtime data using:                   1
+                        Seaborn
+                        Matplotlib,...
+                Modeling these data follow our main purposes
+
+Basing on rest_id to classify among many users
+
+https://twitter.com/i/api/2/search/adaptive.json?include_profile_interstitial_type=1&include_blocking=1&include_blocked_by=1&include_followed_by=1&include_want_retweets=1&include_mute_edge=1&include_can_dm=1&include_can_media_tag=1&skip_status=1&cards_platform=Web-12&include_cards=1&include_ext_alt_text=true&include_quote_count=true&include_reply_count=1&tweet_mode=extended&include_entities=true&include_user_entities=true&include_ext_media_color=true&include_ext_media_availability=true&send_error_codes=true&simple_quoted_tweet=true&q=adapt&count=20&query_source=typed_query&pc=1&spelling_corrections=1&ext=mediaStats%2ChighlightedLabel
+https://twitter.com/i/api/2/search/adaptive.json?include_profile_interstitial_type=1&include_blocking=1&include_blocked_by=1&include_followed_by=1&include_want_retweets=1&include_mute_edge=1&include_can_dm=1&include_can_media_tag=1&skip_status=1&cards_platform=Web-12&include_cards=1&include_ext_alt_text=true&include_quote_count=true&include_reply_count=1&tweet_mode=extended&include_entities=true&include_user_entities=true&include_ext_media_color=true&include_ext_media_availability=true&send_error_codes=true&simple_quoted_tweet=true&q=adapt&result_filter=user&count=20&query_source=typed_query&&spelling_corrections=1&ext=mediaStats%2ChighlightedLabel
+
+
+result_filter=user
+
+https://twitter.com/i/api/2/search/adaptive.json?include_profile_interstitial_type=1&include_blocking=1
+&include_blocked_by=1&include_followed_by=1&include_want_retweets=1&include_mute_edge=1
+&include_can_dm=1&include_can_media_tag=1&skip_status=1&cards_platform=Web-12&include_cards=1
+&include_ext_alt_text=true&include_quote_count=true&include_reply_count=1
+&tweet_mode=extended&include_entities=true&include_user_entities=true
+&include_ext_media_color=true&include_ext_media_availability=true&send_error_codes=true
+&simple_quoted_tweet=true&q=adapt&count=20&query_source=typed_query&pc=1&spelling_corrections=1
+&ext=mediaStats%2ChighlightedLabel
+
+https://twitter.com/i/api/graphql/Vf8si2dfZ1zmah8ePYPjDQ/UserByScreenNameWithoutResults?variables=%7B%22screen_name%22%3A%22c4chaos%22%2C%22withHighlightedLabel%22%3Atrue%7D
+https://twitter.com/i/api/graphql/Vf8si2dfZ1zmah8ePYPjDQ/UserByScreenNameWithoutResults?variables=%7B%22screen_name%22%3A%22raoulgmi%22%2C%22withHighlightedLabel%22%3Atrue%7D
+
+curl 'https://twitter.com/i/api/graphql/Vf8si2dfZ1zmah8ePYPjDQ/UserByScreenNameWithoutResults?variables=%7B%22screen_name%22%3A%22eminem%22%2C%22withHighlightedLabel%22%3Atrue%7D' \
+  -H 'authority: twitter.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'x-twitter-client-language: vi' \
+  -H 'x-csrf-token: 8a644c92873b25719489af4e8d5937d657cf2e1606c4858d110e77358ceaa011ea751b7bdc5aff4423d9d909cce2b6d0a480038e0e1594805a3b70f180a5d4990d20c9e7a2b35808759d2524868923b8' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'authorization: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'x-twitter-auth-type: OAuth2Session' \
+  -H 'x-twitter-active-user: yes' \
+  -H 'accept: */*' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://twitter.com/RaoulGMI' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: personalization_id="v1_EOfGH9SnYUbpPzOKALzTMQ=="; guest_id=v1%3A162193305456291859; _ga=GA1.2.2104893886.1621993444; _twitter_sess=BAh7CSIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%250ASGFzaHsABjoKQHVzZWR7ADoPY3JlYXRlZF9hdGwrCES2O8B5AToMY3NyZl9p%250AZCIlODZkMzg2ZWQzN2ZiZWEwMzcwOTVkNzhmMjgxMzAwNjg6B2lkIiU0ZjA0%250AYzZkMTdhNzVlN2E5NzE4NjEzM2ZmYTI4MGI0Mw%253D%253D--f01f431ad430f9322a7d8772f7aed33aa0d59610; _gid=GA1.2.175327337.1622427810; _sl=1; external_referer=padhuUp37zj9xuUOXCNFvGXUXmFWu3h9RbvCou2th62t8qpRtR3BhPixmmJ9DJd0|0|8e8t2xd8A2w%3D; kdt=0d9s7iKweiBfuhDUa53uXwdagFfNqClTwX71J8aS; auth_token=948467ce41edd946051df9597411ed0d3290f573; ct0=8a644c92873b25719489af4e8d5937d657cf2e1606c4858d110e77358ceaa011ea751b7bdc5aff4423d9d909cce2b6d0a480038e0e1594805a3b70f180a5d4990d20c9e7a2b35808759d2524868923b8; twid=u%3D1399229100502360070; at_check=true; mbox=session#8c9772f3d8624b1dac0c7f067989d1b8#1622439901|PC#8c9772f3d8624b1dac0c7f067989d1b8.38_0#1685682841; cd_user_id=179c0d7da57fc-0beb21182ca819-3b7c0a50-100200-179c0d7da5847b; lang=vi' \
+  --compressed
+{"screen_name":"raoulgmi","withHighlightedLabel":true}
+
+%7B%22screen_name%22%3A%22RealVisionBot%22%2C%22withHighlightedLabel%22%3Atrue%7D
+
+
+
+//
+real account, follow all target, and check
+https://www.instagram.com/graphql/query/?query_hash=3eb224d64759a46f7083d3322a2458bd&variables=%7B%22shortcode%22%3A%22CPgrDOKnvMQ%22%2C%22child_comment_count%22%3A3%2C%22fetch_comment_count%22%3A40%2C%22parent_comment_count%22%3A24%2C%22has_threaded_comments%22%3Atrue%7D
+
+curl 'https://twitter.com/i/api/2/search/adaptive.json?include_profile_interstitial_type=1&include_blocking=1&include_blocked_by=1&include_followed_by=1&include_want_retweets=1&include_mute_edge=1&include_can_dm=1&include_can_media_tag=1&skip_status=1&cards_platform=Web-12&include_cards=1&include_ext_alt_text=true&include_quote_count=true&include_reply_count=1&tweet_mode=extended&include_entities=true&include_user_entities=true&include_ext_media_color=true&include_ext_media_availability=true&send_error_codes=true&simple_quoted_tweet=true
+&q=eminem&result_filter=user&count=20&query_source=typed_query&pc=1&spelling_corrections=1&ext=mediaStats%2ChighlightedLabel' \
+  -H 'authority: twitter.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'x-twitter-client-language: vi' \
+  -H 'x-csrf-token: 8a644c92873b25719489af4e8d5937d657cf2e1606c4858d110e77358ceaa011ea751b7bdc5aff4423d9d909cce2b6d0a480038e0e1594805a3b70f180a5d4990d20c9e7a2b35808759d2524868923b8' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'authorization: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'x-twitter-auth-type: OAuth2Session' \
+  -H 'x-twitter-active-user: yes' \
+  -H 'accept: */*' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://twitter.com/search?q=eminem&src=typed_query&f=user' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: personalization_id="v1_EOfGH9SnYUbpPzOKALzTMQ=="; guest_id=v1%3A162193305456291859; _ga=GA1.2.2104893886.1621993444; _twitter_sess=BAh7CSIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%250ASGFzaHsABjoKQHVzZWR7ADoPY3JlYXRlZF9hdGwrCES2O8B5AToMY3NyZl9p%250AZCIlODZkMzg2ZWQzN2ZiZWEwMzcwOTVkNzhmMjgxMzAwNjg6B2lkIiU0ZjA0%250AYzZkMTdhNzVlN2E5NzE4NjEzM2ZmYTI4MGI0Mw%253D%253D--f01f431ad430f9322a7d8772f7aed33aa0d59610; _gid=GA1.2.175327337.1622427810; _sl=1; external_referer=padhuUp37zj9xuUOXCNFvGXUXmFWu3h9RbvCou2th62t8qpRtR3BhPixmmJ9DJd0|0|8e8t2xd8A2w%3D; kdt=0d9s7iKweiBfuhDUa53uXwdagFfNqClTwX71J8aS; auth_token=948467ce41edd946051df9597411ed0d3290f573; ct0=8a644c92873b25719489af4e8d5937d657cf2e1606c4858d110e77358ceaa011ea751b7bdc5aff4423d9d909cce2b6d0a480038e0e1594805a3b70f180a5d4990d20c9e7a2b35808759d2524868923b8; twid=u%3D1399229100502360070; at_check=true; mbox=session#8c9772f3d8624b1dac0c7f067989d1b8#1622439901|PC#8c9772f3d8624b1dac0c7f067989d1b8.38_0#1685682841; cd_user_id=179c0d7da57fc-0beb21182ca819-3b7c0a50-100200-179c0d7da5847b; lang=vi' \
+  --compressed
+
+
+# self.url = (
+        #     f'https://api.twitter.com/2/search/adaptive.json?'
+        #     f'include_profile_interstitial_type=1'
+        #     f'&include_blocking=1'
+        #     f'&include_blocked_by=1'
+        #     f'&include_followed_by=1'
+        #     f'&include_want_retweets=1'
+        #     f'&include_mute_edge=1'
+        #     f'&include_can_dm=1'
+        #     f'&include_can_media_tag=1'
+        #     f'&skip_status=1'
+        #     f'&cards_platform=Web-12'
+        #     f'&include_cards=1'
+        #     f'&include_ext_alt_text=true'
+        #     f'&include_quote_count=true'
+        #     f'&include_reply_count=1'
+        #     f'&tweet_mode=extended'
+        #     f'&include_entities=true'
+        #     f'&include_user_entities=true'
+        #     f'&include_ext_media_color=true'
+        #     f'&include_ext_media_availability=true'
+        #     f'&send_error_codes=true'
+        #     f'&simple_quoted_tweet=true'
+        #     f'&query_source=typed_query'
+        #     f'&pc=1'
+        #     f'&spelling_corrections=1'
+        #     f'&ext=mediaStats%2ChighlightedLabel'
+        #     f'&count=20'
+        #     f'&tweet_search_mode=live'
+        # )
+        # self.url = self.url + '&q={query}'
