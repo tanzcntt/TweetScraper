@@ -6,6 +6,7 @@ import sys
 import pymongo
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
+import asyncio
 
 mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
 myDatabase = mongoClient["twitterdata"]
@@ -40,19 +41,19 @@ except getopt.error as err:
     print(str(err))
 
 
-def get_tw_from_date(x):
+async def get_tw_from_date(x):
     print("Check data on ", x)
     month = x.strftime("%b")
     day_string = x.strftime("%a")
-    day = x.day.__str__()
+    day = x.strftime("%d")
     year = x.year.__str__()
     pat = re.compile(
         r'(?=.*\b{0}\s\b)(?=.*\b\s{1}\s\b)(?=.*\b\s{2}\s\b)(?=.*\b{3}\b)'.format(day_string, month, day, year))
-    top_tws = twCollection.find({"created_at": pat, "retweet_count": {"$gt": 1}, "favorite_count": {"$gt": 1}}) \
+    print(r'(?=.*\b{0}\s\b)(?=.*\b\s{1}\s\b)(?=.*\b\s{2}\s\b)(?=.*\b{3}\b)'.format(day_string, month, day, year))
+    top_tws = twCollection.find({"created_at": pat, "favorite_count": {"$gt": 1}}) \
         .sort([("retweet_count", -1), ("favorite_count", -1), ("reply_count", -1)]) \
         # .limit()
-    for tw in top_tws:
-        push_data_to_dhunt(tw)
+    await push_data_to_dhunt(top_tws)
 
 
 def tweet_without_user():
@@ -82,48 +83,55 @@ def tweet_without_user():
             break
 
 
-def push_data_to_dhunt(tw):
-    print(tw['id'], tw['created_at'], tw['retweet_count'], tw['favorite_count'], tw['reply_count'])
+async def push_data_to_dhunt(top_tws):
+    for tw in top_tws:
+        transport = AIOHTTPTransport(url=url, headers={'Authorization': 'Bearer ' + token})
 
-    # Select your transport with a defined url endpoint
-    transport = AIOHTTPTransport(url=url, headers={'Authorization': 'Bearer ' + token})
+        # Create a GraphQL client using the defined transport
+        # client = Client(transport=transport, fetch_schema_from_transport=True)
 
-    # Create a GraphQL client using the defined transport
-    client = Client(transport=transport, fetch_schema_from_transport=True)
+        # Provide a GraphQL query
 
-    # Provide a GraphQL query
-    query = gql(
-        """
-        mutation  submitTweet($tweetData : JSONObject!,$userData : JSONObject!){
-          submitTweet(tweetData : $tweetData,userData : $userData) {
-            id
-            item{
-                id
-            }
-          }
-        }
-        """
-    )
+        # Execute the query on the transport
+        tw.pop("_id", None)
+        user_data = userCollection.find_one({"id_str": tw["user_id_str"]})
+        user_data.pop("_id", None)
+        params = {"tweetData": tw, "userData": user_data}
+        async with Client(
+                transport=transport, fetch_schema_from_transport=True,
+        ) as session:
+            # Execute single query
+            query = gql(
+                """
+                mutation  submitTweet($tweetData : JSONObject!,$userData : JSONObject!){
+                  submitTweet(tweetData : $tweetData,userData : $userData) {
+                    id
+                    item{
+                        id
+                    }
+                  }
+                }
+                """
+            )
 
-    # Execute the query on the transport
-    tw.pop("_id", None)
-    user_data = userCollection.find_one({"id_str": tw["user_id_str"]})
-    user_data.pop("_id", None)
-    params = {"tweetData": tw, "userData": user_data}
-    result = client.execute(query, variable_values=params)
-    print(result)
+            await session.execute(query, variable_values=params)
 
 
-tweet_without_user()
+async def main(day_in):
+    today = datetime.date.today()
+    yesterday = today
+    task1 = asyncio.create_task(get_tw_from_date(yesterday))
 
-today = datetime.date.today()
-yesterday = today - datetime.timedelta(days=day)
-get_tw_from_date(yesterday)
+    day_in = day_in + 1
+    yesterday = today - datetime.timedelta(days=day_in)
+    task2 = asyncio.create_task(get_tw_from_date(yesterday))
 
-day = day + 1
-yesterday = today - datetime.timedelta(days=day)
-get_tw_from_date(yesterday)
+    day_in = day_in + 1
+    yesterday = today - datetime.timedelta(days=day_in)
+    task3 = asyncio.create_task(get_tw_from_date(yesterday))
 
-day = day + 1
-yesterday = today - datetime.timedelta(days=day)
-get_tw_from_date(yesterday)
+    await task1
+    await task2
+    await task3
+
+asyncio.run(main(day))

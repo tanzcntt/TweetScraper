@@ -10,7 +10,6 @@ from scrapy_selenium import SeleniumRequest, SeleniumMiddleware
 
 from TweetScraper.items import Tweet, User
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -55,13 +54,11 @@ class TweetScraper(CrawlSpider):
         # regex for finding next cursor
         self.cursor_re = re.compile('"(scroll:[^"]*)"')
 
-
     def start_requests(self):
         """
         Use the landing page to get cookies first
         """
         yield SeleniumRequest(url="https://twitter.com/explore", callback=self.parse_home_page)
-
 
     def parse_home_page(self, response):
         """
@@ -71,7 +68,6 @@ class TweetScraper(CrawlSpider):
         self.update_cookies(response)
         for r in self.start_query_request():
             yield r
-
 
     def update_cookies(self, response):
         driver = response.meta['driver']
@@ -91,8 +87,6 @@ class TweetScraper(CrawlSpider):
         print(self.headers)
         print('\n--------------------------\n')
 
-
-
     def start_query_request(self, cursor=None):
         """
         Generate the search request
@@ -107,7 +101,8 @@ class TweetScraper(CrawlSpider):
         min_y = min_day.year.__str__()
         min_m = min_day.strftime("%m")
         min_d = min_day.day.__str__()
-        query_util = self.query + " until:{y}-{m}-{d} since:{minY}-{minM}-{minD}".format(y=y, m=m, d=d, minY=min_y, minM=min_m, minD=min_d)
+        query_util = self.query + " until:{y}-{m}-{d} since:{minY}-{minM}-{minD}".format(y=y, m=m, d=d, minY=min_y,
+                                                                                         minM=min_m, minD=min_d)
         print(query_util)
         if cursor:
             url = self.url + '&cursor={cursor}'
@@ -127,7 +122,6 @@ class TweetScraper(CrawlSpider):
             # update cookies
             yield SeleniumRequest(url="https://twitter.com/explore", callback=self.update_cookies, dont_filter=True)
 
-
     def parse_result_page(self, response):
         """
         Get the tweets & users & next request
@@ -136,28 +130,32 @@ class TweetScraper(CrawlSpider):
 
         # handle current page
         data = json.loads(response.text)
+        k = 0
         for item in self.parse_tweet_item(data['globalObjects']['tweets']):
+            k = k + 1
+            print(item["raw_data"]["id_str"])
             yield item
         for item in self.parse_user_item(data['globalObjects']['users']):
             yield item
 
+        if k == 0:
+            return
         # get next page
         cursor = self.cursor_re.search(response.text).group(1)
+        print(cursor)
         for r in self.start_query_request(cursor=cursor):
             yield r
 
-
     def parse_tweet_item(self, items):
-        for k,v in items.items():
+        for k, v in items.items():
             # assert k == v['id_str'], (k,v)
             tweet = Tweet()
             tweet['id_'] = k
             tweet['raw_data'] = v
             yield tweet
 
-
     def parse_user_item(self, items):
-        for k,v in items.items():
+        for k, v in items.items():
             # assert k == v['id_str'], (k,v)
             user = User()
             user['id_'] = k

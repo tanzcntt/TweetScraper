@@ -75,7 +75,6 @@ class SaveToFilePipeline(object):
         return x
 
     def update_to_item_mongo(self, item):
-        print("Update item to mongo", item["raw_data"]["id_str"])
         ''' input:
                 item - a dict like object
                 fname - where to save
