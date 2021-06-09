@@ -11,40 +11,8 @@ englishNews = myDatabase['englishNews']
 postContents = myDatabase['postContents']
 
 
-def handle_link_avatars(links):
-		new_links = []
-		parent = "https://sjc3.discourse-cdn.com/business4"
-		for link in links:
-			if "https:" not in link:
-				new_links.append(parent + link)
-			else:
-				pass
-		return new_links
-
-
-def insert_into_table(table, data):
-	if table.insert_one(data):
-		print(color["okgreen"] + "Import Post success!!!" + color["endc"])
-
-
-def update_table(table, data):
-	query = {
-		"link_post": data['link_post']
-	}
-	if table.update_one(query, {'$set': data}):
-		print(f"{color['okblue']}Updating: title, tags, posts link,...{color['endc']}")
-
-
-def update_raw_content(table, data):
-	query = {
-		"link_post": data['link_content']
-	}
-	if table.update_one(query, {'$set': data}):
-		print(f"{color['okblue']}Updating Raw Content....{color['endc']}")
-
-
 class CardanoSpider(scrapy.Spider):
-	name = "crawlLatest"
+	name = "crawlLatestCarda"
 	start_urls = [
 		'https://forum.cardano.org/c/english/announcements/13?page=0'
 	]
@@ -72,12 +40,8 @@ class CardanoSpider(scrapy.Spider):
 				'replies': post.css('td.replies span.posts::text').get(),
 				'views': post.css('td.views span.views::text').get(),
 				'date': post.css('td::text').getall()[-1].strip(),
+				'latest': 1
 			}
-			data['avatars'] = handle_link_avatars(data['avatars'])
-			if englishNews.find_one({'link_post': data['link_post']}):
-				update_table(englishNews, data)
-			else:
-				insert_into_table(englishNews, data)
 			yield response.follow(data['link_post'], callback=self.parse_content)
 			yield data
 
@@ -88,14 +52,14 @@ class CardanoSpider(scrapy.Spider):
 			'raw_content': extraction_with_css('div.post'),
 			'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
 			'post_time': extraction_with_css('time.post-time::text'),
+			'latest': 1,
 		}
-		update_raw_content(englishNews, data)
 		yield data
-		time.sleep(1)
+		time.sleep(2)
 
 
 class CardaNewsContent(scrapy.Spider):
-	name = "crawlAllCardanoNews"
+	name = "crawlAllCarda"
 	start_urls = [
 		'https://forum.cardano.org/c/english/announcements/13',
 	]
@@ -125,12 +89,8 @@ class CardaNewsContent(scrapy.Spider):
 				'replies': post.css('td.replies span.posts::text').get(),
 				'views': post.css('td.views span.views::text').get(),
 				'date': post.css('td::text').getall()[-1].strip(),
+				'latest': 0
 			}
-			data['avatars'] = handle_link_avatars(data['avatars'])
-			if postContents.find_one({'link_post': data['link_post']}):
-				update_table(postContents, data)
-			else:
-				insert_into_table(postContents, data)
 			yield data
 
 	def parse_content(self, response, **kwargs):
@@ -141,7 +101,21 @@ class CardaNewsContent(scrapy.Spider):
 			'raw_content': extraction_with_css('div.post'),
 			'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
 			'post_time': extraction_with_css('time.post-time::text'),
+			'latest': 0,
 		}
-		update_raw_content(postContents, data)
 		yield data
 		time.sleep(3)
+
+
+class IohkContent(scrapy.Spider):
+	name = "crawlIohkNews"
+
+	def start_requests(self):
+		start_urls = [
+			'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json',
+		]
+		yield Request(url=start_urls[0], callback=self.parse)
+
+	def parse(self, response):
+		page = response.url
+		utils.save_to_html("all", response.body)
