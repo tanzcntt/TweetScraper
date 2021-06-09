@@ -19,7 +19,7 @@ class CardanoSpider(scrapy.Spider):
 
 	def start_requests(self):
 		url = 'https://forum.cardano.org/c/english/announcements/13?page='
-		total_pages = 2
+		total_pages = 1
 		for i in range(total_pages):
 			yield Request(url=url + str(i), callback=self.parse)
 
@@ -55,7 +55,7 @@ class CardanoSpider(scrapy.Spider):
 			'latest': 1,
 		}
 		yield data
-		time.sleep(2)
+		time.sleep(4)
 
 
 class CardaNewsContent(scrapy.Spider):
@@ -104,7 +104,7 @@ class CardaNewsContent(scrapy.Spider):
 			'latest': 0,
 		}
 		yield data
-		time.sleep(3)
+		time.sleep(5)
 
 
 class IohkContent(scrapy.Spider):
