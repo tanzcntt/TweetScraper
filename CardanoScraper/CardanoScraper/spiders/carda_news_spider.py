@@ -55,7 +55,7 @@ class CardanoSpider(scrapy.Spider):
 			'latest': 1,
 		}
 		yield data
-		time.sleep(4)
+		time.sleep(3)
 
 
 class CardaNewsContent(scrapy.Spider):

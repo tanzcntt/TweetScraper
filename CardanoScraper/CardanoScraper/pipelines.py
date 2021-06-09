@@ -15,6 +15,12 @@ class CardanoscraperPipeline(object):
         self.latestNews = self.myDatabase['latestNews']
         self.postContents = self.myDatabase['allNews']
 
+    # ================================================
+    # handle put data to GraphQl
+    # ================================================
+    def close_spider(self, spider):
+        print(f"{color['bold']}End spider {color['endc']}")
+
     # call every item pipeline component
     def process_item(self, item, spider):
         print(f"{color['okblue']}Pipeline handling...{color['endc']}")

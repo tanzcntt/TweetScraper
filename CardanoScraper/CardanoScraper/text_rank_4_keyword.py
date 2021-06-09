@@ -112,7 +112,7 @@ class TextRank4Keyword:
 				break
 		return data
 
-	def analyze(self, text, candidate_post=['NOUN', 'PROPN', 'VERB', 'ADJ'],
+	def analyze(self, text, candidate_post=['NOUN', 'PROPN', 'VERB'],
 				window_size=4, lower=False, stopwords=list()):
 		# Set stop words
 		self.set_stopwords(stopwords)
@@ -148,5 +148,5 @@ class TextRank4Keyword:
 # 	text = file.read()
 #
 # text_rank = TextRank4Keyword()
-# text_rank.analyze(text, window_size=4)
+# text_rank.analyze(text, window_size=4, candidate_post=['NOUN', 'PROPN', 'VERB'])
 # print(text_rank.get_keywords(8))
