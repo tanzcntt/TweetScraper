@@ -17,7 +17,7 @@ class TweetScraper(CrawlSpider):
     name = 'TweetScraper'
     allowed_domains = ['twitter.com']
 
-    def __init__(self, query=''):
+    def __init__(self, query='', mode='latest'):
         self.url = (
             f'https://api.twitter.com/2/search/adaptive.json?'
             f'include_profile_interstitial_type=1'
@@ -50,6 +50,7 @@ class TweetScraper(CrawlSpider):
         )
         self.url = self.url + '&q={query}'
         self.query = query
+        self.mode = mode
         self.num_search_issued = 0
         # regex for finding next cursor
         self.cursor_re = re.compile('"(scroll:[^"]*)"')
@@ -109,6 +110,11 @@ class TweetScraper(CrawlSpider):
             url = url.format(query=quote(query_util), cursor=quote(cursor))
         else:
             url = self.url.format(query=quote(query_util))
+
+        if self.mode == "latest":
+            if self.num_search_issued > 10:
+                return False
+
         request = http.Request(url, callback=self.parse_result_page, cookies=self.cookies, headers=self.headers)
         yield request
 

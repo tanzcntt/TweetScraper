@@ -45,11 +45,11 @@ async def get_tw_from_date(x):
     print("Check data on ", x)
     month = x.strftime("%b")
     day_string = x.strftime("%a")
-    day = x.strftime("%d")
+    d = x.strftime("%d")
     year = x.year.__str__()
     pat = re.compile(
-        r'(?=.*\b{0}\s\b)(?=.*\b\s{1}\s\b)(?=.*\b\s{2}\s\b)(?=.*\b{3}\b)'.format(day_string, month, day, year))
-    print(r'(?=.*\b{0}\s\b)(?=.*\b\s{1}\s\b)(?=.*\b\s{2}\s\b)(?=.*\b{3}\b)'.format(day_string, month, day, year))
+        r'(?=.*\b{0}\s\b)(?=.*\b\s{1}\s\b)(?=.*\b\s{2}\s\b)(?=.*\b{3}\b)'.format(day_string, month, d, year))
+    print(r'(?=.*\b{0}\s\b)(?=.*\b\s{1}\s\b)(?=.*\b\s{2}\s\b)(?=.*\b{3}\b)'.format(day_string, month, d, year))
     top_tws = twCollection.find({"created_at": pat, "favorite_count": {"$gt": 1}}) \
         .sort([("retweet_count", -1), ("favorite_count", -1), ("reply_count", -1)]) \
         # .limit()
