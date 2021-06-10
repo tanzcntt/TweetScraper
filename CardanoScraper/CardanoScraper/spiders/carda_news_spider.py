@@ -44,7 +44,8 @@ class CardanoSpider(scrapy.Spider):
 				'replies': post.css('td.replies span.posts::text').get(),
 				'views': post.css('td.views span.views::text').get(),
 				'date': post.css('td::text').getall()[-1].strip(),
-				'latest': 1
+				'latest': 1,
+				'approve': 1
 			}
 			yield response.follow(data['link_post'], callback=self.parse_content)
 			yield data
@@ -94,7 +95,8 @@ class CardaNewsContent(scrapy.Spider):
 				'replies': post.css('td.replies span.posts::text').get(),
 				'views': post.css('td.views span.views::text').get(),
 				'date': post.css('td::text').getall()[-1].strip(),
-				'latest': 0
+				'latest': 0,
+				'approve': 1
 			}
 			yield data
 
