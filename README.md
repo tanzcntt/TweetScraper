@@ -1,3 +1,4 @@
+# I. Twitter Scraper #
 # Introduction #
 `TweetScraper` can get tweets from [Twitter Search](https://twitter.com/explore). 
 It is built on [Scrapy](http://scrapy.org/) without using [Twitter's APIs](https://dev.twitter.com/rest/public).
@@ -50,3 +51,73 @@ conda activate tweetscraper
 ./start.sh >> logs/update.log 2>&1 &
 ./start-latest.sh >> logs/latest.log 2>&1 &
 ./push.sh >> logs/pushdhunt.log 2>&1 &
+
+//sudo docker-compose -d up
+
+# II. user-scraper #
+# Introduction #
+`user-scraper` can get all user through specific [User Page](https://twitter.com/elonmusk). 
+
+Main purposes: 
++ follow twitter users
++ statistic and visualize account growth,...
+
+# Usage #
+1. Open this project and run command like:
+
+		python3 run_command.py -t 5 -u 100
+   
+		-t: is the number of thread
+		-u: is the number of User we want to crawl data
+
+This command will start with `5 threads` at the same time and crawl `100 users` taken from the [followUser](http://localhost:8081/db/twitterdata/followUser) in mongodb. Free to change `thread & user`
+
+2. See the results in collection [trackUser](http://localhost:8081/db/twitterdata/trackUser) 
+
+# III. CardanoScraper #
+# Introduction #
+
+`CardanoScraper` will crawl all data through category: [News and Announcements](https://forum.cardano.org/c/english/announcements/13) on forum.cardano.org
+
+Main purposes:
++ Get *latest posts*, *all posts* and *Content* of this posts
++ Implement Natural Language Processing use `spacy` package to
+  + Mark up the words in text format for a particular paragraph depended on its Context and Definition
+  + Extract and rank keywords follow the specific paragraph
++ Handle many functions behind this phase. Developing...
+
+# Installation #
+
+1. Install `requirements` 
++ pip install -r requirements.txt
+  
+2. Install `NLP trained model` for English
++ [python -m spacy download en_core_web_sm](https://spacy.io/models/en)
+
+
+# Usage #
+1. Run demo ranking keyword in `text_rank_4_key.py`
+	
+		python3 text_rank_4_key.py
+	
+*window_size* is custom, better in range 5 - 10
+
+*candidate_post* is custom follow the link to set [POS tag](https://spacy.io/usage/linguistic-features): PROPN, NOUN, VERB,...,
+
+*get_keyword*(number=10) to get *top number* of this keyword
+
+, ...
+
+2. Open `CardanoScraper` and run commands:
+
+Remember to activate the environment firstly,
+
+Run these commands do not need to follow the sequence.
+
+This command crawls and updates 1 Latest page on [Cardano Forum](https://forum.cardano.org/c/english/announcements/13):
+		
+		scrapy crawl crawlLatestCarda
+
+This command crawls and updates all pages [Cardano Forum](https://forum.cardano.org/c/english/announcements/13):
+
+		scrapy crawl crawlAllCarda

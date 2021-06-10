@@ -6,3 +6,6 @@ pymongo~=3.11.4
 gql~=3.0.0a5
 requests~=2.25.1
 keybert~=0.3.0
+numpy
+spacy
+tensorflow
