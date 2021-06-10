@@ -61,7 +61,6 @@ Main purposes:
 + follow twitter users
 + statistic and visualize account growth,...
 
-# Installation #
 # Usage #
 1. Open this project and run command like:
 
@@ -86,16 +85,25 @@ Main purposes:
   + Extract and rank keywords follow the specific paragraph
 + Handle many functions behind this phase. Developing...
 
+# Installation #
+
+1. Install `requirements` 
++ pip install -r requirements.txt
+  
+2. Install `NLP trained model` for English
++ [python -m spacy download en_core_web_sm](https://spacy.io/models/en)
+
+
 # Usage #
 1. Run demo ranking keyword in `text_rank_4_key.py`
 	
 		python3 text_rank_4_key.py
 	
-window_size is custom, better in range 5 - 10
+*window_size* is custom, better in range 5 - 10
 
-candidate_post is custom follow the link to set [POS tag](https://spacy.io/usage/linguistic-features): PROPN, NOUN, VERB,...,
+*candidate_post* is custom follow the link to set [POS tag](https://spacy.io/usage/linguistic-features): PROPN, NOUN, VERB,...,
 
-get_keyword(number=10) to get *top number* of this keyword
+*get_keyword*(number=10) to get *top number* of this keyword
 
 , ...
 
@@ -105,10 +113,10 @@ Remember to activate the environment firstly,
 
 Run these commands do not need to follow the sequence.
 
-This command crawl and update 1 Latest page:
+This command crawls and updates 1 Latest page on [Cardano Forum](https://forum.cardano.org/c/english/announcements/13):
 		
 		scrapy crawl crawlLatestCarda
 
-This command crawl and update all pages:
+This command crawls and updates all pages [Cardano Forum](https://forum.cardano.org/c/english/announcements/13):
 
 		scrapy crawl crawlAllCarda
