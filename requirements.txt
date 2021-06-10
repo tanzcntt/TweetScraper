@@ -9,3 +9,4 @@ keybert~=0.3.0
 numpy
 spacy
 tensorflow
+aiohttp

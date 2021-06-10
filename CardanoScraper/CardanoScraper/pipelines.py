@@ -1,8 +1,10 @@
 from . import utils
 import json
+import re
 import pymongo
 from itemadapter import ItemAdapter
 from . import text_rank_4_keyword
+from datetime import datetime
 
 color = utils.colors_mark()
 textRank = text_rank_4_keyword.TextRank4Keyword()
@@ -34,6 +36,7 @@ class CardanoscraperPipeline(object):
             else:
                 self.insert_into_table(self.latestNews, item)
         elif 'raw_content' in item and item['latest'] == 1:
+            self.handle_datetime(item)
             self.text_ranking(item)
             self.update_raw_content(self.latestNews, item)
             print(f"{color['warning']}latestNews table{color['endc']}")
@@ -45,6 +48,7 @@ class CardanoscraperPipeline(object):
             else:
                 self.insert_into_table(self.postContents, item)
         elif 'raw_content' in item and item['latest'] == 0:
+            self.handle_datetime(item)
             self.text_ranking(item)
             self.update_raw_content(self.postContents, item)
             print(f"{color['warning']}allNews table{color['endc']}")
@@ -83,7 +87,15 @@ class CardanoscraperPipeline(object):
         line = json.dumps(ItemAdapter(item['avatars']).asdict()) + '\n'
         file.write(line)
 
+    def remove_html_tags(self, raw_content):
+        clean = re.compile('<.*?>')
+        return re.sub(clean, '', raw_content)
+
     def text_ranking(self, data):
-        textRank.analyze(data['raw_content'], window_size=6)
+        raw_content = self.remove_html_tags(data['raw_content'])
+        textRank.analyze(raw_content.lower(), window_size=6, stopwords={'%'})
         data['keyword_ranking'] = textRank.get_keywords(10)
         return data['keyword_ranking']
+
+    def handle_datetime(self, data):
+        data['timestamp'] = datetime.strptime(data['post_time'], "%d %B %Y %H:%M").timestamp()

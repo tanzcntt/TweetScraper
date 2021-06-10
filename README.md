@@ -104,7 +104,7 @@ Main purposes:
 
 *candidate_post* is custom follow the link to set [POS tag](https://spacy.io/usage/linguistic-features): PROPN, NOUN, VERB,...,
 
-*get_keyword*(number=10) to get *top number* of this keyword
+*get_keyword*(number=10) to get *top number* of these keywords
 
 , ...
 
