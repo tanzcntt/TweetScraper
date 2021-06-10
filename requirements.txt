@@ -7,3 +7,4 @@ gql~=3.0.0a5
 numpy
 spacy
 tensorflow
+aiohttp
