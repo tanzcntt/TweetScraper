@@ -1,8 +1,12 @@
 import pymongo
 import scrapy
 import time
-from scrapy import Request
+import json
+import re
 from .. import utils
+from scrapy import Request
+from scrapy.linkextractors import LinkExtractor
+from scrapy.spiders import CrawlSpider, Rule
 
 color = utils.colors_mark()
 mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
@@ -48,6 +52,7 @@ class CardanoSpider(scrapy.Spider):
 	def parse_content(self, response):
 		def extraction_with_css(query):
 			return response.css(query).get(default='').strip()
+
 		data = {
 			'raw_content': extraction_with_css('div.post'),
 			'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
@@ -108,14 +113,25 @@ class CardaNewsContent(scrapy.Spider):
 
 
 class IohkContent(scrapy.Spider):
-	name = "crawlIohkNews"
+	name = "iohk"
 
 	def start_requests(self):
-		start_urls = [
-			'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json',
-		]
-		yield Request(url=start_urls[0], callback=self.parse)
+		# start_urls = [
+		# 	'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json',
+		# ]
+		url = "https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json"
+		total_page = 5
+		headers = {
+			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
+			"sec-ch-ua-mobile": "?0",
+			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
+		}
+		for i in range(total_page):
+			yield Request(url=url.format(i), callback=self.parse, headers=headers)
 
 	def parse(self, response):
-		page = response.url
-		utils.save_to_html("all", response.body)
+		# page = response.url
+		# utils.save_to_html("all", response.body)
+		content = json.loads(response.body)
+		yield content
+		time.sleep(10)
