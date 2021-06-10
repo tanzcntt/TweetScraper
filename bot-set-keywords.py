@@ -54,17 +54,22 @@ class HandleKeywords():
 		# create a Graphql client using the defined transport
 		client = Client(transport=transport, fetch_schema_from_transport=True)
 		i_ = 0
+		params = {"take": 5, "skip": 0}
 		while True:
 			query = gql(
-				"""query {
-					ideaWithoutKeyword{
+				"""query ideaWithoutKeyword($take: Int!, $skip: Int!){
+					ideaWithoutKeyword(take: $take, skip: $skip){
 						id
 						contentJson
 						keywords
 					}
 				}"""
 			)
-			result = client.execute(query)
+			result = client.execute(query, variable_values=params)
+
+			# ================================================
+			# Handle text ranking
+			# ================================================
 			ideas = result['ideaWithoutKeyword']
 			for idea in ideas:
 				list_content = ''
@@ -79,10 +84,11 @@ class HandleKeywords():
 
 				keywords = self.keywords_ranking(list_content)
 				print(f"{colors['okcyan']} {keywords} {colors['endc']}")
+
 			i_ += 1
 			if result['ideaWithoutKeyword']:
 				pass
-			time.sleep(2)
+			time.sleep(5)
 
 	def keywords_ranking(self, raw_content):
 		textRank.analyze(raw_content, window_size=6, candidate_post=['NOUN', 'PROPN'], stopwords={'%'})
@@ -97,3 +103,4 @@ class HandleKeywords():
 
 data = HandleKeywords()
 print(data.idea_without_keyword())
+# limit, offset
