@@ -15,11 +15,6 @@ englishNews = myDatabase['englishNews']
 postContents = myDatabase['postContents']
 
 
-def remove_html_tags(raw_content):
-	clean = re.compile('<.*?>')
-	return re.sub(clean, '', raw_content)
-
-
 class CardanoSpider(scrapy.Spider):
 	name = "crawlLatestCarda"
 	start_urls = [
@@ -60,7 +55,7 @@ class CardanoSpider(scrapy.Spider):
 			return response.css(query).get(default='').strip()
 
 		data = {
-			'raw_content': remove_html_tags(extraction_with_css('div.post')),
+			'raw_content': extraction_with_css('div.post'),
 			'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
 			'post_time': extraction_with_css('time.post-time::text'),
 			'latest': 1,
@@ -110,7 +105,7 @@ class CardaNewsContent(scrapy.Spider):
 			return response.css(query).get(default='').strip()
 
 		data = {
-			'raw_content': remove_html_tags(extraction_with_css('div.post')),
+			'raw_content': extraction_with_css('div.post'),
 			'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
 			'post_time': extraction_with_css('time.post-time::text'),
 			'latest': 0,
