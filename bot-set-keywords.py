@@ -12,6 +12,16 @@ import utils
 # ================================================
 # Options
 # ================================================
+
+stop_list = {
+    '%', 'quot;how', 'ins', 'outs', '0Self', 'https://', '×', 'FAQ', 'ii', 'カルダノプラットフォームの分散化の実現には、高度の機能の実現だけではなく、大衆がいかにそれを理解し、利用できる環境の提供が必要となる。しかし、ブロックチェン全般とカルダノ独自の技術開発上の用語をまとめたコンテンツはあまり見られないのが現状である'
+    '当プロジェクトによって、カルダノプラットフォームをめぐる技術上または専門的な用語をわかりやすく説明できるWEB辞書を構築するものである',
+    "また、この用語辞書は、ウェブ上に単なる文字情報として提供するだけでなく、アニメーションや動画像による音声や映像によっても構成されるのが特徴である",
+    "。", "さらに、同コンテンツは、英語によるコンテンツを基本とするが、利用者層の多い日本語、韓国語、中国語にも翻訳して提供できるようにする",
+    "１）技術用語や専門用語の数", "E", "amp", "#", "ex", "X", "+", "X1", "$", "https://", "PRüF", ":)", "set", "®", "co",
+    "|", "10k", "+15",
+}
+
 colors = utils.colors_mark()
 argumentList = sys.argv[1:]
 options = "u:t:"
@@ -54,8 +64,10 @@ class HandleKeywords():
 		# create a Graphql client using the defined transport
 		client = Client(transport=transport, fetch_schema_from_transport=True)
 		i_ = 0
-		params = {"take": 5, "skip": 0}
+		take = 40
+		skip = 0
 		while True:
+			print(take, skip)
 			query = gql(
 				"""query ideaWithoutKeyword($take: Int!, $skip: Int!){
 					ideaWithoutKeyword(take: $take, skip: $skip){
@@ -65,7 +77,7 @@ class HandleKeywords():
 					}
 				}"""
 			)
-			result = client.execute(query, variable_values=params)
+			result = client.execute(query, variable_values={"take": take, "skip": skip})
 
 			# ================================================
 			# Handle text ranking
@@ -75,32 +87,42 @@ class HandleKeywords():
 				list_content = ''
 				content_json = idea["contentJson"]
 				for i in content_json:
-					content_json[i]['a'] = self.remove_html_tags(content_json[i]['a'])
-					content_json[i]['b'] = self.remove_html_tags(content_json[i]['b'])
+					content_json[i]['a'] = utils.remove_html_tags(content_json[i]['a'])
+					content_json[i]['b'] = utils.remove_html_tags(content_json[i]['b'])
 					list_content += content_json[i]['a']
 					list_content += content_json[i]['b']
 
-				print(f"{str(i_)} {colors['okgreen']} {list_content} {colors['endc']}")
-
+				# print(f"{str(i_)} {colors['okgreen']} {list_content} {colors['endc']}")
 				keywords = self.keywords_ranking(list_content)
 				print(f"{colors['okcyan']} {keywords} {colors['endc']}")
+				with open('test_stopwords2.json', 'a') as file:
+					file.write(str(i_) + str(keywords))
 
 			i_ += 1
-			if result['ideaWithoutKeyword']:
-				pass
-			time.sleep(5)
+			take += 40
+			skip += 40
+			# if result['ideaWithoutKeyword']:
+			# 	pass
+			if take == 400:
+				break
+			print(take, skip)
+			# time.sleep(1)
+
 
 	def keywords_ranking(self, raw_content):
-		textRank.analyze(raw_content, window_size=6, candidate_post=['NOUN', 'PROPN'], stopwords={'%'})
-		keywords = textRank.get_keywords(8)
+		textRank.analyze(raw_content.lower(), window_size=6, candidate_post=['NOUN', 'PROPN'])  # , stopwords=stop_list)
+		keywords = textRank.get_keywords(10)
 		return keywords
-		# data['keyword']
 
-	def remove_html_tags(self, raw_content):
-		clean = re.compile('<.*?>')
-		return re.sub(clean, '', raw_content)
+	# def remove_html_tags(self, raw_content):
+	# 	clean = re.compile('<.*?>')
+	# 	clear_special_char = re.sub('[^A-Za-z0-9]+', ' ', raw_content)
+	# 	return re.sub(clean, '', clear_special_char)
 
 
+start = time.time()
 data = HandleKeywords()
 print(data.idea_without_keyword())
+end = time.time()
+print(f"{colors['okblue']} Total time:{(end - start)/60} {colors['endc']}")
 # limit, offset
