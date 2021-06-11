@@ -1,9 +1,10 @@
 import os
+import re
 import shutil
 
 
-csv_path = 'Data/csv/'
-raw_data_path = 'Data/raw/'
+csv_path = 'CardanoScraper/CardanoScraper/Data/csv/'
+raw_data_path = 'CardanoScraper/CardanoScraper/Data/raw/'
 
 
 def save_to_html(page, content):
@@ -16,8 +17,8 @@ def save_to_html(page, content):
 
 def create_data_directory():
 	# create Date directory
-	os.makedirs('Data/csv', exist_ok=True)
-	os.makedirs('Data/raw', exist_ok=True)
+	os.makedirs('CardanoScraper/CardanoScraper/Data/csv', exist_ok=True)
+	os.makedirs('CardanoScraper/CardanoScraper/Data/raw', exist_ok=True)
 
 
 create_data_directory()
@@ -36,3 +37,18 @@ def colors_mark():
 		'underline': '\033[4m',
 	}
 	return colors
+
+
+def remove_html_tags(raw_content):
+	clean = re.compile('<.*?>')
+	clear_html_tags = re.sub(clean, '', raw_content)
+	clear_special_char = re.sub('[^A-Za-z0-9]+', ' ', clear_html_tags)
+	return remove_small_words(clear_special_char)
+
+
+def remove_small_words(words):
+	split_words = words.split(' ')
+	for word in split_words:
+		if len(word) < 3:
+			split_words.remove(word)
+	return ' '.join(split_words).lower()

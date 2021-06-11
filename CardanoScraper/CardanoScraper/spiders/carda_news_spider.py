@@ -2,11 +2,8 @@ import pymongo
 import scrapy
 import time
 import json
-import re
 from .. import utils
 from scrapy import Request
-from scrapy.linkextractors import LinkExtractor
-from scrapy.spiders import CrawlSpider, Rule
 
 color = utils.colors_mark()
 mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
@@ -77,7 +74,7 @@ class CardaNewsContent(scrapy.Spider):
 
 	def parse(self, response, **kwargs):
 		post_links = response.css('.link-top-line a')
-		print(f'post_links {color["header"]} {post_links} {color["endc"]}')
+		# print(f'post_links {color["header"]} {post_links} {color["endc"]}')
 		yield from response.follow_all(post_links, self.parse_content)
 
 		pagination_links = response.css('span b a')
