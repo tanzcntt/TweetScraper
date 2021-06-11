@@ -28,8 +28,10 @@ class CardanoscraperPipeline(object):
         print(f"{color['okblue']}Pipeline handling...{color['endc']}")
         # we have two flows of data
         # 1st for posts, 2nd for contents
+        # ================================================
         # if run crawlLatestCardano, insert data into latestNews table
-        if 'avatars' in item and item['latest'] == 1:
+        # ================================================
+        if 'title' in item and item['latest'] == 1:
             item['avatars'] = self.handle_link_avatars(item['avatars'])
             if self.latestNews.find_one({'link_post': item['link_post']}):
                 self.update_table(self.latestNews, item)
@@ -40,19 +42,21 @@ class CardanoscraperPipeline(object):
             self.text_ranking(item)
             self.update_raw_content(self.latestNews, item)
             print(f"{color['warning']}latestNews table{color['endc']}")
-        # if run crawlAllCardanoNews, insert data into postContents table
-        elif 'avatars' in item and item['latest'] == 0:
+        # ================================================
+        # if run crawlAllCardanoNews, insert data into allNews table
+        # ================================================
+        elif 'title' in item:
             item['avatars'] = self.handle_link_avatars(item['avatars'])
             if self.postContents.find_one({'link_post': item['link_post']}):
                 self.update_table(self.postContents, item)
             else:
                 self.insert_into_table(self.postContents, item)
-        elif 'raw_content' in item and item['latest'] == 0:
+        elif 'raw_content' in item:
             self.handle_datetime(item)
             self.text_ranking(item)
             self.update_raw_content(self.postContents, item)
             print(f"{color['warning']}allNews table{color['endc']}")
-        # print(f"{color['okgreen']}Item...{item}{color['endc']}")
+        print(f"{color['okgreen']}Item...{item}{color['endc']}")
         # return item
 
     def handle_link_avatars(self, links):
@@ -67,7 +71,7 @@ class CardanoscraperPipeline(object):
 
     def insert_into_table(self, table, data):
         if table.insert_one(data):
-            print(f"{color['okgreen']}Import Success!!!{color['endc']}")
+            print(f"{color['okgreen']}Import Posts success!!!{color['endc']}")
 
     def update_table(self, table, data):
         query = {
@@ -87,13 +91,15 @@ class CardanoscraperPipeline(object):
         line = json.dumps(ItemAdapter(item['avatars']).asdict()) + '\n'
         file.write(line)
 
-    def remove_html_tags(self, raw_content):
-        clean = re.compile('<.*?>')
-        return re.sub(clean, '', raw_content)
+    # def remove_html_tags(self, raw_content):
+    #     clean = re.compile('<.*?>')
+    #     clear_html_tags = re.sub(clean, '', raw_content)
+    #     clear_special_char = re.sub('[^A-Za-z0-9]+', ' ', clear_html_tags)
+    #     return clear_special_char
 
     def text_ranking(self, data):
-        raw_content = self.remove_html_tags(data['raw_content'])
-        textRank.analyze(raw_content.lower(), window_size=6, stopwords={'%'})
+        raw_content = utils.remove_html_tags(data['raw_content'])
+        textRank.analyze(raw_content, window_size=6)
         data['keyword_ranking'] = textRank.get_keywords(10)
         return data['keyword_ranking']
 

@@ -49,6 +49,8 @@ def remove_html_tags(raw_content):
 def remove_small_words(words):
 	split_words = words.split(' ')
 	for word in split_words:
+		if 'https' == word.strip():
+			split_words.remove('https')
 		if len(word) < 3:
 			split_words.remove(word)
 	return ' '.join(split_words).lower()
