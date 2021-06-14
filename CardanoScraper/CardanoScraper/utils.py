@@ -21,7 +21,7 @@ def create_data_directory():
 	os.makedirs('CardanoScraper/CardanoScraper/Data/raw', exist_ok=True)
 
 
-create_data_directory()
+# create_data_directory()
 
 
 def colors_mark():
@@ -42,13 +42,22 @@ def colors_mark():
 def remove_html_tags(raw_content):
 	clean = re.compile('<.*?>')
 	clear_html_tags = re.sub(clean, '', raw_content)
+	clear_html_tags = re.sub('[\@\#]\w+', ' ', clear_html_tags)
+	clear_html_tags = re.sub('[\/\#]\w+', ' ', clear_html_tags)
 	clear_special_char = re.sub('[^A-Za-z0-9]+', ' ', clear_html_tags)
 	return remove_small_words(clear_special_char)
 
 
 def remove_small_words(words):
-	split_words = words.split(' ')
+	split_words = words.lower().split(' ')
+	unwanted_words = {'https', 'g', 'm', 'heck', 'ser', '200k', 'longgggg',
+					  'wzrds', 'omarzb5', 'tel', 'haha', 'co',
+					  'https', 'www', 'com', 'boys', 'dan', 'con', 'los', 'que'}
+	split_words = [ele for ele in split_words if ele not in unwanted_words]
+
 	for word in split_words:
+		if 'https' == word.strip():
+			split_words.remove('https')
 		if len(word) < 3:
 			split_words.remove(word)
 	return ' '.join(split_words).lower()

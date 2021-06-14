@@ -37,7 +37,7 @@ textRank = TextRank4Keyword()
 class HandleKeywords():
 	def __init__(self):
 		self.mongoClient = pymongo.MongoClient('mongodb://root:password@localhost:27017/')
-		self.myDatabase = self.mongoClient['dhuntData']
+		self.myDatabase = self.mongoClient['testData']
 		self.twitter = self.myDatabase['twitter']
 		self.idea = self.myDatabase['idea']
 		self.url_ = 'https://gql.dhunt.io/'
@@ -91,6 +91,68 @@ class HandleKeywords():
 			else:
 				break
 
+	def tweet_without_keyword(self):
+		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
+		client = Client(transport=transport, fetch_schema_from_transport=True)
+		i_ = 0
+		while True:
+			query = gql(
+				"""query tweetWithoutKeyword($take: Int!, $skip: Int!){
+					tweetWithoutKeyword(take: $take, skip: $skip){
+						id
+						source
+						keywords
+					}
+				}"""
+			)
+			result = client.execute(query, variable_values={"take": 50, "skip": 0})
+			# ================================================
+			# Handle text ranking
+			# ================================================
+			tweets = result['tweetWithoutKeyword']
+			if tweets:
+				for tweet in tweets:
+					full_text = tweet['source']['full_text']
+					for i in full_text:
+						full_text = utils.remove_html_tags(full_text)
+					keywords = self.keywords_ranking(full_text)
+					self.push_data_to_submit_tweet(tweet["id"], keywords)
+			else:
+				break
+
+	def test_tweet_without_keyword(self):
+		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
+		# create a Graphql client using the defined transport
+		client = Client(transport=transport, fetch_schema_from_transport=True)
+		i_ = 0
+		take = 50
+		skip = 0
+		while True:
+			print(f"{colors['header']}Testing data...{colors['endc']}")
+			query = gql(
+				"""query tweetWithoutKeyword($take: Int!, $skip: Int!){
+					tweetWithoutKeyword(take: $take, skip: $skip){
+						id
+						source
+						keywords
+					}
+				}"""
+			)
+			result = client.execute(query, variable_values={"take": take, "skip": skip})
+			tweets = result['tweetWithoutKeyword']
+			if tweets:
+				for tweet in tweets:
+					full_text = tweet['source']['full_text']
+					for i in full_text:
+						full_text = utils.remove_html_tags(full_text)
+					keywords = self.keywords_ranking(full_text)
+					self.push_data_to_mongo(tweet, keywords)
+			else:
+				break
+			take += 50
+			skip += 50
+			i_ += 1
+
 	def keywords_ranking(self, raw_content):
 		textRank.analyze(raw_content, window_size=6, candidate_post=['NOUN', 'PROPN'])  # , stopwords=stop_list)
 		keywords = textRank.get_keywords(10)
@@ -98,7 +160,7 @@ class HandleKeywords():
 
 	def push_data_to_submit_idea(self, id, keywords):
 		params = {"keywords": str(keywords), "id": id}
-		print(params)
+		print(f"{colors['warning']}Importing: {colors['endc']}{params} ")
 		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
 		client = Client(transport=transport, fetch_schema_from_transport=True)
 		query = gql(
@@ -111,11 +173,49 @@ class HandleKeywords():
 			}
 			"""
 		)
-		client.execute(query, variable_values=params)
+		if client.execute(query, variable_values=params):
+			print(f"{colors['okgreen']}Push idea keywords into submitIdeaKeyword Success!{colors['endc']}\n")
+
+	def push_data_to_submit_tweet(self, id, keywords):
+		params = {"keywords": str(keywords), "id": id}
+		print(f"{colors['warning']}Importing: {colors['endc']}{params} ")
+		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
+		client = Client(transport=transport, fetch_schema_from_transport=True)
+		query = gql(
+			"""
+			mutation submitTweetKeyword($keywords : String!, $id : String!){
+				submitTweetKeyword(keywords : $keywords, id : $id) {
+					id
+					keywords
+				}
+			}
+			"""
+		)
+		if client.execute(query, variable_values=params):
+			print(f"{colors['okgreen']}Push tweet keywords into submitTweetKeyword Success!{colors['endc']}\n")
+
+	def push_data_to_mongo(self, tweet, keywords):
+		id_tweet = tweet['id']
+		user_id = tweet['source']['user_id']
+		raw_content = tweet['source']['full_text']
+		link_tweet = "https://twitter.com/{}/status/{}".format(user_id, id_tweet)
+		data_tweet_keywords = {
+			'id_tweet': id_tweet,
+			'link_tweet': link_tweet,
+			'raw_content': raw_content,
+			'keywords': keywords,
+		}
+		print(f"{colors['okcyan']} {data_tweet_keywords} {colors['endc']}")
+		if self.twitter.insert_one(data_tweet_keywords):
+			print(f"{colors['okgreen']}Import db success! {colors['endc']}")
 
 
 start = time.time()
 data = HandleKeywords()
-print(data.idea_without_keyword())
+# print(data.test_tweet_without_keyword())
+data.tweet_without_keyword()
 end = time.time()
 print(f"{colors['okblue']} Total time:{(end - start)/60} {colors['endc']}")
+
+
+# https://twitter.com/user_id/status/id
