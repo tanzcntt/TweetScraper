@@ -128,10 +128,6 @@ class CardanoscraperPipeline(object):
             'author_profile_url': '',
             'raw_data': '',
         }
-        # get recent posts on sidebar
-        iohk_recent_posts = {
-            'recent_posts': '',
-        }
         return iohk_all_posts
 
     def iohk_get_posts(self, data):
@@ -154,7 +150,8 @@ class CardanoscraperPipeline(object):
                 'total_pages': total_pages,
                 'current_pages': current_page,
                 'current_url_page': current_url_page,
-                'filters': sidebar_post_filter,
+                # 'filters': sidebar_post_filter,
+                'raw_data': ''
             }
             iohk_all_posts = self.initialize_iohk_sample_data()
             author_info = post['author']
@@ -166,7 +163,7 @@ class CardanoscraperPipeline(object):
             iohk_all_posts['author_profile_links'] = author_info['profile_links']  # all social links of the author
             iohk_all_posts['post_main_img'] = post['main_image']
             iohk_all_posts['lang'] = post['lang']
-            iohk_all_posts['title'] = post['title']
+            iohk_all_posts['title'] = post['title'].strip()
             iohk_all_posts['slug'] = post['slug']
             iohk_all_posts['subtitle'] = post['subtitle']
             iohk_all_posts['audio'] = post['audio']
@@ -181,17 +178,19 @@ class CardanoscraperPipeline(object):
 
             iohk_all_posts['url'] = iohk_url.format(post['url'])
             iohk_all_posts['author_profile_url'] = profile_url.format(author_info['profile_url'])
-            iohk_all_posts['raw_data'] = post
 
             keyword_ranking = self.text_ranking(iohk_all_posts, iohk_all_posts['body_content'])
+
+            # sample2['posts'] = iohk_all_posts
+            # sample2['keyword_ranking'] = keyword_ranking
+            # sample2['raw_data'] = post
+            # self.insert_into_iohk(sample2, 2)
+            # time.sleep(1)
+            print(f"Current page: {iohk_all_posts['current_url_page']}")
+            iohk_all_posts['raw_data'] = post
             iohk_all_posts['keyword_ranking'] = keyword_ranking
             self.insert_into_iohk(iohk_all_posts, 1)
-
-            time.sleep(1)
-            sample2['posts'] = iohk_all_posts
-            sample2['keyword_ranking'] = keyword_ranking
-            self.insert_into_iohk(sample2, 2)
-            time.sleep(1)
+            time.sleep(2)
 
     def insert_into_iohk(self, data, sample):
         print(f"\n{color['warning']}Importing: data{color['endc']}")
@@ -201,3 +200,6 @@ class CardanoscraperPipeline(object):
         else:
             if self.iohk_sample2.insert_one(data):
                 print(f"{color['okcyan']}Import into IOHK sample2 success!{color['endc']}\n")
+
+    def update_iohk(self):
+        pass

@@ -118,7 +118,7 @@ class IohkContent(scrapy.Spider):
 		# 	'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json',
 		# ]
 		url = "https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json"
-		total_page = 5
+		total_page = 45
 		headers = {
 			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
 			"sec-ch-ua-mobile": "?0",
@@ -132,4 +132,4 @@ class IohkContent(scrapy.Spider):
 		# utils.save_to_html("all", response.body)
 		content = json.loads(response.body)
 		yield content
-		time.sleep(10)
+		time.sleep(6)
