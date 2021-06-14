@@ -52,7 +52,7 @@ def remove_small_words(words):
 	split_words = words.lower().split(' ')
 	unwanted_words = {'https', 'g', 'm', 'heck', 'ser', '200k', 'longgggg',
 					  'wzrds', 'omarzb5', 'tel', 'haha', 'co',
-					  'https', 'www', 'com', 'boys', 'dan', 'con', 'los', 'que'}
+					  'https', 'www', 'com', 'boys', 'dan', 'con', 'los', 'que', 'hmmm'}
 	split_words = [ele for ele in split_words if ele not in unwanted_words]
 
 	for word in split_words:
