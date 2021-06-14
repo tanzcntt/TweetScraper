@@ -16,6 +16,7 @@ class CardanoscraperPipeline(object):
         self.myDatabase = self.mongoClient["cardanoNews"]
         self.latestNews = self.myDatabase['latestNews']
         self.postContents = self.myDatabase['allNews']
+        self.iohk = self.myDatabase['iohk']
 
     # ================================================
     # handle put data to GraphQl
@@ -29,23 +30,9 @@ class CardanoscraperPipeline(object):
         # we have two flows of data
         # 1st for posts, 2nd for contents
         # ================================================
-        # if run crawlLatestCardano, insert data into latestNews table
-        # ================================================
-        if 'title' in item and item['latest'] == 1:
-            item['avatars'] = self.handle_link_avatars(item['avatars'])
-            if self.latestNews.find_one({'link_post': item['link_post']}):
-                self.update_table(self.latestNews, item)
-            else:
-                self.insert_into_table(self.latestNews, item)
-        elif 'raw_content' in item and item['latest'] == 1:
-            self.handle_datetime(item)
-            self.text_ranking(item)
-            self.update_raw_content(self.latestNews, item)
-            print(f"{color['warning']}latestNews table{color['endc']}")
-        # ================================================
         # if run crawlAllCardanoNews, insert data into allNews table
         # ================================================
-        elif 'title' in item:
+        if 'title' in item:
             item['avatars'] = self.handle_link_avatars(item['avatars'])
             if self.postContents.find_one({'link_post': item['link_post']}):
                 self.update_table(self.postContents, item)
@@ -56,7 +43,9 @@ class CardanoscraperPipeline(object):
             self.text_ranking(item)
             self.update_raw_content(self.postContents, item)
             print(f"{color['warning']}allNews table{color['endc']}")
-        print(f"{color['okgreen']}Item...{item}{color['endc']}")
+        # print(f"{color['warning']}This is{color['endc']}Item...{color['okgreen']}{item}{color['endc']}")
+        # if self.iohk.insert_one(item):
+        #     print(f"{color['okcyan']} Import Success! {color['endc']}")
         # return item
 
     def handle_link_avatars(self, links):
@@ -78,14 +67,14 @@ class CardanoscraperPipeline(object):
             "link_post": data['link_post'],
         }
         if table.update_one(query, {'$set': data}):
-            print(f"{color['okblue']}Updating: title, tags, posts link,...{color['endc']}")
+            print(f"{color['okcyan']}Updating Latest page{color['endc']}")
 
     def update_raw_content(self, table, data):
         query = {
             "link_post": data['link_content']
         }
         if table.update_one(query, {'$set': data}):
-            print(f"{color['okblue']}Updating Raw Content....{color['endc']}")
+            print(f"{color['okcyan']}Updating Raw Content....{color['endc']}")
 
     def write_json_file(self, file, item):
         line = json.dumps(ItemAdapter(item['avatars']).asdict()) + '\n'
@@ -105,3 +94,12 @@ class CardanoscraperPipeline(object):
 
     def handle_datetime(self, data):
         data['timestamp'] = datetime.strptime(data['post_time'], "%d %B %Y %H:%M").timestamp()
+
+    def handle_iohk(self, data):
+        content = data['result']['posts']
+        author = content['author']['display_name']
+        author_thumbnail = author['thumbnail']
+        job_titles1 = author['localized']  # including job titles, email, youtube link, linkedin, twitter, github.
+        profile_url = "https://iohk.io/en" + author['profile_url'] + "page-1/"
+        first_post_img = content['main_image']
+
