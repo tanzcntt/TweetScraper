@@ -117,10 +117,6 @@ class HandleKeywords():
 			if tweets:
 				for tweet in tweets:
 					full_text = tweet['source']['full_text']
-					id_tweet = tweet['id']
-					user_id = tweet['source']['user_id']
-					print(user_id)
-					link_tweet = "https://twitter.com/{}/status/{}".format(user_id, id_tweet)
 					for i in full_text:
 						full_text = utils.remove_html_tags(full_text)
 					keywords = self.keywords_ranking(full_text)
@@ -128,7 +124,7 @@ class HandleKeywords():
 					print(f"{colors['okcyan']} {keywords} {colors['endc']}")
 					# with open('compare_keywords1.json', 'a') as file:
 					# 	file.write(str(i_) + str(keywords) + '\n' + str(full_text) + '\n')
-					self.push_data_to_mongo(id_tweet, link_tweet, keywords)
+					self.push_data_to_mongo(tweet, keywords)
 			else:
 				break
 			# print(tweets)
@@ -137,6 +133,45 @@ class HandleKeywords():
 			i_ += 1
 			if take == 400:
 				break
+
+	def test_tweet_without_keyword(self):
+		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
+		# create a Graphql client using the defined transport
+		client = Client(transport=transport, fetch_schema_from_transport=True)
+		i_ = 0
+		take = 50
+		skip = 0
+		while True:
+			query = gql(
+				"""query tweetWithoutKeyword($take: Int!, $skip: Int!){
+					tweetWithoutKeyword(take: $take, skip: $skip){
+						id
+						source
+						keywords
+					}
+				}"""
+			)
+			result = client.execute(query, variable_values={"take": take, "skip": skip})
+			# ================================================
+			# Handle text ranking
+			# ================================================
+			tweets = result['tweetWithoutKeyword']
+			if tweets:
+				for tweet in tweets:
+					full_text = tweet['source']['full_text']
+					for i in full_text:
+						full_text = utils.remove_html_tags(full_text)
+					keywords = self.keywords_ranking(full_text)
+					print(full_text)
+					print(f"{colors['okcyan']} {keywords} {colors['endc']}")
+					self.push_data_to_mongo(tweet, keywords)
+			else:
+				break
+			take += 50
+			skip += 50
+			i_ += 1
+			# if take == 400:
+			# 	break
 
 	def keywords_ranking(self, raw_content):
 		textRank.analyze(raw_content, window_size=6, candidate_post=['NOUN', 'PROPN'])  # , stopwords=stop_list)
@@ -160,10 +195,15 @@ class HandleKeywords():
 		)
 		client.execute(query, variable_values=params)
 
-	def push_data_to_mongo(self, id_tweet, link_tweet, keywords):
+	def push_data_to_mongo(self, tweet, keywords):
+		id_tweet = tweet['id']
+		user_id = tweet['source']['user_id']
+		raw_content = tweet['source']['full_text']
+		link_tweet = "https://twitter.com/{}/status/{}".format(user_id, id_tweet)
 		data_tweet_keywords = {
 			'id_tweet': id_tweet,
 			'link_tweet': link_tweet,
+			'raw_content': raw_content,
 			'keywords': keywords,
 		}
 		if self.twitter.insert_one(data_tweet_keywords):
@@ -172,7 +212,7 @@ class HandleKeywords():
 
 start = time.time()
 data = HandleKeywords()
-print(data.tweet_without_keyword())
+print(data.test_tweet_without_keyword())
 end = time.time()
 print(f"{colors['okblue']} Total time:{(end - start)/60} {colors['endc']}")
 
