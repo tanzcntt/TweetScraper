@@ -26,10 +26,10 @@ class CardanoSpider(scrapy.Spider):
 			yield Request(url=url + str(i), callback=self.parse)
 
 	def parse(self, response, **kwargs):
-		# page = response.url
 		# page = "all", save all page in 1 html file
 		# utils.save_to_html(page, content=response.body)
 		page = response.url
+		# get data through HTML form
 		posts = response.css('tr.topic-list-item')
 		for post in posts:
 			data = {
@@ -42,6 +42,7 @@ class CardanoSpider(scrapy.Spider):
 				'replies': post.css('td.replies span.posts::text').get(),
 				'views': post.css('td.views span.views::text').get(),
 				'date': post.css('td::text').getall()[-1].strip(),
+				'source': 'cardano',
 				'latest': 1,
 				'approve': 1
 			}
@@ -56,6 +57,7 @@ class CardanoSpider(scrapy.Spider):
 			'raw_content': extraction_with_css('div.post'),
 			'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
 			'post_time': extraction_with_css('time.post-time::text'),
+			'source': 'cardano',
 			'latest': 1,
 		}
 		yield data
@@ -91,6 +93,7 @@ class CardanoNewsContent(scrapy.Spider):
 				'replies': post.css('td.replies span.posts::text').get(),
 				'views': post.css('td.views span.views::text').get(),
 				'date': post.css('td::text').getall()[-1].strip(),
+				'source': 'cardano',
 				'latest': 0,
 				'approve': 1
 			}
@@ -105,10 +108,12 @@ class CardanoNewsContent(scrapy.Spider):
 			'raw_content': extraction_with_css('div.post'),
 			'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
 			'post_time': extraction_with_css('time.post-time::text'),
+			'source': 'cardano',
 			'latest': 0,
 		}
 		yield data
 		time.sleep(4)
+
 
 class IohkContent(scrapy.Spider):
 	name = "iohk"
@@ -118,7 +123,7 @@ class IohkContent(scrapy.Spider):
 		# 	'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json',
 		# ]
 		url = "https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json"
-		total_page = 45
+		total_page = 50
 		headers = {
 			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
 			"sec-ch-ua-mobile": "?0",
@@ -131,5 +136,6 @@ class IohkContent(scrapy.Spider):
 		# page = response.url
 		# utils.save_to_html("all", response.body)
 		content = json.loads(response.body)
+		content['source'] = 'iohk'
 		yield content
 		time.sleep(6)
