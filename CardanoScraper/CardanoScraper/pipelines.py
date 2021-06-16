@@ -19,7 +19,7 @@ class CardanoscraperPipeline(object):
         self.latestNews = self.myDatabase['latestNews']
         self.postContents = self.myDatabase['allNews']
         self.testCarda = self.myDatabase['testAllNews2']
-        self.iohk_sample1 = self.myDatabase['iohkSample']
+        self.iohk_sample1 = self.myDatabase['iohkSampleTest']
 
     # ================================================
     # handle put data to GraphQl
@@ -87,14 +87,14 @@ class CardanoscraperPipeline(object):
             'subtitle': '',
             'audio': '',
             'soundcloud': [],
-            'body_content': '',
+            'raw_content': '',
             'keyword_ranking': '',
             'total_pages': '',
             'filters': '',
             'recent_posts': '',
             'current_page': '',
             'current_url_page': '',
-            'url': '',
+            'link_content': '',
             'author_profile_url': '',
             'raw_data': '',
         }
@@ -104,7 +104,7 @@ class CardanoscraperPipeline(object):
         content = data['result']['pageContext']
         profile_url = "https://iohk.io/en{}page-1/"
         iohk_url = "https://iohk.io/en/blog/posts/page-{}/"
-
+        content_url = "https://iohk.io/en{}"
         posts = content['posts']
         recent_posts = content['recentPosts']
         total_pages = content['total_pages']
@@ -129,22 +129,22 @@ class CardanoscraperPipeline(object):
             iohk_all_posts['subtitle'] = post['subtitle']
             iohk_all_posts['audio'] = post['audio']
             iohk_all_posts['soundcloud'] = post['soundcloud']
-            iohk_all_posts['body_content'] = post['body_content']
+            iohk_all_posts['raw_content'] = post['body_content']
             # iohk_all_posts['recent_posts'] = recent_posts
             iohk_all_posts['total_pages'] = total_pages
             # iohk_all_posts['filters'] = sidebar_post_filter
             iohk_all_posts['current_page'] = current_page
             iohk_all_posts['current_url_page'] = iohk_url.format(current_page)
-            iohk_all_posts['url'] = iohk_url.format(post['url'])
+            iohk_all_posts['link_content'] = content_url.format(post['url'])
             iohk_all_posts['author_profile_url'] = profile_url.format(author_info['profile_url'])
 
-            keyword_ranking = self.text_ranking(iohk_all_posts, iohk_all_posts['body_content'])
+            keyword_ranking = self.text_ranking(iohk_all_posts, iohk_all_posts['raw_content'])
 
             print(f"Current page: {iohk_all_posts['current_url_page']}")
             print(f"Current post: {iohk_all_posts['title']}")
             iohk_all_posts['raw_data'] = post
             iohk_all_posts['keyword_ranking'] = keyword_ranking
-            if self.iohk_sample1.find_one({'url': iohk_all_posts['url']}):
+            if self.iohk_sample1.find_one({'link_content': iohk_all_posts['link_content']}):
                 self.update_iohk(self.iohk_sample1, iohk_all_posts)
                 time.sleep(2)
             else:
@@ -159,7 +159,7 @@ class CardanoscraperPipeline(object):
 
     def update_iohk(self, table, data):
         query = {
-            'url': data['url'].strip()
+            'link_content': data['link_content'].strip()
         }
         if table.update_one(query, {'$set': data}):
             print(f"{color['okcyan']}Updating {self.get_table(table)} table{color['endc']}\n")
