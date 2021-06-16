@@ -18,10 +18,9 @@ class CardanoscraperPipeline(object):
         self.myDatabase = self.mongoClient["cardanoNews"]
         self.latestNews = self.myDatabase['latestNews']
         self.postContents = self.myDatabase['allNews']
-        self.testCarda = self.myDatabase['testAllNews']
+        self.testCarda = self.myDatabase['testAllNews2']
         self.iohk = self.myDatabase['iohk']
-        self.iohk_sample1 = self.myDatabase['iohkSample1']
-        self.iohk_sample2 = self.myDatabase['iohkSample2']
+        self.iohk_sample1 = self.myDatabase['iohkSampleTest']
 
     # ================================================
     # handle put data to GraphQl
@@ -49,7 +48,7 @@ class CardanoscraperPipeline(object):
                 self.handle_datetime(item, item['post_time'])
                 self.text_ranking(item, item['raw_content'])
                 self.update_raw_content(self.postContents, item)
-                print(f"Imported raw_content to {color['warning']} {self.get_table(self.postContents)} {color['endc']}\n")
+                print(f"{color['warning']}Imported raw_content to {self.get_table(self.postContents)} {color['endc']}\n")
         # ================================================
         # for test every day
         # ================================================
@@ -64,7 +63,7 @@ class CardanoscraperPipeline(object):
         #         self.handle_datetime(item, item['post_time'])
         #         self.text_ranking(item, item['raw_content'])
         #         self.update_raw_content(self.testCarda, item)
-        #         print(f"Imported raw_content to {color['warning']} {self.get_table(self.testCarda)} {color['endc']}\n")
+        #         print(f"{color['warning']}Imported raw_content to {self.get_table(self.testCarda)} {color['endc']}\n")
         # ================================================
         #
         # ================================================
@@ -156,6 +155,7 @@ class CardanoscraperPipeline(object):
         print(f"\n{color['warning']}Importing: data{color['endc']}")
         if table.insert_one(data):
             print(f"{color['okblue']}Imported into {self.get_table(table)} success!{color['endc']}")
+        time.sleep(1)
 
     def update_iohk(self, table, data):
         query = {
@@ -163,24 +163,28 @@ class CardanoscraperPipeline(object):
         }
         if table.update_one(query, {'$set': data}):
             print(f"{color['okcyan']}Updating {self.get_table(table)} table{color['endc']}")
+        time.sleep(1)
 
     def insert_into_table(self, table, data):
         if table.insert_one(data):
-            print(f"Imported Posts {color['okgreen']}{self.get_table(table)} success!!!{color['endc']}")
+            print(f"{color['okgreen']}Imported Posts {self.get_table(table)} success!!!{color['endc']}")
+        time.sleep(1)
 
     def update_table(self, table, data):
         query = {
             "link_post": data['link_post'].strip(),
         }
         if table.update_one(query, {'$set': data}):
-            print(f"{color['okcyan']}Updating Latest page{color['endc']} into {self.get_table(table)}")
+            print(f"{color['okcyan']}Updating Latest Cardano page into {self.get_table(table)}{color['endc']} ")
+        time.sleep(1)
 
     def update_raw_content(self, table, data):
         query = {
             "link_post": data['link_content'].strip()
         }
         if table.update_one(query, {'$set': data}):
-            print(f"{color['okcyan']}Updating Raw Content{color['endc']} into {self.get_table(table)}")
+            print(f"{color['okcyan']}Updating Raw Content into {self.get_table(table)}{color['endc']} for post: {data['link_content']}")
+        time.sleep(1)
 
     def handle_link_avatars(self, links):
         new_links = []

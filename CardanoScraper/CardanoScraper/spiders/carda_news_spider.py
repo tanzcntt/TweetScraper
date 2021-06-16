@@ -61,7 +61,7 @@ class CardanoSpider(scrapy.Spider):
 			'latest': 1,
 		}
 		yield data
-		time.sleep(4)
+		time.sleep(2)
 
 
 class CardanoNewsContent(scrapy.Spider):
@@ -71,10 +71,8 @@ class CardanoNewsContent(scrapy.Spider):
 	]
 
 	def start_requests(self):
-		url = 'https://forum.cardano.org/c/english/announcements/13?page='
-		total_pages = 16
-		for i in range(total_pages):
-			yield Request(url=url + str(i), callback=self.parse)
+		url = 'https://forum.cardano.org/c/english/announcements/13'
+		yield Request(url=url, callback=self.parse)
 
 	def parse(self, response, **kwargs):
 		# page = response.url
@@ -97,13 +95,17 @@ class CardanoNewsContent(scrapy.Spider):
 				'latest': 0,
 				'approve': 1
 			}
-			yield response.follow(data['link_post'], callback=self.parse_content)
+			detail_page_link = post.css('td.main-link span.link-top-line a::attr(href)').get()
+			yield response.follow(detail_page_link, callback=self.parse_content)
 			yield data
+		for next_page in response.css('span b a'):
+			print(f"{color['warning']}{next_page.get()}{color['endc']}")
+			yield response.follow(next_page, callback=self.parse)
+			time.sleep(1)
 
 	def parse_content(self, response):
 		def extraction_with_css(query):
 			return response.css(query).get(default='').strip()
-
 		data = {
 			'raw_content': extraction_with_css('div.post'),
 			'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
@@ -112,7 +114,7 @@ class CardanoNewsContent(scrapy.Spider):
 			'latest': 0,
 		}
 		yield data
-		time.sleep(4)
+		time.sleep(1)
 
 
 class IohkContent(scrapy.Spider):
@@ -139,3 +141,4 @@ class IohkContent(scrapy.Spider):
 		content['source'] = 'iohk'
 		yield content
 		time.sleep(6)
+

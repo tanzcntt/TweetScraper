@@ -5,6 +5,9 @@ ipdb
 pymongo~=3.11.4
 gql~=3.0.0a5
 numpy
+pandas
 spacy
 tensorflow
 aiohttp
+dash
+jupiter-dash
