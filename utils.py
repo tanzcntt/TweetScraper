@@ -51,8 +51,9 @@ def remove_html_tags(raw_content):
 def remove_small_words(words):
 	split_words = words.lower().split(' ')
 	unwanted_words = {'https', 'g', 'm', 'heck', 'ser', '200k', 'longgggg',
-					  'wzrds', 'omarzb5', 'tel', 'haha', 'co',
-					  'https', 'www', 'com', 'boys', 'dan', 'con', 'los', 'que', 'hmmm'}
+					  'wzrds', 'omarzb5', 'tel', 'haha', 'co', 'lol', 'heck',
+					  'https', 'www', 'com', 'boys', 'dan', 'con', 'los', 'que',
+					  'hmmm', 'hell', 'shit', 'damn'}
 	split_words = [ele for ele in split_words if ele not in unwanted_words]
 
 	for word in split_words:

@@ -44,14 +44,11 @@ class HandleKeywords():
 		self.headers = {
 			"Authorization": "Bearer defaulttoken"
 		}
-
-	def tweet_without_keyword(self):
-		pass
+		self.transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
+		# create a Graphql client using the defined transport
+		self.client = Client(transport=self.transport, fetch_schema_from_transport=True)
 
 	def idea_without_keyword(self):
-		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
-		# create a Graphql client using the defined transport
-		client = Client(transport=transport, fetch_schema_from_transport=True)
 		i_ = 0
 		while True:
 			query = gql(
@@ -63,7 +60,7 @@ class HandleKeywords():
 					}
 				}"""
 			)
-			result = client.execute(query, variable_values={"take": 10, "skip": 0})
+			result = self.client.execute(query, variable_values={"take": 10, "skip": 0})
 
 			# ================================================
 			# Handle text ranking
@@ -86,14 +83,12 @@ class HandleKeywords():
 					print(f"{colors['okcyan']} {keywords} {colors['endc']}")
 					with open('test_stopwords2.json', 'a') as file:
 						file.write(str(i_) + str(keywords))
-					self.push_data_to_submit_idea(idea['id'], keywords)
+					self.push_keywords_to_dhunt(idea['id'], keywords, table_name='idea')
 				i_ += 1
 			else:
 				break
 
 	def tweet_without_keyword(self):
-		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
-		client = Client(transport=transport, fetch_schema_from_transport=True)
 		i_ = 0
 		while True:
 			query = gql(
@@ -105,7 +100,7 @@ class HandleKeywords():
 					}
 				}"""
 			)
-			result = client.execute(query, variable_values={"take": 50, "skip": 0})
+			result = self.client.execute(query, variable_values={"take": 10, "skip": 0})
 			# ================================================
 			# Handle text ranking
 			# ================================================
@@ -116,14 +111,14 @@ class HandleKeywords():
 					for i in full_text:
 						full_text = utils.remove_html_tags(full_text)
 					keywords = self.keywords_ranking(full_text)
-					self.push_data_to_submit_tweet(tweet["id"], keywords)
+					self.push_keywords_to_dhunt(tweet["id"], keywords, table_name='tweet')
 			else:
 				break
 
+	def test_idea_without_keyword(self):
+		pass
+
 	def test_tweet_without_keyword(self):
-		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
-		# create a Graphql client using the defined transport
-		client = Client(transport=transport, fetch_schema_from_transport=True)
 		i_ = 0
 		take = 50
 		skip = 0
@@ -138,7 +133,7 @@ class HandleKeywords():
 					}
 				}"""
 			)
-			result = client.execute(query, variable_values={"take": take, "skip": skip})
+			result = self.client.execute(query, variable_values={"take": take, "skip": skip})
 			tweets = result['tweetWithoutKeyword']
 			if tweets:
 				for tweet in tweets:
@@ -146,7 +141,7 @@ class HandleKeywords():
 					for i in full_text:
 						full_text = utils.remove_html_tags(full_text)
 					keywords = self.keywords_ranking(full_text)
-					self.push_data_to_mongo(tweet, keywords)
+					self.push_tweet_to_mongo(tweet, keywords)
 			else:
 				break
 			take += 50
@@ -158,43 +153,39 @@ class HandleKeywords():
 		keywords = textRank.get_keywords(10)
 		return keywords
 
-	def push_data_to_submit_idea(self, id, keywords):
+	def push_keywords_to_dhunt(self, id, keywords, table_name):
 		params = {"keywords": str(keywords), "id": id}
 		print(f"{colors['warning']}Importing: {colors['endc']}{params} ")
 		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
 		client = Client(transport=transport, fetch_schema_from_transport=True)
-		query = gql(
-			"""
-			mutation submitIdeaKeyword($keywords : String!, $id : String!){
-				submitIdeaKeyword(keywords : $keywords, id : $id) {
-					id
-					keywords
+		if table_name == 'tweet':
+			query = gql(
+				"""
+				mutation submitTweetKeyword($keywords : String!, $id : String!){
+					submitTweetKeyword(keywords : $keywords, id : $id) {
+						id
+						keywords
+					}
 				}
-			}
-			"""
-		)
-		if client.execute(query, variable_values=params):
-			print(f"{colors['okgreen']}Push idea keywords into submitIdeaKeyword Success!{colors['endc']}\n")
-
-	def push_data_to_submit_tweet(self, id, keywords):
-		params = {"keywords": str(keywords), "id": id}
-		print(f"{colors['warning']}Importing: {colors['endc']}{params} ")
-		transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
-		client = Client(transport=transport, fetch_schema_from_transport=True)
-		query = gql(
-			"""
-			mutation submitTweetKeyword($keywords : String!, $id : String!){
-				submitTweetKeyword(keywords : $keywords, id : $id) {
-					id
-					keywords
+				"""
+			)
+			if client.execute(query, variable_values=params):
+				print(f"{colors['okgreen']}Push tweet keywords into submitTweetKeyword Success!{colors['endc']}\n")
+		else:
+			query = gql(
+				"""
+				mutation submitIdeaKeyword($keywords : String!, $id : String!){
+					submitIdeaKeyword(keywords : $keywords, id : $id) {
+						id
+						keywords
+					}
 				}
-			}
-			"""
-		)
-		if client.execute(query, variable_values=params):
-			print(f"{colors['okgreen']}Push tweet keywords into submitTweetKeyword Success!{colors['endc']}\n")
+				"""
+			)
+			if client.execute(query, variable_values=params):
+				print(f"{colors['okgreen']}Push idea keywords into submitIdeaKeyword Success!{colors['endc']}\n")
 
-	def push_data_to_mongo(self, tweet, keywords):
+	def push_tweet_to_mongo(self, tweet, keywords):
 		id_tweet = tweet['id']
 		user_id = tweet['source']['user_id']
 		raw_content = tweet['source']['full_text']
@@ -208,6 +199,12 @@ class HandleKeywords():
 		print(f"{colors['okcyan']} {data_tweet_keywords} {colors['endc']}")
 		if self.twitter.insert_one(data_tweet_keywords):
 			print(f"{colors['okgreen']}Import db success! {colors['endc']}")
+
+	def push_idea_to_mongo(self):
+		pass
+
+	def main(self):
+		pass
 
 
 start = time.time()
