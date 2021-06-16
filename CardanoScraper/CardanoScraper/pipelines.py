@@ -19,14 +19,13 @@ class CardanoscraperPipeline(object):
         self.latestNews = self.myDatabase['latestNews']
         self.postContents = self.myDatabase['allNews']
         self.testCarda = self.myDatabase['testAllNews2']
-        self.iohk = self.myDatabase['iohk']
-        self.iohk_sample1 = self.myDatabase['iohkSampleTest']
+        self.iohk_sample1 = self.myDatabase['iohkSample']
 
     # ================================================
     # handle put data to GraphQl
     # ================================================
     def close_spider(self, spider):
-        print(f"{color['bold']}End spider {color['endc']}")
+        print(f"{color['warning']}Crawl Completed!{color['endc']}")
 
     # call every item pipeline component
     def process_item(self, item, spider):
@@ -142,6 +141,7 @@ class CardanoscraperPipeline(object):
             keyword_ranking = self.text_ranking(iohk_all_posts, iohk_all_posts['body_content'])
 
             print(f"Current page: {iohk_all_posts['current_url_page']}")
+            print(f"Current post: {iohk_all_posts['title']}")
             iohk_all_posts['raw_data'] = post
             iohk_all_posts['keyword_ranking'] = keyword_ranking
             if self.iohk_sample1.find_one({'url': iohk_all_posts['url']}):
@@ -162,7 +162,7 @@ class CardanoscraperPipeline(object):
             'url': data['url'].strip()
         }
         if table.update_one(query, {'$set': data}):
-            print(f"{color['okcyan']}Updating {self.get_table(table)} table{color['endc']}")
+            print(f"{color['okcyan']}Updating {self.get_table(table)} table{color['endc']}\n")
         time.sleep(1)
 
     def insert_into_table(self, table, data):

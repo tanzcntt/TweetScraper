@@ -14,7 +14,7 @@ postContents = myDatabase['postContents']
 
 
 class CardanoSpider(scrapy.Spider):
-	name = "crawlLatestCarda"
+	name = "latestCarda"
 	start_urls = [
 		'https://forum.cardano.org/c/english/announcements/13?page=0'
 	]
@@ -65,7 +65,7 @@ class CardanoSpider(scrapy.Spider):
 
 
 class CardanoNewsContent(scrapy.Spider):
-	name = "crawlAllCarda"
+	name = "allCarda"
 	start_urls = [
 		'https://forum.cardano.org/c/english/announcements/13?page=0'
 	]
@@ -118,14 +118,14 @@ class CardanoNewsContent(scrapy.Spider):
 
 
 class IohkContent(scrapy.Spider):
-	name = "iohk"
+	name = "allIohk"
 
 	def start_requests(self):
 		# start_urls = [
 		# 	'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json',
 		# ]
 		url = "https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json"
-		total_page = 50
+		total_page = 44
 		headers = {
 			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
 			"sec-ch-ua-mobile": "?0",
@@ -142,3 +142,28 @@ class IohkContent(scrapy.Spider):
 		yield content
 		time.sleep(6)
 
+
+class IohkLatest(scrapy.Spider):
+	name = 'latestIohk'
+
+	def start_requests(self):
+		start_url = 'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json'
+		headers = {
+			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
+			"sec-ch-ua-mobile": "?0",
+			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
+		}
+		yield Request(url=start_url, callback=self.parse, headers=headers)
+
+	def parse(self, response, **kwargs):
+		content = json.loads(response.body)
+		content['source'] = 'iohk'
+		yield content
+		time.sleep(6)
+
+
+# class CardanoMedium(scrapy.Spider):
+# 	name = 'mediumCarda'
+#
+# 	def start_requests(self):
+# 		start_urls = ['']

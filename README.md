@@ -74,7 +74,9 @@ This command will start with `5 threads` at the same time and crawl `100 users` 
 
 2. See the results in collection [trackUser](http://localhost:8081/db/twitterdata/trackUser) 
 
-# III. CardanoScraper #
+# III. Other sources #
+# 1. CardanoScraper #
+   
 # Introduction #
 
 `CardanoScraper` will crawl all data through category: [News and Announcements](https://forum.cardano.org/c/english/announcements/13) on forum.cardano.org
@@ -110,14 +112,37 @@ Main purposes:
 
 2. Open `CardanoScraper` and run commands:
 
-Remember to activate the environment firstly,
+Remember to **activate the environment** firstly,
 
 Run these commands do not need to follow the sequence.
 
-This command crawls and updates 1 Latest page on [Cardano Forum](https://forum.cardano.org/c/english/announcements/13):
+This command crawls and updates 1 Latest page on [Cardano Forum](https://forum.cardano.org/c/english/announcements/13) and import into the same All Pages db table 
 		
-		scrapy crawl crawlLatestCarda
+		scrapy crawl latestCarda
 
 This command crawls and updates all pages [Cardano Forum](https://forum.cardano.org/c/english/announcements/13):
 
-		scrapy crawl crawlAllCarda
+		scrapy crawl allCarda
+
+# 2. IOHK #
+# Introduction #
+IOHK crawler will take all data through [IOHK blog](https://iohk.io/en/blog/posts/page-1/) from page one to the last
+Main purposes:
++ Get *all posts* and other information related to *author's posts*:
+	+ *author*: job, profile links, thumbnail,...
+	+ *post*: publish date, title, subtitle, audio, soundcloud, body content, total pages, recent posts,...
++ Handle **keyword ranking** after getting these data
+
+# Usage #
+
+Open `CardanoScraper` and run commands:
+
+Remember to **activate the environment** firstly,
+
+This command crawls and updates 1 Latest page on [IOHK Blog](https://iohk.io/en/blog/posts/page-1/) and import into the same All Pages db table 
+		
+		scrapy crawl latestIohk
+
+This command crawls and updates all pages [IOHK Blog](https://iohk.io/en/blog/posts/page-1/):
+
+		scrapy crawl allIohk
