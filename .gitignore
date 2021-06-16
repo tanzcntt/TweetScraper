@@ -4,3 +4,4 @@ pyenv/
 geckodriver.log
 
 *.pyc
+/logs/
