@@ -12,4 +12,4 @@ spacy
 tensorflow
 aiohttp
 dash
-jupiter-dash
+jupyter-dash

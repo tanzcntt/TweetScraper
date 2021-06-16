@@ -19,7 +19,7 @@ class CardanoscraperPipeline(object):
         self.latestNews = self.myDatabase['latestNews']
         self.postContents = self.myDatabase['allNews']
         self.testCarda = self.myDatabase['testAllNews2']
-        self.iohk_sample1 = self.myDatabase['iohkSampleTest']
+        self.iohk_sample1 = self.myDatabase['iohkSample']
 
     # ================================================
     # handle put data to GraphQl
@@ -96,6 +96,7 @@ class CardanoscraperPipeline(object):
             'current_url_page': '',
             'link_content': '',
             'author_profile_url': '',
+            'source': 'iohk',
             'raw_data': '',
         }
         return iohk_all_posts
