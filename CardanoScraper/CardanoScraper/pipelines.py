@@ -69,6 +69,8 @@ class CardanoscraperPipeline(object):
         # print(f"{color['warning']}This is{color['endc']}Item...{color['okgreen']}{item}{color['endc']}")
         elif item['source'] == 'iohk':
             self.iohk_get_posts(item)
+        elif item['source'] == 'coindesk':
+            return item
         # return item
 
     def initialize_iohk_sample_data(self):
