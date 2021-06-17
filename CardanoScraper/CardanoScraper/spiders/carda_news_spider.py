@@ -24,6 +24,7 @@ class CardanoSpider(scrapy.Spider):
 		total_pages = 1
 		for i in range(total_pages):
 			yield Request(url=url + str(i), callback=self.parse)
+			time.sleep(1)
 
 	def parse(self, response, **kwargs):
 		# page = "all", save all page in 1 html file

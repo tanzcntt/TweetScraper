@@ -12,7 +12,7 @@ mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
 myDatabase = mongoClient["cardanoNews"]
 
 news_collection = myDatabase["allNews"]
-
+iohk_collection = myDatabase['iohkSample']
 # Remove 1st argument from the
 # list of command line arguments
 argumentList = sys.argv[1:]
@@ -40,24 +40,22 @@ except getopt.error as err:
     print(str(err))
 
 
-async def get_news_from(x):
-    top_tws =  news_collection.find({"approve": 1, "timestamp": {"$gt": 1}, "$or": [{"submit": {"$exists": False}},
-                                                                                   {"submit": {"$exists": True,
-                                                                                               "$ne": 2}}]}) \
+async def get_news_from(x, table):
+    top_tws = table.find({"approve": 1, "timestamp": {"$gt": 1}, "$or": [{"submit": {"$exists": False}},
+                                                                         {"submit": {"$exists": True,
+                                                                                     "$ne": 2}}]}) \
         .sort([("timestamp", -1)]) \
         .limit(100)
-    await push_data_to_dhunt(top_tws)
+    await push_data_to_dhunt(top_tws, table)
 
 
-async def push_data_to_dhunt(top_tws):
+async def push_data_to_dhunt(top_tws, table):
     for tw in top_tws:
         transport = AIOHTTPTransport(url=url, headers={'Authorization': 'Bearer ' + token})
 
         # Create a GraphQL client using the defined transport
         # client = Client(transport=transport, fetch_schema_from_transport=True)
-
         # Provide a GraphQL query
-
         # Execute the query on the transport
         _id = tw['_id']
         tw.pop("_id", None)
@@ -68,7 +66,7 @@ async def push_data_to_dhunt(top_tws):
             # Execute single query
             query = gql(
                 """
-                mutation  submitNews($newsData : JSONObject!){
+                mutation submitNews($newsData : JSONObject!){
                   submitNews(newsData : $newsData) {
                     id
                     title
@@ -79,14 +77,15 @@ async def push_data_to_dhunt(top_tws):
 
             result = await session.execute(query, variable_values=params)
             print(result)
-            news_collection.update_one(filter={"_id": _id}, update={"$set": {"submit": 2}})
+            table.update_one(filter={"_id": _id}, update={"$set": {"submit": 2}})
 
 
 async def main(day_in):
     today = datetime.date.today()
     yesterday = today
-    task1 = asyncio.create_task(get_news_from(yesterday))
-
+    task1 = asyncio.create_task(get_news_from(yesterday, news_collection))
+    task2 = asyncio.create_task(get_news_from(yesterday, iohk_collection))
+    await task2
     await task1
 
 

@@ -75,6 +75,7 @@ class CardanoscraperPipeline(object):
         iohk_all_posts = {
             'publish_date': '',
             'timestamp': '',
+            'approve': 1,
             'author_title': '',
             'author_display_name': '',
             'author_thumbnail': '',
@@ -117,7 +118,7 @@ class CardanoscraperPipeline(object):
             iohk_all_posts = self.initialize_iohk_sample_data()
             author_info = post['author']
             iohk_all_posts['publish_date'] = post['publish_date']
-            iohk_all_posts['timestamp'] = self.handle_datetime(iohk_all_posts, post['publish_date'])
+            iohk_all_posts['timestamp'] = self.handle_datetime(iohk_all_posts, post['publish_date']),
             iohk_all_posts['author_title'] = author_info['title']
             iohk_all_posts['author_display_name'] = author_info['display_name']
             iohk_all_posts['author_thumbnail'] = author_info['thumbnail']
