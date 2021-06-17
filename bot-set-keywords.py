@@ -14,10 +14,11 @@ import utils
 # ================================================
 colors = utils.colors_mark()
 argumentList = sys.argv[1:]
-options = "u:t:"
-long_options = ['url', 'token']
+options = "u:t:m:"
+long_options = ['url', 'token', 'mode']
 url = ''
 token = ''
+mode = ''
 try:
 	arguments, values = getopt.getopt(argumentList, options, long_options)
 	# checking each argument
@@ -26,23 +27,25 @@ try:
 			url = str(currentValue)
 		if currentArgument in ('-t', '--token'):
 			token = str(currentValue)
+		if currentArgument in ('-m', '--mode'):
+			mode = str(currentValue)
 except getopt.error as err:
 	print(err)
 
-print(url, token)
+print(url, token, mode)
 
 textRank = TextRank4Keyword()
 
 
-class HandleKeywords():
-	def __init__(self):
+class HandleKeywords:
+	def __init__(self, _url, _token):
 		self.mongoClient = pymongo.MongoClient('mongodb://root:password@localhost:27017/')
 		self.myDatabase = self.mongoClient['testData']
 		self.twitter = self.myDatabase['twitter']
 		self.idea = self.myDatabase['idea']
-		self.url_ = 'https://gql.dhunt.io/'
+		self.url_ = _url
 		self.headers = {
-			"Authorization": "Bearer defaulttoken"
+			"Authorization": "Bearer " + _token
 		}
 		self.transport = AIOHTTPTransport(url=self.url_, headers=self.headers)
 		# create a Graphql client using the defined transport
@@ -208,9 +211,13 @@ class HandleKeywords():
 
 
 start = time.time()
-data = HandleKeywords()
+data = HandleKeywords(url, token)
 # print(data.test_tweet_without_keyword())
-data.tweet_without_keyword()
+if mode == "tweet":
+	data.tweet_without_keyword()
+elif mode == "idea":
+	data.idea_without_keyword()
+
 end = time.time()
 print(f"{colors['okblue']} Total time:{(end - start)/60} {colors['endc']}")
 
