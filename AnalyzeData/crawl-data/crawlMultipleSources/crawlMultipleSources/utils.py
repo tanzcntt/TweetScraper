@@ -20,7 +20,7 @@ def create_data_directory():
 	os.makedirs('CardanoScraper/CardanoScraper/Data/raw', exist_ok=True)
 
 
-create_data_directory()
+# create_data_directory()
 
 
 def colors_mark():
