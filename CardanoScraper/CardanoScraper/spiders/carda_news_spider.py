@@ -208,3 +208,85 @@ class CoindeskAll(Spider):
 				'source': 'coindesk',
 			}
 			yield data
+
+
+class CoindeskAll(Spider):
+	name = "allCoindesk"
+
+	def __init__(self):
+		self.headers = {
+				"accept-encoding": "gzip, deflate, br",
+				"accept-language": "en-US,en;q=0.9",
+				"origin": "https://www.coindesk.com",
+				"referer": "https://www.coindesk.com/",
+				"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
+				"sec-ch-ua-mobile": "?0",
+				"sec-fetch-dest": "empty",
+				"sec-fetch-mode": "cors",
+				"sec-fetch-site": "cross-site",
+				"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
+			}
+
+	def start_requests(self):
+		url = 'https://www.coindesk.com/'
+		yield Request(url=url, callback=self.parse, headers=self.headers)
+
+	def parse(self, response, **kwargs):
+		# posts = response.css('div.top-right-bar section.article-card-fh')
+		# ================================================
+		# Data in top-section
+		# ================================================
+		coindesk_url = 'https://www.coindesk.com'
+		top_section_posts = response.css('section.article-card-fh')
+		for post in top_section_posts:
+			author = post.css('div.card-desc span.card-author a::text').getall()
+			link_content = post.css('div.card-text-block h2.heading a::attr(href)').get()
+			data = {
+				'tag': post.css('div.card-img-block a.button span.eyebrow-button-text::text').get(),
+				'link_tag': post.css('div.card-img-block a.eyebrow-button::attr(href)').get(),
+				'title': post.css('div.card-text-block h2.heading a::text').get(),
+				'subtitle': post.css('div.text-group p.card-text::text').get(),
+				'link_content': link_content,
+				'author': '' if len(author) == 0 else author[1],
+				'link_author': post.css('div.card-desc span.card-author a::attr(href)').get(),
+				'date': post.css('span.card-date::text').get(),
+				'source': 'coindesk',
+				'latest': 0,
+				'approve': 1,
+			}
+			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
+			yield data
+			sleep(.75)
+		# ================================================
+		# data on story-stack-chinese-wrapper
+		# ================================================
+		recent_posts = response.css('section.page-area-dotted-content div.story-stack section.list-body div.list-item-wrapper')
+		for post in recent_posts:
+			link_content = post.css('div.text-content a::attr(href)').getall()[-1]
+			data = {
+				'title': post.css('a h4.heading::text').get(),
+				'subtitle': post.css('a p.card-text::text').get(),
+				'link_content': link_content,
+				'author': post.css('div.card-desc-block span.credit a::text').get(),
+				'link_author': post.css('div.card-desc-block span.credit a::attr(href)').get(),
+				'date': '',
+				'tag': post.css('a.button span.eyebrow-button-text::text').get(),
+				'link_tag': post.css('div.text-content a.button::attr(href)').get(),
+				'source': 'coindesk',
+				'latest': 0,
+				'approve': 1,
+			}
+			yield response.follow(url=link_content, callback=self.parse_content)
+			yield data
+			sleep(0.75)
+
+	def parse_content(self, response):
+		print(f"{color['warning']}Crawling detail page{color['endc']}")
+		data_json = response.css('head')
+		for content in data_json:
+			data = {
+				'raw_data': json.loads(content.css('script[type="application/ld+json"]::text').extract_first()),
+				'source': 'coindesk',
+			}
+			yield data
+			sleep(.75)

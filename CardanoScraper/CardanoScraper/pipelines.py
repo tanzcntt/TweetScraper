@@ -254,3 +254,27 @@ class IohkScraperPipeline(object):
             # print(f"{color['okcyan']}Updating {get_table(table)} table{color['endc']}\n")
             update_success_notify(table)
         time.sleep(1)
+
+
+class CoindeskScraperPipeline(object):
+    def __init__(self):
+        self.myDatabase = mongoClient['cardanoNews']
+        self.coindesk = self.myDatabase['coindeskSample']
+
+    def close_spider(self, spider):
+        print(f"{color['warning']}Crawl Completed!{color['endc']}")
+
+    def process_item(self, item, spider):
+        if item['source'] == 'coindesk':
+            if 'title' in item:
+                self.handle_links(item)
+                insert_into_table(self.coindesk, item)
+            elif 'raw_data' in item:
+                return item
+            return item
+
+    def handle_links(self, data):
+        url = 'https://www.coindesk.com{}'
+        data['link_content'] = url.format(str(data['link_content']))
+        data['link_tag'] = url.format(str(data['link_tag']))
+        data['link_author'] = url.format(str(data['link_author']))
