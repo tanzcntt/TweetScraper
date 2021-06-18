@@ -290,3 +290,8 @@ class CoindeskAll(Spider):
 			}
 			yield data
 			sleep(.75)
+
+
+# https://www.coindesk.com/video/crypto-derivatives-platform-dydx-raises-65m-in-paradigm-led-series-c
+# https://coindesk.com/video/crypto-derivatives-platform-dydx-raises-65m-in-paradigm-led-series-c
+# https://www.coindesk.com/video/mclaren-to-build-nft-platform-on-tezos

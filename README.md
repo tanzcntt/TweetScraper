@@ -146,3 +146,18 @@ This command crawls and updates 1 Latest page on [IOHK Blog](https://iohk.io/en/
 This command crawls and updates all pages [IOHK Blog](https://iohk.io/en/blog/posts/page-1/):
 
 		scrapy crawl allIohk
+
+# 2. Coindesk #
+# Introduction #
+Temporarily crawl all data information of specific Recent Posts links
+All news are in Developing...
+
+# Usage #
+
+Open `CardanoScraper` and run commands:
+
+Remember to **activate the environment** firstly,
+
+This command crawls and updates Home page on [Coindesk News](https://www.coindesk.com/) and import into the mongodb: coindeskSample table 
+		
+		scrapy crawl allCoindesk
