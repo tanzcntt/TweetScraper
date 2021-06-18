@@ -2,8 +2,11 @@ import pymongo
 import scrapy
 import time
 import json
+import chompjs
+from time import sleep
 from .. import utils
 from scrapy import Request, Spider
+from scrapy.selector import Selector
 from scrapy.http import HtmlResponse, Request
 
 color = utils.colors_mark()

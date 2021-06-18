@@ -13,3 +13,4 @@ tensorflow
 aiohttp
 dash
 jupyter-dash
+chompjs
