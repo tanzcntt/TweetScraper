@@ -83,7 +83,7 @@ class CardanoscraperPipeline(object):
 class IohkScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient["cardanoNews"]
-        self.iohk_sample1 = self.myDatabase['iohkSampleTest']
+        self.iohk_sample1 = self.myDatabase['iohkSample']
 
     def close_spider(self, spider):
         print(f"{color['warning']}Crawl Completed!{color['endc']}")
