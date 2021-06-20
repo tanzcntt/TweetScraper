@@ -218,8 +218,24 @@ class CoindeskScraperPipeline(object):
     def handle_content(self, post, data):
         if 'articleBody' in post:
             data['raw_content'] = post['articleBody']
+            data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
+            print(f"{color['warning']}{data['keyword_ranking']}{color['endc']}")
         else:
-            data['raw_content'] = ''
+            # taking subtitle as content instead of setting content empty
+            if 'subtitle' in data:
+                utils.show_message('subtitle', 'okcyan', '')
+                data['raw_content'] = data['subtitle']
+                data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
+                # EX: https://www.coindesk.com/tv/the-hash/the-hash-june-18-2021
+            elif 'description' in data:
+                utils.show_message('description', 'okcyan', '')
+                data['raw_content'] = data['description']
+                data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
+                # EX: https://coindesk.com/video/sichuan-becomes-latest-chinese-province-to-order-bitcoin-miner-shutdown
+            else:
+                utils.show_message('empty all: articleBody, subtitle & description', 'fail', '')
+                data['raw_content'] = ''
+                data['keyword_ranking'] = {}
 
     def handle_datetime(self, post, data):
         for date in post:
@@ -229,18 +245,13 @@ class CoindeskScraperPipeline(object):
                     if post['datePublished']:
                         data['datePublished'] = post['datePublished']
                         data['timestamp'] = datetime.strptime(self.standard_date('datePublished', post), '%Y-%m-%dT%H:%M').timestamp()
-                        print(f"datePublished: {color['fail']}{data['timestamp']}{color['endc']}")
+                        utils.show_message('datePublished', 'okcyan', data['timestamp'])
                         return data['timestamp']
                     else:
                         if post[date]:
                             data[date] = post[date]
                             data['timestamp'] = datetime.strptime(self.standard_date(date, post), '%Y-%m-%dT%H:%M').timestamp()
-                            print(f"{date}: {color['fail']}{data['timestamp']}{color['endc']}")
+                            utils.show_message(date, 'okcyan', data['timestamp'])
                             return data['timestamp']
-                else:
-                    if post[date]:
-                        data[date] = post[date]
-                        data['timestamp'] = datetime.strptime(self.standard_date(date, post), '%Y-%m-%dT%H:%M').timestamp()
-                        print(f"{date}: {color['fail']}{data['timestamp']}{color['endc']}")
 
 # 1623924558 https://www.coindesk.com/iron-finance-says-it-suffered-cryptos-first-large-scale-bank-run-in-token-crash-postmortem

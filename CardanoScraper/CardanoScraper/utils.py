@@ -153,3 +153,7 @@ def update_rawcontent_notify(table, data):
 
 def insert_success_notify(table):
 	print(f"{color['okgreen']}Imported Posts {get_table(table)} success!!!{color['endc']}")
+
+
+def show_message(message, colour, data):
+	print(f"{message}: {color[colour]}{data}{color['endc']}")
