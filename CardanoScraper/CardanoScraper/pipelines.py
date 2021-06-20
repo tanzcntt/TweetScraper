@@ -161,7 +161,7 @@ class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
         self.coindesk = self.myDatabase['coindeskSample']
-        self.coindesk_test = self.myDatabase['coindeskTest']
+        # self.coindesk = self.myDatabase['coindeskTest']
         self.url = 'https://www.coindesk.com{}'
 
     def close_spider(self, spider):
@@ -197,24 +197,9 @@ class CoindeskScraperPipeline(object):
     def insert_raw_content(self, table, data):
         post = data['raw_data']
         # many kinds of public post date
-        if 'datePublished' in post:
-            date_published = post['datePublished'].split('+')[0]
-            print(f"{color['fail']}{date_published}{color['endc']}")
-            data['timestamp'] = datetime.strptime(date_published, '%Y-%m-%dT%H:%M:%S').timestamp()
-        elif 'dateModified' in post:
-            date_published = post['dateModified'].split('+')[0]
-            print(f"{color['fail']}{date_published}{color['endc']}")
-            data['timestamp'] = datetime.strptime(date_published, '%Y-%m-%dT%H:%M:%S').timestamp()
-        else:
-            date_published = post['uploadDate'].split('.')[0]
-            print(f"{color['fail']}{date_published}{color['endc']}")
-            data['timestamp'] = datetime.strptime(date_published, '%Y-%m-%dT%H:%M:%S').timestamp()
-
+        self.handle_datetime(post, data)
         # some Video post had no content
-        if 'articleBody' in post:
-            data['raw_content'] = post['articleBody']
-        else:
-            data['raw_content'] = ''
+        self.handle_content(post, data)
 
         link_post = post['url'].strip()
         slug = link_post.split('.com')[1]
@@ -224,5 +209,38 @@ class CoindeskScraperPipeline(object):
         if table.update_one(query, {'$set': data}):
             print(f"{color['okgreen']}Update raw_content success!{color['endc']} in {self.url.format(str(slug))}")
         time.sleep(1)
+
+    def standard_date(self, date, data):
+        standard_date = data[date].split(':')[:2]
+        standard_date = ':'.join(standard_date)
+        return standard_date
+
+    def handle_content(self, post, data):
+        if 'articleBody' in post:
+            data['raw_content'] = post['articleBody']
+        else:
+            data['raw_content'] = ''
+
+    def handle_datetime(self, post, data):
+        for date in post:
+            if 'date' in date.lower():
+                # take datePublished as default timestamp firstly
+                if 'datePublished' in post:
+                    if post['datePublished']:
+                        data['datePublished'] = post['datePublished']
+                        data['timestamp'] = datetime.strptime(self.standard_date('datePublished', post), '%Y-%m-%dT%H:%M').timestamp()
+                        print(f"datePublished: {color['fail']}{data['timestamp']}{color['endc']}")
+                        return data['timestamp']
+                    else:
+                        if post[date]:
+                            data[date] = post[date]
+                            data['timestamp'] = datetime.strptime(self.standard_date(date, post), '%Y-%m-%dT%H:%M').timestamp()
+                            print(f"{date}: {color['fail']}{data['timestamp']}{color['endc']}")
+                            return data['timestamp']
+                else:
+                    if post[date]:
+                        data[date] = post[date]
+                        data['timestamp'] = datetime.strptime(self.standard_date(date, post), '%Y-%m-%dT%H:%M').timestamp()
+                        print(f"{date}: {color['fail']}{data['timestamp']}{color['endc']}")
 
 # 1623924558 https://www.coindesk.com/iron-finance-says-it-suffered-cryptos-first-large-scale-bank-run-in-token-crash-postmortem
