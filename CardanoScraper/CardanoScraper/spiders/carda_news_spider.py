@@ -7,7 +7,7 @@ from time import sleep
 from .. import utils
 from scrapy import Request, Spider
 from scrapy.selector import Selector
-from scrapy.http import HtmlResponse, Request
+from scrapy.http import HtmlResponse, Request, FormRequest
 
 color = utils.colors_mark()
 mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
@@ -110,6 +110,7 @@ class CardanoNewsContent(Spider):
 	def parse_content(self, response):
 		def extraction_with_css(query):
 			return response.css(query).get(default='').strip()
+
 		data = {
 			'raw_content': extraction_with_css('div.post'),
 			'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
@@ -180,17 +181,17 @@ class CoindeskAll(Spider):
 
 	def __init__(self):
 		self.headers = {
-				"accept-encoding": "gzip, deflate, br",
-				"accept-language": "en-US,en;q=0.9",
-				"origin": "https://www.coindesk.com",
-				"referer": "https://www.coindesk.com/",
-				"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
-				"sec-ch-ua-mobile": "?0",
-				"sec-fetch-dest": "empty",
-				"sec-fetch-mode": "cors",
-				"sec-fetch-site": "cross-site",
-				"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
-			}
+			"accept-encoding": "gzip, deflate, br",
+			"accept-language": "en-US,en;q=0.9",
+			"origin": "https://www.coindesk.com",
+			"referer": "https://www.coindesk.com/",
+			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
+			"sec-ch-ua-mobile": "?0",
+			"sec-fetch-dest": "empty",
+			"sec-fetch-mode": "cors",
+			"sec-fetch-site": "cross-site",
+			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
+		}
 
 	def start_requests(self):
 		url = 'https://www.coindesk.com/'
@@ -225,7 +226,8 @@ class CoindeskAll(Spider):
 		# ================================================
 		# data on story-stack-chinese-wrapper
 		# ================================================
-		recent_posts = response.css('section.page-area-dotted-content div.story-stack section.list-body div.list-item-wrapper')
+		recent_posts = response.css(
+			'section.page-area-dotted-content div.story-stack section.list-body div.list-item-wrapper')
 		for post in recent_posts:
 			link_content = post.css('div.text-content a::attr(href)').getall()[-1]
 			data = {
@@ -260,3 +262,45 @@ class CoindeskAll(Spider):
 # https://www.coindesk.com/video/crypto-derivatives-platform-dydx-raises-65m-in-paradigm-led-series-c
 # https://coindesk.com/video/crypto-derivatives-platform-dydx-raises-65m-in-paradigm-led-series-c
 # https://www.coindesk.com/video/mclaren-to-build-nft-platform-on-tezos
+class CoinTelegraphAll(Spider):
+	name = 'allCoinTele'
+
+	def start_requests(self, total_page=3):
+		start_url = 'https://conpletus.cointelegraph.com/v1/'
+		headers = {
+			'authority': 'conpletus.cointelegraph.com',
+			'method': 'POST',
+			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
+			'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36',
+			'content-type': 'application/json',
+			'origin': 'https://cointelegraph.com',
+			'referer': 'https://cointelegraph.com/',
+			'accept-language': 'en-US,en;q=0.9',
+		}
+		offset = 0
+		length = 15
+		# body='{"operationName": "TagPagePostsQuery","variables": {"slug": "bitcoin","order": "postPublishedTime","offset": 0,"length": 15,"short": "en","cacheTimeInMS": 300000},"query": "query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}',
+		for i in range(total_page):
+			body_ = '{"operationName": "TagPagePostsQuery","variables": {"slug": "bitcoin","order": "postPublishedTime",' + '"offset": {},'.format(offset) + '"length": {},'.format(length) + '"short": "en","cacheTimeInMS": 300000},"query": "query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}'
+			yield FormRequest(url=start_url, callback=self.parse, dont_filter=True, method="POST", body=body_, headers=headers)
+			offset += 15
+
+	def payload_data(self, offset=0, length=15):
+		payload = [{
+			"operationName": "TagPagePostsQuery",
+			"variables": {
+				"slug": "bitcoin",
+				"order": "postPublishedTime",
+				"offset": str(offset),
+				"length": str(length),
+				"short": "en",
+				"cacheTimeInMS": 300000
+			},
+			"query": "query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"
+		}]
+		return str(payload[0])
+
+	def parse(self, response, **kwargs):
+		data = json.loads(response.body)
+		yield data
+		sleep(3)

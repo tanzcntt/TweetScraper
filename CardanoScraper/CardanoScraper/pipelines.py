@@ -168,8 +168,8 @@ class IohkScraperPipeline(object):
 class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        self.coindesk = self.myDatabase['coindeskSample']
-        # self.coindesk = self.myDatabase['coindeskTest']
+        # self.coindesk = self.myDatabase['coindeskSample']
+        self.coindesk = self.myDatabase['coindeskTest']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -191,7 +191,7 @@ class CoindeskScraperPipeline(object):
                     self.new_posts.append(item['link_content'])
             elif 'raw_data' in item:
                 self.insert_raw_content(self.coindesk, item)
-        # return item
+        return item
 
     def update_table(self, table, data):
         query = {
@@ -270,4 +270,12 @@ class CoindeskScraperPipeline(object):
     def handle_link_img(self, post, data):
         data['link_img'] = post['thumbnailUrl']
         return data['link_img']
-# 1623924558 https://www.coindesk.com/iron-finance-says-it-suffered-cryptos-first-large-scale-bank-run-in-token-crash-postmortem
+
+
+class CoinTelegraphScraperPipeline(object):
+    def close_spider(self, spider):
+        pass
+
+    def process_item(self, item, spider):
+        print(f"{color['okblue']}Cointelegraph Pipeline handling...{color['endc']}\n")
+        return item
