@@ -13,6 +13,7 @@ myDatabase = mongoClient["cardanoNews"]
 
 news_collection = myDatabase["allNews"]
 iohk_collection = myDatabase['iohkSample']
+coindesk_collection = myDatabase['coindeskSample']
 # Remove 1st argument from the
 # list of command line arguments
 argumentList = sys.argv[1:]
@@ -85,6 +86,8 @@ async def main(day_in):
     yesterday = today
     task1 = asyncio.create_task(get_news_from(yesterday, news_collection))
     task2 = asyncio.create_task(get_news_from(yesterday, iohk_collection))
+    task3 = asyncio.create_task(get_news_from(yesterday, coindesk_collection))
+    await task3
     await task2
     await task1
 
