@@ -21,11 +21,14 @@ class CardanoscraperPipeline(object):
         self.myDatabase = mongoClient["cardanoNews"]
         self.postContents = self.myDatabase['allNews']
         self.testCarda = self.myDatabase['testAllNews2']
+        self.new_posts = []
 
     # ================================================
     # handle put data to GraphQl
     # ================================================
     def close_spider(self, spider):
+        for index, value in enumerate(self.new_posts):
+            utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}Crawl Completed!{color['endc']}")
 
     # call every item pipeline component
@@ -43,6 +46,7 @@ class CardanoscraperPipeline(object):
                     self.update_table(self.postContents, item)
                 else:
                     utils.insert_into_table(self.postContents, item)
+                    self.new_posts.append(item['link_content'])
             elif 'raw_content' in item:
                 utils.handle_datetime(item, item['post_time'])
                 utils.text_ranking(item, item['raw_content'])
@@ -84,8 +88,11 @@ class IohkScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient["cardanoNews"]
         self.iohk_sample1 = self.myDatabase['iohkSample']
+        self.new_posts = []
 
     def close_spider(self, spider):
+        for index, value in enumerate(self.new_posts):
+            utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}Crawl Completed!{color['endc']}")
 
     def process_item(self, item, spider):
@@ -145,6 +152,7 @@ class IohkScraperPipeline(object):
                 time.sleep(2)
             else:
                 utils.insert_into_table(self.iohk_sample1, iohk_all_posts)
+                self.new_posts.append(iohk_all_posts['link_content'])
                 time.sleep(2)
 
     def update_iohk(self, table, data):
@@ -163,8 +171,11 @@ class CoindeskScraperPipeline(object):
         self.coindesk = self.myDatabase['coindeskSample']
         # self.coindesk = self.myDatabase['coindeskTest']
         self.url = 'https://www.coindesk.com{}'
+        self.new_posts = []
 
     def close_spider(self, spider):
+        for index, value in enumerate(self.new_posts):
+            utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}Crawl Completed!{color['endc']}")
 
     def process_item(self, item, spider):
@@ -177,6 +188,7 @@ class CoindeskScraperPipeline(object):
                     self.update_table(self.coindesk, item)
                 else:
                     utils.insert_into_table(self.coindesk, item)
+                    self.new_posts.append(item['link_content'])
             elif 'raw_data' in item:
                 self.insert_raw_content(self.coindesk, item)
         # return item
@@ -189,13 +201,9 @@ class CoindeskScraperPipeline(object):
             utils.update_success_notify(table)
         time.sleep(1)
 
-    def handle_links(self, data):
-        data['link_content'] = self.url.format(str(data['link_content']))
-        data['link_tag'] = self.url.format(str(data['link_tag']))
-        data['link_author'] = self.url.format(str(data['link_author']))
-
     def insert_raw_content(self, table, data):
         post = data['raw_data']
+        self.handle_link_img(post, data)
         # many kinds of public post date
         self.handle_datetime(post, data)
         # some Video post had no content
@@ -254,4 +262,12 @@ class CoindeskScraperPipeline(object):
                             utils.show_message(date, 'okcyan', data['timestamp'])
                             return data['timestamp']
 
+    def handle_links(self, data):
+        data['link_content'] = self.url.format(str(data['link_content']))
+        data['link_tag'] = self.url.format(str(data['link_tag']))
+        data['link_author'] = self.url.format(str(data['link_author']))
+
+    def handle_link_img(self, post, data):
+        data['link_img'] = post['thumbnailUrl']
+        return data['link_img']
 # 1623924558 https://www.coindesk.com/iron-finance-says-it-suffered-cryptos-first-large-scale-bank-run-in-token-crash-postmortem

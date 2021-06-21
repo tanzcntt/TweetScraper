@@ -151,13 +151,15 @@ class IohkLatest(Spider):
 	name = 'latestIohk'
 
 	def start_requests(self):
-		start_url = 'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json'
+		start_url = 'https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json'
+		total_page = 4
 		headers = {
 			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
 			"sec-ch-ua-mobile": "?0",
 			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
 		}
-		yield Request(url=start_url, callback=self.parse, headers=headers)
+		for i in range(total_page):
+			yield Request(url=start_url.format(i), callback=self.parse, headers=headers)
 
 	def parse(self, response, **kwargs):
 		content = json.loads(response.body)
@@ -171,43 +173,6 @@ class IohkLatest(Spider):
 #
 # 	def start_requests(self):
 # 		start_urls = ['']
-
-
-class CoindeskAll(Spider):
-	name = "allCoindesk"
-
-	def start_requests(self):
-		url = 'https://www.coindesk.com/'
-		headers = {
-			"accept-encoding": "gzip, deflate, br",
-			"accept-language": "en-US,en;q=0.9",
-			"origin": "https://www.coindesk.com",
-			"referer": "https://www.coindesk.com/",
-			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
-			"sec-ch-ua-mobile": "?0",
-			"sec-fetch-dest": "empty",
-			"sec-fetch-mode": "cors",
-			"sec-fetch-site": "cross-site",
-			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
-		}
-		yield Request(url=url, callback=self.parse, headers=headers)
-
-	def parse(self, response, **kwargs):
-		# posts = response.css('div.top-right-bar section.article-card-fh')
-		posts = response.css('div.container section.featured-hub-content')
-		for post in posts:
-			author = post.css('div.card-desc span.card-author a::text').getall()
-			data = {
-				'tag': post.css('div.card-img-block a.button span.eyebrow-button-text::text').getall(),
-				'link_content': post.css('div.card-text-block h2.heading a::attr(href)').getall(),
-				'title': post.css('div.card-text-block h2.heading a::text').getall(),
-				'author': '' if len(author) == 0 else author[1],
-				'link_author': post.css('div.card-desc span.card-author a::attr(href)').getall(),
-				'date': post.css('span.card-date::text').getall(),
-				'subtitle': post.css('div.text-group p.card-text::text').getall(),
-				'source': 'coindesk',
-			}
-			yield data
 
 
 class CoindeskAll(Spider):
