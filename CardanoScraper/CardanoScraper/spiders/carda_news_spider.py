@@ -213,7 +213,8 @@ class CoindeskAll(Spider):
 				'title': post.css('div.card-text-block h2.heading a::text').get(),
 				'subtitle': post.css('div.text-group p.card-text::text').get(),
 				'link_content': link_content,
-				'author': '' if len(author) == 0 else author[1],
+				'slug': link_content.split('/')[-1],
+				'author': '' if len(author) == 0 else author[1].lower(),
 				'link_author': post.css('div.card-desc span.card-author a::attr(href)').get(),
 				'date': post.css('span.card-date::text').get(),
 				'source': 'coindesk',
@@ -234,7 +235,8 @@ class CoindeskAll(Spider):
 				'title': post.css('a h4.heading::text').get(),
 				'subtitle': post.css('a p.card-text::text').get(),
 				'link_content': link_content,
-				'author': post.css('div.card-desc-block span.credit a::text').get(),
+				'slug': link_content.split('/')[-1],
+				'author': post.css('div.card-desc-block span.credit a::text').get().lower(),
 				'link_author': post.css('div.card-desc-block span.credit a::attr(href)').get(),
 				'date': '',
 				'tag': post.css('a.button span.eyebrow-button-text::text').get(),
@@ -256,7 +258,14 @@ class CoindeskAll(Spider):
 				'source': 'coindesk',
 			}
 			yield data
-			sleep(.75)
+		# data_json = response.css('body')
+		# for content in data_json:
+		# 	data = {
+		# 		'raw_data': json.loads(content.css('script[type="application/json"]::text').extract_first()),
+		# 		'source': 'coindesk',
+		# 	}
+		# 	yield data
+			sleep(1)
 
 
 # https://www.coindesk.com/video/crypto-derivatives-platform-dydx-raises-65m-in-paradigm-led-series-c

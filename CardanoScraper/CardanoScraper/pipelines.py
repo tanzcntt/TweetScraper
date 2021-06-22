@@ -169,7 +169,7 @@ class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
         # self.coindesk = self.myDatabase['coindeskSample']
-        self.coindesk = self.myDatabase['coindeskTest']
+        self.coindesk = self.myDatabase['coindeskTest1']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -191,7 +191,7 @@ class CoindeskScraperPipeline(object):
                     self.new_posts.append(item['link_content'])
             elif 'raw_data' in item:
                 self.insert_raw_content(self.coindesk, item)
-        return item
+                # return item
 
     def update_table(self, table, data):
         query = {
@@ -210,9 +210,12 @@ class CoindeskScraperPipeline(object):
         self.handle_content(post, data)
 
         link_post = post['url'].strip()
-        slug = link_post.split('.com')[1]
+        slug = link_post.split('/')[-1]
+        # author = post['author']  # [0]['name']
+        # print(author)
+        # link_content = self.url.format(str(slug))
         query = {
-            "link_content": self.url.format(str(slug))
+            "slug": slug
         }
         if table.update_one(query, {'$set': data}):
             print(f"{color['okgreen']}Update raw_content success!{color['endc']} in {self.url.format(str(slug))}")
@@ -228,22 +231,25 @@ class CoindeskScraperPipeline(object):
             data['raw_content'] = post['articleBody']
             data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
             print(f"{color['warning']}{data['keyword_ranking']}{color['endc']}")
+            return data['keyword_ranking']
         else:
-            # taking subtitle as content instead of setting content empty
-            if 'subtitle' in data:
-                utils.show_message('subtitle', 'okcyan', '')
-                data['raw_content'] = data['subtitle']
+            # update base one: slug but some post links url in type: index.php?p=637454
+            link_post = post['url'].strip()
+            slug = link_post.split('/')[-1]
+            data_ = self.coindesk.find_one({'slug': slug})
+
+            print(f"{color['okgreen']}{data_}{color['endc']}")
+            if 'subtitle' in data_:
+                utils.show_message('subtitle', 'okblue', data_['subtitle'])
+                data['raw_content'] = data_['subtitle']
                 data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
-                # EX: https://www.coindesk.com/tv/the-hash/the-hash-june-18-2021
             elif 'description' in data:
-                utils.show_message('description', 'okcyan', '')
-                data['raw_content'] = data['description']
+                utils.show_message('description', 'okblue', data_['description'])
+                data['raw_content'] = data_['description']
                 data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
-                # EX: https://coindesk.com/video/sichuan-becomes-latest-chinese-province-to-order-bitcoin-miner-shutdown
             else:
-                utils.show_message('empty all: articleBody, subtitle & description', 'fail', '')
-                data['raw_content'] = ''
-                data['keyword_ranking'] = {}
+                utils.show_message('Other key of content. Watch again and!', 'fail', '')
+                # delete post
 
     def handle_datetime(self, post, data):
         for date in post:
@@ -279,3 +285,8 @@ class CoinTelegraphScraperPipeline(object):
     def process_item(self, item, spider):
         print(f"{color['okblue']}Cointelegraph Pipeline handling...{color['endc']}\n")
         return item
+
+# https://www.coindesk.com/nassim-taleb-bitcoin
+
+
+# many difficulties when crawling Coindesk.com:
