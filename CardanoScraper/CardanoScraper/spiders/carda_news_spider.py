@@ -258,6 +258,9 @@ class CoindeskAll(Spider):
 				'source': 'coindesk',
 			}
 			yield data
+		# ================================================
+		# crawl full json data of specific post
+		# ================================================
 		# data_json = response.css('body')
 		# for content in data_json:
 		# 	data = {

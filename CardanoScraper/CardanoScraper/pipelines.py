@@ -29,7 +29,7 @@ class CardanoscraperPipeline(object):
     def close_spider(self, spider):
         for index, value in enumerate(self.new_posts):
             utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
-        print(f"{color['warning']}Crawl Completed!{color['endc']}")
+        print(f"{color['warning']}Cardano Crawl Completed!{color['endc']}")
 
     # call every item pipeline component
     def process_item(self, item, spider):
@@ -93,7 +93,7 @@ class IohkScraperPipeline(object):
     def close_spider(self, spider):
         for index, value in enumerate(self.new_posts):
             utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
-        print(f"{color['warning']}Crawl Completed!{color['endc']}")
+        print(f"{color['warning']}IOHK Crawl Completed!{color['endc']}")
 
     def process_item(self, item, spider):
         print(f"\n{color['okblue']}IOHK Pipeline handling...{color['endc']}\n")
@@ -169,14 +169,31 @@ class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
         # self.coindesk = self.myDatabase['coindeskSample']
-        self.coindesk = self.myDatabase['coindeskTest1']
+        self.coindesk = self.myDatabase['coindeskTest']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
     def close_spider(self, spider):
+        data = self.coindesk.find()
+        for post in data:
+            if 'raw_content' not in post:
+                print(post['link_content'])
+                my_query = {'link_content': post['link_content']}
+                posts = self.coindesk.find({}, my_query)
+                for empty_content in posts:
+                    utils.show_message('empty content', 'fail', empty_content)
+                if self.coindesk.delete_one(my_query):
+                    utils.show_message('delete empty content post', 'fail', '')
+            elif post['raw_content'] == '':
+                my_query = {'link_content': post['link_content']}
+                if self.coindesk.delete_one(my_query):
+                    utils.show_message('delete empty content post', 'fail', '')
+            else:
+                pass
+
         for index, value in enumerate(self.new_posts):
             utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
-        print(f"{color['warning']}Crawl Completed!{color['endc']}")
+        print(f"{color['warning']}Coindesk Crawl Completed!{color['endc']}")
 
     def process_item(self, item, spider):
         print(f"{color['okblue']}Coindesk Pipeline handling...{color['endc']}\n")
@@ -191,7 +208,7 @@ class CoindeskScraperPipeline(object):
                     self.new_posts.append(item['link_content'])
             elif 'raw_data' in item:
                 self.insert_raw_content(self.coindesk, item)
-                # return item
+            # return item
 
     def update_table(self, table, data):
         query = {
@@ -211,14 +228,14 @@ class CoindeskScraperPipeline(object):
 
         link_post = post['url'].strip()
         slug = link_post.split('/')[-1]
-        # author = post['author']  # [0]['name']
+        # author = post['author'][0]['name']
         # print(author)
         # link_content = self.url.format(str(slug))
         query = {
             "slug": slug
         }
         if table.update_one(query, {'$set': data}):
-            print(f"{color['okgreen']}Update raw_content success!{color['endc']} in {self.url.format(str(slug))}")
+            print(f"{color['okgreen']}Update raw_content success!{color['endc']} in {self.url.format('/' + str(slug)) }")
         time.sleep(1)
 
     def standard_date(self, date, data):
@@ -243,13 +260,18 @@ class CoindeskScraperPipeline(object):
                 utils.show_message('subtitle', 'okblue', data_['subtitle'])
                 data['raw_content'] = data_['subtitle']
                 data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
+                return data['keyword_ranking'], data['raw_content']
             elif 'description' in data:
                 utils.show_message('description', 'okblue', data_['description'])
                 data['raw_content'] = data_['description']
                 data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
+                return data['keyword_ranking'], data['raw_content']
             else:
                 utils.show_message('Other key of content. Watch again and!', 'fail', '')
                 # delete post
+            data['keyword_ranking'] = ''
+            data['raw_content'] = ''
+            return data['keyword_ranking'], data['raw_content']
 
     def handle_datetime(self, post, data):
         for date in post:
