@@ -139,7 +139,7 @@ class TweetScraper(CrawlSpider):
         k = 0
         for item in self.parse_tweet_item(data['globalObjects']['tweets']):
             k = k + 1
-            print(item["raw_data"]["id_str"])
+            print(item["raw_data"]["created_at"], " ", item["raw_data"]["id"])
             yield item
         for item in self.parse_user_item(data['globalObjects']['users']):
             yield item
