@@ -168,8 +168,8 @@ class IohkScraperPipeline(object):
 class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        # self.coindesk = self.myDatabase['coindeskSample']
-        self.coindesk = self.myDatabase['coindeskTest']
+        self.coindesk = self.myDatabase['coindeskSample']
+        # self.coindesk = self.myDatabase['coindeskTest1']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -296,8 +296,10 @@ class CoindeskScraperPipeline(object):
         data['link_author'] = self.url.format(str(data['link_author']))
 
     def handle_link_img(self, post, data):
-        data['link_img'] = post['thumbnailUrl']
-        return data['link_img']
+        if type(post['thumbnailUrl']) == list:
+            data['link_img'] = post['thumbnailUrl'][0]
+        else:
+            data['link_img'] = post['thumbnailUrl']
 
 
 class CoinTelegraphScraperPipeline(object):
