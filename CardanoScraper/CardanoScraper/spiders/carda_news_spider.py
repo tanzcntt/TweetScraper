@@ -50,6 +50,7 @@ class CardanoSpider(Spider):
 				'latest': 1,
 				'approve': 1
 			}
+			print(f"{color['fail']}{data['link_post']}{color['endc']}")
 			yield response.follow(data['link_post'], callback=self.parse_content)
 			yield data
 
@@ -206,6 +207,7 @@ class CoindeskLatest(Spider):
 		top_section_posts = response.css('section.article-card-fh')
 		for post in top_section_posts:
 			author = post.css('div.card-desc span.card-author a::text').getall()
+			print(f"Author1: {color['fail']}{author}{color['endc']}")
 			link_content = post.css('div.card-text-block h2.heading a::attr(href)').get()
 			data = {
 				'tag': post.css('div.card-img-block a.button span.eyebrow-button-text::text').get(),
@@ -213,12 +215,12 @@ class CoindeskLatest(Spider):
 				'title': post.css('div.card-text-block h2.heading a::text').get(),
 				'subtitle': post.css('div.text-group p.card-text::text').get(),
 				'link_content': link_content,
-				'slug': link_content.split('/')[-1],
+				'slug_content': link_content.split('/')[-1],
 				'author': '' if len(author) == 0 else author[1].lower(),
 				'link_author': post.css('div.card-desc span.card-author a::attr(href)').get(),
 				'date': post.css('span.card-date::text').get(),
 				'source': 'coindesk',
-				'latest': 0,
+				'latest': 1,
 				'approve': 1,
 			}
 			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
@@ -230,19 +232,21 @@ class CoindeskLatest(Spider):
 		recent_posts = response.css(
 			'section.page-area-dotted-content div.story-stack section.list-body div.list-item-wrapper')
 		for post in recent_posts:
+			author = post.css('div.card-desc-block span.credit a::text').getall()
+			print(f"Author2: {color['fail']}{author}{color['endc']}")
 			link_content = post.css('div.text-content a::attr(href)').getall()[-1]
 			data = {
 				'title': post.css('a h4.heading::text').get(),
 				'subtitle': post.css('a p.card-text::text').get(),
 				'link_content': link_content,
-				'slug': link_content.split('/')[-1],
-				'author': post.css('div.card-desc-block span.credit a::text').get().lower(),
+				'slug_content': link_content.split('/')[-1],
+				'author': '' if len(author) == 0 else author[0].lower(),
 				'link_author': post.css('div.card-desc-block span.credit a::attr(href)').get(),
 				'date': '',
 				'tag': post.css('a.button span.eyebrow-button-text::text').get(),
 				'link_tag': post.css('div.text-content a.button::attr(href)').get(),
 				'source': 'coindesk',
-				'latest': 0,
+				'latest': 1,
 				'approve': 1,
 			}
 			yield response.follow(url=link_content, callback=self.parse_content)
@@ -258,16 +262,6 @@ class CoindeskLatest(Spider):
 				'source': 'coindesk',
 			}
 			yield data
-		# ================================================
-		# crawl full json data of specific post
-		# ================================================
-		# data_json = response.css('body')
-		# for content in data_json:
-		# 	data = {
-		# 		'raw_data': json.loads(content.css('script[type="application/json"]::text').extract_first()),
-		# 		'source': 'coindesk',
-		# 	}
-		# 	yield data
 			sleep(1)
 
 
@@ -291,41 +285,36 @@ class CoindeskAll(Spider):
 
 	def start_requests(self):
 		url = 'https://www.coindesk.com/wp-json/v1/articles/format/news/{}?mode=list'
-		total_page = 1
+		total_page = 40  # max page = 99 <23/06/21>
 		for i in range(total_page):
 			yield Request(url=url.format(i), callback=self.parse, headers=self.headers)
 
 	def parse(self, response, **kwargs):
 		data = json.loads(response.body)
 		data['source'] = 'coindeskLatestNews'
-		# print(data['posts'])
-			# post_ = post['posts']
 		for post in data['posts']:
 			# print(f"{color['okcyan']}{post}{color['endc']}")
 			link_content = self.url.format('/' + str(post['slug']))
 			print(f"{color['okgreen']}{link_content}{color['endc']}")
 			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
 		yield data
-		time.sleep(5)
+		time.sleep(3)
 
 	def parse_content(self, response, **kwargs):
 		print(f"{color['warning']}Crawling detail page{color['endc']}")
-		# <article id="article-68039" class="post__article" data-v-128018ef>
 		data_json = response.css('body')
 		for content in data_json:
+			raw_data = json.loads(content.css('script[type="application/json"]::text').extract_first())
 			data = {
-				'raw_data': json.loads(content.css('script[type="application/json"]::text').extract_first()),
-				'source': 'coindesk',
+				'slug_content': raw_data['props']['initialProps']['pageProps']['data']['slug'],
+				'raw_content': raw_data['props']['initialProps']['pageProps']['data']['amp'],
+				'source': 'coindeskLatestNews',
+				'raw_data': raw_data,
 			}
-			print(f"Raw_content{color['okgreen']}{data}{color['endc']}")
+			# print(f"Raw_content{color['okgreen']}{data['raw_content']}{color['endc']}")
 			yield data
-		# for article in articles:
-		# 	data = {
-		# 		'raw_content': article.css('div.post__content-wrapper::text').getall(),
-		# 		'source': 'coindeskLatestNews',
-		# 	}
-		# 	print(f"Raw_content{color['okgreen']}{data}{color['endc']}")
-		# 	yield data
+			sleep(.5)
+
 
 class CoinTelegraphAll(Spider):
 	name = 'allCoinTele'

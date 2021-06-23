@@ -1,4 +1,20 @@
 https://www.coindesk.com/news
+page 0
+page 1
+curl 'https://www.coindesk.com/wp-json/v1/articles/format/news/0?mode=list' \
+  -H 'authority: www.coindesk.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://www.coindesk.com/news' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: CookieConsent={stamp:%27-1%27%2Cnecessary:true%2Cpreferences:true%2Cstatistics:true%2Cmarketing:true%2Cver:1%2Cutc:1622706107648%2Cregion:%27VN%27}; _gcl_au=1.1-2.622269475.1622706108; __auc=a46c78c8179d0d235309c8f729f; _rdt_uuid=1622706107927.55058650-e2ac-484e-9472-f5e16ac71473; _cb_ls=1; _cb=DRBZpsBLRq6sC5X0Is; _hjid=d8020568-32e0-4568-bdb2-97085cfe8b29; _gid=GA1.2.1600703627.1624326495; _hjTLDTest=1; _hjShownFeedbackMessage=true; _gat_UA-40183560-1=1; _parsely_session={%22sid%22:19%2C%22surl%22:%22https://www.coindesk.com/nassim-taleb-bitcoin%22%2C%22sref%22:%22%22%2C%22sts%22:1624345352086%2C%22slts%22:1624339535031}; _parsely_visitor={%22id%22:%22pid=69bc47b52e8ed06be33188228f04ebce%22%2C%22session_count%22:19%2C%22last_session_ts%22:1624345352086}; __asc=337a2f5517a3287179ccf677c90; _cb_svref=null; _hjAbsoluteSessionInProgress=0; _hjIncludedInSessionSample=1; _chartbeat5=; _ga=GA1.2.216421748.1624326495; _chartbeat2=.1622706107951.1624347529981.0000000001111011.D1LYuu8nDCwZbw3qRSt2WBzUfRu.5; sailthru_pageviews=4; sailthru_content=30a7e28e6d2fde686dca93d7b02d57768e66dcfdbd3ff1e252bf0aa2d89dfe53fe2c846381c15c11b44cda707f198e2679b5727ec08f14bb84192be27d842b4a56087cfa288dfff611bdc062ed4aa0e79391acc6fb5215908142c337a9adad4648a26b843f156d5b383e367e6c335f87ae568594b7a1dad0616635abd337da8a081685663f4ae14f52c725d89cd055226e7cfa41278a1983c0a78b813ed063cfd26111d03d8d3700e689ce4ab34de9e783abaa0fcf781329f38b53f7167663a82d8a38bed20c69623fff03f0ffe49d46c7739a81d70ebe71c0369c4bd8c6c251f4618b8837368562f9d01fbc250e974b6c7ebbeb48caa8bd596c02996bc026f9; sailthru_visitor=8964e4e9-df60-4341-bc40-f9bd09d12754; _ga_VM3STRYVN8=GS1.1.1624345350.21.1.1624347534.24' \
+  --compressed
+
 page 1
 curl 'https://www.coindesk.com/wp-json/v1/articles/format/news/1?mode=list' \
   -H 'authority: www.coindesk.com' \
@@ -29,3 +45,17 @@ curl 'https://www.coindesk.com/wp-json/v1/articles/format/news/2?mode=list' \
   -H 'cookie: CookieConsent={stamp:%27-1%27%2Cnecessary:true%2Cpreferences:true%2Cstatistics:true%2Cmarketing:true%2Cver:1%2Cutc:1622706107648%2Cregion:%27VN%27}; _gcl_au=1.1-2.622269475.1622706108; __auc=a46c78c8179d0d235309c8f729f; _rdt_uuid=1622706107927.55058650-e2ac-484e-9472-f5e16ac71473; _cb_ls=1; _cb=DRBZpsBLRq6sC5X0Is; _hjid=d8020568-32e0-4568-bdb2-97085cfe8b29; _gid=GA1.2.1600703627.1624326495; _hjTLDTest=1; _hjShownFeedbackMessage=true; _gat_UA-40183560-1=1; _parsely_session={%22sid%22:19%2C%22surl%22:%22https://www.coindesk.com/nassim-taleb-bitcoin%22%2C%22sref%22:%22%22%2C%22sts%22:1624345352086%2C%22slts%22:1624339535031}; _parsely_visitor={%22id%22:%22pid=69bc47b52e8ed06be33188228f04ebce%22%2C%22session_count%22:19%2C%22last_session_ts%22:1624345352086}; __asc=337a2f5517a3287179ccf677c90; _cb_svref=null; _hjAbsoluteSessionInProgress=0; _hjIncludedInSessionSample=1; _chartbeat5=; _ga=GA1.2.216421748.1624326495; _chartbeat2=.1622706107951.1624347529981.0000000001111011.D1LYuu8nDCwZbw3qRSt2WBzUfRu.5; sailthru_pageviews=4; sailthru_content=30a7e28e6d2fde686dca93d7b02d57768e66dcfdbd3ff1e252bf0aa2d89dfe53fe2c846381c15c11b44cda707f198e2679b5727ec08f14bb84192be27d842b4a56087cfa288dfff611bdc062ed4aa0e79391acc6fb5215908142c337a9adad4648a26b843f156d5b383e367e6c335f87ae568594b7a1dad0616635abd337da8a081685663f4ae14f52c725d89cd055226e7cfa41278a1983c0a78b813ed063cfd26111d03d8d3700e689ce4ab34de9e783abaa0fcf781329f38b53f7167663a82d8a38bed20c69623fff03f0ffe49d46c7739a81d70ebe71c0369c4bd8c6c251f4618b8837368562f9d01fbc250e974b6c7ebbeb48caa8bd596c02996bc026f9; sailthru_visitor=8964e4e9-df60-4341-bc40-f9bd09d12754; _ga_VM3STRYVN8=GS1.1.1624345350.21.1.1624347534.24' \
   --compressed
 
+page 99 <max> 23/06/21
+curl 'https://www.coindesk.com/wp-json/v1/articles/format/news/99?mode=list' \
+  -H 'authority: www.coindesk.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://www.coindesk.com/news' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: CookieConsent={stamp:%27-1%27%2Cnecessary:true%2Cpreferences:true%2Cstatistics:true%2Cmarketing:true%2Cver:1%2Cutc:1622706107648%2Cregion:%27VN%27}; _gcl_au=1.1-2.622269475.1622706108; __auc=a46c78c8179d0d235309c8f729f; _rdt_uuid=1622706107927.55058650-e2ac-484e-9472-f5e16ac71473; _cb_ls=1; _cb=DRBZpsBLRq6sC5X0Is; _hjid=d8020568-32e0-4568-bdb2-97085cfe8b29; _gid=GA1.2.1600703627.1624326495; _hjTLDTest=1; _hjShownFeedbackMessage=true; _gat_UA-40183560-1=1; _parsely_session={%22sid%22:19%2C%22surl%22:%22https://www.coindesk.com/nassim-taleb-bitcoin%22%2C%22sref%22:%22%22%2C%22sts%22:1624345352086%2C%22slts%22:1624339535031}; _parsely_visitor={%22id%22:%22pid=69bc47b52e8ed06be33188228f04ebce%22%2C%22session_count%22:19%2C%22last_session_ts%22:1624345352086}; __asc=337a2f5517a3287179ccf677c90; _cb_svref=null; _hjAbsoluteSessionInProgress=0; _hjIncludedInSessionSample=1; _chartbeat5=; _ga=GA1.2.216421748.1624326495; _chartbeat2=.1622706107951.1624347529981.0000000001111011.D1LYuu8nDCwZbw3qRSt2WBzUfRu.5; sailthru_pageviews=4; sailthru_content=30a7e28e6d2fde686dca93d7b02d57768e66dcfdbd3ff1e252bf0aa2d89dfe53fe2c846381c15c11b44cda707f198e2679b5727ec08f14bb84192be27d842b4a56087cfa288dfff611bdc062ed4aa0e79391acc6fb5215908142c337a9adad4648a26b843f156d5b383e367e6c335f87ae568594b7a1dad0616635abd337da8a081685663f4ae14f52c725d89cd055226e7cfa41278a1983c0a78b813ed063cfd26111d03d8d3700e689ce4ab34de9e783abaa0fcf781329f38b53f7167663a82d8a38bed20c69623fff03f0ffe49d46c7739a81d70ebe71c0369c4bd8c6c251f4618b8837368562f9d01fbc250e974b6c7ebbeb48caa8bd596c02996bc026f9; sailthru_visitor=8964e4e9-df60-4341-bc40-f9bd09d12754; _ga_VM3STRYVN8=GS1.1.1624345350.21.1.1624347534.24' \
+  --compressed

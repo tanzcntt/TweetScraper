@@ -37,6 +37,8 @@ def sample_data():
         'link_tag': '',
         'published': '',  # postTranslate/published
         'timestamp': '',
+        'latest': 0,
+        'approve': 1,
     }
     return data
 
@@ -193,8 +195,8 @@ class IohkScraperPipeline(object):
 class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        self.coindesk = self.myDatabase['coindeskSample']
-        # self.coindesk = self.myDatabase['coindeskTest1']
+        # self.coindesk = self.myDatabase['coindeskSample']
+        self.coindesk = self.myDatabase['coindeskTest6']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -215,7 +217,6 @@ class CoindeskScraperPipeline(object):
                     utils.show_message('delete empty content post', 'fail', '')
             else:
                 pass
-
         for index, value in enumerate(self.new_posts):
             utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}Coindesk Crawl Completed!{color['endc']}")
@@ -234,10 +235,10 @@ class CoindeskScraperPipeline(object):
             elif 'raw_data' in item:
                 self.insert_raw_content(self.coindesk, item)
         elif item['source'] == 'coindeskLatestNews':
-            if 'title' in item:
+            if 'next' in item:
                 self.coindesk_get_post(item)
             elif 'raw_content' in item:
-                return item
+                self.coindesk_get_raw_content(self.coindesk, data=item)
 
     def update_table(self, table, data):
         query = {
@@ -256,16 +257,23 @@ class CoindeskScraperPipeline(object):
         self.handle_content(post, data)
 
         link_post = post['url'].strip()
-        slug = link_post.split('/')[-1]
+        slug_content = link_post.split('/')[-1]
         # author = post['author'][0]['name']
         # print(author)
-        # link_content = self.url.format(str(slug))
+        # link_content = self.url.format(str(slug_content))
         query = {
-            "slug": slug
+            "slug_content": slug_content
         }
         if table.update_one(query, {'$set': data}):
-            print(f"{color['okgreen']}Update raw_content success!{color['endc']} in {self.url.format('/' + str(slug)) }")
+            print(f"{color['okgreen']}Update raw_content success!{color['endc']} in {self.url.format('/' + str(slug_content)) }")
         time.sleep(1)
+
+    def update_latest_news(self, table, data):
+        query = {
+            'slug_content': data['slug_content']
+        }
+        if table.update_one(query, {'$set': data}):
+            utils.update_success_notify(table)
 
     def coindesk_get_post(self, data):
         posts = data['posts']
@@ -277,15 +285,30 @@ class CoindeskScraperPipeline(object):
             coindesk_sample_data['slug_content'] = post['slug']
             coindesk_sample_data['link_content'] = self.url.format('/' + str(post['slug']))
             coindesk_sample_data['author'] = post['authors'][0]['name']
+            coindesk_sample_data['slug_author'] = post['authors'][0]['slug']
             coindesk_sample_data['link_author'] = self.url.format('/author/' + str(post['authors'][0]['slug']))
             coindesk_sample_data['tag'] = post['tag']['name']
             coindesk_sample_data['link_tag'] = self.url.format('/' + str(post['tag']['slug']))
             coindesk_sample_data['published'] = post['date']
             coindesk_sample_data['timestamp'] = datetime.strptime(post['date'], '%Y-%m-%dT%H:%M:%S').timestamp()
-            coindesk_sample_data['raw_content'] = ''
-            coindesk_sample_data['keyword_ranking'] = ''
             print(coindesk_sample_data)
-            sleep(2)
+            if self.coindesk.find_one({'slug_content': coindesk_sample_data['slug_content']}):
+                self.update_latest_news(self.coindesk, coindesk_sample_data)
+                time.sleep(.1)
+            else:
+                utils.insert_into_table(self.coindesk, data=coindesk_sample_data)
+                self.new_posts.append(coindesk_sample_data['link_content'])
+                time.sleep(.1)
+
+    def coindesk_get_raw_content(self, table, data):
+        raw_content = data['raw_content']
+        utils.show_message('raw_content', 'okgreen', raw_content)
+        keyword_ranking = utils.text_ranking(data, raw_content)
+        data['keyword_ranking'] = keyword_ranking
+        data['raw_data'] = ''
+        if table.find_one({'slug_content': data['slug_content']}):
+            self.update_latest_news(self.coindesk, data=data)
+        sleep(.1)
 
     def standard_date(self, date, data):
         standard_date = data[date].split(':')[:2]
@@ -301,16 +324,17 @@ class CoindeskScraperPipeline(object):
         else:
             # update base one: slug but some post links url in type: index.php?p=637454
             link_post = post['url'].strip()
-            slug = link_post.split('/')[-1]
-            data_ = self.coindesk.find_one({'slug': slug})
+            slug_content = link_post.split('/')[-1]
+            data_ = self.coindesk.find_one({'slug_content': slug_content})
 
-            print(f"{color['okgreen']}{data_}{color['endc']}")
+            # print(f"{color['okgreen']}{data_}{color['endc']}")
             if 'subtitle' in data_:
-                utils.show_message('subtitle', 'okblue', data_['subtitle'])
+                utils.show_message('empty articleBody | replace articleBody by Subtitle', 'okcyan', data_['subtitle'])
                 data['raw_content'] = data_['subtitle']
                 data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
                 return data['keyword_ranking'], data['raw_content']
             elif 'description' in data:
+                utils.show_message('empty articleBody | replace articleBody by Description', 'okcyan', data_['description'])
                 utils.show_message('description', 'okblue', data_['description'])
                 data['raw_content'] = data_['description']
                 data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
@@ -360,6 +384,6 @@ class CoinTelegraphScraperPipeline(object):
 
     def process_item(self, item, spider):
         print(f"{color['okblue']}Cointelegraph Pipeline handling...{color['endc']}\n")
-        return item
+        # return item
 
     # def
