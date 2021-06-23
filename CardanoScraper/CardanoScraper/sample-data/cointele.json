@@ -1,0 +1,805 @@
+[
+  {
+    "raw_data": {
+      "data": {
+        "locale": {
+          "tag": {
+            "cacheKey": "en.TagType.4",
+            "id": "4",
+            "posts": {
+              "data": [
+                {
+                  "cacheKey": "en.PostType.68039",
+                  "id": "68039",
+                  "slug": "vaneck-files-for-a-new-bitcoin-futures-mutual-fund-with-us-sec",
+                  "views": 1044,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689385",
+                    "id": "689385",
+                    "title": "VanEck files for a new Bitcoin futures mutual fund with US SEC",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/1bba450a-be0b-40fd-a680-a1b892725593.jpg",
+                    "published": "2021-06-22T09:45:27+01:00",
+                    "publishedHumanFormat": "49 minutes ago",
+                    "leadText": "VanEck\u2019s new \u201cBitcoin Strategy Fund\u201d will invest in BTC futures, pooled investment vehicles and exchange-traded products providing exposure to Bitcoin.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.2",
+                    "id": "2",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.545",
+                    "id": "545",
+                    "slug": "helen-partz",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.8405",
+                        "id": "8405",
+                        "name": "Helen Partz",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.38",
+                    "id": "38",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.815",
+                        "id": "815",
+                        "title": "News",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.68035",
+                  "id": "68035",
+                  "slug": "bitcoin-bear-market-confirmed-analysts-at-odds-over-whales-btc-exchange-moves",
+                  "views": 8589,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689377",
+                    "id": "689377",
+                    "title": "Bitcoin bear market confirmed? Analysts at odds over whales' BTC exchange moves",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/01ebd965-9e57-4044-adfe-7b86f585d0ec.jpg",
+                    "published": "2021-06-22T08:22:29+01:00",
+                    "publishedHumanFormat": "2 hours ago",
+                    "leadText": "Whale selling pressure is too great to preserve the bull market for now, one warning says, while similarities to 2017 provide a silver lining for hodlers.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.89",
+                    "id": "89",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.57",
+                    "id": "57",
+                    "slug": "william-suberg",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.705",
+                        "id": "705",
+                        "name": "William Suberg",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.87",
+                    "id": "87",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.1788",
+                        "id": "1788",
+                        "title": "Markets News",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.68030",
+                  "id": "68030",
+                  "slug": "bitfarms-shares-slump-on-nasdaq-debut-amid-crypto-market-pull-back",
+                  "views": 2109,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689368",
+                    "id": "689368",
+                    "title": "Bitfarms\u2019 shares slump on Nasdaq debut amid crypto market pull-back",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/6e0b49f4-b0b8-407d-a749-fc9d19d71796.jpg",
+                    "published": "2021-06-22T06:16:13+01:00",
+                    "publishedHumanFormat": "4 hours ago",
+                    "leadText": "Bitfarms\u2019 debuting shares have been unable to escape the bearish crypto meta-trend, despite the firm claiming its profits have increased amid the recent drop in Bitcoin hash rate. ",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.2",
+                    "id": "2",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.676",
+                    "id": "676",
+                    "slug": "samuel-haig",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.11387",
+                        "id": "11387",
+                        "name": "Samuel Haig",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.38",
+                    "id": "38",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.815",
+                        "id": "815",
+                        "title": "News",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.68026",
+                  "id": "68026",
+                  "slug": "opposition-poses-constitutional-challenge-to-el-salvador-s-bitcoin-law",
+                  "views": 3686,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689362",
+                    "id": "689362",
+                    "title": "Opposition poses constitutional challenge to El Salvador's Bitcoin law",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/58230824-5154-4f16-bdc5-1e921e3be216.jpg",
+                    "published": "2021-06-22T04:27:54+01:00",
+                    "publishedHumanFormat": "6 hours ago",
+                    "leadText": "A political party in El Salvador has filed a lawsuit alleging President Bukele\u2019s new Bitcoin law could be unconstitutional and harmful to the country.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.2",
+                    "id": "2",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.1056",
+                    "id": "1056",
+                    "slug": "martin-young",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.17082",
+                        "id": "17082",
+                        "name": "Martin Young",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.38",
+                    "id": "38",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.815",
+                        "id": "815",
+                        "title": "News",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.68015",
+                  "id": "68015",
+                  "slug": "stablecoin-inflows-to-exchanges-dip-as-traders-watch-bitcoin-from-the-sidelines",
+                  "views": 7327,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689335",
+                    "id": "689335",
+                    "title": "Stablecoin inflows to exchanges dip as traders watch Bitcoin from the sidelines",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/4531423c-51ea-45b3-a591-17c9f86469dc.jpg",
+                    "published": "2021-06-21T23:20:50+01:00",
+                    "publishedHumanFormat": "11 hours ago",
+                    "leadText": "Stablecoin inflows to exchanges tapered off as investors turned bearish on Bitcoin, but a surge in USDC minting could be a signal of upcoming regulation.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.89",
+                    "id": "89",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.1173",
+                    "id": "1173",
+                    "slug": "jordan-finneseth",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.17891",
+                        "id": "17891",
+                        "name": "Jordan Finneseth",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.59",
+                    "id": "59",
+                    "label": "info",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.1277",
+                        "id": "1277",
+                        "title": "Market Analysis",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.68006",
+                  "id": "68006",
+                  "slug": "data-shows-bitcoin-bears-dominate-friday-s-2-5b-btc-options-expiry",
+                  "views": 12105,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689320",
+                    "id": "689320",
+                    "title": "Data shows Bitcoin bears dominate Friday's $2.5B BTC options expiry ",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/d2fcde30-f4a4-49bc-8324-f0d885159355.jpg",
+                    "published": "2021-06-21T21:00:00+01:00",
+                    "publishedHumanFormat": "13 hours ago",
+                    "leadText": "Bears have a potential $450 million lead if Bitcoin fails to hold $32,000 until June 25.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.89",
+                    "id": "89",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.915",
+                    "id": "915",
+                    "slug": "marcel-pechman",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.15588",
+                        "id": "15588",
+                        "name": "Marcel Pechman",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.59",
+                    "id": "59",
+                    "label": "info",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.1277",
+                        "id": "1277",
+                        "title": "Market Analysis",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.68002",
+                  "id": "68002",
+                  "slug": "institutional-selling-of-crypto-reaches-longest-streak-since-feb-2018",
+                  "views": 9452,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689313",
+                    "id": "689313",
+                    "title": "Institutional selling of crypto reaches longest streak since Feb 2018 ",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/8d99bf89-9989-4881-9e4d-5289d300a581.jpg",
+                    "published": "2021-06-21T19:35:00+01:00",
+                    "publishedHumanFormat": "15 hours ago",
+                    "leadText": "CoinShares\u2019 weekly report showed another large outflow from digital asset products, with much of the selloff concentrated in Bitcoin funds.  ",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.2",
+                    "id": "2",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.1142",
+                    "id": "1142",
+                    "slug": "sam-bourgi",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.17735",
+                        "id": "17735",
+                        "name": "Sam Bourgi",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.38",
+                    "id": "38",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.815",
+                        "id": "815",
+                        "title": "News",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.68004",
+                  "id": "68004",
+                  "slug": "price-analysis-6-21-btc-eth-bnb-ada-xrp-doge-dot-uni-bch-ltc",
+                  "views": 20807,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689315",
+                    "id": "689315",
+                    "title": "Price analysis 6/21: BTC, ETH, BNB, ADA, XRP, DOGE, DOT, UNI, BCH, LTC",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/118cd9fb-cf99-46cc-8a32-c1ab2926d23e.jpg",
+                    "published": "2021-06-21T19:20:13+01:00",
+                    "publishedHumanFormat": "15 hours ago",
+                    "leadText": "Bitcoin and altcoins are reaching critical support levels, but instead of buying the dip, traders are waiting to see if any bullish signals emerge.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.87",
+                    "id": "87",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.499",
+                    "id": "499",
+                    "slug": "rakesh-upadhyay",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.7393",
+                        "id": "7393",
+                        "name": "Rakesh Upadhyay",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.30",
+                    "id": "30",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.639",
+                        "id": "639",
+                        "title": "Price Analysis",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.67992",
+                  "id": "67992",
+                  "slug": "if-the-peer-review-system-is-broken-what-the-hell-is-the-point-of-cardano-s-reliance-on-it",
+                  "views": 16965,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689293",
+                    "id": "689293",
+                    "title": "If the peer review system is broken, what the hell is the point of Cardano's reliance on it?",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/d57fec88-1981-46af-8e20-633bdbc517f6.jpg",
+                    "published": "2021-06-21T16:27:23+01:00",
+                    "publishedHumanFormat": "18 hours ago",
+                    "leadText": "\u201cWhat the hell is the point of Bitcoin?\u201d asks Cardano founder Charles Hoskinson.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.81",
+                    "id": "81",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.1286",
+                    "id": "1286",
+                    "slug": "john-mac-ghlionn",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.18434",
+                        "id": "18434",
+                        "name": "John Mac Ghlionn",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.43",
+                    "id": "43",
+                    "label": "success",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.925",
+                        "id": "925",
+                        "title": "Opinion",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.67981",
+                  "id": "67981",
+                  "slug": "nvidia-gpu-prices-in-china-fall-amid-crypto-mining-crackdown",
+                  "views": 7451,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689255",
+                    "id": "689255",
+                    "title": "Nvidia GPU prices in China fall amid crypto mining crackdown",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/4e5f11f8-11d6-4344-97ad-023a3b5a6298.jpg",
+                    "published": "2021-06-21T14:42:01+01:00",
+                    "publishedHumanFormat": "19 hours ago",
+                    "leadText": "Graphics card prices in China reportedly dropped as much as two-thirds on Chinese e-commerce websites.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.2",
+                    "id": "2",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.545",
+                    "id": "545",
+                    "slug": "helen-partz",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.8405",
+                        "id": "8405",
+                        "name": "Helen Partz",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.38",
+                    "id": "38",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.815",
+                        "id": "815",
+                        "title": "News",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.67969",
+                  "id": "67969",
+                  "slug": "el-salvador-adopting-bitcoin-could-make-it-lose-market-dominance",
+                  "views": 11454,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689212",
+                    "id": "689212",
+                    "title": "El Salvador adopting Bitcoin could make it lose market dominance",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/a7f236c4-a512-4470-938d-5b40fd86753f.jpg",
+                    "published": "2021-06-21T14:37:00+01:00",
+                    "publishedHumanFormat": "19 hours ago",
+                    "leadText": "The Salvadoran experiment is the shot heard round the world for the mainstream adoption of decentralized digital currencies as money.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.81",
+                    "id": "81",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.330",
+                    "id": "330",
+                    "slug": "joel-valenzuela",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.4863",
+                        "id": "4863",
+                        "name": "Jo\u00ebl Valenzuela",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.43",
+                    "id": "43",
+                    "label": "success",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.925",
+                        "id": "925",
+                        "title": "Opinion",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.67977",
+                  "id": "67977",
+                  "slug": "microstrategy-expands-company-s-bitcoin-holdings-with-489m-purchase",
+                  "views": 7668,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689235",
+                    "id": "689235",
+                    "title": "MicroStrategy expands company's Bitcoin holdings with $489M purchase",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/9c5d5103-55f9-42bf-b9b1-a348c0f986b6.jpg",
+                    "published": "2021-06-21T14:08:16+01:00",
+                    "publishedHumanFormat": "20 hours ago",
+                    "leadText": "MicroStrategy has announced an additional Bitcoin purchase to the tune of $489 million.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.2",
+                    "id": "2",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.639",
+                    "id": "639",
+                    "slug": "osato-avan-nomayo",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.11100",
+                        "id": "11100",
+                        "name": "Osato Avan-Nomayo",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.38",
+                    "id": "38",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.815",
+                        "id": "815",
+                        "title": "News",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.67974",
+                  "id": "67974",
+                  "slug": "classic-bearish-chart-pattern-forms-for-bitcoin-as-btc-price-tumbles-to-32k",
+                  "views": 39786,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689225",
+                    "id": "689225",
+                    "title": "Classic bearish chart pattern forms for Bitcoin as BTC price tumbles to $32K",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/31809a53-7c47-4d74-9744-2cd1f7bd5b41.jpg",
+                    "published": "2021-06-21T13:12:59+01:00",
+                    "publishedHumanFormat": "21 hours ago",
+                    "leadText": "Bitcoin flashes a classic bearish technical pattern that could crash BTC prices to below $20,000.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.89",
+                    "id": "89",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.1261",
+                    "id": "1261",
+                    "slug": "yashu-gola",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.18284",
+                        "id": "18284",
+                        "name": "Yashu Gola",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.59",
+                    "id": "59",
+                    "label": "info",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.1277",
+                        "id": "1277",
+                        "title": "Market Analysis",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.67972",
+                  "id": "67972",
+                  "slug": "bank-tsb-set-to-bar-5-4m-customers-from-buying-crypto",
+                  "views": 8358,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689219",
+                    "id": "689219",
+                    "title": "Bank TSB set to bar 5.4M customers from buying crypto",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/4b1a31ad-3554-443c-9d03-a93f061c9e7e.jpg",
+                    "published": "2021-06-21T12:29:56+01:00",
+                    "publishedHumanFormat": "22 hours ago",
+                    "leadText": "Bank TSB is set to become the latest financial institution in the United Kingdom to prevent customers from investing in crypto.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.2",
+                    "id": "2",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.639",
+                    "id": "639",
+                    "slug": "osato-avan-nomayo",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.11100",
+                        "id": "11100",
+                        "name": "Osato Avan-Nomayo",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.38",
+                    "id": "38",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.815",
+                        "id": "815",
+                        "title": "News",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                },
+                {
+                  "cacheKey": "en.PostType.67970",
+                  "id": "67970",
+                  "slug": "crypto-is-the-most-dangerous-investment-bank-of-russia-governor-says",
+                  "views": 7020,
+                  "postTranslate": {
+                    "cacheKey": "en.PostTranslateType.689214",
+                    "id": "689214",
+                    "title": "Crypto is the most dangerous investment, Bank of Russia governor says",
+                    "avatar": "https://s3.cointelegraph.com/uploads/2021-06/26c949e3-fcdf-4ac5-9beb-bfdedfd141a8.jpg",
+                    "published": "2021-06-21T11:49:27+01:00",
+                    "publishedHumanFormat": "22 hours ago",
+                    "leadText": "The governor of the Bank of Russia has maintained a tough stance on Bitcoin despite growing criticism of how the bank has handled digital asset regulation.",
+                    "__typename": "PostTranslate"
+                  },
+                  "category": {
+                    "cacheKey": "en.CategoryType.2",
+                    "id": "2",
+                    "__typename": "Category"
+                  },
+                  "author": {
+                    "cacheKey": "en.AuthorType.545",
+                    "id": "545",
+                    "slug": "helen-partz",
+                    "authorTranslates": [
+                      {
+                        "cacheKey": "en.AuthorTranslateType.8405",
+                        "id": "8405",
+                        "name": "Helen Partz",
+                        "__typename": "AuthorTranslate"
+                      }
+                    ],
+                    "__typename": "Author"
+                  },
+                  "postBadge": {
+                    "cacheKey": "en.PostBadgeType.38",
+                    "id": "38",
+                    "label": "default",
+                    "postBadgeTranslates": [
+                      {
+                        "cacheKey": "en.PostBadgeTranslateType.815",
+                        "id": "815",
+                        "title": "News",
+                        "__typename": "PostBadgeTranslate"
+                      }
+                    ],
+                    "__typename": "PostBadge"
+                  },
+                  "showShares": true,
+                  "showStats": true,
+                  "__typename": "Post"
+                }
+              ],
+              "postsCount": 16,
+              "__typename": "PaginatedPosts"
+            },
+            "__typename": "Tag"
+          },
+          "__typename": "Locale"
+        }
+      }
+    },
+    "source": "coinTelegraph"
+  },
+{"raw_data": {"data": {"locale": {"tag": {"cacheKey": "en.TagType.4", "id": "4", "posts": {"data": [{"cacheKey": "en.PostType.67966", "id": "67966", "slug": "china-s-3rd-largest-bank-rugs-btc-5-things-to-watch-in-bitcoin-this-week", "views": 22888, "postTranslate": {"cacheKey": "en.PostTranslateType.689200", "id": "689200", "title": "China\u2019s 3rd largest bank \u2018rugs\u2019 BTC: 5 things to watch in Bitcoin this week", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/5e81a706-e6ae-4c8b-8bd1-68f6e495b743.jpg", "published": "2021-06-21T09:17:08+01:00", "publishedHumanFormat": "Jun 21, 2021", "leadText": "A statement threatening account closures for crypto activity causes mayhem before being deleted minutes later as FUD reigns supreme on Bitcoin markets this week.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.57", "id": "57", "slug": "william-suberg", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.705", "id": "705", "name": "William Suberg", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.87", "id": "87", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1788", "id": "1788", "title": "Markets News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67960", "id": "67960", "slug": "bitcoin-price-dips-to-32-5k-on-consistent-new-china-fud", "views": 18446, "postTranslate": {"cacheKey": "en.PostTranslateType.689189", "id": "689189", "title": "Bitcoin price dips to $32.5K on \u2018consistent\u2019 new China FUD", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/ed7438e0-2e6e-40e5-bada-c6ab390c15a7.jpg", "published": "2021-06-21T08:02:23+01:00", "publishedHumanFormat": "Jun 21, 2021", "leadText": "BTC/USD sheds $1,000 almost instantly as China\u2019s third-largest bank puts the cats among the pigeons in early trading.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.57", "id": "57", "slug": "william-suberg", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.705", "id": "705", "name": "William Suberg", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.29", "id": "29", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.617", "id": "617", "title": "Breaking news", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67957", "id": "67957", "slug": "bitcoin-hashrate-hits-8-month-low-as-chinese-miners-power-down", "views": 9806, "postTranslate": {"cacheKey": "en.PostTranslateType.689185", "id": "689185", "title": "Bitcoin hash rate hits 8-month low as Chinese miners power down", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/74431f70-b8dd-4df3-84dc-4a2a5e88deff.jpg", "published": "2021-06-21T07:08:46+01:00", "publishedHumanFormat": "Jun 21, 2021", "leadText": "Bitcoin\u2019s hash rate plummets to roughly 91 EH/s as Sichuan miners close up shop. ", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.1056", "id": "1056", "slug": "martin-young", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.17082", "id": "17082", "name": "Martin Young", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67950", "id": "67950", "slug": "bitcoin-is-own-worst-enemy-and-will-lose-to-ethereum-charles-hoskinson", "views": 25253, "postTranslate": {"cacheKey": "en.PostTranslateType.689178", "id": "689178", "title": "Bitcoin is \u2018own worst enemy\u2019 and will lose to Ethereum: Charles Hoskinson", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/070f3c60-3ce2-4ea1-b9af-5f1a9c70ec8b.jpg", "published": "2021-06-21T05:31:49+01:00", "publishedHumanFormat": "Jun 21, 2021", "leadText": "Bitcoin is too slow when compared to Ethereum and other proof-of-stake networks, argued Cardano founder Charles Hoskinson.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.1056", "id": "1056", "slug": "martin-young", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.17082", "id": "17082", "name": "Martin Young", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67944", "id": "67944", "slug": "4-reasons-why-paul-tudor-jones-5-bitcoin-exposure-advice-is-difficult-for-major-funds", "views": 5543, "postTranslate": {"cacheKey": "en.PostTranslateType.689153", "id": "689153", "title": "4 reasons why Paul Tudor Jones' 5% Bitcoin exposure advice is difficult for major funds", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/52f9c549-0b4d-4cc2-8a6d-47faa447a957.jpg", "published": "2021-06-20T22:30:00+01:00", "publishedHumanFormat": "Jun 20, 2021", "leadText": "Major funds are probably interested in Bitcoin and altcoins, but four significant hurdles are preventing them from investing.   ", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.915", "id": "915", "slug": "marcel-pechman", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.15588", "id": "15588", "name": "Marcel Pechman", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.43", "id": "43", "label": "success", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.925", "id": "925", "title": "Opinion", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67943", "id": "67943", "slug": "top-5-cryptocurrencies-to-watch-this-week-btc-ada-theta-xmr-amp", "views": 28105, "postTranslate": {"cacheKey": "en.PostTranslateType.689152", "id": "689152", "title": "Top 5 cryptocurrencies to watch this week: BTC, ADA, THETA, XMR, AMP", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/24d0dc9d-5c7b-48af-b588-5d036003774b.jpg", "published": "2021-06-20T20:08:06+01:00", "publishedHumanFormat": "Jun 20, 2021", "leadText": "If Bitcoin price remains in the current range, ADA, THETA, XMR and AMP could bounce higher over the coming days. ", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.499", "id": "499", "slug": "rakesh-upadhyay", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.7393", "id": "7393", "name": "Rakesh Upadhyay", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.30", "id": "30", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.639", "id": "639", "title": "Price Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67939", "id": "67939", "slug": "bitcoin-price-can-hit-450k-in-2021-135k-is-worst-case-scenario-planb", "views": 65272, "postTranslate": {"cacheKey": "en.PostTranslateType.689139", "id": "689139", "title": "Bitcoin price can hit $450K in 2021, $135K is \u2018worst-case scenario\u2019 \u2014 PlanB", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/e82ac3de-1485-4ff8-8faf-26f419831688.jpg", "published": "2021-06-20T14:19:33+01:00", "publishedHumanFormat": "Jun 20, 2021", "leadText": "The only way is (more or less) up for BTC price action, the analyst insists, offering a potential 2021 high of $450,000.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.57", "id": "57", "slug": "william-suberg", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.705", "id": "705", "name": "William Suberg", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.87", "id": "87", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1788", "id": "1788", "title": "Markets News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67938", "id": "67938", "slug": "bitcoin-price-dips-below-34k-as-grayscale-starts-giant-btc-unlocking", "views": 70726, "postTranslate": {"cacheKey": "en.PostTranslateType.689134", "id": "689134", "title": "Bitcoin price dips below $34K as day of Grayscale\u2019s giant BTC unlocking draws near", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/8631dec5-b555-4633-a078-44cdfc73f7f1.jpg", "published": "2021-06-20T11:55:46+01:00", "publishedHumanFormat": "Jun 20, 2021", "leadText": "Downward volatility hits the market on Sunday as market participants argue that most of the drop is already complete.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.57", "id": "57", "slug": "william-suberg", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.705", "id": "705", "name": "William Suberg", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.29", "id": "29", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.617", "id": "617", "title": "Breaking news", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67925", "id": "67925", "slug": "nft-art-galleries-future-of-digital-artwork-or-another-crypto-fad", "views": 6962, "postTranslate": {"cacheKey": "en.PostTranslateType.689092", "id": "689092", "title": "NFT art galleries: Future of digital artwork or another crypto fad?", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/9d334231-f4cd-4117-a991-7996b13d6345.jpg", "published": "2021-06-20T08:47:00+01:00", "publishedHumanFormat": "Jun 20, 2021", "leadText": "Physical NFT art galleries are popping up all over, but why? And does the public appreciate them, regardless of their crypto knowledge?", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.19", "id": "19", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.752", "id": "752", "slug": "rachel-wolfson", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.14076", "id": "14076", "name": "Rachel Wolfson", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.50", "id": "50", "label": "info", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1079", "id": "1079", "title": "Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67933", "id": "67933", "slug": "3-reasons-why-ethereum-may-underperform-bitcoin-in-the-short-term", "views": 18716, "postTranslate": {"cacheKey": "en.PostTranslateType.689124", "id": "689124", "title": "3 reasons why Ethereum may underperform Bitcoin in the short-term", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/e3458174-a666-4c17-b51d-cd7a5f125e99.jpg", "published": "2021-06-19T23:00:00+01:00", "publishedHumanFormat": "Jun 19, 2021", "leadText": "Ether could take longer than 12 months to regain ground versus Bitcoin due to increased uncertainties surrounding the shift to ETH 2.0 and reservations from institutional investors. ", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.915", "id": "915", "slug": "marcel-pechman", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.15588", "id": "15588", "name": "Marcel Pechman", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.59", "id": "59", "label": "info", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1277", "id": "1277", "title": "Market Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67920", "id": "67920", "slug": "data-suggests-the-strong-us-dollar-makes-bitcoin-weaker-argument-is-flawed", "views": 7768, "postTranslate": {"cacheKey": "en.PostTranslateType.689066", "id": "689066", "title": "Data suggests the strong US dollar makes Bitcoin weaker argument is flawed", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/e05e8a5e-a62a-46eb-8a4e-a68fbc3aeb85.jpg", "published": "2021-06-19T20:00:00+01:00", "publishedHumanFormat": "Jun 19, 2021", "leadText": "Analysts and traders are linking Bitcoin's bearish turn with the growing strength of the U.S. dollar, but data suggests otherwise. ", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.915", "id": "915", "slug": "marcel-pechman", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.15588", "id": "15588", "name": "Marcel Pechman", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.59", "id": "59", "label": "info", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1277", "id": "1277", "title": "Market Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67926", "id": "67926", "slug": "bitcoin-may-lose-30k-price-level-if-stocks-tank-analysts-warn", "views": 33464, "postTranslate": {"cacheKey": "en.PostTranslateType.689095", "id": "689095", "title": "Bitcoin may lose $30K price level if stocks tank, analysts warn", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/4bf8fe94-0188-453c-b375-5141ce16bf7f.jpg", "published": "2021-06-19T11:00:00+01:00", "publishedHumanFormat": "Jun 19, 2021", "leadText": "Downside risks for BTC price are also heightened due to the recent dollar bounce.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.1261", "id": "1261", "slug": "yashu-gola", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.18284", "id": "18284", "name": "Yashu Gola", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.59", "id": "59", "label": "info", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1277", "id": "1277", "title": "Market Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67924", "id": "67924", "slug": "hawkish-fed-comments-push-bitcoin-price-and-stocks-lower-again", "views": 10987, "postTranslate": {"cacheKey": "en.PostTranslateType.689078", "id": "689078", "title": "Hawkish Fed comments push Bitcoin price and stocks lower again", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/a32ffde3-cbe3-4fae-8ce7-0a96a95d196e.jpg", "published": "2021-06-19T00:45:26+01:00", "publishedHumanFormat": "Jun 19, 2021", "leadText": "Bitcoin price drops a leg lower and stocks slump after St. Lous Federal Reserve President James Bullard signals that interest rates could rise by the end of this year.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.1173", "id": "1173", "slug": "jordan-finneseth", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.17891", "id": "17891", "name": "Jordan Finneseth", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.79", "id": "79", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1653", "id": "1653", "title": "Market Update", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67918", "id": "67918", "slug": "bulls-hesitate-to-buy-the-dip-after-bitcoin-price-falls-close-to-35k", "views": 17223, "postTranslate": {"cacheKey": "en.PostTranslateType.689064", "id": "689064", "title": "Bulls hesitate to buy the dip after Bitcoin price falls close to $35K", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/497b7475-8061-4af2-9c40-2b50aabb018f.jpg", "published": "2021-06-18T22:32:32+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Bitcoin\u2019s drop to $35,130 has bulls hesitant to buy the current dip but on-chain data shows long-term holders continue to accumulate. ", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.1173", "id": "1173", "slug": "jordan-finneseth", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.17891", "id": "17891", "name": "Jordan Finneseth", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.59", "id": "59", "label": "info", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1277", "id": "1277", "title": "Market Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67917", "id": "67917", "slug": "crypto-company-ceo-says-the-recent-crypto-boom-brought-increased-adoption", "views": 3426, "postTranslate": {"cacheKey": "en.PostTranslateType.689063", "id": "689063", "title": "Crypto company CEO says the recent crypto boom brought increased adoption ", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/95b2e287-0115-4463-9afe-365f2b49ce51.jpg", "published": "2021-06-18T22:22:36+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Crypto usage in 2021 differs from the 2017 rally, according to the CEO of StormX.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.751", "id": "751", "slug": "benjamin-pirus", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.14064", "id": "14064", "name": "Benjamin Pirus", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}], "postsCount": 31, "__typename": "PaginatedPosts"}, "__typename": "Tag"}, "__typename": "Locale"}}}, "source": "coinTelegraph"},
+{"raw_data": {"data": {"locale": {"tag": {"cacheKey": "en.TagType.4", "id": "4", "posts": {"data": [{"cacheKey": "en.PostType.67908", "id": "67908", "slug": "price-analysis-6-18-btc-eth-bnb-ada-doge-xrp-dot-uni-ltc-bch", "views": 18785, "postTranslate": {"cacheKey": "en.PostTranslateType.689049", "id": "689049", "title": "Price analysis 6/18: BTC, ETH, BNB, ADA, DOGE, XRP, DOT, UNI, LTC, BCH", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/4bf4c068-fb3e-4cd9-a227-c5db2a088328.jpg", "published": "2021-06-18T21:01:42+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Traders expect further downside from Bitcoin and altcoins after BTC dropped below a key support level at $36,000.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.87", "id": "87", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.499", "id": "499", "slug": "rakesh-upadhyay", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.7393", "id": "7393", "name": "Rakesh Upadhyay", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.30", "id": "30", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.639", "id": "639", "title": "Price Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67890", "id": "67890", "slug": "goldman-sachs-to-offer-bitcoin-futures-trading-in-partnership-with-galaxy-digital", "views": 3340, "postTranslate": {"cacheKey": "en.PostTranslateType.689005", "id": "689005", "title": "Goldman Sachs to offer Bitcoin futures trading in partnership with Galaxy Digital", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/43cdc282-27cc-4cf3-8055-f72fad098a16.jpg", "published": "2021-06-18T16:15:00+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Mike Novogratz\u2019s Galaxy Digital will serve as the counterparty entity for Goldman Sachs\u2019s Bitcoin futures trading product.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.639", "id": "639", "slug": "osato-avan-nomayo", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.11100", "id": "11100", "name": "Osato Avan-Nomayo", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67885", "id": "67885", "slug": "bitcoin-price-falls-below-37k-amid-little-hope-of-a-definitive-weekend-bounce", "views": 9357, "postTranslate": {"cacheKey": "en.PostTranslateType.688996", "id": "688996", "title": "Bitcoin price falls below $37K amid little hope of a definitive weekend bounce", "avatar": "https://s3.cointelegraph.com/storage/uploads/view/eff6c53e9fd9b3fdf5513d6066f4f039.jpg", "published": "2021-06-18T15:45:00+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Support at $36,000 may also be temporary, one trader warns, after a major Binance buy wall is obliterated.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.57", "id": "57", "slug": "william-suberg", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.705", "id": "705", "name": "William Suberg", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.79", "id": "79", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1653", "id": "1653", "title": "Market Update", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67879", "id": "67879", "slug": "joining-the-ranks-bitcoin-s-correlation-with-gold-and-stocks-is-growing", "views": 5431, "postTranslate": {"cacheKey": "en.PostTranslateType.688983", "id": "688983", "title": "Joining the ranks: Bitcoin\u2019s correlation with gold and stocks is growing", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/c654e625-bf12-4cd0-af7d-2ea5d15da85c.jpg", "published": "2021-06-18T14:58:02+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "BTC used to be an uncorrelated asset, but that\u2019s no longer the case. What can gold and stocks suggest about the crypto markets?", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.19", "id": "19", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.550", "id": "550", "slug": "nikolai-kuznetsov", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.8515", "id": "8515", "name": "Nikolai Kuznetsov", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.50", "id": "50", "label": "info", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1079", "id": "1079", "title": "Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67877", "id": "67877", "slug": "chinese-bitcoin-mining-shakeout-may-have-surprise-btc-price-consequences-analyst", "views": 16131, "postTranslate": {"cacheKey": "en.PostTranslateType.688964", "id": "688964", "title": "Chinese Bitcoin mining shakeout may have surprise BTC price consequences \u2014 analyst", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/7568037c-eda5-4a48-a04d-98e75f71a13f.jpg", "published": "2021-06-18T14:05:20+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Bitcoin's production cost is dropping, and price action often rebounds to new highs if it dips below it, data shows.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.57", "id": "57", "slug": "william-suberg", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.705", "id": "705", "name": "William Suberg", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.87", "id": "87", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1788", "id": "1788", "title": "Markets News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67874", "id": "67874", "slug": "banking-giant-bbva-debuts-bitcoin-trading-and-custody-for-swiss-clients", "views": 5649, "postTranslate": {"cacheKey": "en.PostTranslateType.688952", "id": "688952", "title": "Banking giant BBVA debuts Bitcoin trading and custody for Swiss clients", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/ca483d96-5d79-4b2e-aebc-80411d35971c.jpg", "published": "2021-06-18T12:53:50+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "BBVA Switzerland will soon begin offering Bitcoin trading to private banking clients while not providing any advisory services on crypto investments.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.639", "id": "639", "slug": "osato-avan-nomayo", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.11100", "id": "11100", "name": "Osato Avan-Nomayo", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67873", "id": "67873", "slug": "bitcoin-pinned-below-38k-as-investors-stash-record-756-billion-with-fed", "views": 11968, "postTranslate": {"cacheKey": "en.PostTranslateType.688950", "id": "688950", "title": "Bitcoin pinned below $38K as investors stash record $756 billion with Fed", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/c7e3a207-8de0-4fcd-97e6-08068ae2e25d.jpg", "published": "2021-06-18T12:48:19+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Bitcoin bulls ducked for cover as the Federal Reserve started paying interest rate returns on cash deposits via its reverse repurchase program.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.1261", "id": "1261", "slug": "yashu-gola", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.18284", "id": "18284", "name": "Yashu Gola", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.59", "id": "59", "label": "info", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1277", "id": "1277", "title": "Market Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67872", "id": "67872", "slug": "miami-mayor-offers-city-s-clean-nuclear-power-to-chinese-bitcoin-miners", "views": 5052, "postTranslate": {"cacheKey": "en.PostTranslateType.688946", "id": "688946", "title": "Miami mayor offers city's clean nuclear power to Chinese Bitcoin miners", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/11389bfa-0201-42f0-b0b4-beed4cb771ff.jpg", "published": "2021-06-18T12:04:08+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Mayor Francis Suarez wants to make Miami a Bitcoin mining hub by offering the city\u2019s cheap, clean nuclear energy supply.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.639", "id": "639", "slug": "osato-avan-nomayo", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.11100", "id": "11100", "name": "Osato Avan-Nomayo", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67871", "id": "67871", "slug": "russian-oligarch-deripaska-blasts-bank-of-russia-for-ignoring-bitcoin", "views": 3271, "postTranslate": {"cacheKey": "en.PostTranslateType.688943", "id": "688943", "title": "Russian oligarch Deripaska blasts Bank of Russia for ignoring Bitcoin", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/e54a5aa6-764b-4507-ad99-f3eb07267039.jpg", "published": "2021-06-18T11:50:13+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Russia needs to move to Bitcoin to provide a \u201creal financial instrument enabling independence in foreign trade settlements,\u201d Deripaska argued.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.545", "id": "545", "slug": "helen-partz", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.8405", "id": "8405", "name": "Helen Partz", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67868", "id": "67868", "slug": "city-in-sichuan-reportedly-orders-crypto-miners-to-shut-down-for-investigation", "views": 6050, "postTranslate": {"cacheKey": "en.PostTranslateType.688930", "id": "688930", "title": "City in Sichuan reportedly orders crypto miners to shut down for investigation", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/c11b1bd3-68d5-4b79-a819-dd46da06ccbb.jpg", "published": "2021-06-18T11:02:41+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Crypto miners in Ya'an City have reportedly been ordered to temporarily shut down their operations.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.545", "id": "545", "slug": "helen-partz", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.8405", "id": "8405", "name": "Helen Partz", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67865", "id": "67865", "slug": "denmark-s-largest-bank-cautious-on-crypto-but-won-t-interfere", "views": 2113, "postTranslate": {"cacheKey": "en.PostTranslateType.688923", "id": "688923", "title": "Denmark\u2019s largest bank cautious on crypto, but won't interfere ", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/3b5dfe44-b833-4cad-acdb-66fc6d5b172b.jpg", "published": "2021-06-18T09:25:37+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Danske Bank isn't completely sold on cryptocurrency but said it won't stop its customers from using its services in connection with crypto platforms.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.873", "id": "873", "slug": "greg-thomson", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.15252", "id": "15252", "name": "Greg Thomson", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67863", "id": "67863", "slug": "bitcoin-price-completes-leg-down-to-37-4k-as-key-indicator-hits-record-oversold-level", "views": 9980, "postTranslate": {"cacheKey": "en.PostTranslateType.688921", "id": "688921", "title": "Bitcoin price completes leg down to $37.4K as key indicator hits record \u2018oversold\u2019 level", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/6742e4fb-80fe-419b-925c-91c01317689e.jpg", "published": "2021-06-18T09:06:54+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Another slight decline sees Bitcoin at a crossroads as sellers erode a major exchange buy wall.", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.57", "id": "57", "slug": "william-suberg", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.705", "id": "705", "name": "William Suberg", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.79", "id": "79", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1653", "id": "1653", "title": "Market Update", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67862", "id": "67862", "slug": "has-the-doge-had-its-day-dogecoin-interest-cools", "views": 8928, "postTranslate": {"cacheKey": "en.PostTranslateType.688920", "id": "688920", "title": "Has the Doge had its day? Dogecoin interest cools ", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/3b6aee9e-62dd-4086-8fcc-23dc1b293312.jpg", "published": "2021-06-18T09:06:17+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Interest is falling across several metrics, but can you keep a good Doge down?", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.873", "id": "873", "slug": "greg-thomson", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.15252", "id": "15252", "name": "Greg Thomson", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67855", "id": "67855", "slug": "goldman-sachs-analysts-divided-over-whether-bitcoin-is-an-investable-asset-class", "views": 11480, "postTranslate": {"cacheKey": "en.PostTranslateType.688909", "id": "688909", "title": "Goldman Sachs analysts divided over whether Bitcoin is an 'investable asset class' ", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/8d71c30d-b89f-4e20-a03f-eb33131d7193.jpg", "published": "2021-06-18T06:01:53+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Goldman has flip-flopped again declaring crypto assets as unworthy of investment in the same week it expands its crypto trading desk. ", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.2", "id": "2", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.1056", "id": "1056", "slug": "martin-young", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.17082", "id": "17082", "name": "Martin Young", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.38", "id": "38", "label": "default", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.815", "id": "815", "title": "News", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}, {"cacheKey": "en.PostType.67848", "id": "67848", "slug": "traders-search-for-bearish-signals-after-bitcoin-futures-enter-backwardation", "views": 13235, "postTranslate": {"cacheKey": "en.PostTranslateType.688898", "id": "688898", "title": "Traders search for bearish signals after Bitcoin futures enter backwardation", "avatar": "https://s3.cointelegraph.com/uploads/2021-06/4044b777-e547-4b33-a3bd-a7b6d9da7037.jpg", "published": "2021-06-18T02:09:14+01:00", "publishedHumanFormat": "Jun 18, 2021", "leadText": "Analysts search for bearish signals after the June BTC futures trade below spot exchange pricing. ", "__typename": "PostTranslate"}, "category": {"cacheKey": "en.CategoryType.89", "id": "89", "__typename": "Category"}, "author": {"cacheKey": "en.AuthorType.915", "id": "915", "slug": "marcel-pechman", "authorTranslates": [{"cacheKey": "en.AuthorTranslateType.15588", "id": "15588", "name": "Marcel Pechman", "__typename": "AuthorTranslate"}], "__typename": "Author"}, "postBadge": {"cacheKey": "en.PostBadgeType.59", "id": "59", "label": "info", "postBadgeTranslates": [{"cacheKey": "en.PostBadgeTranslateType.1277", "id": "1277", "title": "Market Analysis", "__typename": "PostBadgeTranslate"}], "__typename": "PostBadge"}, "showShares": true, "showStats": true, "__typename": "Post"}], "postsCount": 46, "__typename": "PaginatedPosts"}, "__typename": "Tag"}, "__typename": "Locale"}}}, "source": "coinTelegraph"}
+]
