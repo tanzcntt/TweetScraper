@@ -54,6 +54,7 @@ async def get_news_from(x, table):
 
 
 async def push_data_to_dhunt(top_tws, table):
+    i = 0
     for tw in top_tws:
         transport = AIOHTTPTransport(url=url, headers={'Authorization': 'Bearer ' + token})
 
@@ -80,8 +81,9 @@ async def push_data_to_dhunt(top_tws, table):
             )
 
             result = await session.execute(query, variable_values=params)
-            print(result)
+            print(i, ':', result)
             table.update_one(filter={"_id": _id}, update={"$set": {"submit": status}})
+            i += 1
 
 
 async def main(day_in):
