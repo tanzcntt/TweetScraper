@@ -51,6 +51,7 @@ conda activate tweetscraper
 ./start.sh >> logs/update.log 2>&1 &
 ./start-latest.sh >> logs/latest.log 2>&1 &
 ./push.sh >> logs/pushdhunt.log 2>&1 &
+./start-set-keyword.sh >> logs/set-keyword.log 2>&1 &
 
 //sudo docker-compose -d up
 

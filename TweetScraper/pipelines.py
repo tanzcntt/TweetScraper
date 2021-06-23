@@ -39,7 +39,8 @@ class SaveToFilePipeline(object):
         if isinstance(item, Tweet):
             item_collection = self.myDatabase['tw']
             query = {"id_str": item["raw_data"]["id_str"]}
-            exit_tweet = item_collection.find(query)
+            exit_tweet = item_collection.find_one(query)
+            print(exit_tweet)
             if exit_tweet:
                 # logger.debug("skip tweet:%s"%item['id_'])
                 # or you can rewrite the file, if you don't want to skip:
@@ -53,7 +54,7 @@ class SaveToFilePipeline(object):
         elif isinstance(item, User):
             user_collection = self.myDatabase['user']
             query = {"id_str": item["raw_data"]["id_str"]}
-            exit_user = user_collection.find(query)
+            exit_user = user_collection.find_one(query)
             if exit_user:
                 pass  # simply skip existing items
                 # logger.debug("skip user:%s"%item['id_'])

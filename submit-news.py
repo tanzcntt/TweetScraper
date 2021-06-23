@@ -19,12 +19,13 @@ coindesk_collection = myDatabase['coindeskSample']
 argumentList = sys.argv[1:]
 
 # Options
-options = "d:u:t:"
+options = "d:u:t:s:"
 
-long_options = ["day", "url", "token"]
+long_options = ["day", "url", "token", "status"]
 url = ''
 token = ''
 day = 0
+status = 1
 try:
     # Parsing argument
     arguments, values = getopt.getopt(argumentList, options, long_options)
@@ -36,6 +37,8 @@ try:
             token = currentValue
         if currentArgument in ("-u", "--url"):
             url = currentValue
+        if currentArgument in ("-s", "--status"):
+            status = currentValue
 except getopt.error as err:
     # output error, and return with an error code
     print(str(err))
@@ -44,7 +47,7 @@ except getopt.error as err:
 async def get_news_from(x, table):
     top_tws = table.find({"approve": 1, "timestamp": {"$gt": 1}, "$or": [{"submit": {"$exists": False}},
                                                                          {"submit": {"$exists": True,
-                                                                                     "$ne": 2}}]}) \
+                                                                                     "$ne": status}}]}) \
         .sort([("timestamp", -1)]) \
         .limit(100)
     await push_data_to_dhunt(top_tws, table)
@@ -78,7 +81,7 @@ async def push_data_to_dhunt(top_tws, table):
 
             result = await session.execute(query, variable_values=params)
             print(result)
-            table.update_one(filter={"_id": _id}, update={"$set": {"submit": 2}})
+            table.update_one(filter={"_id": _id}, update={"$set": {"submit": status}})
 
 
 async def main(day_in):
