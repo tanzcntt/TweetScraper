@@ -159,6 +159,11 @@ Open `CardanoScraper` and run commands:
 
 Remember to **activate the environment** firstly,
 
-This command crawls and updates Home page on [Coindesk News](https://www.coindesk.com/) and import into the mongodb: coindeskSample table 
+This command crawls and update all Posts appeared on [Coindesk Homepage](https://www.coindesk.com/) and import into the mongodb: coindeskSample table 
+		
+		scrapy crawl latestCoindesk
+
+
+This command crawls and updates all Latest news on [Coindesk News](https://www.coindesk.com/news) and import into the mongodb: coindeskSample table 
 		
 		scrapy crawl allCoindesk
