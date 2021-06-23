@@ -141,7 +141,7 @@ class IohkContent(Spider):
 			yield Request(url=url.format(total_page), callback=self.parse, headers=headers)
 			print(f"{color['warning']}{Request(url=url.format(total_page), callback=self.parse, headers=headers)}{color['endc']}")
 			total_page += 1
-			if total_page > 50:
+			if total_page > 45:
 				break
 
 	def parse_item(self, response):
@@ -292,7 +292,7 @@ class CoindeskAll(Spider):
 		while True:
 			yield Request(url=url.format(total_page), callback=self.parse, headers=self.headers)
 			total_page += 1
-			if total_page > 105:
+			if total_page > 100:
 				break
 		# for i in range(total_page):
 		# 	yield Request(url=url.format(i), callback=self.parse, headers=self.headers)
@@ -371,7 +371,7 @@ class CoinTelegraphAll(Spider):
 	def parse(self, response, **kwargs):
 		data = json.loads(response.body)
 		item = {
-			'raw_data': data,
+			'raw_data': data['data']['locale']['tag']['posts']['data'],
 			'source': 'coinTelegraph',
 		}
 		yield item

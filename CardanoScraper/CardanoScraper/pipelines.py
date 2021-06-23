@@ -20,13 +20,13 @@ def sample_data():
     data = {
         'id': '',  # id
         'title': '',  # postTranslate/title
-        'subtitle': '',
+        'subtitle': '',  # leadText
         'link_img': '',  # postTranslate/avatar
         'views': '',  # views
         'id_post_translate': '',  # postTranslate/id
         'description': '',  # postTranslate/leadText
-        'link_content': '',  # https://cointelegraph.com/news/ + slug
         'slug_content': '',  # slug
+        'link_content': '',  # https://cointelegraph.com/news/ + slug
         'raw_content': '',
         'keyword_ranking': '',
         'author': '',  # author/authorTranslates/name
@@ -196,8 +196,8 @@ class IohkScraperPipeline(object):
 class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        self.coindesk = self.myDatabase['coindeskSample']
-        # self.coindesk = self.myDatabase['coindeskTest8']
+        # self.coindesk = self.myDatabase['coindeskSample']
+        self.coindesk = self.myDatabase['coindeskTest8']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -378,13 +378,41 @@ class CoindeskScraperPipeline(object):
 
 class CoinTelegraphScraperPipeline(object):
     def __init__(self):
-        self.url = 'https://cointelegraph.com/news/{}'
+        self.url = 'https://cointelegraph.com/{}'
 
     def close_spider(self, spider):
         print(f"{color['warning']}CoinTeleGraph Crawl Completed!{color['endc']}")
 
     def process_item(self, item, spider):
         print(f"{color['okblue']}Cointelegraph Pipeline handling...{color['endc']}\n")
+        self.cointele_get_post(item)
         # return item
 
-    # def
+    def cointele_get_post(self, data):
+        for post in data['raw_data']:
+            cointele_sample_data = sample_data()
+            post_badge_title = post['postBadge']['postBadgeTranslates'][0]['title'].lower()
+            cointele_sample_data['id'] = post['id']
+            cointele_sample_data['title'] = post['postTranslate']['title']
+            # cointele_sample_data['subtitle'] = post['leadText']
+            cointele_sample_data['link_img'] = post['postTranslate']['avatar']
+            cointele_sample_data['views'] = post['views']
+            cointele_sample_data['id_post_translate'] = str(post['postTranslate']['id']),  # postTranslate/id
+            cointele_sample_data['description'] = str(post['postTranslate']['leadText'])  # postTranslate/leadText
+            if post_badge_title == 'experts answer' or post_badge_title == 'explained':
+                cointele_sample_data['link_content'] = self.url.format('explained/' + str(post['slug']))
+            else:
+                cointele_sample_data['link_content'] = self.url.format('news/' + str(post['slug'])),  # https://cointelegraph.com/news/ + slug
+            cointele_sample_data['slug_content'] = post['slug'],  # slug
+            # 'raw_content': '',
+            # 'keyword_ranking': '',
+            cointele_sample_data['author'] = post['author']['authorTranslates'][0]['name'],  # author/authorTranslates/name
+            cointele_sample_data['id_author'] = post['author']['authorTranslates'][0]['id']  # author/authorTranslates/id
+            cointele_sample_data['link_author'] = self.url.format('authors/' + str(post['author']['slug']))  # https://cointelegraph.com/authors/ + slug_author
+            cointele_sample_data['slug_author'] = post['author']['slug']  # author/slug
+            # # 'tag': '',
+            # # 'link_tag': '',
+            cointele_sample_data['published'] = post['postTranslate']['published'],  # postTranslate/published
+            # cointele_sample_data['timestamp'] = datetime.strptime(str(cointele_sample_data['published']), '%Y-%m-%dT%H:%M:%S+%H%M').timestamp()
+            utils.show_message('data', 'okgreen', post)
+            utils.show_message('postBadge', 'okblue', post['postTranslate']['title'])
