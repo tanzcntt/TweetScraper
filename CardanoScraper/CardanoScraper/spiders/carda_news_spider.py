@@ -127,26 +127,29 @@ class IohkContent(Spider):
 	name = "allIohk"
 
 	def start_requests(self):
-		# start_urls = [
-		# 	'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json',
-		# ]
 		url = "https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json"
-		total_page = 44
 		headers = {
 			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
 			"sec-ch-ua-mobile": "?0",
 			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
 		}
-		for i in range(total_page):
-			yield Request(url=url.format(i), callback=self.parse_item, headers=headers)
+		# total_page = 44
+		# for i in range(total_page):
+		# 	yield Request(url=url.format(i), callback=self.parse, headers=headers)
+		total_page = 0
+		while True:
+			yield Request(url=url.format(total_page), callback=self.parse, headers=headers)
+			print(f"{color['warning']}{Request(url=url.format(total_page), callback=self.parse, headers=headers)}{color['endc']}")
+			total_page += 1
+			if total_page > 50:
+				break
 
 	def parse_item(self, response):
 		# page = response.url
-		# utils.save_to_html("all", response.body)
 		content = json.loads(response.body)
 		content['source'] = 'iohk'
 		yield content
-		time.sleep(6)
+		time.sleep(2)
 
 
 class IohkLatest(Spider):
@@ -167,7 +170,7 @@ class IohkLatest(Spider):
 		content = json.loads(response.body)
 		content['source'] = 'iohk'
 		yield content
-		time.sleep(6)
+		time.sleep(2)
 
 
 # class CardanoMedium(scrapy.Spider):
@@ -285,9 +288,14 @@ class CoindeskAll(Spider):
 
 	def start_requests(self):
 		url = 'https://www.coindesk.com/wp-json/v1/articles/format/news/{}?mode=list'
-		total_page = 40  # max page = 99 <23/06/21>
-		for i in range(total_page):
-			yield Request(url=url.format(i), callback=self.parse, headers=self.headers)
+		total_page = 0  # max page = 99 <23/06/21>
+		while True:
+			yield Request(url=url.format(total_page), callback=self.parse, headers=self.headers)
+			total_page += 1
+			if total_page > 105:
+				break
+		# for i in range(total_page):
+		# 	yield Request(url=url.format(i), callback=self.parse, headers=self.headers)
 
 	def parse(self, response, **kwargs):
 		data = json.loads(response.body)
@@ -298,7 +306,8 @@ class CoindeskAll(Spider):
 			print(f"{color['okgreen']}{link_content}{color['endc']}")
 			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
 		yield data
-		time.sleep(3)
+		time.sleep(2)
+		# time.sleep(3)
 
 	def parse_content(self, response, **kwargs):
 		print(f"{color['warning']}Crawling detail page{color['endc']}")
@@ -313,7 +322,8 @@ class CoindeskAll(Spider):
 			}
 			# print(f"Raw_content{color['okgreen']}{data['raw_content']}{color['endc']}")
 			yield data
-			sleep(.5)
+			sleep(.1)
+			# sleep(.5)
 
 
 class CoinTelegraphAll(Spider):

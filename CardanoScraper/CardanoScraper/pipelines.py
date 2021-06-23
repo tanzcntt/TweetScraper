@@ -115,6 +115,7 @@ class IohkScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient["cardanoNews"]
         self.iohk_sample1 = self.myDatabase['iohkSample']
+        # self.iohk_sample1 = self.myDatabase['iohkSample1']
         self.new_posts = []
 
     def close_spider(self, spider):
@@ -176,11 +177,11 @@ class IohkScraperPipeline(object):
             iohk_all_posts['keyword_ranking'] = keyword_ranking
             if self.iohk_sample1.find_one({'link_content': iohk_all_posts['link_content']}):
                 self.update_iohk(self.iohk_sample1, iohk_all_posts)
-                time.sleep(2)
+                sleep(.05)
             else:
                 utils.insert_into_table(self.iohk_sample1, iohk_all_posts)
                 self.new_posts.append(iohk_all_posts['link_content'])
-                time.sleep(2)
+                sleep(.05)
 
     def update_iohk(self, table, data):
         query = {
@@ -189,14 +190,14 @@ class IohkScraperPipeline(object):
         if table.update_one(query, {'$set': data}):
             # print(f"{color['okcyan']}Updating {get_table(table)} table{color['endc']}\n")
             utils.update_success_notify(table)
-        time.sleep(1)
+        time.sleep(.05)
 
 
 class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        # self.coindesk = self.myDatabase['coindeskSample']
-        self.coindesk = self.myDatabase['coindeskTest6']
+        self.coindesk = self.myDatabase['coindeskSample']
+        # self.coindesk = self.myDatabase['coindeskTest8']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -239,6 +240,7 @@ class CoindeskScraperPipeline(object):
                 self.coindesk_get_post(item)
             elif 'raw_content' in item:
                 self.coindesk_get_raw_content(self.coindesk, data=item)
+        return item
 
     def update_table(self, table, data):
         query = {
@@ -294,11 +296,11 @@ class CoindeskScraperPipeline(object):
             print(coindesk_sample_data)
             if self.coindesk.find_one({'slug_content': coindesk_sample_data['slug_content']}):
                 self.update_latest_news(self.coindesk, coindesk_sample_data)
-                time.sleep(.1)
+                time.sleep(.05)
             else:
                 utils.insert_into_table(self.coindesk, data=coindesk_sample_data)
                 self.new_posts.append(coindesk_sample_data['link_content'])
-                time.sleep(.1)
+                time.sleep(.05)
 
     def coindesk_get_raw_content(self, table, data):
         raw_content = data['raw_content']
@@ -308,7 +310,7 @@ class CoindeskScraperPipeline(object):
         data['raw_data'] = ''
         if table.find_one({'slug_content': data['slug_content']}):
             self.update_latest_news(self.coindesk, data=data)
-        sleep(.1)
+        sleep(.05)
 
     def standard_date(self, date, data):
         standard_date = data[date].split(':')[:2]
@@ -341,7 +343,6 @@ class CoindeskScraperPipeline(object):
                 return data['keyword_ranking'], data['raw_content']
             else:
                 utils.show_message('Other key of content. Watch again and!', 'fail', '')
-                # delete post
             data['keyword_ranking'] = ''
             data['raw_content'] = ''
             return data['keyword_ranking'], data['raw_content']
