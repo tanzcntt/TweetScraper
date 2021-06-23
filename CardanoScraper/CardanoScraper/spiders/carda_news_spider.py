@@ -176,8 +176,8 @@ class IohkLatest(Spider):
 # 		start_urls = ['']
 
 
-class CoindeskAll(Spider):
-	name = "allCoindesk"
+class CoindeskLatest(Spider):
+	name = "latestCoindesk"
 
 	def __init__(self):
 		self.headers = {
@@ -249,7 +249,7 @@ class CoindeskAll(Spider):
 			yield data
 			sleep(0.75)
 
-	def parse_content(self, response):
+	def parse_content(self, response, **kwargs):
 		print(f"{color['warning']}Crawling detail page{color['endc']}")
 		data_json = response.css('head')
 		for content in data_json:
@@ -271,9 +271,62 @@ class CoindeskAll(Spider):
 			sleep(1)
 
 
-# https://www.coindesk.com/video/crypto-derivatives-platform-dydx-raises-65m-in-paradigm-led-series-c
-# https://coindesk.com/video/crypto-derivatives-platform-dydx-raises-65m-in-paradigm-led-series-c
-# https://www.coindesk.com/video/mclaren-to-build-nft-platform-on-tezos
+class CoindeskAll(Spider):
+	name = "allCoindesk"
+
+	def __init__(self):
+		self.url = 'https://www.coindesk.com{}'
+		self.headers = {
+			"accept-encoding": "gzip, deflate, br",
+			"accept-language": "en-US,en;q=0.9",
+			"origin": "https://www.coindesk.com",
+			"referer": "https://www.coindesk.com/",
+			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
+			"sec-ch-ua-mobile": "?0",
+			"sec-fetch-dest": "empty",
+			"sec-fetch-mode": "cors",
+			"sec-fetch-site": "cross-site",
+			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
+		}
+
+	def start_requests(self):
+		url = 'https://www.coindesk.com/wp-json/v1/articles/format/news/{}?mode=list'
+		total_page = 1
+		for i in range(total_page):
+			yield Request(url=url.format(i), callback=self.parse, headers=self.headers)
+
+	def parse(self, response, **kwargs):
+		data = json.loads(response.body)
+		data['source'] = 'coindeskLatestNews'
+		# print(data['posts'])
+			# post_ = post['posts']
+		for post in data['posts']:
+			# print(f"{color['okcyan']}{post}{color['endc']}")
+			link_content = self.url.format('/' + str(post['slug']))
+			print(f"{color['okgreen']}{link_content}{color['endc']}")
+			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
+		yield data
+		time.sleep(5)
+
+	def parse_content(self, response, **kwargs):
+		print(f"{color['warning']}Crawling detail page{color['endc']}")
+		# <article id="article-68039" class="post__article" data-v-128018ef>
+		data_json = response.css('body')
+		for content in data_json:
+			data = {
+				'raw_data': json.loads(content.css('script[type="application/json"]::text').extract_first()),
+				'source': 'coindesk',
+			}
+			print(f"Raw_content{color['okgreen']}{data}{color['endc']}")
+			yield data
+		# for article in articles:
+		# 	data = {
+		# 		'raw_content': article.css('div.post__content-wrapper::text').getall(),
+		# 		'source': 'coindeskLatestNews',
+		# 	}
+		# 	print(f"Raw_content{color['okgreen']}{data}{color['endc']}")
+		# 	yield data
+
 class CoinTelegraphAll(Spider):
 	name = 'allCoinTele'
 
@@ -293,7 +346,11 @@ class CoinTelegraphAll(Spider):
 		length = 15
 		# body='{"operationName": "TagPagePostsQuery","variables": {"slug": "bitcoin","order": "postPublishedTime","offset": 0,"length": 15,"short": "en","cacheTimeInMS": 300000},"query": "query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}',
 		for i in range(total_page):
-			body_ = '{"operationName": "TagPagePostsQuery","variables": {"slug": "bitcoin","order": "postPublishedTime",' + '"offset": {},'.format(offset) + '"length": {},'.format(length) + '"short": "en","cacheTimeInMS": 300000},"query": "query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}'
+			body_ = '{"operationName": "TagPagePostsQuery","variables": {"slug": "bitcoin","order": "postPublishedTime",' + \
+					'"offset": {},'.format(offset) + \
+					'"length": {},'.format(length) + \
+					'"short": "en","cacheTimeInMS": 300000},"query": ' \
+					'"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}'
 			yield FormRequest(url=start_url, callback=self.parse, dont_filter=True, method="POST", body=body_, headers=headers)
 			offset += 15
 
@@ -314,5 +371,9 @@ class CoinTelegraphAll(Spider):
 
 	def parse(self, response, **kwargs):
 		data = json.loads(response.body)
-		yield data
+		item = {
+			'raw_data': data,
+			'source': 'coinTelegraph',
+		}
+		yield item
 		sleep(3)

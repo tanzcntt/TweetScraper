@@ -4,16 +4,41 @@ import re
 import pymongo
 from datetime import datetime
 from . import utils
-
+from time import sleep
 color = utils.colors_mark()
 mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
 
-sample_data = """    insetData["title"] = newsData["title"]
-        insetData["description"] = ""
-        insetData["content"] = newsData["raw_content"]
-        insetData["websiteUri"] = newsData["link_content"]
-        insetData["keywords"] = JSON.stringify(newsData["keyword_ranking"])
-        insetData["createdAt"] = new Date(newsData["timestamp"] * 1000)"""
+# sample_data = """    insetData["title"] = newsData["title"]
+#         insetData["description"] = ""
+#         insetData["content"] = newsData["raw_content"]
+#         insetData["websiteUri"] = newsData["link_content"]
+#         insetData["keywords"] = JSON.stringify(newsData["keyword_ranking"])
+#         insetData["createdAt"] = new Date(newsData["timestamp"] * 1000)"""
+
+
+def sample_data():
+    data = {
+        'id': '',  # id
+        'title': '',  # postTranslate/title
+        'subtitle': '',
+        'link_img': '',  # postTranslate/avatar
+        'views': '',  # views
+        'id_post_translate': '',  # postTranslate/id
+        'description': '',  # postTranslate/leadText
+        'link_content': '',  # https://cointelegraph.com/news/ + slug
+        'slug_content': '',  # slug
+        'raw_content': '',
+        'keyword_ranking': '',
+        'author': '',  # author/authorTranslates/name
+        'id_author': '',  # author/authorTranslates/id
+        'link_author': '',  # https://cointelegraph.com/authors/ + slug_author
+        'slug_author': '',  # author/slug
+        'tag': '',
+        'link_tag': '',
+        'published': '',  # postTranslate/published
+        'timestamp': '',
+    }
+    return data
 
 
 class CardanoscraperPipeline(object):
@@ -208,7 +233,11 @@ class CoindeskScraperPipeline(object):
                     self.new_posts.append(item['link_content'])
             elif 'raw_data' in item:
                 self.insert_raw_content(self.coindesk, item)
-            # return item
+        elif item['source'] == 'coindeskLatestNews':
+            if 'title' in item:
+                self.coindesk_get_post(item)
+            elif 'raw_content' in item:
+                return item
 
     def update_table(self, table, data):
         query = {
@@ -237,6 +266,26 @@ class CoindeskScraperPipeline(object):
         if table.update_one(query, {'$set': data}):
             print(f"{color['okgreen']}Update raw_content success!{color['endc']} in {self.url.format('/' + str(slug)) }")
         time.sleep(1)
+
+    def coindesk_get_post(self, data):
+        posts = data['posts']
+        for post in posts:
+            coindesk_sample_data = sample_data()
+            coindesk_sample_data['title'] = post['title']
+            coindesk_sample_data['subtitle'] = post['text']
+            coindesk_sample_data['link_img'] = post['images']['images']['desktop']['src']
+            coindesk_sample_data['slug_content'] = post['slug']
+            coindesk_sample_data['link_content'] = self.url.format('/' + str(post['slug']))
+            coindesk_sample_data['author'] = post['authors'][0]['name']
+            coindesk_sample_data['link_author'] = self.url.format('/author/' + str(post['authors'][0]['slug']))
+            coindesk_sample_data['tag'] = post['tag']['name']
+            coindesk_sample_data['link_tag'] = self.url.format('/' + str(post['tag']['slug']))
+            coindesk_sample_data['published'] = post['date']
+            coindesk_sample_data['timestamp'] = datetime.strptime(post['date'], '%Y-%m-%dT%H:%M:%S').timestamp()
+            coindesk_sample_data['raw_content'] = ''
+            coindesk_sample_data['keyword_ranking'] = ''
+            print(coindesk_sample_data)
+            sleep(2)
 
     def standard_date(self, date, data):
         standard_date = data[date].split(':')[:2]
@@ -303,14 +352,14 @@ class CoindeskScraperPipeline(object):
 
 
 class CoinTelegraphScraperPipeline(object):
+    def __init__(self):
+        self.url = 'https://cointelegraph.com/news/{}'
+
     def close_spider(self, spider):
-        pass
+        print(f"{color['warning']}CoinTeleGraph Crawl Completed!{color['endc']}")
 
     def process_item(self, item, spider):
         print(f"{color['okblue']}Cointelegraph Pipeline handling...{color['endc']}\n")
         return item
 
-# https://www.coindesk.com/nassim-taleb-bitcoin
-
-
-# many difficulties when crawling Coindesk.com:
+    # def

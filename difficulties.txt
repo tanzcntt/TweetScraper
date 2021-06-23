@@ -1,0 +1,27 @@
+I. coindesk.com
++ Dirty data and multiple types of data
++ This site had multiple type of Json data, so it took long time to analyze and custom own data
+    - link type in homepage was different from specific post:
+        such as:
+            .php and normal link
+            https://www.coindesk.com/nassim-taleb-bitcoin &
+            https://www.coindesk.com/index.php?p=637454
+
+            https://www.coindesk.com/podcasts/opinionated/facts-misinformation-green-bitcoin &
+            https://www.coindesk.com/podcasts/coindesk-reports/facts-misinformation-green-bitcoin
+
+1. Multiple Datetime
++ 4 types of datetime and for each post which reach particular datetime, one or two, some post increased to 3 kinds
+    => took time to handle multiple cases and got timestamp
+2. Raw content
++ some posts had no raw content, only got 1 video
++ json data:
+    - exist articleBody
+    - some others non-exist articleBody
+        => use subtitle or description for this post to replace
+3. Latest news
+- normal NEWS got strange json data and html structure compare to PODCATs news
+=> took time to analyze structure and get data
+
+Nassim Taleb, Erstwhile Bitcoin Admirer, Publishes Paper Trashing It
+Nassim Taleb, Ex-Bitcoin Admirer, Publishes Paper Trashing It - CoinDesk

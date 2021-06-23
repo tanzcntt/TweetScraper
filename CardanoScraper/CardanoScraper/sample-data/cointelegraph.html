@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+curl 'https://conpletus.cointelegraph.com/v1/' \
+  -H 'authority: conpletus.cointelegraph.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://cointelegraph.com' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://cointelegraph.com/' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  --data-raw $'{"operationName":"MenuQuery","variables":{"menuType":"headerMobile","short":"en","cacheTimeInMS":3600000},"query":"query MenuQuery($short: String, $menuType: String\u0021) {\\n  locale(short: $short) {\\n    menu(menuType: $menuType) {\\n      cacheKey\\n      id\\n      parentId\\n      url\\n      badgeType\\n      rel\\n      position\\n      inNewTab\\n      titleTranslates {\\n        cacheKey\\n        id\\n        value\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
+  --compressed
+
+curl 'https://conpletus.cointelegraph.com/v1/' \
+  -H 'authority: conpletus.cointelegraph.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://cointelegraph.com' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://cointelegraph.com/' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  --data-raw $'{"operationName":"TranslateQuery","variables":{"slugs":["subscriptions.modal.list.title","subscriptions.modal.list.subtitle","subscriptions.modal.list.btn.select-all.label","subscriptions.modal.list.btn.turn-off.label","subscriptions.modal.list.form.input.placeholder","subscriptions.modal.list.form.btn.submit.label","subscriptions.modal.list.form.no-items-selected.label","subscriptions.modal.list.form.error.label","subscriptions.modal.list.form.success.label","subscriptions.modal.list.form.tos.text","subscriptions.modal.success.title","subscriptions.modal.success.notice","subscriptions.modal.success.btn.label","subscriptions.modal.list.item.1.name","subscriptions.modal.list.item.1.description","subscriptions.modal.list.item.1.description.mobile","subscriptions.modal.list.item.1.list-id","subscriptions.modal.list.item.1.regularity","subscriptions.modal.list.item.2.name","subscriptions.modal.list.item.2.description","subscriptions.modal.list.item.2.description.mobile","subscriptions.modal.list.item.2.list-id","subscriptions.modal.list.item.2.regularity","subscriptions.modal.list.item.3.name","subscriptions.modal.list.item.3.description","subscriptions.modal.list.item.3.description.mobile","subscriptions.modal.list.item.3.list-id","subscriptions.modal.list.item.3.regularity","subscriptions.modal.list.item.4.name","subscriptions.modal.list.item.4.description","subscriptions.modal.list.item.4.description.mobile","subscriptions.modal.list.item.4.list-id","subscriptions.modal.list.item.4.regularity","subscriptions.modal.list.item.5.name","subscriptions.modal.list.item.5.description","subscriptions.modal.list.item.5.description.mobile","subscriptions.modal.list.item.5.list-id","subscriptions.modal.list.item.5.regularity"],"short":"en","cacheTimeInMS":300000},"query":"query TranslateQuery($short: String, $slugs: [String]\u0021) {\\n  locale(short: $short) {\\n    translates(slugs: $slugs) {\\n      cacheKey\\n      key\\n      value\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
+  --data-raw $'{"operationName":"TagPagePostsQuery","variables":{"slug":"bitcoin","order":"postPublishedTime","offset":15,"length":15,"short":"en","cacheTimeInMS":300000},"query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
+  --data-raw $'{"operationName":"TagPagePostsQuery","variables":{"slug":"bitcoin","order":"postPublishedTime","offset":30,"length":15,"short":"en","cacheTimeInMS":300000},"query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
+  --compressed
+
+Posts data from here: load page 1st
+curl 'https://conpletus.cointelegraph.com/v1/' \
+  -H 'authority: conpletus.cointelegraph.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://cointelegraph.com' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://cointelegraph.com/' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  --data-raw $'{"operationName":"TagPagePostsQuery","variables":{"slug":"bitcoin","order":"postPublishedTime","offset":15,"length":15,"short":"en","cacheTimeInMS":300000},"query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
+  --compressed
+
+load page 2nd
+curl 'https://conpletus.cointelegraph.com/v1/' \
+  -H 'authority: conpletus.cointelegraph.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://cointelegraph.com' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://cointelegraph.com/' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  --data-raw $'{"operationName":"TagPagePostsQuery","variables":{"slug":"bitcoin","order":"postPublishedTime","offset":30,"length":15,"short":"en","cacheTimeInMS":300000},"query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
+  --compressed
+
+load data on default page with CURL: 'offset': 0, 'length':15
+curl 'https://conpletus.cointelegraph.com/v1/' \
+  -H 'authority: conpletus.cointelegraph.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://cointelegraph.com' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://cointelegraph.com/' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  --data-raw $'{"operationName":"TagPagePostsQuery","variables":{"slug":"bitcoin","order":"postPublishedTime","offset":0,"length":50,"short":"en","cacheTimeInMS":300000},"query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
+  --compressed
+url = 'https://conpletus.cointelegraph.com/v1/'
+headers = {
+  'authority': 'conpletus.cointelegraph.com',
+  'sec-ch-ua': "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"',
+  'accept': '*/*',
+  'sec-ch-ua-mobile': '?0',
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36',
+  'content-type': 'application/json',
+  'origin': 'https://cointelegraph.com',
+  'sec-fetch-site': 'same-site',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-dest': 'empty',
+  'referer': 'https://cointelegraph.com/',
+  'accept-language': 'en-US,en;q=0.9',
+}
+payload =[{
+   "operationName":"TagPagePostsQuery",
+   "variables":{
+      "slug":"bitcoin",
+      "order":"postPublishedTime",
+      "offset":0,
+      "length":15,
+      "short":"en",
+      "cacheTimeInMS":300000
+   },
+   "query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"
+}]
+
+==================================================================================================================================
+ripple news: https://cointelegraph.com/tags/ripple
+curl 'https://conpletus.cointelegraph.com/v1/' \
+  -H 'authority: conpletus.cointelegraph.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://cointelegraph.com' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://cointelegraph.com/' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  --data-raw $'{"operationName":"TagPagePostsQuery","variables":{"slug":"ripple","order":"postPublishedTime","offset":15,"length":15,"short":"en","cacheTimeInMS":300000},"query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
+  --compressed
+
+
+# ================================================
+# dapp.com
+# ================================================
+curl 'https://www.dapp.com/api/topics-apps/?page=1' \
+  -H 'authority: www.dapp.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'content-type: application/json;charset=UTF-8' \
+  -H 'origin: https://www.dapp.com' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://www.dapp.com/topics/crypto-wallet' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: i18n_redirected_dapp_com=en; _ga=GA1.2.625435396.1624264895; _gid=GA1.2.1721268230.1624264895; _vwo_uuid_v2=DF828DDDE71C3C6D1698D51F6445F492E|8aee2cd0f1b07fad8697eb92d99df852; _vis_opt_s=1%7C; _vis_opt_test_cookie=1; _wingify_pc_uuid=521ff4d55f8245dabe4fbaddbf0f9f15; wingify_donot_track_actions=0; wingify_push_do_not_show_notification_popup=true; _gat_gtag_UA_120210780_1=1; _gat=1' \
+  --data-raw '{"identifier":"crypto-wallet","ranking_name":"All","order":"desc"}' \
+  --compressed
+
+</body>
+</html>
