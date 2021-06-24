@@ -175,7 +175,7 @@ Use multithreading in order to Update the `latest news` or `all news` from all s
 # Usage #
 Open directory *TweetScraper/CardanoScraper/CardanoScraper* and run a command:
 
-		python3 run_command -m all
+		python3 run_command.py -m latest
 
 		-m: is mode
 		-m all: crawl and update all posts
