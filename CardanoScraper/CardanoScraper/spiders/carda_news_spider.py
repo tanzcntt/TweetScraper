@@ -12,8 +12,6 @@ from scrapy.http import HtmlResponse, Request, FormRequest
 color = utils.colors_mark()
 mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
 myDatabase = mongoClient["cardanoNews"]
-englishNews = myDatabase['englishNews']
-postContents = myDatabase['postContents']
 
 
 class CardanoSpider(Spider):
@@ -30,6 +28,7 @@ class CardanoSpider(Spider):
 			time.sleep(1)
 
 	def parse(self, response, **kwargs):
+		print(f"{color['fail']}Latest Cardano Thread{color['endc']}")
 		# page = "all", save all page in 1 html file
 		# utils.save_to_html(page, content=response.body)
 		page = response.url
@@ -50,7 +49,7 @@ class CardanoSpider(Spider):
 				'latest': 1,
 				'approve': 1
 			}
-			print(f"{color['fail']}{data['link_post']}{color['endc']}")
+			# print(f"{color['fail']}{data['link_post']}{color['endc']}")
 			yield response.follow(data['link_post'], callback=self.parse_content)
 			yield data
 
@@ -80,6 +79,7 @@ class CardanoNewsContent(Spider):
 		yield Request(url=url, callback=self.parse)
 
 	def parse(self, response, **kwargs):
+		print(f"{color['fail']}All Cardano Thread{color['endc']}")
 		# page = response.url
 		# page = "all", save all page in 1 html file
 		# utils.save_to_html(page, content=response.body)
@@ -167,6 +167,7 @@ class IohkLatest(Spider):
 			yield Request(url=start_url.format(i), callback=self.parse, headers=headers)
 
 	def parse(self, response, **kwargs):
+		print(f"{color['fail']}Latest IOHK Thread{color['endc']}")
 		content = json.loads(response.body)
 		content['source'] = 'iohk'
 		yield content
@@ -207,10 +208,11 @@ class CoindeskLatest(Spider):
 		# Data in top-section
 		# ================================================
 		coindesk_url = 'https://www.coindesk.com'
+		print(f"{color['fail']}Latest Coindesk Thread{color['endc']}")
 		top_section_posts = response.css('section.article-card-fh')
 		for post in top_section_posts:
 			author = post.css('div.card-desc span.card-author a::text').getall()
-			print(f"Author1: {color['fail']}{author}{color['endc']}")
+			print(f"Author1: {color['okblue']}{author}{color['endc']}")
 			link_content = post.css('div.card-text-block h2.heading a::attr(href)').get()
 			data = {
 				'tag': post.css('div.card-img-block a.button span.eyebrow-button-text::text').get(),
@@ -236,7 +238,7 @@ class CoindeskLatest(Spider):
 			'section.page-area-dotted-content div.story-stack section.list-body div.list-item-wrapper')
 		for post in recent_posts:
 			author = post.css('div.card-desc-block span.credit a::text').getall()
-			print(f"Author2: {color['fail']}{author}{color['endc']}")
+			print(f"Author2: {color['okblue']}{author}{color['endc']}")
 			link_content = post.css('div.text-content a::attr(href)').getall()[-1]
 			data = {
 				'title': post.css('a h4.heading::text').get(),
@@ -298,6 +300,7 @@ class CoindeskAll(Spider):
 		# 	yield Request(url=url.format(i), callback=self.parse, headers=self.headers)
 
 	def parse(self, response, **kwargs):
+		print(f"{color['fail']}All Coindesk Thread{color['endc']}")
 		data = json.loads(response.body)
 		data['source'] = 'coindeskLatestNews'
 		for post in data['posts']:

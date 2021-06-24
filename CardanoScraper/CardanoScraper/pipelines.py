@@ -47,6 +47,7 @@ class CardanoscraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient["cardanoNews"]
         self.postContents = self.myDatabase['allNews']
+        # self.postContents = self.myDatabase['allNews1']
         self.testCarda = self.myDatabase['testAllNews2']
         self.new_posts = []
 
@@ -73,7 +74,7 @@ class CardanoscraperPipeline(object):
                     self.update_table(self.postContents, item)
                 else:
                     utils.insert_into_table(self.postContents, item)
-                    self.new_posts.append(item['link_content'])
+                    self.new_posts.append(item['link_post'])
             elif 'raw_content' in item:
                 utils.handle_datetime(item, item['post_time'])
                 utils.text_ranking(item, item['raw_content'])
@@ -115,7 +116,7 @@ class IohkScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient["cardanoNews"]
         self.iohk_sample1 = self.myDatabase['iohkSample']
-        # self.iohk_sample1 = self.myDatabase['iohkSample1']
+        # self.iohk_sample1 = self.myDatabase['iohkSample2']
         self.new_posts = []
 
     def close_spider(self, spider):
@@ -196,8 +197,8 @@ class IohkScraperPipeline(object):
 class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        # self.coindesk = self.myDatabase['coindeskSample']
-        self.coindesk = self.myDatabase['coindeskTest8']
+        self.coindesk = self.myDatabase['coindeskSample']
+        # self.coindesk = self.myDatabase['coindeskTest1']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -385,7 +386,7 @@ class CoinTelegraphScraperPipeline(object):
 
     def process_item(self, item, spider):
         print(f"{color['okblue']}Cointelegraph Pipeline handling...{color['endc']}\n")
-        self.cointele_get_post(item)
+        # self.cointele_get_post(item)
         # return item
 
     def cointele_get_post(self, data):
