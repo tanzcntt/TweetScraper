@@ -167,3 +167,16 @@ This command crawls and update all Posts appeared on [Coindesk Homepage](https:/
 This command crawls and updates all Latest news on [Coindesk News](https://www.coindesk.com/news) and import into the mongodb: coindeskSample table 
 		
 		scrapy crawl allCoindesk
+
+# IV. Update News daily #
+# Introduction #
+Use multithreading in order to Update the `latest news` or `all news` from all sources using *one Command*
+
+# Usage #
+Open directory *TweetScraper/CardanoScraper/CardanoScraper* and run a command:
+
+		python3 run_command -m all
+
+		-m: is mode
+		-m all: crawl and update all posts
+		-m latest: crawl and update the latest posts
