@@ -7,122 +7,18 @@
         "posts": {
           "data": [
             {
-              "cacheKey": "en.PostType.67885",
-              "id": "67885",
-              "slug": "bitcoin-price-falls-below-37k-amid-little-hope-of-a-definitive-weekend-bounce",
-              "views": 9281,
+              "cacheKey": "en.PostType.68115",
+              "id": "68115",
+              "slug": "bitcoin-price-very-near-bottom-with-30k-dip-says-bullish-institutional-report",
+              "views": 10379,
               "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688996",
-                "id": "688996",
-                "title": "Bitcoin price falls below $37K amid little hope of a definitive weekend bounce",
-                "avatar": "https:\/\/s3.cointelegraph.com\/storage\/uploads\/view\/eff6c53e9fd9b3fdf5513d6066f4f039.jpg",
-                "published": "2021-06-18T15:45:00+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Support at $36,000 may also be temporary, one trader warns, after a major Binance buy wall is obliterated.",
-                "__typename": "PostTranslate"
-              },
-              "category": {
-                "cacheKey": "en.CategoryType.89",
-                "id": "89",
-                "__typename": "Category"
-              },
-              "author": {
-                "cacheKey": "en.AuthorType.57",
-                "id": "57",
-                "slug": "william-suberg",
-                "authorTranslates": [
-                  {
-                    "cacheKey": "en.AuthorTranslateType.705",
-                    "id": "705",
-                    "name": "William Suberg",
-                    "__typename": "AuthorTranslate"
-                  }
-                ],
-                "__typename": "Author"
-              },
-              "postBadge": {
-                "cacheKey": "en.PostBadgeType.79",
-                "id": "79",
-                "label": "default",
-                "postBadgeTranslates": [
-                  {
-                    "cacheKey": "en.PostBadgeTranslateType.1653",
-                    "id": "1653",
-                    "title": "Market Update",
-                    "__typename": "PostBadgeTranslate"
-                  }
-                ],
-                "__typename": "PostBadge"
-              },
-              "showShares": true,
-              "showStats": true,
-              "__typename": "Post"
-            },
-            {
-              "cacheKey": "en.PostType.67879",
-              "id": "67879",
-              "slug": "joining-the-ranks-bitcoin-s-correlation-with-gold-and-stocks-is-growing",
-              "views": 5184,
-              "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688983",
-                "id": "688983",
-                "title": "Joining the ranks: Bitcoin\u2019s correlation with gold and stocks is growing",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/c654e625-bf12-4cd0-af7d-2ea5d15da85c.jpg",
-                "published": "2021-06-18T14:58:02+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "BTC used to be an uncorrelated asset, but that\u2019s no longer the case. What can gold and stocks suggest about the crypto markets?",
-                "__typename": "PostTranslate"
-              },
-              "category": {
-                "cacheKey": "en.CategoryType.19",
-                "id": "19",
-                "__typename": "Category"
-              },
-              "author": {
-                "cacheKey": "en.AuthorType.550",
-                "id": "550",
-                "slug": "nikolai-kuznetsov",
-                "authorTranslates": [
-                  {
-                    "cacheKey": "en.AuthorTranslateType.8515",
-                    "id": "8515",
-                    "name": "Nikolai Kuznetsov",
-                    "__typename": "AuthorTranslate"
-                  }
-                ],
-                "__typename": "Author"
-              },
-              "postBadge": {
-                "cacheKey": "en.PostBadgeType.50",
-                "id": "50",
-                "label": "info",
-                "postBadgeTranslates": [
-                  {
-                    "cacheKey": "en.PostBadgeTranslateType.1079",
-                    "id": "1079",
-                    "title": "Analysis",
-                    "__typename": "PostBadgeTranslate"
-                  }
-                ],
-                "__typename": "PostBadge"
-              },
-              "showShares": true,
-              "showStats": true,
-              "__typename": "Post"
-            },
-            {
-              "cacheKey": "en.PostType.67877",
-              "id": "67877",
-              "slug": "chinese-bitcoin-mining-shakeout-may-have-surprise-btc-price-consequences-analyst",
-              "views": 15446,
-              "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688964",
-                "id": "688964",
-                "title": "Chinese Bitcoin mining shakeout may have surprise BTC price consequences \u2014 analyst",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/7568037c-eda5-4a48-a04d-98e75f71a13f.jpg",
-                "published": "2021-06-18T14:05:20+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Bitcoin\u0027s production cost is dropping, and price action often rebounds to new highs if it dips below it, data shows.",
+                "cacheKey": "en.PostTranslateType.689580",
+                "id": "689580",
+                "title": "Bitcoin price \u2018very near bottom\u2019 with $30K dip, says bullish institutional report",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/6138f7d4-947f-4a9a-852c-f5e5944e7188.jpg",
+                "published": "2021-06-23T09:35:10+01:00",
+                "publishedHumanFormat": "20 hours ago",
+                "leadText": "Stack Funds draws attention to this week\u2019s $2.3-billion Bitcoin options expiry, with a potential change in sentiment coming thereafter.",
                 "__typename": "PostTranslate"
               },
               "category": {
@@ -163,18 +59,18 @@
               "__typename": "Post"
             },
             {
-              "cacheKey": "en.PostType.67874",
-              "id": "67874",
-              "slug": "banking-giant-bbva-debuts-bitcoin-trading-and-custody-for-swiss-clients",
-              "views": 5413,
+              "cacheKey": "en.PostType.68099",
+              "id": "68099",
+              "slug": "bitcoin-heading-for-worst-quarter-since-start-of-2018-bear-market",
+              "views": 12870,
               "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688952",
-                "id": "688952",
-                "title": "Banking giant BBVA debuts Bitcoin trading and custody for Swiss clients",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/ca483d96-5d79-4b2e-aebc-80411d35971c.jpg",
-                "published": "2021-06-18T12:53:50+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "BBVA Switzerland will soon begin offering Bitcoin trading to private banking clients while not providing any advisory services on crypto investments.",
+                "cacheKey": "en.PostTranslateType.689555",
+                "id": "689555",
+                "title": "Bitcoin heading for worst quarter since start of 2018 bear market",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/21548011-60e0-4f54-84b4-8b7f6fea9fe9.jpg",
+                "published": "2021-06-23T03:01:20+01:00",
+                "publishedHumanFormat": "Jun 23, 2021",
+                "leadText": "Bitcoin appears poised to post its second-weakest quarter since the start of 2014. ",
                 "__typename": "PostTranslate"
               },
               "category": {
@@ -183,14 +79,14 @@
                 "__typename": "Category"
               },
               "author": {
-                "cacheKey": "en.AuthorType.639",
-                "id": "639",
-                "slug": "osato-avan-nomayo",
+                "cacheKey": "en.AuthorType.676",
+                "id": "676",
+                "slug": "samuel-haig",
                 "authorTranslates": [
                   {
-                    "cacheKey": "en.AuthorTranslateType.11100",
-                    "id": "11100",
-                    "name": "Osato Avan-Nomayo",
+                    "cacheKey": "en.AuthorTranslateType.11387",
+                    "id": "11387",
+                    "name": "Samuel Haig",
                     "__typename": "AuthorTranslate"
                   }
                 ],
@@ -215,18 +111,70 @@
               "__typename": "Post"
             },
             {
-              "cacheKey": "en.PostType.67873",
-              "id": "67873",
-              "slug": "bitcoin-pinned-below-38k-as-investors-stash-record-756-billion-with-fed",
-              "views": 11748,
+              "cacheKey": "en.PostType.68095",
+              "id": "68095",
+              "slug": "us-miner-raises-105m-to-recycle-waste-coal-into-crypto",
+              "views": 6083,
               "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688950",
-                "id": "688950",
-                "title": "Bitcoin pinned below $38K as investors stash record $756 billion with Fed",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/c7e3a207-8de0-4fcd-97e6-08068ae2e25d.jpg",
-                "published": "2021-06-18T12:48:19+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Bitcoin bulls ducked for cover as the Federal Reserve started paying interest rate returns on cash deposits via its reverse repurchase program.",
+                "cacheKey": "en.PostTranslateType.689547",
+                "id": "689547",
+                "title": "US miner raises $105M to recycle waste coal into crypto",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/c571a588-4af4-4687-a8fb-e8f67597df96.jpg",
+                "published": "2021-06-23T01:51:28+01:00",
+                "publishedHumanFormat": "Jun 23, 2021",
+                "leadText": "Stronghold Digital Mining has raised more than $100 million in two private placements supporting its model for sustainable Bitcoin mining.",
+                "__typename": "PostTranslate"
+              },
+              "category": {
+                "cacheKey": "en.CategoryType.2",
+                "id": "2",
+                "__typename": "Category"
+              },
+              "author": {
+                "cacheKey": "en.AuthorType.676",
+                "id": "676",
+                "slug": "samuel-haig",
+                "authorTranslates": [
+                  {
+                    "cacheKey": "en.AuthorTranslateType.11387",
+                    "id": "11387",
+                    "name": "Samuel Haig",
+                    "__typename": "AuthorTranslate"
+                  }
+                ],
+                "__typename": "Author"
+              },
+              "postBadge": {
+                "cacheKey": "en.PostBadgeType.38",
+                "id": "38",
+                "label": "default",
+                "postBadgeTranslates": [
+                  {
+                    "cacheKey": "en.PostBadgeTranslateType.815",
+                    "id": "815",
+                    "title": "News",
+                    "__typename": "PostBadgeTranslate"
+                  }
+                ],
+                "__typename": "PostBadge"
+              },
+              "showShares": true,
+              "showStats": true,
+              "__typename": "Post"
+            },
+            {
+              "cacheKey": "en.PostType.68093",
+              "id": "68093",
+              "slug": "bitcoin-price-bounces-to-33k-but-analysts-say-it-s-too-early-to-call-a-bottom",
+              "views": 12438,
+              "postTranslate": {
+                "cacheKey": "en.PostTranslateType.689540",
+                "id": "689540",
+                "title": "Bitcoin price bounces to $33K but analysts say \u2018it\u2019s too early\u2019 to call a bottom",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/5455721a-a718-4ed1-bb48-7790308ee574.jpeg",
+                "published": "2021-06-22T23:45:28+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "Dip buyers stepped in as Bitcoin price fell to $29,000 but analysts caution that China\u2019s crackdown on BTC mining and a lack of buy volume mean the crypto market has not found a bottom yet.",
                 "__typename": "PostTranslate"
               },
               "category": {
@@ -235,274 +183,14 @@
                 "__typename": "Category"
               },
               "author": {
-                "cacheKey": "en.AuthorType.1261",
-                "id": "1261",
-                "slug": "yashu-gola",
+                "cacheKey": "en.AuthorType.1173",
+                "id": "1173",
+                "slug": "jordan-finneseth",
                 "authorTranslates": [
                   {
-                    "cacheKey": "en.AuthorTranslateType.18284",
-                    "id": "18284",
-                    "name": "Yashu Gola",
-                    "__typename": "AuthorTranslate"
-                  }
-                ],
-                "__typename": "Author"
-              },
-              "postBadge": {
-                "cacheKey": "en.PostBadgeType.59",
-                "id": "59",
-                "label": "info",
-                "postBadgeTranslates": [
-                  {
-                    "cacheKey": "en.PostBadgeTranslateType.1277",
-                    "id": "1277",
-                    "title": "Market Analysis",
-                    "__typename": "PostBadgeTranslate"
-                  }
-                ],
-                "__typename": "PostBadge"
-              },
-              "showShares": true,
-              "showStats": true,
-              "__typename": "Post"
-            },
-            {
-              "cacheKey": "en.PostType.67872",
-              "id": "67872",
-              "slug": "miami-mayor-offers-city-s-clean-nuclear-power-to-chinese-bitcoin-miners",
-              "views": 4859,
-              "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688946",
-                "id": "688946",
-                "title": "Miami mayor offers city\u0027s clean nuclear power to Chinese Bitcoin miners",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/11389bfa-0201-42f0-b0b4-beed4cb771ff.jpg",
-                "published": "2021-06-18T12:04:08+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Mayor Francis Suarez wants to make Miami a Bitcoin mining hub by offering the city\u2019s cheap, clean nuclear energy supply.",
-                "__typename": "PostTranslate"
-              },
-              "category": {
-                "cacheKey": "en.CategoryType.2",
-                "id": "2",
-                "__typename": "Category"
-              },
-              "author": {
-                "cacheKey": "en.AuthorType.639",
-                "id": "639",
-                "slug": "osato-avan-nomayo",
-                "authorTranslates": [
-                  {
-                    "cacheKey": "en.AuthorTranslateType.11100",
-                    "id": "11100",
-                    "name": "Osato Avan-Nomayo",
-                    "__typename": "AuthorTranslate"
-                  }
-                ],
-                "__typename": "Author"
-              },
-              "postBadge": {
-                "cacheKey": "en.PostBadgeType.38",
-                "id": "38",
-                "label": "default",
-                "postBadgeTranslates": [
-                  {
-                    "cacheKey": "en.PostBadgeTranslateType.815",
-                    "id": "815",
-                    "title": "News",
-                    "__typename": "PostBadgeTranslate"
-                  }
-                ],
-                "__typename": "PostBadge"
-              },
-              "showShares": true,
-              "showStats": true,
-              "__typename": "Post"
-            },
-            {
-              "cacheKey": "en.PostType.67871",
-              "id": "67871",
-              "slug": "russian-oligarch-deripaska-blasts-bank-of-russia-for-ignoring-bitcoin",
-              "views": 3143,
-              "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688943",
-                "id": "688943",
-                "title": "Russian oligarch Deripaska blasts Bank of Russia for ignoring Bitcoin",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/e54a5aa6-764b-4507-ad99-f3eb07267039.jpg",
-                "published": "2021-06-18T11:50:13+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Russia needs to move to Bitcoin to provide a \u201creal financial instrument enabling independence in foreign trade settlements,\u201d Deripaska argued.",
-                "__typename": "PostTranslate"
-              },
-              "category": {
-                "cacheKey": "en.CategoryType.2",
-                "id": "2",
-                "__typename": "Category"
-              },
-              "author": {
-                "cacheKey": "en.AuthorType.545",
-                "id": "545",
-                "slug": "helen-partz",
-                "authorTranslates": [
-                  {
-                    "cacheKey": "en.AuthorTranslateType.8405",
-                    "id": "8405",
-                    "name": "Helen Partz",
-                    "__typename": "AuthorTranslate"
-                  }
-                ],
-                "__typename": "Author"
-              },
-              "postBadge": {
-                "cacheKey": "en.PostBadgeType.38",
-                "id": "38",
-                "label": "default",
-                "postBadgeTranslates": [
-                  {
-                    "cacheKey": "en.PostBadgeTranslateType.815",
-                    "id": "815",
-                    "title": "News",
-                    "__typename": "PostBadgeTranslate"
-                  }
-                ],
-                "__typename": "PostBadge"
-              },
-              "showShares": true,
-              "showStats": true,
-              "__typename": "Post"
-            },
-            {
-              "cacheKey": "en.PostType.67868",
-              "id": "67868",
-              "slug": "city-in-sichuan-reportedly-orders-crypto-miners-to-shut-down-for-investigation",
-              "views": 5778,
-              "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688930",
-                "id": "688930",
-                "title": "City in Sichuan reportedly orders crypto miners to shut down for investigation",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/c11b1bd3-68d5-4b79-a819-dd46da06ccbb.jpg",
-                "published": "2021-06-18T11:02:41+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Crypto miners in Ya\u0027an City have reportedly been ordered to temporarily shut down their operations.",
-                "__typename": "PostTranslate"
-              },
-              "category": {
-                "cacheKey": "en.CategoryType.2",
-                "id": "2",
-                "__typename": "Category"
-              },
-              "author": {
-                "cacheKey": "en.AuthorType.545",
-                "id": "545",
-                "slug": "helen-partz",
-                "authorTranslates": [
-                  {
-                    "cacheKey": "en.AuthorTranslateType.8405",
-                    "id": "8405",
-                    "name": "Helen Partz",
-                    "__typename": "AuthorTranslate"
-                  }
-                ],
-                "__typename": "Author"
-              },
-              "postBadge": {
-                "cacheKey": "en.PostBadgeType.38",
-                "id": "38",
-                "label": "default",
-                "postBadgeTranslates": [
-                  {
-                    "cacheKey": "en.PostBadgeTranslateType.815",
-                    "id": "815",
-                    "title": "News",
-                    "__typename": "PostBadgeTranslate"
-                  }
-                ],
-                "__typename": "PostBadge"
-              },
-              "showShares": true,
-              "showStats": true,
-              "__typename": "Post"
-            },
-            {
-              "cacheKey": "en.PostType.67865",
-              "id": "67865",
-              "slug": "denmark-s-largest-bank-cautious-on-crypto-but-won-t-interfere",
-              "views": 2070,
-              "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688923",
-                "id": "688923",
-                "title": "Denmark\u2019s largest bank cautious on crypto, but won\u0027t interfere ",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/3b5dfe44-b833-4cad-acdb-66fc6d5b172b.jpg",
-                "published": "2021-06-18T09:25:37+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Danske Bank isn\u0027t completely sold on cryptocurrency but said it won\u0027t stop its customers from using its services in connection with crypto platforms.",
-                "__typename": "PostTranslate"
-              },
-              "category": {
-                "cacheKey": "en.CategoryType.2",
-                "id": "2",
-                "__typename": "Category"
-              },
-              "author": {
-                "cacheKey": "en.AuthorType.873",
-                "id": "873",
-                "slug": "greg-thomson",
-                "authorTranslates": [
-                  {
-                    "cacheKey": "en.AuthorTranslateType.15252",
-                    "id": "15252",
-                    "name": "Greg Thomson",
-                    "__typename": "AuthorTranslate"
-                  }
-                ],
-                "__typename": "Author"
-              },
-              "postBadge": {
-                "cacheKey": "en.PostBadgeType.38",
-                "id": "38",
-                "label": "default",
-                "postBadgeTranslates": [
-                  {
-                    "cacheKey": "en.PostBadgeTranslateType.815",
-                    "id": "815",
-                    "title": "News",
-                    "__typename": "PostBadgeTranslate"
-                  }
-                ],
-                "__typename": "PostBadge"
-              },
-              "showShares": true,
-              "showStats": true,
-              "__typename": "Post"
-            },
-            {
-              "cacheKey": "en.PostType.67863",
-              "id": "67863",
-              "slug": "bitcoin-price-completes-leg-down-to-37-4k-as-key-indicator-hits-record-oversold-level",
-              "views": 9893,
-              "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688921",
-                "id": "688921",
-                "title": "Bitcoin price completes leg down to $37.4K as key indicator hits record \u2018oversold\u2019 level",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/6742e4fb-80fe-419b-925c-91c01317689e.jpg",
-                "published": "2021-06-18T09:06:54+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Another slight decline sees Bitcoin at a crossroads as sellers erode a major exchange buy wall.",
-                "__typename": "PostTranslate"
-              },
-              "category": {
-                "cacheKey": "en.CategoryType.89",
-                "id": "89",
-                "__typename": "Category"
-              },
-              "author": {
-                "cacheKey": "en.AuthorType.57",
-                "id": "57",
-                "slug": "william-suberg",
-                "authorTranslates": [
-                  {
-                    "cacheKey": "en.AuthorTranslateType.705",
-                    "id": "705",
-                    "name": "William Suberg",
+                    "cacheKey": "en.AuthorTranslateType.17891",
+                    "id": "17891",
+                    "name": "Jordan Finneseth",
                     "__typename": "AuthorTranslate"
                   }
                 ],
@@ -527,122 +215,18 @@
               "__typename": "Post"
             },
             {
-              "cacheKey": "en.PostType.67862",
-              "id": "67862",
-              "slug": "has-the-doge-had-its-day-dogecoin-interest-cools",
-              "views": 7634,
+              "cacheKey": "en.PostType.68081",
+              "id": "68081",
+              "slug": "bad-call-bitfinex-bears-closed-a-block-of-bitcoin-shorts-before-the-drop-below-32k",
+              "views": 11390,
               "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688920",
-                "id": "688920",
-                "title": "Has the Doge had its day? Dogecoin interest cools ",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/3b6aee9e-62dd-4086-8fcc-23dc1b293312.jpg",
-                "published": "2021-06-18T09:06:17+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Interest is falling across several metrics, but can you keep a good Doge down?",
-                "__typename": "PostTranslate"
-              },
-              "category": {
-                "cacheKey": "en.CategoryType.2",
-                "id": "2",
-                "__typename": "Category"
-              },
-              "author": {
-                "cacheKey": "en.AuthorType.873",
-                "id": "873",
-                "slug": "greg-thomson",
-                "authorTranslates": [
-                  {
-                    "cacheKey": "en.AuthorTranslateType.15252",
-                    "id": "15252",
-                    "name": "Greg Thomson",
-                    "__typename": "AuthorTranslate"
-                  }
-                ],
-                "__typename": "Author"
-              },
-              "postBadge": {
-                "cacheKey": "en.PostBadgeType.38",
-                "id": "38",
-                "label": "default",
-                "postBadgeTranslates": [
-                  {
-                    "cacheKey": "en.PostBadgeTranslateType.815",
-                    "id": "815",
-                    "title": "News",
-                    "__typename": "PostBadgeTranslate"
-                  }
-                ],
-                "__typename": "PostBadge"
-              },
-              "showShares": true,
-              "showStats": true,
-              "__typename": "Post"
-            },
-            {
-              "cacheKey": "en.PostType.67855",
-              "id": "67855",
-              "slug": "goldman-sachs-analysts-divided-over-whether-bitcoin-is-an-investable-asset-class",
-              "views": 11185,
-              "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688909",
-                "id": "688909",
-                "title": "Goldman Sachs analysts divided over whether Bitcoin is an \u0027investable asset class\u0027 ",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/8d71c30d-b89f-4e20-a03f-eb33131d7193.jpg",
-                "published": "2021-06-18T06:01:53+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Goldman has flip-flopped again declaring crypto assets as unworthy of investment in the same week it expands its crypto trading desk. ",
-                "__typename": "PostTranslate"
-              },
-              "category": {
-                "cacheKey": "en.CategoryType.2",
-                "id": "2",
-                "__typename": "Category"
-              },
-              "author": {
-                "cacheKey": "en.AuthorType.1056",
-                "id": "1056",
-                "slug": "martin-young",
-                "authorTranslates": [
-                  {
-                    "cacheKey": "en.AuthorTranslateType.17082",
-                    "id": "17082",
-                    "name": "Martin Young",
-                    "__typename": "AuthorTranslate"
-                  }
-                ],
-                "__typename": "Author"
-              },
-              "postBadge": {
-                "cacheKey": "en.PostBadgeType.38",
-                "id": "38",
-                "label": "default",
-                "postBadgeTranslates": [
-                  {
-                    "cacheKey": "en.PostBadgeTranslateType.815",
-                    "id": "815",
-                    "title": "News",
-                    "__typename": "PostBadgeTranslate"
-                  }
-                ],
-                "__typename": "PostBadge"
-              },
-              "showShares": true,
-              "showStats": true,
-              "__typename": "Post"
-            },
-            {
-              "cacheKey": "en.PostType.67848",
-              "id": "67848",
-              "slug": "traders-search-for-bearish-signals-after-bitcoin-futures-enter-backwardation",
-              "views": 13105,
-              "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688898",
-                "id": "688898",
-                "title": "Traders search for bearish signals after Bitcoin futures enter backwardation",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/4044b777-e547-4b33-a3bd-a7b6d9da7037.jpg",
-                "published": "2021-06-18T02:09:14+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Analysts search for bearish signals after the June BTC futures trade below spot exchange pricing. ",
+                "cacheKey": "en.PostTranslateType.689511",
+                "id": "689511",
+                "title": "Bad call? Bitfinex bears closed a block of Bitcoin shorts before the drop below $32K ",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/c2739f5b-ea54-45f2-92f1-f5d785996e27.jpg",
+                "published": "2021-06-22T20:00:13+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "Bitcoin short positions at Bitfinex soared as BTC price dropped below $40,000, so why did the majority of them close before the largest part of the correction?",
                 "__typename": "PostTranslate"
               },
               "category": {
@@ -683,18 +267,70 @@
               "__typename": "Post"
             },
             {
-              "cacheKey": "en.PostType.67845",
-              "id": "67845",
-              "slug": "shanghai-man-economist-says-el-salvador-on-road-to-death-salaries-paid-in-e-cny",
-              "views": 13061,
+              "cacheKey": "en.PostType.68072",
+              "id": "68072",
+              "slug": "bitcoin-price-clings-to-32k-as-on-chain-metrics-hint-at-further-downside",
+              "views": 8228,
               "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688892",
-                "id": "688892",
-                "title": "Shanghai Man: Economist says El Salvador \u0027on road to death\u0027, salaries paid in e-CNY ...",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/33d0d7c0-afb6-43db-80d6-2d177030da8b.jpg",
-                "published": "2021-06-18T01:32:08+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Former banking heads question foreign financial policies, workers paid with digital yuan in milestone pilot and a large Series A is closed by DeFi platform SynFutures.",
+                "cacheKey": "en.PostTranslateType.689493",
+                "id": "689493",
+                "title": "Bitcoin price clings to $32K as on-chain metrics hint at further downside",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/44fcb3e3-7291-4207-89a2-c5cae6255101.jpg",
+                "published": "2021-06-22T17:42:19+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "China\u2019s continued crackdown on Bitcoin mining and OTC transactions, along with prolonged technical weakness, triggered BTC\u2019s drop to a 6-month low.",
+                "__typename": "PostTranslate"
+              },
+              "category": {
+                "cacheKey": "en.CategoryType.89",
+                "id": "89",
+                "__typename": "Category"
+              },
+              "author": {
+                "cacheKey": "en.AuthorType.1173",
+                "id": "1173",
+                "slug": "jordan-finneseth",
+                "authorTranslates": [
+                  {
+                    "cacheKey": "en.AuthorTranslateType.17891",
+                    "id": "17891",
+                    "name": "Jordan Finneseth",
+                    "__typename": "AuthorTranslate"
+                  }
+                ],
+                "__typename": "Author"
+              },
+              "postBadge": {
+                "cacheKey": "en.PostBadgeType.87",
+                "id": "87",
+                "label": "default",
+                "postBadgeTranslates": [
+                  {
+                    "cacheKey": "en.PostBadgeTranslateType.1788",
+                    "id": "1788",
+                    "title": "Markets News",
+                    "__typename": "PostBadgeTranslate"
+                  }
+                ],
+                "__typename": "PostBadge"
+              },
+              "showShares": true,
+              "showStats": true,
+              "__typename": "Post"
+            },
+            {
+              "cacheKey": "en.PostType.68068",
+              "id": "68068",
+              "slug": "norwegian-fsa-sees-urgent-need-for-crypto-investor-protection",
+              "views": 2467,
+              "postTranslate": {
+                "cacheKey": "en.PostTranslateType.689481",
+                "id": "689481",
+                "title": "Norwegian FSA sees urgent need for crypto investor protection",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/178e5730-adf7-4e3f-a892-490643c64555.jpg",
+                "published": "2021-06-22T16:45:00+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "Norway\u2019s Financial Supervisory Authority says it only supervises crypto companies for money laundering.",
                 "__typename": "PostTranslate"
               },
               "category": {
@@ -703,14 +339,14 @@
                 "__typename": "Category"
               },
               "author": {
-                "cacheKey": "en.AuthorType.1237",
-                "id": "1237",
-                "slug": "ben-yorke",
+                "cacheKey": "en.AuthorType.545",
+                "id": "545",
+                "slug": "helen-partz",
                 "authorTranslates": [
                   {
-                    "cacheKey": "en.AuthorTranslateType.18137",
-                    "id": "18137",
-                    "name": "Ben Yorke",
+                    "cacheKey": "en.AuthorTranslateType.8405",
+                    "id": "8405",
+                    "name": "Helen Partz",
                     "__typename": "AuthorTranslate"
                   }
                 ],
@@ -735,18 +371,70 @@
               "__typename": "Post"
             },
             {
-              "cacheKey": "en.PostType.67843",
-              "id": "67843",
-              "slug": "bitcoin-retests-37k-support-gold-and-stocks-drop-lower-over-fed-comments",
-              "views": 10035,
+              "cacheKey": "en.PostType.68065",
+              "id": "68065",
+              "slug": "powers-on-el-salvator-is-the-unlikely-leader-for-sovereign-adoption-of-bitcoin-as-national-currency",
+              "views": 5874,
               "postTranslate": {
-                "cacheKey": "en.PostTranslateType.688889",
-                "id": "688889",
-                "title": "Bitcoin retests $37K support, gold and stocks drop lower over Fed comments",
-                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/72a5c664-02f2-429f-9066-54620c2732bf.jpg",
-                "published": "2021-06-18T00:24:13+01:00",
-                "publishedHumanFormat": "Jun 18, 2021",
-                "leadText": "Steady BTC inflows to crypto exchanges and fallout from the Federal Reserve\u2019s plan to hike interest rates dropped Bitcoin price to the $37,000 support.",
+                "cacheKey": "en.PostTranslateType.689471",
+                "id": "689471",
+                "title": "Powers On... El Salvador is the unlikely leader for sovereign adoption of Bitcoin as national currency",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/0bda34bb-f482-4faa-9603-d4acdcb9674b.jpg",
+                "published": "2021-06-22T15:57:55+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "The question is not whether Bitcoin will be the future of money; the question is how, where and when it will be the future of money.",
+                "__typename": "PostTranslate"
+              },
+              "category": {
+                "cacheKey": "en.CategoryType.81",
+                "id": "81",
+                "__typename": "Category"
+              },
+              "author": {
+                "cacheKey": "en.AuthorType.1218",
+                "id": "1218",
+                "slug": "marc-powers",
+                "authorTranslates": [
+                  {
+                    "cacheKey": "en.AuthorTranslateType.18001",
+                    "id": "18001",
+                    "name": "Marc Powers",
+                    "__typename": "AuthorTranslate"
+                  }
+                ],
+                "__typename": "Author"
+              },
+              "postBadge": {
+                "cacheKey": "en.PostBadgeType.43",
+                "id": "43",
+                "label": "success",
+                "postBadgeTranslates": [
+                  {
+                    "cacheKey": "en.PostBadgeTranslateType.925",
+                    "id": "925",
+                    "title": "Opinion",
+                    "__typename": "PostBadgeTranslate"
+                  }
+                ],
+                "__typename": "PostBadge"
+              },
+              "showShares": true,
+              "showStats": true,
+              "__typename": "Post"
+            },
+            {
+              "cacheKey": "en.PostType.68060",
+              "id": "68060",
+              "slug": "a-seismic-mining-shift-may-be-driving-bitcoin-price-below-30k-report",
+              "views": 11557,
+              "postTranslate": {
+                "cacheKey": "en.PostTranslateType.689443",
+                "id": "689443",
+                "title": "A \u2018seismic mining shift\u2019 may be driving Bitcoin price below $30K: Report ",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/05668c8b-9e35-46bf-b5cf-361512517450.jpg",
+                "published": "2021-06-22T15:07:46+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "The benchmark cryptocurrency slipped briefly under the $29,500-level on June 22 as a Glassnode report indicated the possibility of miner capitulation in China.",
                 "__typename": "PostTranslate"
               },
               "category": {
@@ -755,28 +443,340 @@
                 "__typename": "Category"
               },
               "author": {
-                "cacheKey": "en.AuthorType.1173",
-                "id": "1173",
-                "slug": "jordan-finneseth",
+                "cacheKey": "en.AuthorType.1261",
+                "id": "1261",
+                "slug": "yashu-gola",
                 "authorTranslates": [
                   {
-                    "cacheKey": "en.AuthorTranslateType.17891",
-                    "id": "17891",
-                    "name": "Jordan Finneseth",
+                    "cacheKey": "en.AuthorTranslateType.18284",
+                    "id": "18284",
+                    "name": "Yashu Gola",
                     "__typename": "AuthorTranslate"
                   }
                 ],
                 "__typename": "Author"
               },
               "postBadge": {
-                "cacheKey": "en.PostBadgeType.79",
-                "id": "79",
+                "cacheKey": "en.PostBadgeType.59",
+                "id": "59",
+                "label": "info",
+                "postBadgeTranslates": [
+                  {
+                    "cacheKey": "en.PostBadgeTranslateType.1277",
+                    "id": "1277",
+                    "title": "Market Analysis",
+                    "__typename": "PostBadgeTranslate"
+                  }
+                ],
+                "__typename": "PostBadge"
+              },
+              "showShares": true,
+              "showStats": true,
+              "__typename": "Post"
+            },
+            {
+              "cacheKey": "en.PostType.68049",
+              "id": "68049",
+              "slug": "bitcoin-drops-below-30k-to-6-month-lows-watch-these-next-price-support-levels",
+              "views": 26576,
+              "postTranslate": {
+                "cacheKey": "en.PostTranslateType.689418",
+                "id": "689418",
+                "title": "Bitcoin drops below $30K to 6-month lows: Watch these next price support levels",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/fbb03b1e-4009-410b-89f3-b6535473e8db.jpg",
+                "published": "2021-06-22T13:36:19+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "Downward selling pressure sees Bitcoin swiftly take out $30,000 support as Binance users report technical difficulties.",
+                "__typename": "PostTranslate"
+              },
+              "category": {
+                "cacheKey": "en.CategoryType.89",
+                "id": "89",
+                "__typename": "Category"
+              },
+              "author": {
+                "cacheKey": "en.AuthorType.57",
+                "id": "57",
+                "slug": "william-suberg",
+                "authorTranslates": [
+                  {
+                    "cacheKey": "en.AuthorTranslateType.705",
+                    "id": "705",
+                    "name": "William Suberg",
+                    "__typename": "AuthorTranslate"
+                  }
+                ],
+                "__typename": "Author"
+              },
+              "postBadge": {
+                "cacheKey": "en.PostBadgeType.29",
+                "id": "29",
                 "label": "default",
                 "postBadgeTranslates": [
                   {
-                    "cacheKey": "en.PostBadgeTranslateType.1653",
-                    "id": "1653",
-                    "title": "Market Update",
+                    "cacheKey": "en.PostBadgeTranslateType.617",
+                    "id": "617",
+                    "title": "Breaking news",
+                    "__typename": "PostBadgeTranslate"
+                  }
+                ],
+                "__typename": "PostBadge"
+              },
+              "showShares": true,
+              "showStats": true,
+              "__typename": "Post"
+            },
+            {
+              "cacheKey": "en.PostType.68047",
+              "id": "68047",
+              "slug": "un-sees-blockchain-technology-as-tool-to-fight-climate-crisis",
+              "views": 3996,
+              "postTranslate": {
+                "cacheKey": "en.PostTranslateType.689408",
+                "id": "689408",
+                "title": "UN sees blockchain technology as tool to fight climate crisis",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/eca172d8-3245-4af4-a3c0-fef9675f629d.jpg",
+                "published": "2021-06-22T12:41:40+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "The U.N. will keep exploring the uses of blockchain technology to improve the reliability of data on harmful greenhouse gas emissions.",
+                "__typename": "PostTranslate"
+              },
+              "category": {
+                "cacheKey": "en.CategoryType.2",
+                "id": "2",
+                "__typename": "Category"
+              },
+              "author": {
+                "cacheKey": "en.AuthorType.545",
+                "id": "545",
+                "slug": "helen-partz",
+                "authorTranslates": [
+                  {
+                    "cacheKey": "en.AuthorTranslateType.8405",
+                    "id": "8405",
+                    "name": "Helen Partz",
+                    "__typename": "AuthorTranslate"
+                  }
+                ],
+                "__typename": "Author"
+              },
+              "postBadge": {
+                "cacheKey": "en.PostBadgeType.38",
+                "id": "38",
+                "label": "default",
+                "postBadgeTranslates": [
+                  {
+                    "cacheKey": "en.PostBadgeTranslateType.815",
+                    "id": "815",
+                    "title": "News",
+                    "__typename": "PostBadgeTranslate"
+                  }
+                ],
+                "__typename": "PostBadge"
+              },
+              "showShares": true,
+              "showStats": true,
+              "__typename": "Post"
+            },
+            {
+              "cacheKey": "en.PostType.68042",
+              "id": "68042",
+              "slug": "denied-electricity-world-s-5th-largest-mining-pool-leaves-china-for-kazakhstan",
+              "views": 15033,
+              "postTranslate": {
+                "cacheKey": "en.PostTranslateType.689390",
+                "id": "689390",
+                "title": "Denied electricity, world\u2019s 5th-largest mining pool leaves China for Kazakhstan",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/858164fc-63a9-4690-a960-476f6d36b010.jpg",
+                "published": "2021-06-22T10:52:40+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "Crypto mining pool BTC.com is leaving China after local authorities withdrew its power supply. ",
+                "__typename": "PostTranslate"
+              },
+              "category": {
+                "cacheKey": "en.CategoryType.2",
+                "id": "2",
+                "__typename": "Category"
+              },
+              "author": {
+                "cacheKey": "en.AuthorType.588",
+                "id": "588",
+                "slug": "marie-huillet",
+                "authorTranslates": [
+                  {
+                    "cacheKey": "en.AuthorTranslateType.9351",
+                    "id": "9351",
+                    "name": "Marie Huillet ",
+                    "__typename": "AuthorTranslate"
+                  }
+                ],
+                "__typename": "Author"
+              },
+              "postBadge": {
+                "cacheKey": "en.PostBadgeType.38",
+                "id": "38",
+                "label": "default",
+                "postBadgeTranslates": [
+                  {
+                    "cacheKey": "en.PostBadgeTranslateType.815",
+                    "id": "815",
+                    "title": "News",
+                    "__typename": "PostBadgeTranslate"
+                  }
+                ],
+                "__typename": "PostBadge"
+              },
+              "showShares": true,
+              "showStats": true,
+              "__typename": "Post"
+            },
+            {
+              "cacheKey": "en.PostType.68041",
+              "id": "68041",
+              "slug": "china-s-crackdown-means-bitcoin-is-working-says-crypto-miner",
+              "views": 16247,
+              "postTranslate": {
+                "cacheKey": "en.PostTranslateType.689388",
+                "id": "689388",
+                "title": "China\u2019s crackdown means Bitcoin is working, says crypto miner ",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/575fd1f5-a657-49fd-a12b-ae6a97101a7e.jpg",
+                "published": "2021-06-22T10:39:13+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "A former crypto exchange engineer believes that China\u2019s ban on Bitcoin mining is \u201cfantastic news.\u201d",
+                "__typename": "PostTranslate"
+              },
+              "category": {
+                "cacheKey": "en.CategoryType.2",
+                "id": "2",
+                "__typename": "Category"
+              },
+              "author": {
+                "cacheKey": "en.AuthorType.707",
+                "id": "707",
+                "slug": "erhan-kahraman",
+                "authorTranslates": [
+                  {
+                    "cacheKey": "en.AuthorTranslateType.12756",
+                    "id": "12756",
+                    "name": "Erhan Kahraman",
+                    "__typename": "AuthorTranslate"
+                  }
+                ],
+                "__typename": "Author"
+              },
+              "postBadge": {
+                "cacheKey": "en.PostBadgeType.38",
+                "id": "38",
+                "label": "default",
+                "postBadgeTranslates": [
+                  {
+                    "cacheKey": "en.PostBadgeTranslateType.815",
+                    "id": "815",
+                    "title": "News",
+                    "__typename": "PostBadgeTranslate"
+                  }
+                ],
+                "__typename": "PostBadge"
+              },
+              "showShares": true,
+              "showStats": true,
+              "__typename": "Post"
+            },
+            {
+              "cacheKey": "en.PostType.68039",
+              "id": "68039",
+              "slug": "vaneck-files-for-a-new-bitcoin-futures-mutual-fund-with-us-sec",
+              "views": 5521,
+              "postTranslate": {
+                "cacheKey": "en.PostTranslateType.689385",
+                "id": "689385",
+                "title": "VanEck files for a new Bitcoin futures mutual fund with US SEC",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/1bba450a-be0b-40fd-a680-a1b892725593.jpg",
+                "published": "2021-06-22T09:45:27+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "VanEck\u2019s new \u201cBitcoin Strategy Fund\u201d will invest in BTC futures, pooled investment vehicles and exchange-traded products providing exposure to Bitcoin.",
+                "__typename": "PostTranslate"
+              },
+              "category": {
+                "cacheKey": "en.CategoryType.2",
+                "id": "2",
+                "__typename": "Category"
+              },
+              "author": {
+                "cacheKey": "en.AuthorType.545",
+                "id": "545",
+                "slug": "helen-partz",
+                "authorTranslates": [
+                  {
+                    "cacheKey": "en.AuthorTranslateType.8405",
+                    "id": "8405",
+                    "name": "Helen Partz",
+                    "__typename": "AuthorTranslate"
+                  }
+                ],
+                "__typename": "Author"
+              },
+              "postBadge": {
+                "cacheKey": "en.PostBadgeType.38",
+                "id": "38",
+                "label": "default",
+                "postBadgeTranslates": [
+                  {
+                    "cacheKey": "en.PostBadgeTranslateType.815",
+                    "id": "815",
+                    "title": "News",
+                    "__typename": "PostBadgeTranslate"
+                  }
+                ],
+                "__typename": "PostBadge"
+              },
+              "showShares": true,
+              "showStats": true,
+              "__typename": "Post"
+            },
+            {
+              "cacheKey": "en.PostType.68035",
+              "id": "68035",
+              "slug": "bitcoin-bear-market-confirmed-analysts-at-odds-over-whales-btc-exchange-moves",
+              "views": 21051,
+              "postTranslate": {
+                "cacheKey": "en.PostTranslateType.689377",
+                "id": "689377",
+                "title": "Bitcoin bear market confirmed? Analysts at odds over whales\u2019 BTC exchange moves",
+                "avatar": "https:\/\/s3.cointelegraph.com\/uploads\/2021-06\/01ebd965-9e57-4044-adfe-7b86f585d0ec.jpg",
+                "published": "2021-06-22T08:22:29+01:00",
+                "publishedHumanFormat": "Jun 22, 2021",
+                "leadText": "Whale selling pressure is too great to preserve the bull market for now, one warning says, while similarities to 2017 provide a silver lining for hodlers.",
+                "__typename": "PostTranslate"
+              },
+              "category": {
+                "cacheKey": "en.CategoryType.89",
+                "id": "89",
+                "__typename": "Category"
+              },
+              "author": {
+                "cacheKey": "en.AuthorType.57",
+                "id": "57",
+                "slug": "william-suberg",
+                "authorTranslates": [
+                  {
+                    "cacheKey": "en.AuthorTranslateType.705",
+                    "id": "705",
+                    "name": "William Suberg",
+                    "__typename": "AuthorTranslate"
+                  }
+                ],
+                "__typename": "Author"
+              },
+              "postBadge": {
+                "cacheKey": "en.PostBadgeType.87",
+                "id": "87",
+                "label": "default",
+                "postBadgeTranslates": [
+                  {
+                    "cacheKey": "en.PostBadgeTranslateType.1788",
+                    "id": "1788",
+                    "title": "Markets News",
                     "__typename": "PostBadgeTranslate"
                   }
                 ],
@@ -794,1237 +794,8 @@
       },
       "__typename": "Locale"
     }
-  },
-  "data":{
-      "locale":{
-         "translates":[
-            {
-               "cacheKey":"en.TranslateType.121781",
-               "key":"subscriptions.modal.list.btn.select-all.label",
-               "value":"Select All Subscriptions",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121782",
-               "key":"subscriptions.modal.list.btn.turn-off.label",
-               "value":"Turn off all",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121784",
-               "key":"subscriptions.modal.list.form.btn.submit.label",
-               "value":"Subscribe",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121786",
-               "key":"subscriptions.modal.list.form.error.label",
-               "value":"Invalid email address",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121783",
-               "key":"subscriptions.modal.list.form.input.placeholder",
-               "value":"Your email address",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121785",
-               "key":"subscriptions.modal.list.form.no-items-selected.label",
-               "value":"Please, choose at least one subscription",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121787",
-               "key":"subscriptions.modal.list.form.success.label",
-               "value":"You\u0027re subscribed!",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121788",
-               "key":"subscriptions.modal.list.form.tos.text",
-               "value":"By filling out this form, you agree to our \u003Cbr \/\u003E\u003Ca href=\u0022\/terms-and-privacy\u0022 target=\u0022_blank\u0022\u003ETerms of Services and Privacy Policy\u003C\/a\u003E",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121794",
-               "key":"subscriptions.modal.list.item.1.description",
-               "value":"The day\u0027s most important crypto and blockchain stories",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122632",
-               "key":"subscriptions.modal.list.item.1.description.mobile",
-               "value":"The day\u0027s most important crypto and blockchain stories",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121795",
-               "key":"subscriptions.modal.list.item.1.list-id",
-               "value":"7376af3992",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121796",
-               "key":"subscriptions.modal.list.item.1.name",
-               "value":"One-minute letter",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122633",
-               "key":"subscriptions.modal.list.item.1.regularity",
-               "value":"Every Monday-Friday",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121799",
-               "key":"subscriptions.modal.list.item.2.description",
-               "value":"Rounding up and breaking down the latest trends in crypto regulations",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122634",
-               "key":"subscriptions.modal.list.item.2.description.mobile",
-               "value":"Rounding up and breaking down the latest trends in crypto regulations",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121800",
-               "key":"subscriptions.modal.list.item.2.list-id",
-               "value":"681e6a28f0",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121801",
-               "key":"subscriptions.modal.list.item.2.name",
-               "value":"Law Decoded",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122635",
-               "key":"subscriptions.modal.list.item.2.regularity",
-               "value":"Every Friday",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121804",
-               "key":"subscriptions.modal.list.item.3.description",
-               "value":"The 5 most important things to know about Bitcoin\u0027s price for the week ahead",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122636",
-               "key":"subscriptions.modal.list.item.3.description.mobile",
-               "value":"The 5 most important things to know about Bitcoin\u0027s price for the week ahead",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121805",
-               "key":"subscriptions.modal.list.item.3.list-id",
-               "value":"4c15e30e17",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121806",
-               "key":"subscriptions.modal.list.item.3.name",
-               "value":"Markets\u2019 Outlook",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122637",
-               "key":"subscriptions.modal.list.item.3.regularity",
-               "value":"Every Monday",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121809",
-               "key":"subscriptions.modal.list.item.4.description",
-               "value":"Long reads and a dose of humor for your weekend",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122638",
-               "key":"subscriptions.modal.list.item.4.description.mobile",
-               "value":"Long reads and a dose of humor for your weekend",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121810",
-               "key":"subscriptions.modal.list.item.4.list-id",
-               "value":"ae5eda079d",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121811",
-               "key":"subscriptions.modal.list.item.4.name",
-               "value":"Magazine Weekend Reads",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122639",
-               "key":"subscriptions.modal.list.item.4.regularity",
-               "value":"Every Sunday",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121814",
-               "key":"subscriptions.modal.list.item.5.description",
-               "value":"A weekly round-up of the most significant crypto news you may have missed",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122640",
-               "key":"subscriptions.modal.list.item.5.description.mobile",
-               "value":"A weekly round-up of the most significant crypto news you may have missed",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121815",
-               "key":"subscriptions.modal.list.item.5.list-id",
-               "value":"aad9f6b505",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121816",
-               "key":"subscriptions.modal.list.item.5.name",
-               "value":"Hodler\u0027s Digest",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.122641",
-               "key":"subscriptions.modal.list.item.5.regularity",
-               "value":"Every Monday",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121780",
-               "key":"subscriptions.modal.list.subtitle",
-               "value":"Get the Latest from Cointelegraph",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121779",
-               "key":"subscriptions.modal.list.title",
-               "value":"Cointelegraph Newsletter",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121791",
-               "key":"subscriptions.modal.success.btn.label",
-               "value":"OK",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121790",
-               "key":"subscriptions.modal.success.notice",
-               "value":"You have successfully subscribed to the following categories:",
-               "__typename":"Translate"
-            },
-            {
-               "cacheKey":"en.TranslateType.121789",
-               "key":"subscriptions.modal.success.title",
-               "value":"Thanks for your subscription!",
-               "__typename":"Translate"
-            }
-         ],
-         "__typename":"Locale"
-      }
-   },
-  "data":{
-      "locale":{
-         "menu":[
-            {
-               "cacheKey":"en.MenuType.39",
-               "id":"39",
-               "parentId":null,
-               "url":"",
-               "badgeType":null,
-               "rel":"",
-               "position":1,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.1333",
-                     "id":1333,
-                     "value":"News",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.253",
-               "id":"253",
-               "parentId":39,
-               "url":"\/tags\/bitcoin",
-               "badgeType":null,
-               "rel":"",
-               "position":1,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.58857",
-                     "id":58857,
-                     "value":"Bitcoin News",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.268",
-               "id":"268",
-               "parentId":78,
-               "url":"\/category\/top-10-cryptocurrencies",
-               "badgeType":null,
-               "rel":"",
-               "position":1,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.59517",
-                     "id":59517,
-                     "value":"Top 10 Cryptocurrencies",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.283",
-               "id":"283",
-               "parentId":282,
-               "url":"\/explained",
-               "badgeType":null,
-               "rel":"",
-               "position":1,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60177",
-                     "id":60177,
-                     "value":"Explained",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.295",
-               "id":"295",
-               "parentId":289,
-               "url":"https:\/\/dapplist.cointelegraph.com\/",
-               "badgeType":null,
-               "rel":"noopener",
-               "position":1,
-               "inNewTab":true,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60839",
-                     "id":60839,
-                     "value":"DApplist",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.400",
-               "id":"400",
-               "parentId":87,
-               "url":"\/price-indexes",
-               "badgeType":null,
-               "rel":"",
-               "position":1,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.74180",
-                     "id":74180,
-                     "value":"Price Indexes",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.504",
-               "id":"504",
-               "parentId":503,
-               "url":"\/consulting",
-               "badgeType":null,
-               "rel":"",
-               "position":1,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.104607",
-                     "id":104607,
-                     "value":"Consulting Services",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.568",
-               "id":"568",
-               "parentId":11,
-               "url":"\/top-people-in-crypto-and-blockchain",
-               "badgeType":null,
-               "rel":"",
-               "position":1,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.113959",
-                     "id":113959,
-                     "value":"Top 100 2021",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.291",
-               "id":"291",
-               "parentId":289,
-               "url":"\/events",
-               "badgeType":null,
-               "rel":"nofollow",
-               "position":2,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60529",
-                     "id":60529,
-                     "value":"Events",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.505",
-               "id":"505",
-               "parentId":503,
-               "url":"\/consulting\/vendors",
-               "badgeType":null,
-               "rel":"",
-               "position":2,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.104659",
-                     "id":104659,
-                     "value":"Technology Providers",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.545",
-               "id":"545",
-               "parentId":null,
-               "url":"\/markets",
-               "badgeType":null,
-               "rel":"",
-               "position":2,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112505",
-                     "id":112505,
-                     "value":"Markets",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.546",
-               "id":"546",
-               "parentId":545,
-               "url":"\/price-indexes",
-               "badgeType":null,
-               "rel":"",
-               "position":2,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112557",
-                     "id":112557,
-                     "value":"Price Indexes",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.697",
-               "id":"697",
-               "parentId":11,
-               "url":"\/top-people-in-crypto-and-blockchain-2020",
-               "badgeType":null,
-               "rel":"",
-               "position":2,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.130275",
-                     "id":130275,
-                     "value":"Top 100 2020",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.1015",
-               "id":"1015",
-               "parentId":282,
-               "url":"\/tags\/how-to-crypto",
-               "badgeType":null,
-               "rel":"",
-               "position":2,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.150513",
-                     "id":150513,
-                     "value":"How to Crypto",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.260",
-               "id":"260",
-               "parentId":39,
-               "url":"\/tags\/ripple",
-               "badgeType":null,
-               "rel":"",
-               "position":3,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.59165",
-                     "id":59165,
-                     "value":"Ripple News",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.270",
-               "id":"270",
-               "parentId":78,
-               "url":"\/category\/market-analysis",
-               "badgeType":null,
-               "rel":"",
-               "position":3,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.59605",
-                     "id":59605,
-                     "value":"Market Analysis",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.285",
-               "id":"285",
-               "parentId":282,
-               "url":"\/bitcoin-for-beginners",
-               "badgeType":null,
-               "rel":"",
-               "position":3,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60265",
-                     "id":60265,
-                     "value":"Bitcoin101",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.297",
-               "id":"297",
-               "parentId":289,
-               "url":"https:\/\/jobs.cointelegraph.com\/",
-               "badgeType":null,
-               "rel":"noopener nofollow",
-               "position":3,
-               "inNewTab":true,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.61370",
-                     "id":61370,
-                     "value":"Jobs",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.506",
-               "id":"506",
-               "parentId":503,
-               "url":"https:\/\/cointelegraph.com\/consulting\/reports",
-               "badgeType":null,
-               "rel":"",
-               "position":3,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.104711",
-                     "id":104711,
-                     "value":"Industry Reports",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.547",
-               "id":"547",
-               "parentId":545,
-               "url":"\/category\/market-analysis",
-               "badgeType":null,
-               "rel":"",
-               "position":3,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112609",
-                     "id":112609,
-                     "value":"Market Analysis",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.550",
-               "id":"550",
-               "parentId":null,
-               "url":"https:\/\/cointelegraph.com\/magazine",
-               "badgeType":null,
-               "rel":"nofollow",
-               "position":3,
-               "inNewTab":true,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112765",
-                     "id":112765,
-                     "value":"Magazine",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.11",
-               "id":"11",
-               "parentId":null,
-               "url":"",
-               "badgeType":null,
-               "rel":"",
-               "position":4,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.437",
-                     "id":437,
-                     "value":"People",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.254",
-               "id":"254",
-               "parentId":39,
-               "url":"\/tags\/ethereum",
-               "badgeType":null,
-               "rel":"",
-               "position":4,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.58901",
-                     "id":58901,
-                     "value":"Ethereum News",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.286",
-               "id":"286",
-               "parentId":282,
-               "url":"\/ethereum-for-beginners",
-               "badgeType":null,
-               "rel":"",
-               "position":4,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60309",
-                     "id":60309,
-                     "value":"Ethereum101",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.290",
-               "id":"290",
-               "parentId":289,
-               "url":"\/press-releases",
-               "badgeType":null,
-               "rel":"",
-               "position":4,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60485",
-                     "id":60485,
-                     "value":"Press Releases",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.548",
-               "id":"548",
-               "parentId":545,
-               "url":"https:\/\/coin360.com\/?utm_source=cointelegraph\u0026utm_medium=referral\u0026utm_campaign=menu\u0026utm_term=header",
-               "badgeType":null,
-               "rel":"",
-               "position":4,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112661",
-                     "id":112661,
-                     "value":"Heatmap",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.259",
-               "id":"259",
-               "parentId":39,
-               "url":"\/tags\/litecoin",
-               "badgeType":null,
-               "rel":"",
-               "position":5,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.59121",
-                     "id":59121,
-                     "value":"Litecoin News",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.265",
-               "id":"265",
-               "parentId":11,
-               "url":"\/category\/opinion",
-               "badgeType":null,
-               "rel":"",
-               "position":5,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.59385",
-                     "id":59385,
-                     "value":"Opinion",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.282",
-               "id":"282",
-               "parentId":null,
-               "url":"",
-               "badgeType":null,
-               "rel":"",
-               "position":5,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60133",
-                     "id":60133,
-                     "value":"Cryptopedia",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.549",
-               "id":"549",
-               "parentId":545,
-               "url":"\/category\/top-10-cryptocurrencies",
-               "badgeType":null,
-               "rel":"",
-               "position":5,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112713",
-                     "id":112713,
-                     "value":"Top 10 Cryptocurrencies",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.1019",
-               "id":"1019",
-               "parentId":282,
-               "url":"\/dogecoin-for-beginners",
-               "badgeType":null,
-               "rel":"",
-               "position":5,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.150721",
-                     "id":150721,
-                     "value":"Dogecoin101",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.287",
-               "id":"287",
-               "parentId":282,
-               "url":"\/bitcoin-cash-for-beginners",
-               "badgeType":null,
-               "rel":"",
-               "position":6,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60353",
-                     "id":60353,
-                     "value":"Bitcoin Cash101",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.289",
-               "id":"289",
-               "parentId":null,
-               "url":"",
-               "badgeType":null,
-               "rel":"",
-               "position":6,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60441",
-                     "id":60441,
-                     "value":"Industry",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.503",
-               "id":"503",
-               "parentId":null,
-               "url":"",
-               "badgeType":null,
-               "rel":"",
-               "position":6,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.104555",
-                     "id":104555,
-                     "value":"Consulting",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.300",
-               "id":"300",
-               "parentId":282,
-               "url":"\/ripple-101",
-               "badgeType":null,
-               "rel":"",
-               "position":7,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.61901",
-                     "id":61901,
-                     "value":"Ripple101",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.551",
-               "id":"551",
-               "parentId":null,
-               "url":"https:\/\/www.youtube.com\/channel\/UCRqBu-grVX1p97WaX4d-OuQ",
-               "badgeType":null,
-               "rel":"nofollow",
-               "position":7,
-               "inNewTab":true,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112818",
-                     "id":112818,
-                     "value":"Video",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.255",
-               "id":"255",
-               "parentId":39,
-               "url":"\/tags\/altcoin",
-               "badgeType":null,
-               "rel":"",
-               "position":8,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.58945",
-                     "id":58945,
-                     "value":"Altcoin News",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.279",
-               "id":"279",
-               "parentId":87,
-               "url":"\/ico-calendar",
-               "badgeType":null,
-               "rel":"nofollow",
-               "position":8,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60001",
-                     "id":60001,
-                     "value":"ICO Calendar",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.303",
-               "id":"303",
-               "parentId":282,
-               "url":"\/lightning-network-101",
-               "badgeType":null,
-               "rel":"",
-               "position":8,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.62043",
-                     "id":62043,
-                     "value":"Lightning Network101",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.502",
-               "id":"502",
-               "parentId":289,
-               "url":"https:\/\/store.cointelegraph.com",
-               "badgeType":null,
-               "rel":"",
-               "position":8,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.104503",
-                     "id":104503,
-                     "value":"Store",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.256",
-               "id":"256",
-               "parentId":39,
-               "url":"\/tags\/blockchain",
-               "badgeType":null,
-               "rel":"",
-               "position":9,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.58989",
-                     "id":58989,
-                     "value":"Blockchain News",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.454",
-               "id":"454",
-               "parentId":11,
-               "url":"\/category\/expert-take",
-               "badgeType":null,
-               "rel":"",
-               "position":10,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.86528",
-                     "id":86528,
-                     "value":"Expert Take",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.542",
-               "id":"542",
-               "parentId":39,
-               "url":"\/tags\/business",
-               "badgeType":null,
-               "rel":"",
-               "position":10,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112349",
-                     "id":112349,
-                     "value":"Business News",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.426",
-               "id":"426",
-               "parentId":11,
-               "url":"\/category\/interview",
-               "badgeType":null,
-               "rel":"",
-               "position":11,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.76822",
-                     "id":76822,
-                     "value":"Interview",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.520",
-               "id":"520",
-               "parentId":289,
-               "url":"https:\/\/blockshow.com\/",
-               "badgeType":null,
-               "rel":"",
-               "position":11,
-               "inNewTab":true,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.106515",
-                     "id":106515,
-                     "value":"BlockShow",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.543",
-               "id":"543",
-               "parentId":39,
-               "url":"\/tags\/technology",
-               "badgeType":null,
-               "rel":"",
-               "position":11,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112401",
-                     "id":112401,
-                     "value":"Technology News",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.544",
-               "id":"544",
-               "parentId":39,
-               "url":"\/tags\/regulation",
-               "badgeType":null,
-               "rel":"",
-               "position":12,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.112453",
-                     "id":112453,
-                     "value":"Policy \u0026 Regulations",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.1011",
-               "id":"1011",
-               "parentId":282,
-               "url":"\/defi-101",
-               "badgeType":null,
-               "rel":"",
-               "position":12,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.150230",
-                     "id":150230,
-                     "value":"DeFi101",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.293",
-               "id":"293",
-               "parentId":null,
-               "url":"\/advertise-with-bitcoins",
-               "badgeType":null,
-               "rel":"",
-               "position":13,
-               "inNewTab":true,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60661",
-                     "id":60661,
-                     "value":"Advertise",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.1023",
-               "id":"1023",
-               "parentId":282,
-               "url":"\/trading-for-beginners",
-               "badgeType":null,
-               "rel":"",
-               "position":13,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.150929",
-                     "id":150929,
-                     "value":"Trading101",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.280",
-               "id":"280",
-               "parentId":87,
-               "url":"https:\/\/coin360.com\/?utm_source=cointelegraph\u0026utm_medium=referral\u0026utm_campaign=menu\u0026utm_term=mobilemenu",
-               "badgeType":null,
-               "rel":"noopener",
-               "position":14,
-               "inNewTab":true,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.60045",
-                     "id":60045,
-                     "value":"Heatmap",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            },
-            {
-               "cacheKey":"en.MenuType.388",
-               "id":"388",
-               "parentId":null,
-               "url":"\/about",
-               "badgeType":null,
-               "rel":"",
-               "position":20,
-               "inNewTab":false,
-               "titleTranslates":[
-                  {
-                     "cacheKey":"en.TranslateType.72146",
-                     "id":72146,
-                     "value":"About",
-                     "__typename":"Translate"
-                  }
-               ],
-               "__typename":"Menu"
-            }
-         ],
-         "__typename":"Locale"
-      }
-   },
+  }
+}
 //  data on default page, notice on 'offset' and 'length'
   "data": {
     "locale": {

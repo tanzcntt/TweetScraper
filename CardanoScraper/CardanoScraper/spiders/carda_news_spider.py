@@ -212,7 +212,7 @@ class CoindeskLatest(Spider):
 		top_section_posts = response.css('section.article-card-fh')
 		for post in top_section_posts:
 			author = post.css('div.card-desc span.card-author a::text').getall()
-			print(f"Author1: {color['okblue']}{author}{color['endc']}")
+			print(f"Author1: {color['okcyan']}{author}{color['endc']}")
 			link_content = post.css('div.card-text-block h2.heading a::attr(href)').get()
 			data = {
 				'tag': post.css('div.card-img-block a.button span.eyebrow-button-text::text').get(),
@@ -238,7 +238,7 @@ class CoindeskLatest(Spider):
 			'section.page-area-dotted-content div.story-stack section.list-body div.list-item-wrapper')
 		for post in recent_posts:
 			author = post.css('div.card-desc-block span.credit a::text').getall()
-			print(f"Author2: {color['okblue']}{author}{color['endc']}")
+			print(f"Author2: {color['okcyan']}{author}{color['endc']}")
 			link_content = post.css('div.text-content a::attr(href)').getall()[-1]
 			data = {
 				'title': post.css('a h4.heading::text').get(),
@@ -303,8 +303,8 @@ class CoindeskAll(Spider):
 		print(f"{color['fail']}All Coindesk Thread{color['endc']}")
 		data = json.loads(response.body)
 		data['source'] = 'coindeskLatestNews'
+		# get link content
 		for post in data['posts']:
-			# print(f"{color['okcyan']}{post}{color['endc']}")
 			link_content = self.url.format('/' + str(post['slug']))
 			print(f"{color['okgreen']}{link_content}{color['endc']}")
 			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
@@ -332,9 +332,10 @@ class CoindeskAll(Spider):
 class CoinTelegraphAll(Spider):
 	name = 'allCoinTele'
 
-	def start_requests(self, total_page=3):
-		start_url = 'https://conpletus.cointelegraph.com/v1/'
-		headers = {
+	def __init__(self):
+		self.url = 'https://cointelegraph.com/{}'
+		self.coinTele = myDatabase['coinTeleSample']
+		self.headers = {
 			'authority': 'conpletus.cointelegraph.com',
 			'method': 'POST',
 			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
@@ -344,6 +345,9 @@ class CoinTelegraphAll(Spider):
 			'referer': 'https://cointelegraph.com/',
 			'accept-language': 'en-US,en;q=0.9',
 		}
+
+	def start_requests(self, total_page=5):
+		start_url = 'https://conpletus.cointelegraph.com/v1/'
 		offset = 0
 		length = 15
 		# body='{"operationName": "TagPagePostsQuery","variables": {"slug": "bitcoin","order": "postPublishedTime","offset": 0,"length": 15,"short": "en","cacheTimeInMS": 300000},"query": "query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}',
@@ -353,7 +357,7 @@ class CoinTelegraphAll(Spider):
 					'"length": {},'.format(length) + \
 					'"short": "en","cacheTimeInMS": 300000},"query": ' \
 					'"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}'
-			yield FormRequest(url=start_url, callback=self.parse, dont_filter=True, method="POST", body=body_, headers=headers)
+			yield FormRequest(url=start_url, callback=self.parse, dont_filter=True, method="POST", body=body_, headers=self.headers)
 			offset += 15
 
 	def payload_data(self, offset=0, length=15):
@@ -373,9 +377,34 @@ class CoinTelegraphAll(Spider):
 
 	def parse(self, response, **kwargs):
 		data = json.loads(response.body)
+		# get link content
+		data_ = data['data']['locale']['tag']['posts']['data']
+		for post in data_:
+			post_badge_title = post['postBadge']['postBadgeTranslates'][0]['title'].lower()
+			if post_badge_title == 'experts answer' or post_badge_title == 'explained':
+				# link_content = self.url.format('explained/' + str(post['slug']))
+				pass
+			else:
+				link_content = self.url.format('news/' + str(post['slug']))  # https://cointelegraph.com/news/ + slug
+			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
 		item = {
-			'raw_data': data['data']['locale']['tag']['posts']['data'],
+			'title': '',
+			'data': data['data']['locale']['tag']['posts']['data'],
 			'source': 'coinTelegraph',
 		}
 		yield item
 		sleep(3)
+		# self.get_link_content()
+
+	def parse_content(self, response):
+		page = response.url
+		print(f"{color['fail']}{page}{color['endc']}")
+		print(f"{color['okgreen']}crawling raw content{color['endc']}")
+		data = response.css('body')
+		for content in data:
+			item = {
+				"raw_data": content.css('script::text').get(),
+				"source": "coinTelegraph",
+			}
+			yield item
+			sleep(.2)

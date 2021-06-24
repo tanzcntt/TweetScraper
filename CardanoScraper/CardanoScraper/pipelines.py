@@ -1,8 +1,11 @@
 import time
+import codecs
 import json
 import re
 import pymongo
+import html
 from datetime import datetime
+from w3lib.html import remove_tags
 from . import utils
 from time import sleep
 color = utils.colors_mark()
@@ -198,7 +201,7 @@ class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
         self.coindesk = self.myDatabase['coindeskSample']
-        # self.coindesk = self.myDatabase['coindeskTest1']
+        # self.coindesk = self.myDatabase['coindeskTest2']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -282,9 +285,13 @@ class CoindeskScraperPipeline(object):
         posts = data['posts']
         for post in posts:
             coindesk_sample_data = sample_data()
+            img = post['images']['images']
             coindesk_sample_data['title'] = post['title']
             coindesk_sample_data['subtitle'] = post['text']
-            coindesk_sample_data['link_img'] = post['images']['images']['desktop']['src']
+            if 'desktop' in img:
+                coindesk_sample_data['link_img'] = img['desktop']['src']
+            else:
+                coindesk_sample_data['link_img'] = img['mobile']['src']
             coindesk_sample_data['slug_content'] = post['slug']
             coindesk_sample_data['link_content'] = self.url.format('/' + str(post['slug']))
             coindesk_sample_data['author'] = post['authors'][0]['name']
@@ -380,40 +387,74 @@ class CoindeskScraperPipeline(object):
 class CoinTelegraphScraperPipeline(object):
     def __init__(self):
         self.url = 'https://cointelegraph.com/{}'
+        self.myDatabase = mongoClient['cardanoNews']
+        self.coinTele = self.myDatabase['coinTelegraphSample']
+        self.new_posts = []
 
     def close_spider(self, spider):
         print(f"{color['warning']}CoinTeleGraph Crawl Completed!{color['endc']}")
+        for index, value in enumerate(self.new_posts):
+            utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
+        print(f"{color['warning']}CoinTelegraph Crawl Completed!{color['endc']}")
 
     def process_item(self, item, spider):
-        print(f"{color['okblue']}Cointelegraph Pipeline handling...{color['endc']}\n")
-        # self.cointele_get_post(item)
+        if item['source'] == 'coinTelegraph':
+            if 'title' in item:
+                print(f"{color['okblue']}Cointelegraph Pipeline handling...{color['endc']}\n")
+                self.cointele_get_post(item)
+            elif 'raw_data' in item:
+                self.get_content(item)
+                # pass
         # return item
 
+    def get_content(self, data):
+        data = data['raw_data']
+        decode_html_content = codecs.decode(data, 'unicode-escape')
+        data_content = decode_html_content.split('fullText="')
+        raw_content = data_content[1].split('audio="')[0]
+        raw_content = raw_content.split('<template data-name="subscription_form"')[0]
+        clean_content = remove_tags(raw_content)
+
+
     def cointele_get_post(self, data):
-        for post in data['raw_data']:
+        for post in data['data']:
             cointele_sample_data = sample_data()
             post_badge_title = post['postBadge']['postBadgeTranslates'][0]['title'].lower()
             cointele_sample_data['id'] = post['id']
             cointele_sample_data['title'] = post['postTranslate']['title']
-            # cointele_sample_data['subtitle'] = post['leadText']
+            cointele_sample_data['subtitle'] = str(post['postTranslate']['leadText'])
             cointele_sample_data['link_img'] = post['postTranslate']['avatar']
             cointele_sample_data['views'] = post['views']
-            cointele_sample_data['id_post_translate'] = str(post['postTranslate']['id']),  # postTranslate/id
+            cointele_sample_data['id_post_translate'] = post['postTranslate']['id']  # postTranslate/id
             cointele_sample_data['description'] = str(post['postTranslate']['leadText'])  # postTranslate/leadText
             if post_badge_title == 'experts answer' or post_badge_title == 'explained':
                 cointele_sample_data['link_content'] = self.url.format('explained/' + str(post['slug']))
             else:
-                cointele_sample_data['link_content'] = self.url.format('news/' + str(post['slug'])),  # https://cointelegraph.com/news/ + slug
-            cointele_sample_data['slug_content'] = post['slug'],  # slug
+                cointele_sample_data['link_content'] = self.url.format('news/' + str(post['slug']))  # https://cointelegraph.com/news/ + slug
+            cointele_sample_data['slug_content'] = post['slug']  # slug
             # 'raw_content': '',
             # 'keyword_ranking': '',
-            cointele_sample_data['author'] = post['author']['authorTranslates'][0]['name'],  # author/authorTranslates/name
+            cointele_sample_data['author'] = post['author']['authorTranslates'][0]['name']  # author/authorTranslates/name
             cointele_sample_data['id_author'] = post['author']['authorTranslates'][0]['id']  # author/authorTranslates/id
             cointele_sample_data['link_author'] = self.url.format('authors/' + str(post['author']['slug']))  # https://cointelegraph.com/authors/ + slug_author
             cointele_sample_data['slug_author'] = post['author']['slug']  # author/slug
             # # 'tag': '',
             # # 'link_tag': '',
-            cointele_sample_data['published'] = post['postTranslate']['published'],  # postTranslate/published
+            cointele_sample_data['published'] = post['postTranslate']['published']  # postTranslate/published
+            cointele_sample_data['source'] = 'coinTelegraph'
             # cointele_sample_data['timestamp'] = datetime.strptime(str(cointele_sample_data['published']), '%Y-%m-%dT%H:%M:%S+%H%M').timestamp()
-            utils.show_message('data', 'okgreen', post)
-            utils.show_message('postBadge', 'okblue', post['postTranslate']['title'])
+            if self.coinTele.find_one({'link_content': cointele_sample_data['link_content']}):
+                self.update_news(self.coinTele, cointele_sample_data)
+                time.sleep(.05)
+            else:
+                utils.insert_into_table(self.coinTele, cointele_sample_data)
+                utils.show_message('Post', 'okgreen', cointele_sample_data)
+                self.new_posts.append(cointele_sample_data['link_content'])
+                time.sleep(.05)
+
+    def update_news(self, table, data):
+        query = {
+            'link_content': data['link_content'],
+        }
+        if table.update_one(query, {'$set': data}):
+            utils.update_success_notify(table)
