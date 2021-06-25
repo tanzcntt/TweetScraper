@@ -201,7 +201,7 @@ class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
         self.coindesk = self.myDatabase['coindeskSample']
-        # self.coindesk = self.myDatabase['coindeskTest2']
+        # self.coindesk = self.myDatabase['coindeskTest3']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -213,13 +213,15 @@ class CoindeskScraperPipeline(object):
                 my_query = {'link_content': post['link_content']}
                 posts = self.coindesk.find({}, my_query)
                 for empty_content in posts:
-                    utils.show_message('empty content', 'fail', empty_content)
+                    # utils.show_message('empty content', 'fail', empty_content)
+                    pass
                 if self.coindesk.delete_one(my_query):
                     utils.show_message('delete empty content post', 'fail', '')
             elif post['raw_content'] == '':
                 my_query = {'link_content': post['link_content']}
                 if self.coindesk.delete_one(my_query):
-                    utils.show_message('delete empty content post', 'fail', '')
+                    # utils.show_message('delete empty content post', 'fail', '')
+                    pass
             else:
                 pass
         for index, value in enumerate(self.new_posts):
@@ -238,6 +240,7 @@ class CoindeskScraperPipeline(object):
                     utils.insert_into_table(self.coindesk, item)
                     self.new_posts.append(item['link_content'])
             elif 'raw_data' in item:
+                # utils.show_message('raw_data', 'fail', item['slug_content'])
                 self.insert_raw_content(self.coindesk, item)
         elif item['source'] == 'coindeskLatestNews':
             if 'next' in item:
@@ -256,19 +259,15 @@ class CoindeskScraperPipeline(object):
 
     def insert_raw_content(self, table, data):
         post = data['raw_data']
-        self.handle_link_img(post, data)
+        slug_content = data['slug_content']
+        # self.handle_link_img(post, data)
         # many kinds of public post date
         self.handle_datetime(post, data)
         # some Video post had no content
         self.handle_content(post, data)
-
-        link_post = post['url'].strip()
-        slug_content = link_post.split('/')[-1]
-        # author = post['author'][0]['name']
-        # print(author)
-        # link_content = self.url.format(str(slug_content))
+        data['raw_data'] = ''
         query = {
-            "slug_content": slug_content
+            "slug_content": slug_content,
         }
         if table.update_one(query, {'$set': data}):
             print(f"{color['okgreen']}Update raw_content success!{color['endc']} in {self.url.format('/' + str(slug_content)) }")
@@ -326,51 +325,13 @@ class CoindeskScraperPipeline(object):
         return standard_date
 
     def handle_content(self, post, data):
-        if 'articleBody' in post:
-            data['raw_content'] = post['articleBody']
-            data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
-            print(f"{color['warning']}{data['keyword_ranking']}{color['endc']}")
-            return data['keyword_ranking']
-        else:
-            # update base one: slug but some post links url in type: index.php?p=637454
-            link_post = post['url'].strip()
-            slug_content = link_post.split('/')[-1]
-            data_ = self.coindesk.find_one({'slug_content': slug_content})
-
-            # print(f"{color['okgreen']}{data_}{color['endc']}")
-            if 'subtitle' in data_:
-                utils.show_message('empty articleBody | replace articleBody by Subtitle', 'okcyan', data_['subtitle'])
-                data['raw_content'] = data_['subtitle']
-                data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
-                return data['keyword_ranking'], data['raw_content']
-            elif 'description' in data:
-                utils.show_message('empty articleBody | replace articleBody by Description', 'okcyan', data_['description'])
-                utils.show_message('description', 'okblue', data_['description'])
-                data['raw_content'] = data_['description']
-                data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
-                return data['keyword_ranking'], data['raw_content']
-            else:
-                utils.show_message('Other key of content. Watch again and!', 'fail', '')
-            data['keyword_ranking'] = ''
-            data['raw_content'] = ''
-            return data['keyword_ranking'], data['raw_content']
+        data['raw_content'] = utils.decode_html_content(data['raw_content'])
+        data['clean_content'] = utils.clean_html_tags(data['raw_content'])
+        data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
+        utils.show_message('keywords', 'warning', data['keyword_ranking'])
 
     def handle_datetime(self, post, data):
-        for date in post:
-            if 'date' in date.lower():
-                # take datePublished as default timestamp firstly
-                if 'datePublished' in post:
-                    if post['datePublished']:
-                        data['datePublished'] = post['datePublished']
-                        data['timestamp'] = datetime.strptime(self.standard_date('datePublished', post), '%Y-%m-%dT%H:%M').timestamp()
-                        utils.show_message('datePublished', 'okcyan', data['timestamp'])
-                        return data['timestamp']
-                    else:
-                        if post[date]:
-                            data[date] = post[date]
-                            data['timestamp'] = datetime.strptime(self.standard_date(date, post), '%Y-%m-%dT%H:%M').timestamp()
-                            utils.show_message(date, 'okcyan', data['timestamp'])
-                            return data['timestamp']
+        data['timestamp'] = datetime.strptime(str(data['date']), "%Y-%m-%dT%H:%M:%S").timestamp()
 
     def handle_links(self, data):
         data['link_content'] = self.url.format(str(data['link_content']))
@@ -404,17 +365,27 @@ class CoinTelegraphScraperPipeline(object):
                 self.cointele_get_post(item)
             elif 'raw_data' in item:
                 self.get_content(item)
-                # pass
         # return item
 
+    # ================================================
+    # decode html tag and clean content
+    # get keyword ranking
+    # ================================================
     def get_content(self, data):
-        data = data['raw_data']
-        decode_html_content = codecs.decode(data, 'unicode-escape')
+        data_ = data['raw_data']
+        decode_html_content = codecs.decode(data_, 'unicode-escape')
         data_content = decode_html_content.split('fullText="')
         raw_content = data_content[1].split('audio="')[0]
         raw_content = raw_content.split('<template data-name="subscription_form"')[0]
         clean_content = remove_tags(raw_content)
 
+        data['keyword_ranking'] = utils.text_ranking(data, clean_content)
+        utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
+
+        data['raw_content'] = str(raw_content)
+        data['clean_content'] = str(clean_content)
+
+        self.update_news(self.coinTele, data)
 
     def cointele_get_post(self, data):
         for post in data['data']:
@@ -440,15 +411,15 @@ class CoinTelegraphScraperPipeline(object):
             cointele_sample_data['slug_author'] = post['author']['slug']  # author/slug
             # # 'tag': '',
             # # 'link_tag': '',
-            cointele_sample_data['published'] = post['postTranslate']['published']  # postTranslate/published
+            # cointele_sample_data['published'] = post['postTranslate']['published']  # postTranslate/published
             cointele_sample_data['source'] = 'coinTelegraph'
-            # cointele_sample_data['timestamp'] = datetime.strptime(str(cointele_sample_data['published']), '%Y-%m-%dT%H:%M:%S+%H%M').timestamp()
+            utils.handle_utc_datetime(post['postTranslate']['published'], cointele_sample_data)
             if self.coinTele.find_one({'link_content': cointele_sample_data['link_content']}):
                 self.update_news(self.coinTele, cointele_sample_data)
                 time.sleep(.05)
             else:
                 utils.insert_into_table(self.coinTele, cointele_sample_data)
-                utils.show_message('Post', 'okgreen', cointele_sample_data)
+                utils.show_message('Post', 'okblue', cointele_sample_data['link_content'])
                 self.new_posts.append(cointele_sample_data['link_content'])
                 time.sleep(.05)
 

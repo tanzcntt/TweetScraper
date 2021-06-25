@@ -259,14 +259,22 @@ class CoindeskLatest(Spider):
 			sleep(0.75)
 
 	def parse_content(self, response, **kwargs):
-		print(f"{color['warning']}Crawling detail page{color['endc']}")
-		data_json = response.css('head')
+		page = response.url
+		print(f"{color['warning']}Crawling detail page {page}{color['endc']}")
+		data_json = response.css('body')
 		for content in data_json:
-			data = {
-				'raw_data': json.loads(content.css('script[type="application/ld+json"]::text').extract_first()),
+			raw_data = json.loads(content.css('script[type="application/json"]::text').extract_first())
+			# raw_data = json.loads(content.css('script[type="application/ld+json"]::text').extract_first())
+			# if 'podcasts' not in page:
+			data = raw_data['props']['initialProps']['pageProps']['data']
+			item = {
+				'slug_content': data['slug'],
+				'raw_content': data['amp'],
+				'date': data['published'],
 				'source': 'coindesk',
+				'raw_data': raw_data,
 			}
-			yield data
+			yield item
 			sleep(1)
 
 
@@ -313,7 +321,8 @@ class CoindeskAll(Spider):
 		# time.sleep(3)
 
 	def parse_content(self, response, **kwargs):
-		print(f"{color['warning']}Crawling detail page{color['endc']}")
+		page = response.url
+		print(f"{color['warning']}Crawling detail page {page}{color['endc']}")
 		data_json = response.css('body')
 		for content in data_json:
 			raw_data = json.loads(content.css('script[type="application/json"]::text').extract_first())
@@ -346,7 +355,7 @@ class CoinTelegraphAll(Spider):
 			'accept-language': 'en-US,en;q=0.9',
 		}
 
-	def start_requests(self, total_page=5):
+	def start_requests(self, total_page=2):
 		start_url = 'https://conpletus.cointelegraph.com/v1/'
 		offset = 0
 		length = 15
@@ -398,12 +407,12 @@ class CoinTelegraphAll(Spider):
 
 	def parse_content(self, response):
 		page = response.url
-		print(f"{color['fail']}{page}{color['endc']}")
-		print(f"{color['okgreen']}crawling raw content{color['endc']}")
+		print(f"{color['okgreen']}crawling raw content in {page}{color['endc']}")
 		data = response.css('body')
 		for content in data:
 			item = {
 				"raw_data": content.css('script::text').get(),
+				'link_content': page,
 				"source": "coinTelegraph",
 			}
 			yield item

@@ -25,3 +25,11 @@ I. coindesk.com
 
 Nassim Taleb, Erstwhile Bitcoin Admirer, Publishes Paper Trashing It
 Nassim Taleb, Ex-Bitcoin Admirer, Publishes Paper Trashing It - CoinDesk
+
+4. Podcast detail page
+Json data got different from latest news, so it took more time to process data and exceptions
+
+II. cointelegraph.com
+1. UTC timezone to timestamp
+2. Crawl raw_content from detail page:
+Multiple data in huge script: WINDOW.__nuxt__ data

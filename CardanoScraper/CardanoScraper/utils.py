@@ -2,10 +2,12 @@ import os
 import re
 import json
 import shutil
+from w3lib import html
+from dateutil.parser import parse
 from time import sleep
 from itemadapter import ItemAdapter
 from . import text_rank_4_keyword
-from datetime import datetime
+from datetime import datetime, timezone
 
 csv_path = 'CardanoScraper/CardanoScraper/Data/csv/'
 raw_data_path = 'CardanoScraper/CardanoScraper/Data/raw/'
@@ -121,6 +123,12 @@ def handle_datetime(data, date_time):
 	return data['timestamp']
 
 
+def handle_utc_datetime(str_date, data):
+	my_date = parse(str_date)
+	data['published'] = my_date
+	data['timestamp'] = my_date.timestamp()
+
+
 def get_table(table):
 	return str(table).split(', ')[-1].split("'")[1]
 
@@ -130,8 +138,18 @@ def write_json_file(file, item):
 	file.write(line)
 
 
+def decode_html_content(raw_content):
+	return html.remove_entities(raw_content)
+
+
+def clean_html_tags(raw_content):
+	return html.remove_tags(raw_content)
+
+
 def text_ranking(data, raw_content_):
-	raw_content = remove_html_tags(raw_content_)
+	raw_content = clean_html_tags(raw_content_)
+	raw_content = remove_html_tags(raw_content)
+	# raw_content = remove_small_words(raw_content)
 	textRank.analyze(raw_content, window_size=6)
 	data['keyword_ranking'] = textRank.get_keywords(10)
 	return data['keyword_ranking']

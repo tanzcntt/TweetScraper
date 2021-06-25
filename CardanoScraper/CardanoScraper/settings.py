@@ -14,7 +14,8 @@ NEWSPIDER_MODULE = 'CardanoScraper.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'blogspot (https://vanrhythmfit.blogspot.com/)'
+# USER_AGENT = 'blogspot (https://vanrhythmfit.blogspot.com/)'
+USER_AGENT = 'blogspot (https://cointelegraph.com/)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -66,6 +67,7 @@ ITEM_PIPELINES = {
    'CardanoScraper.pipelines.CardanoscraperPipeline': 100,
    'CardanoScraper.pipelines.IohkScraperPipeline': 150,
    'CardanoScraper.pipelines.CoindeskScraperPipeline': 170,
+   'CardanoScraper.pipelines.CoinTelegraphScraperPipeline': 190,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
