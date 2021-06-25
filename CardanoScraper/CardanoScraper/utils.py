@@ -125,7 +125,8 @@ def handle_datetime(data, date_time):
 
 def handle_utc_datetime(str_date, data):
 	my_date = parse(str_date)
-	data['published'] = my_date
+	data['published'] = str_date
+	data['date'] = str_date
 	data['timestamp'] = my_date.timestamp()
 
 

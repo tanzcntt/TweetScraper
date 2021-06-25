@@ -133,9 +133,6 @@ class IohkContent(Spider):
 			"sec-ch-ua-mobile": "?0",
 			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
 		}
-		# total_page = 44
-		# for i in range(total_page):
-		# 	yield Request(url=url.format(i), callback=self.parse, headers=headers)
 		total_page = 0
 		while True:
 			yield Request(url=url.format(total_page), callback=self.parse, headers=headers)
@@ -369,7 +366,7 @@ class CoinTelegraphAll(Spider):
 			'accept-language': 'en-US,en;q=0.9',
 		}
 
-	def start_requests(self, total_page=20):
+	def start_requests(self, total_page=50):
 		start_url = 'https://conpletus.cointelegraph.com/v1/'
 		offset = 0
 		length = 15
@@ -418,6 +415,7 @@ class CoinTelegraphAll(Spider):
 		yield item
 		sleep(3)
 		# self.get_link_content()
+		# https://cointelegraph.com/explained/will-regulation-adapt-to-crypto-or-crypto-to-regulation-experts-answer
 
 	def parse_content(self, response):
 		page = response.url
@@ -430,4 +428,10 @@ class CoinTelegraphAll(Spider):
 				"source": "coinTelegraph",
 			}
 			yield item
-			sleep(.2)
+			sleep(2)
+
+
+# class CoinTelegraphLatest(Spider):
+# 	name = 'latestCoinTele'
+#
+# 	def
