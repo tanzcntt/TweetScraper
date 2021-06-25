@@ -33,6 +33,9 @@ curl 'https://conpletus.cointelegraph.com/v1/' \
   --compressed
 
 Bitcoin Posts data from here: default page 1st
+# ================================================
+# https://cointelegraph.com/tags/bitcoin
+# ================================================
 curl 'https://conpletus.cointelegraph.com/v1/' \
   -H 'authority: conpletus.cointelegraph.com' \
   -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
@@ -127,7 +130,9 @@ payload =[{
    "query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"
 }]
 
-==================================================================================================================================
+# ================================================
+# https://cointelegraph.com/tags/ripple
+# ================================================
 ripple news: https://cointelegraph.com/tags/ripple
 curl 'https://conpletus.cointelegraph.com/v1/' \
   -H 'authority: conpletus.cointelegraph.com' \
@@ -145,10 +150,32 @@ curl 'https://conpletus.cointelegraph.com/v1/' \
   --data-raw $'{"operationName":"TagPagePostsQuery","variables":{"slug":"ripple","order":"postPublishedTime","offset":15,"length":15,"short":"en","cacheTimeInMS":300000},"query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
   --compressed
 
+# ================================================
+# https://cointelegraph.com/tags/litecoin
+# ================================================
+curl 'https://conpletus.cointelegraph.com/v1/' \
+  -H 'authority: conpletus.cointelegraph.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'accept: */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://cointelegraph.com' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://cointelegraph.com/' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  --data-raw $'{"operationName":"TagPagePostsQuery","variables":{"slug":"litecoin","order":"postPublishedTime","offset":15,"length":15,"short":"en","cacheTimeInMS":300000},"query":"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}' \
+  --compressed
 
-# ================================================
+ethereum
+altcoin
+blockchain
+
+# ================================================================================================
 # dapp.com
-# ================================================
+# ================================================================================================
 curl 'https://www.dapp.com/api/topics-apps/?page=1' \
   -H 'authority: www.dapp.com' \
   -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
