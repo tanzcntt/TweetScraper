@@ -201,7 +201,7 @@ class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
         self.coindesk = self.myDatabase['coindeskSample']
-        # self.coindesk = self.myDatabase['coindeskTest3']
+        # self.coindesk = self.myDatabase['coindeskTest4']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -210,6 +210,7 @@ class CoindeskScraperPipeline(object):
         for post in data:
             if 'raw_content' not in post:
                 print(post['link_content'])
+                self.new_posts.remove(post['link_content'])
                 my_query = {'link_content': post['link_content']}
                 posts = self.coindesk.find({}, my_query)
                 for empty_content in posts:
@@ -228,6 +229,9 @@ class CoindeskScraperPipeline(object):
             utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}Coindesk Crawl Completed!{color['endc']}")
 
+    # ================================================
+    # classify flow of data and push data to mongoDb
+    # ================================================
     def process_item(self, item, spider):
         print(f"{color['okblue']}Coindesk Pipeline handling...{color['endc']}\n")
         if item['source'] == 'coindesk':
@@ -238,6 +242,7 @@ class CoindeskScraperPipeline(object):
                     self.update_table(self.coindesk, item)
                 else:
                     utils.insert_into_table(self.coindesk, item)
+                    utils.show_message('Post', 'okblue', item['link_content'])
                     self.new_posts.append(item['link_content'])
             elif 'raw_data' in item:
                 # utils.show_message('raw_data', 'fail', item['slug_content'])
@@ -258,13 +263,11 @@ class CoindeskScraperPipeline(object):
         time.sleep(1)
 
     def insert_raw_content(self, table, data):
-        post = data['raw_data']
         slug_content = data['slug_content']
-        # self.handle_link_img(post, data)
         # many kinds of public post date
-        self.handle_datetime(post, data)
+        self.handle_datetime(data)
         # some Video post had no content
-        self.handle_content(post, data)
+        self.handle_content(data)
         data['raw_data'] = ''
         query = {
             "slug_content": slug_content,
@@ -289,8 +292,16 @@ class CoindeskScraperPipeline(object):
             coindesk_sample_data['subtitle'] = post['text']
             if 'desktop' in img:
                 coindesk_sample_data['link_img'] = img['desktop']['src']
-            else:
+            elif 'mobile' in img:
                 coindesk_sample_data['link_img'] = img['mobile']['src']
+            elif 'mobile@2x' in img:
+                coindesk_sample_data['link_img'] = img['mobile@2x']['src']
+            elif 'mobile@3x' in img:
+                coindesk_sample_data['link_img'] = img['mobile@3x']['src']
+            elif 'full' in img:
+                coindesk_sample_data['link_img'] = img['full']['src']
+            else:
+                coindesk_sample_data['link_img'] = ''
             coindesk_sample_data['slug_content'] = post['slug']
             coindesk_sample_data['link_content'] = self.url.format('/' + str(post['slug']))
             coindesk_sample_data['author'] = post['authors'][0]['name']
@@ -324,25 +335,19 @@ class CoindeskScraperPipeline(object):
         standard_date = ':'.join(standard_date)
         return standard_date
 
-    def handle_content(self, post, data):
+    def handle_content(self, data):
         data['raw_content'] = utils.decode_html_content(data['raw_content'])
         data['clean_content'] = utils.clean_html_tags(data['raw_content'])
         data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
         utils.show_message('keywords', 'warning', data['keyword_ranking'])
 
-    def handle_datetime(self, post, data):
+    def handle_datetime(self, data):
         data['timestamp'] = datetime.strptime(str(data['date']), "%Y-%m-%dT%H:%M:%S").timestamp()
 
     def handle_links(self, data):
         data['link_content'] = self.url.format(str(data['link_content']))
         data['link_tag'] = self.url.format(str(data['link_tag']))
         data['link_author'] = self.url.format(str(data['link_author']))
-
-    def handle_link_img(self, post, data):
-        if type(post['thumbnailUrl']) == list:
-            data['link_img'] = post['thumbnailUrl'][0]
-        else:
-            data['link_img'] = post['thumbnailUrl']
 
 
 class CoinTelegraphScraperPipeline(object):

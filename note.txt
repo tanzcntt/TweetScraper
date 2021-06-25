@@ -131,3 +131,103 @@ curl 'https://twitter.com/i/api/2/search/adaptive.json?include_profile_interstit
         #     f'&tweet_search_mode=live'
         # )
         # self.url = self.url + '&q={query}'
+
+
+Sources:
+1. cardano.org
+    https://forum.cardano.org/latest
+    https://forum.cardano.org/c/english/announcements/13?page=0
+
+
+author_page_links = <Selector xpath="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' author ')]/following-sibling::*[name() = 'a' and (position() = 1)]" data='<a href="/author/Albert-Einstein">(ab...'>
+pagination_links = <Selector xpath="descendant-or-self::li[@class and contains(concat(' ', normalize-space(@class), ' '), ' next ')]/descendant-or-self::*/a" data='<a href="/page/10/">Next <span aria-h...'>
+
+
+web scraping is to extract structured data from unstructured sources
+
+curl 'https://techcrunch.com/wp-json/tc/v1/magazine?page=2&_embed=true&cachePrevention=0' \
+  -H 'authority: techcrunch.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'x-tc-ec-auth-token: ' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'x-tc-uuid: ' \
+  -H 'content-type: application/json; charset=utf-8' \
+  -H 'accept: */*' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://techcrunch.com/' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: BX=7i8nm4lgc1n66&b=3&s=ob; GUC=AQEBAQFgwi5gykId6gQp; A1=d=AQABBMbcwGACEK6DdTfFITC5xKZkJSX2InkFEgEBAQEuwmDKYAAAAAAA_eMAAAcIxtzAYCX2Ink&S=AQAAAgA_sLfGEAzoiAXzJ-KSGcM; A3=d=AQABBMbcwGACEK6DdTfFITC5xKZkJSX2InkFEgEBAQEuwmDKYAAAAAAA_eMAAAcIxtzAYCX2Ink&S=AQAAAgA_sLfGEAzoiAXzJ-KSGcM; A1S=d=AQABBMbcwGACEK6DdTfFITC5xKZkJSX2InkFEgEBAQEuwmDKYAAAAAAA_eMAAAcIxtzAYCX2Ink&S=AQAAAgA_sLfGEAzoiAXzJ-KSGcM&j=WORLD; _parsely_session={%22sid%22:1%2C%22surl%22:%22https://techcrunch.com/%22%2C%22sref%22:%22https://medium.com/@geneng/web-crawling-made-easy-with-scrapy-and-rest-api-ed993e84abd3%22%2C%22sts%22:1623252168407%2C%22slts%22:0}; _parsely_visitor={%22id%22:%22pid=a8637dd5549039ba27263073229a5274%22%2C%22session_count%22:1%2C%22last_session_ts%22:1623252168407}; cmp=t=1623252169&j=0; rxx=2f7x47h4yjg.2cxbtvkg&v=1; _ga=GA1.2.553430461.1623252171; _gid=GA1.2.496787838.1623252171; __tbc=%7Bjzx%7DjGAToaZMxJYLoS7N4KRjDU9qM_E18wCflyDgX8eyigbwy-GM2f7NRomg1SAgcjBeIU1cTvnYj8HVrfbmEXmpFQ; __pat=-25200000; __pvi=%7B%22id%22%3A%22v-kppmfj8qd51of4tm%22%2C%22domain%22%3A%22.techcrunch.com%22%2C%22time%22%3A1623252172308%7D; xbc=%7Bjzx%7DTm4ITyM7A49nYQWisinXX6uJJfw5E_KUE9ri5evoJG_v_UFTfTTTHl7oaRtBS3A4-SVnR_FHWqtjALwXQ2FW4hFIToPazqZzVqMSogCJxzrhRrGCmUVwZDO4AAN5OvSkfMikac6-L23wtB6iqYD-7C0jmpoRBwvSayuX8eEQfF_6vlpLfv_ckUhu29VRib7wkUQpNMAxgYTxofcfCrEhoB1eyOpnRbr7pPdLtIGx8Gh6iQ1eFAp_DmO1SmEYlFVovoS8cX5YpM5j9zvjSkkyRBSGCAvEhNuePOl7roP92JOgJIdg7Cf-S4yTBWJgEKUKhBbCsko9XQf5D6kzzBumXRfVTWjHSVHMj51w57Hx_N19YfgrfIgtooRYNB0YjEXD_2w71A87V8YOtNxKFe4GIEwQfY6pvtCPRwW-cf7cX6-d_mMOETHIHC-KWHNwyVAJh_kBj18aLAwnTsxDI_GFSwEkd3tDwa5vqPn_z70sbBIO_VoHiHewHSceJumjL3s0j7jSmWxVhadWf5j38P-1WyQBLD0vOb7Q7XUKXfDQTDUs3Xb-G50NsfqmBXG04JzyVJCQDzv9z-5v67v34NtUPqUSWJtb7TRmIgwbsuX6VS31_A3L602jMzT-cNMmTF2hX6tet62zsGIRSNJGp0kWcyVhokesGIIvGyH3g_sLuwFzamgzc77nFc4JE_Zl2OqSXlPv5BmbDC0KPJxMxntBlThMNTkw7ZLJ3O2gze_VJo3OqSumHEe-QdnEL9gDkvNB; cX_S=kppmfk93aslul8p7; cX_G=cx%3A32kbosoj4zs6lmi5xy6k24uoo%3A308ku50c549vw' \
+  --compressed
+
+curl 'https://iohk.io/page-data/en/blog/posts/page-1/page-data.json' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'Referer: ' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  --compressed
+
+fetch("https://iohk.io/page-data/en/blog/posts/page-1/page-data.json", {
+  "headers": {
+    "sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0"
+  },
+  "referrer": "",
+  "referrerPolicy": "no-referrer",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "omit"
+});
+
+curl 'https://iohk.io/page-data/en/blog/posts/2021/05/26/reimagining-peer-to-peer-finance-with-marlowe/page-data.json' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'Referer: ' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  --compressed
+
+curl 'https://medium.com/_/graphql' \
+  -H 'authority: medium.com' \
+  -H 'sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"' \
+  -H 'apollographql-client-name: lite' \
+  -H 'medium-frontend-route: homepage' \
+  -H 'ot-tracer-sampled: true' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'ot-tracer-traceid: 50d27572979cc1fa' \
+  -H 'medium-frontend-path: /' \
+  -H 'graphql-operation: WebRecommendedFeedQuery' \
+  -H 'content-type: application/json' \
+  -H 'accept: */*' \
+  -H 'medium-frontend-app: lite/main-20210610-012115-fa9b380a3e' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36' \
+  -H 'apollographql-client-version: main-20210610-012115-fa9b380a3e' \
+  -H 'ot-tracer-spanid: 3db59c041b57cca9' \
+  -H 'origin: https://medium.com' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://medium.com/' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: optimizelyEndUserId=lo_59cf26b35908; _ga=GA1.2.2084701948.1621910996; lightstep_guid/lite-web=6bf660bc091c4231; lightstep_session_id=7bdb6fcd1ed5ccd8; g_state={"i_p":1622789952604,"i_l":2}; lightstep_guid/medium-web=7fe952436451c0ed; sz=1351; pr=1; tz=-420; _gid=GA1.2.131603201.1623059463; uid=5e266e99d84a; nonce=3qlrJA7B; sid=1:h0ttqznLrDcFyvgjknXsuRVe9K7D8PNwusq/hLnDMVXlieKKFhxJzKmEOCdG9caT; xsrf=18cbba24d9fd; __cfruid=65b95397cf67d246bcbe9dbc55c83a103c096365-1623288598; _parsely_session={%22sid%22:32%2C%22surl%22:%22https://medium.com/@geneng/web-crawling-made-easy-with-scrapy-and-rest-api-ed993e84abd3%22%2C%22sref%22:%22%22%2C%22sts%22:1623288602747%2C%22slts%22:1623282726418}; _parsely_visitor={%22id%22:%22pid=5455eb247e3996fb94547bfda3755eea%22%2C%22session_count%22:32%2C%22last_session_ts%22:1623288602747}; _gat=1; _dd_s=rum=0&expire=1623293479298' \
+  --data-raw '{"operationName":"WebRecommendedFeedQuery","variables":{},"query":"query WebRecommendedFeedQuery($paging: PagingOptions) {\n  webRecommendedFeed(paging: $paging) {\n    items {\n      feedId\n      reason\n      moduleSourceEncoding\n      postProviderExplanation {\n        reason\n        topic {\n          name\n          __typename\n        }\n        __typename\n      }\n      post {\n        ...HomeFeedItem_post\n        ...useHideFeedPosts_post\n        __typename\n      }\n      __typename\n    }\n    pagingInfo {\n      next {\n        limit\n        to\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment HomeFeedItem_post on Post {\n  __typename\n  id\n  title\n  firstPublishedAt\n  mediumUrl\n  collection {\n    id\n    name\n    domain\n    logo {\n      id\n      __typename\n    }\n    __typename\n  }\n  creator {\n    id\n    name\n    username\n    imageId\n    mediumMemberAt\n    __typename\n  }\n  previewImage {\n    id\n    __typename\n  }\n  previewContent {\n    subtitle\n    __typename\n  }\n  readingTime\n  tags {\n    ...TopicPill_tag\n    __typename\n  }\n  ...BookmarkButton_post\n  ...CreatorActionOverflowPopover_post\n  ...PostPresentationTracker_post\n  ...PostPreviewAvatar_post\n}\n\nfragment TopicPill_tag on Tag {\n  __typename\n  id\n  displayTitle\n}\n\nfragment BookmarkButton_post on Post {\n  ...SusiClickable_post\n  ...WithSetReadingList_post\n  __typename\n  id\n}\n\nfragment SusiClickable_post on Post {\n  id\n  mediumUrl\n  ...SusiContainer_post\n  __typename\n}\n\nfragment SusiContainer_post on Post {\n  id\n  __typename\n}\n\nfragment WithSetReadingList_post on Post {\n  ...ReadingList_post\n  __typename\n  id\n}\n\nfragment ReadingList_post on Post {\n  __typename\n  id\n  viewerEdge {\n    id\n    readingList\n    __typename\n  }\n}\n\nfragment CreatorActionOverflowPopover_post on Post {\n  allowResponses\n  id\n  statusForCollection\n  isLocked\n  isPublished\n  clapCount\n  mediumUrl\n  pinnedAt\n  pinnedByCreatorAt\n  curationEligibleAt\n  mediumUrl\n  responseDistribution\n  visibility\n  ...useIsPinnedInContext_post\n  pendingCollection {\n    id\n    name\n    creator {\n      id\n      __typename\n    }\n    avatar {\n      id\n      __typename\n    }\n    viewerEdge {\n      id\n      isEditor\n      __typename\n    }\n    domain\n    slug\n    __typename\n  }\n  creator {\n    id\n    viewerEdge {\n      id\n      isBlocking\n      __typename\n    }\n    ...MutePopoverOptions_creator\n    ...auroraHooks_publisher\n    __typename\n  }\n  collection {\n    id\n    name\n    creator {\n      id\n      __typename\n    }\n    avatar {\n      id\n      __typename\n    }\n    viewerEdge {\n      id\n      isEditor\n      __typename\n    }\n    domain\n    slug\n    ...MutePopoverOptions_collection\n    ...auroraHooks_publisher\n    __typename\n  }\n  viewerEdge {\n    clapCount\n    id\n    shareKey\n    __typename\n  }\n  ...ClapMutation_post\n  __typename\n}\n\nfragment MutePopoverOptions_creator on User {\n  id\n  __typename\n}\n\nfragment MutePopoverOptions_collection on Collection {\n  id\n  __typename\n}\n\nfragment ClapMutation_post on Post {\n  __typename\n  id\n  clapCount\n  viewerEdge {\n    id\n    clapCount\n    __typename\n  }\n  ...MultiVoteCount_post\n}\n\nfragment MultiVoteCount_post on Post {\n  id\n  ...PostVotersNetwork_post\n  __typename\n}\n\nfragment PostVotersNetwork_post on Post {\n  voterCount\n  viewerEdge {\n    id\n    clapCount\n    __typename\n  }\n  recommenders {\n    name\n    __typename\n  }\n  __typename\n  id\n}\n\nfragment useIsPinnedInContext_post on Post {\n  id\n  collection {\n    id\n    __typename\n  }\n  pendingCollection {\n    id\n    __typename\n  }\n  pinnedAt\n  pinnedByCreatorAt\n  __typename\n}\n\nfragment auroraHooks_publisher on Publisher {\n  __typename\n  ... on Collection {\n    isAuroraEligible\n    isAuroraVisible\n    viewerEdge {\n      id\n      isEditor\n      __typename\n    }\n    __typename\n    id\n  }\n  ... on User {\n    isAuroraVisible\n    __typename\n    id\n  }\n}\n\nfragment PostPresentationTracker_post on Post {\n  id\n  visibility\n  previewContent {\n    isFullContent\n    __typename\n  }\n  collection {\n    id\n    slug\n    __typename\n  }\n  __typename\n}\n\nfragment PostPreviewAvatar_post on Post {\n  __typename\n  id\n  collection {\n    id\n    name\n    ...CollectionAvatar_collection\n    ...collectionUrl_collection\n    __typename\n  }\n  creator {\n    id\n    username\n    name\n    ...UserAvatar_user\n    ...userUrl_user\n    __typename\n  }\n}\n\nfragment CollectionAvatar_collection on Collection {\n  name\n  avatar {\n    id\n    __typename\n  }\n  ...collectionUrl_collection\n  __typename\n  id\n}\n\nfragment collectionUrl_collection on Collection {\n  id\n  domain\n  slug\n  __typename\n}\n\nfragment UserAvatar_user on User {\n  __typename\n  username\n  id\n  name\n  imageId\n  mediumMemberAt\n  ...userUrl_user\n}\n\nfragment userUrl_user on User {\n  __typename\n  id\n  customDomainState {\n    live {\n      domain\n      __typename\n    }\n    __typename\n  }\n  username\n  hasSubdomain\n}\n\nfragment useHideFeedPosts_post on Post {\n  __typename\n  id\n  collection {\n    id\n    __typename\n  }\n  creator {\n    id\n    __typename\n  }\n}\n"}' \
+  --compressed
+
+take 4, skip 0
+001e104c-fa08-47c2-b53c-194cf78e77f3 0
+00315e27-d403-45f9-9b52-b826086fafb5 1
+00790e31-cf35-439e-9c35-71f61ffc1a8f 2
+00e709db-39c2-4e3d-99cd-65aacc6a45ba 3
+
+take 2, skip 0
+001e104c-fa08-47c2-b53c-194cf78e77f3 0
+00315e27-d403-45f9-9b52-b826086fafb5 1
+
+take 4 skip 2
+00790e31-cf35-439e-9c35-71f61ffc1a8f 2
+00e709db-39c2-4e3d-99cd-65aacc6a45ba 3
+019d605f-b1b6-4eae-aac7-458a2096c4f7 4
+01a07392-5cae-4b3f-8a0f-4eeb08ce0666 5
+

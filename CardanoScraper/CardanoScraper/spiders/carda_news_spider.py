@@ -265,17 +265,33 @@ class CoindeskLatest(Spider):
 		for content in data_json:
 			raw_data = json.loads(content.css('script[type="application/json"]::text').extract_first())
 			# raw_data = json.loads(content.css('script[type="application/ld+json"]::text').extract_first())
-			# if 'podcasts' not in page:
-			data = raw_data['props']['initialProps']['pageProps']['data']
-			item = {
-				'slug_content': data['slug'],
-				'raw_content': data['amp'],
-				'date': data['published'],
-				'source': 'coindesk',
-				'raw_data': raw_data,
-			}
-			yield item
-			sleep(1)
+			if 'podcasts' in page:
+				pass
+				# data = raw_data['props']['initialProps']['pageProps']
+				# item = {
+				# 	'slug_content': data['slug'],
+				# 	'raw_content': data['amp'],
+				# 	'date': data['published'],
+				# 	'source': 'coindesk',
+				# 	'raw_data': raw_data,
+				# }
+				# yield item
+				# sleep(1)
+			elif 'tv' in page:
+				pass
+			else:
+				data = raw_data['props']['initialProps']['pageProps']['data']
+				img = data['media']['images']
+				item = {
+					'slug_content': data['slug'],
+					'raw_content': data['amp'],
+					'date': data['published'],
+					'link_img': img['desktop']['src'] if 'desktop' in img else img['mobile']['src'],
+					'source': 'coindesk',
+					'raw_data': raw_data,
+				}
+				yield item
+				sleep(1)
 
 
 class CoindeskAll(Spider):
@@ -318,7 +334,6 @@ class CoindeskAll(Spider):
 			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
 		yield data
 		time.sleep(2)
-		# time.sleep(3)
 
 	def parse_content(self, response, **kwargs):
 		page = response.url
@@ -326,16 +341,15 @@ class CoindeskAll(Spider):
 		data_json = response.css('body')
 		for content in data_json:
 			raw_data = json.loads(content.css('script[type="application/json"]::text').extract_first())
-			data = {
-				'slug_content': raw_data['props']['initialProps']['pageProps']['data']['slug'],
-				'raw_content': raw_data['props']['initialProps']['pageProps']['data']['amp'],
+			data = raw_data['props']['initialProps']['pageProps']['data']
+			item = {
+				'slug_content': data['slug'],
+				'raw_content': data['amp'],
 				'source': 'coindeskLatestNews',
 				'raw_data': raw_data,
 			}
-			# print(f"Raw_content{color['okgreen']}{data['raw_content']}{color['endc']}")
-			yield data
+			yield item
 			sleep(.1)
-			# sleep(.5)
 
 
 class CoinTelegraphAll(Spider):
@@ -355,7 +369,7 @@ class CoinTelegraphAll(Spider):
 			'accept-language': 'en-US,en;q=0.9',
 		}
 
-	def start_requests(self, total_page=2):
+	def start_requests(self, total_page=20):
 		start_url = 'https://conpletus.cointelegraph.com/v1/'
 		offset = 0
 		length = 15
