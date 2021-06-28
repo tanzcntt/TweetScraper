@@ -180,23 +180,9 @@ class IohkLatest(Spider):
 class CoindeskLatest(Spider):
 	name = "latestCoindesk"
 
-	def __init__(self):
-		self.headers = {
-			"accept-encoding": "gzip, deflate, br",
-			"accept-language": "en-US,en;q=0.9",
-			"origin": "https://www.coindesk.com",
-			"referer": "https://www.coindesk.com/",
-			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
-			"sec-ch-ua-mobile": "?0",
-			"sec-fetch-dest": "empty",
-			"sec-fetch-mode": "cors",
-			"sec-fetch-site": "cross-site",
-			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
-		}
-
 	def start_requests(self):
 		url = 'https://www.coindesk.com/'
-		yield Request(url=url, callback=self.parse, headers=self.headers)
+		yield Request(url=url, callback=self.parse, headers=cfg.coindesk_headers)
 
 	def parse(self, response, **kwargs):
 		# posts = response.css('div.top-right-bar section.article-card-fh')
@@ -224,7 +210,7 @@ class CoindeskLatest(Spider):
 				'latest': 1,
 				'approve': 1,
 			}
-			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
+			yield response.follow(url=link_content, callback=self.parse_content, headers=cfg.coindesk_headers)
 			yield data
 			sleep(.75)
 		# ================================================
@@ -250,7 +236,7 @@ class CoindeskLatest(Spider):
 				'latest': 1,
 				'approve': 1,
 			}
-			yield response.follow(url=link_content, callback=self.parse_content)
+			yield response.follow(url=link_content, callback=self.parse_content, headers=cfg.coindesk_headers)
 			yield data
 			sleep(0.75)
 
@@ -263,16 +249,6 @@ class CoindeskLatest(Spider):
 			# raw_data = json.loads(content.css('script[type="application/ld+json"]::text').extract_first())
 			if 'podcasts' in page:
 				pass
-			# data = raw_data['props']['initialProps']['pageProps']
-			# item = {
-			# 	'slug_content': data['slug'],
-			# 	'raw_content': data['amp'],
-			# 	'date': data['published'],
-			# 	'source': 'coindesk',
-			# 	'raw_data': raw_data,
-			# }
-			# yield item
-			# sleep(1)
 			elif 'tv' in page:
 				pass
 			else:
@@ -295,28 +271,15 @@ class CoindeskAll(Spider):
 
 	def __init__(self):
 		self.url = 'https://www.coindesk.com{}'
-		self.headers = {
-			"accept-encoding": "gzip, deflate, br",
-			"accept-language": "en-US,en;q=0.9",
-			"origin": "https://www.coindesk.com",
-			"referer": "https://www.coindesk.com/",
-			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
-			"sec-ch-ua-mobile": "?0",
-			"sec-fetch-dest": "empty",
-			"sec-fetch-mode": "cors",
-			"sec-fetch-site": "cross-site",
-			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
-		}
 
 	def start_requests(self):
 		url = 'https://www.coindesk.com/wp-json/v1/articles/format/news/{}?mode=list'
-		total_page = 0  # max page = 99 <23/06/21>
+		total_page = cfg.coindesk_total_page  # max page = 99 <23/06/21>
 		while True:
-			yield Request(url=url.format(total_page), callback=self.parse, headers=self.headers)
+			yield Request(url=url.format(total_page), callback=self.parse, headers=cfg.coindesk_headers)
 			total_page += 1
 			if total_page > 100:
 				break
-
 	# for i in range(total_page):
 	# 	yield Request(url=url.format(i), callback=self.parse, headers=self.headers)
 
@@ -328,7 +291,7 @@ class CoindeskAll(Spider):
 		for post in data['posts']:
 			link_content = self.url.format('/' + str(post['slug']))
 			print(f"{color['okgreen']}{link_content}{color['endc']}")
-			yield response.follow(url=link_content, callback=self.parse_content, headers=self.headers)
+			yield response.follow(url=link_content, callback=self.parse_content, headers=cfg.coindesk_headers)
 		yield data
 		time.sleep(2)
 
@@ -352,12 +315,12 @@ class CoindeskAll(Spider):
 class CoinTeleBitcoinAll(Spider):
 	name = 'allCointeleBitcoin'
 
-	def start_requests(self, total_page=50):
+	def start_requests(self):
 		start_url = cfg.coinTelegraph_api_data
 		offset = 0
 		length = 15
 		# body='{"operationName": "TagPagePostsQuery","variables": {"slug": "bitcoin","order": "postPublishedTime","offset": 0,"length": 15,"short": "en","cacheTimeInMS": 300000},"query": "query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}',
-		for i in range(total_page):
+		for i in range(cfg.coinTelegraph_total_page):
 			body_ = '{"operationName": "TagPagePostsQuery","variables": {"slug": "bitcoin","order": "postPublishedTime",' + \
 					'"offset": {},'.format(offset) + \
 					'"length": {},'.format(length) + \
@@ -407,12 +370,12 @@ class CoinTeleBitcoinAll(Spider):
 class CoinTeleEthereumAll(Spider):
 	name = 'allCointeleEthereum'
 
-	def start_requests(self, total_page=50):
+	def start_requests(self):
 		start_url = cfg.coinTelegraph_api_data
 		offset = 0
 		length = 15
 		# body='{"operationName": "TagPagePostsQuery","variables": {"slug": "bitcoin","order": "postPublishedTime","offset": 0,"length": 15,"short": "en","cacheTimeInMS": 300000},"query": "query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}',
-		for i in range(total_page):
+		for i in range(cfg.coinTelegraph_total_page):
 			body_ = '{"operationName": "TagPagePostsQuery","variables": {"slug": "ethereum","order": "postPublishedTime",' + \
 					'"offset": {},'.format(offset) + \
 					'"length": {},'.format(length) + \
@@ -456,6 +419,12 @@ class CoinTeleEthereumAll(Spider):
 			}
 			yield item
 			sleep(2)
+
+
+class CoinTeleRippleAll(Spider):
+	name = 'allCointeleRipple'
+
+	# def start_requests(self):
 
 
 class CoinTelegraphLatest(Spider):
