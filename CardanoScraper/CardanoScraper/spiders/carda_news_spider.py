@@ -12,6 +12,9 @@ mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
 myDatabase = mongoClient["cardanoNews"]
 
 
+# ================================================================================================
+# forum.cardano.org
+# ================================================================================================
 class CardanoSpider(Spider):
 	name = "latestCarda"
 	start_urls = [
@@ -121,6 +124,9 @@ class CardanoNewsContent(Spider):
 		time.sleep(1)
 
 
+# ================================================================================================
+# iohk.io/en/blog/posts/page-1
+# ================================================================================================
 class IohkContent(Spider):
 	name = "allIohk"
 
@@ -170,13 +176,10 @@ class IohkLatest(Spider):
 		time.sleep(2)
 
 
-# class CardanoMedium(scrapy.Spider):
-# 	name = 'mediumCarda'
-#
-# 	def start_requests(self):
-# 		start_urls = ['']
-
-
+# ================================================================================================
+# Coindesk.com
+# ================================================================================================
+# coindesk.com
 class CoindeskLatest(Spider):
 	name = "latestCoindesk"
 
@@ -266,6 +269,9 @@ class CoindeskLatest(Spider):
 				sleep(1)
 
 
+# ================================================
+# coindesk.com/news
+# ================================================
 class CoindeskAll(Spider):
 	name = "allCoindesk"
 
@@ -312,6 +318,10 @@ class CoindeskAll(Spider):
 			sleep(.1)
 
 
+# ================================================================================================
+# cointelegraph.com
+# ================================================================================================
+# cointelegraph.com/tags/bitcoin
 class CoinTeleBitcoinAll(Spider):
 	name = 'allCointeleBitcoin'
 
@@ -332,6 +342,7 @@ class CoinTeleBitcoinAll(Spider):
 			offset += 15
 
 	def parse(self, response, **kwargs):
+		print(f"{color['fail']}All Bitcoin CoinTelegraph Thread{color['endc']}")
 		data = json.loads(response.body)
 		# get link content
 		data_ = data['data']['locale']['tag']['posts']['data']
@@ -367,6 +378,9 @@ class CoinTeleBitcoinAll(Spider):
 			sleep(2)
 
 
+# ================================================
+# cointelegraph.com/tags/ethereum
+# ================================================
 class CoinTeleEthereumAll(Spider):
 	name = 'allCointeleEthereum'
 
@@ -387,6 +401,7 @@ class CoinTeleEthereumAll(Spider):
 			offset += 15
 
 	def parse(self, response, **kwargs):
+		print(f"{color['fail']}All Ethereum CoinTelegraph Thread{color['endc']}")
 		data = json.loads(response.body)
 		# get link content
 		data_ = data['data']['locale']['tag']['posts']['data']
@@ -394,9 +409,9 @@ class CoinTeleEthereumAll(Spider):
 			post_badge_title = post['postBadge']['postBadgeTranslates'][0]['title'].lower()
 			if post_badge_title == 'experts answer' or post_badge_title == 'explained':
 				pass
-			else:
-				link_content = cfg.coinTelegraph_url.format(
-					'news/' + str(post['slug']))  # https://cointelegraph.com/news/ + slug
+			# else:
+			link_content = cfg.coinTelegraph_url.format(
+				'news/' + str(post['slug']))  # https://cointelegraph.com/news/ + slug
 			yield response.follow(url=link_content, callback=self.parse_content, headers=cfg.coinTelegraph_headers)
 		item = {
 			'title': '',
@@ -421,10 +436,61 @@ class CoinTeleEthereumAll(Spider):
 			sleep(2)
 
 
-class CoinTeleRippleAll(Spider):
-	name = 'allCointeleRipple'
+# ================================================
+# cointelegraph.com/tags/blockchain
+# ================================================
+class CoinTeleBlockchainAll(Spider):
+	name = 'allCointeleBlockchain'
 
-	# def start_requests(self):
+	def start_requests(self):
+		start_url = cfg.coinTelegraph_api_data
+		offset = 0
+		length = 15
+		for i in range(cfg.coinTelegraph_total_page):
+			body_ = '{"operationName": "TagPagePostsQuery","variables": {"slug": "blockchain","order": "postPublishedTime",' + \
+					'"offset": {},'.format(offset) + \
+					'"length": {},'.format(length) + \
+					'"short": "en","cacheTimeInMS": 300000},"query": ' \
+					'"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}'
+			yield FormRequest(url=start_url, callback=self.parse,
+							  dont_filter=True, method="POST",
+							  body=body_, headers=cfg.coinTelegraph_headers)
+			offset += 15
+
+	def parse(self, response, **kwargs):
+		print(f"{color['fail']}All Blockchain CoinTelegraph Thread{color['endc']}")
+		data = json.loads(response.body)  # load json data from API
+		data_ = data['data']['locale']['tag']['posts']['data']
+		for post in data_:
+			post_badge_title = post['postBadge']['postBadgeTranslates'][0]['title'].lower()
+			if post_badge_title == 'experts answer' or post_badge_title == 'explained':
+				# link_content = self.url.format('explained/' + str(post['slug']))
+				pass
+			# else:
+			link_content = cfg.coinTelegraph_url.format(
+				'news/' + str(post['slug']))  # https://cointelegraph.com/news/ + slug
+			yield response.follow(url=link_content, callback=self.parse_content, headers=cfg.coinTelegraph_headers)
+		item = {
+			'title': '',
+			'data': data_,
+			'source': 'coinTelegraph',
+		}
+		yield item
+		sleep(3)
+
+	def parse_content(self, response):
+		page = response.url
+		print(f"{color['okgreen']}Crawling raw content in {page}{color['endc']}")
+		data = response.css('body')
+		for content in data:
+			item = {
+				"raw_data": content.css('script::text').get(),
+				'link_content': page,
+				'tag': 'blockchain',
+				"source": "coinTelegraph",
+			}
+			yield item
+			sleep(2)
 
 
 class CoinTelegraphLatest(Spider):

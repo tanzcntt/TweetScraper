@@ -176,3 +176,28 @@ def insert_success_notify(table):
 
 def show_message(message, colour, data):
 	print(f"{message}: {color[colour]}{data}{color['endc']}")
+
+
+def handle_empty_content(table, new_posts):
+	data = table.find()
+	for post in data:
+		link_content = post['link_content']
+		if 'raw_content' not in post:
+			show_message('empty content', 'fail', link_content)
+			# if post['link_content'] in self.new_posts:
+			new_posts.remove(post['link_content'])
+			my_query = {'link_content': post['link_content']}
+			posts = table.find({}, my_query)
+			for empty_content in posts:
+				# utils.show_message('empty content', 'fail', empty_content)
+				pass
+			if table.delete_one(my_query):
+				show_message('Empty content post was deleted!', 'okblue', 1)
+		elif post['raw_content'] == '':
+			my_query = {'link_content': post['link_content']}
+			show_message('empty content', 'fail', link_content)
+			new_posts.remove(post['link_content'])
+			if table.delete_one(my_query):
+				pass
+		else:
+			pass

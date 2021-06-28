@@ -12,29 +12,6 @@ color = utils.colors_mark()
 mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
 
 
-def handle_empty_content(table, new_posts):
-    data = table.find()
-    for post in data:
-        if 'raw_content' not in post:
-            link_content = post['link_content']
-            utils.show_message('empty content', 'fail', link_content)
-            # if post['link_content'] in self.new_posts:
-            new_posts.remove(post['link_content'])
-            my_query = {'link_content': post['link_content']}
-            posts = table.find({}, my_query)
-            for empty_content in posts:
-                # utils.show_message('empty content', 'fail', empty_content)
-                pass
-            if table.delete_one(my_query):
-                utils.show_message('Empty content post was deleted!', 'okblue', 1)
-        elif post['raw_content'] == '':
-            my_query = {'link_content': post['link_content']}
-            if table.delete_one(my_query):
-                pass
-        else:
-            pass
-
-
 def sample_data():
     data = {
         'id': '',  # id
@@ -223,7 +200,7 @@ class CoindeskScraperPipeline(object):
         self.new_posts = []
 
     def close_spider(self, spider):
-        handle_empty_content(self.coindesk, self.new_posts)
+        utils.handle_empty_content(self.coindesk, self.new_posts)
         for index, value in enumerate(self.new_posts):
             utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}Coindesk Crawl Completed!{color['endc']}")
@@ -355,11 +332,11 @@ class CoinTelegraphScraperPipeline(object):
         self.myDatabase = mongoClient['cardanoNews']
         # self.coinTele = self.myDatabase['coinTelegraphSample']
         # self.coinTele = self.myDatabase['coinTelegraphSampleTest']
-        self.coinTele = self.myDatabase['coinTelegraphEthereum']
+        self.coinTele = self.myDatabase['coinTelegraphBlockchain1']
         self.new_posts = []
 
     def close_spider(self, spider):
-        handle_empty_content(self.coinTele, self.new_posts)
+        utils.handle_empty_content(self.coinTele, self.new_posts)
         for index, value in enumerate(self.new_posts):
             utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}CoinTelegraph Crawl Completed!{color['endc']}")
@@ -383,17 +360,17 @@ class CoinTelegraphScraperPipeline(object):
         decode_html_content = codecs.decode(data_, 'unicode-escape')
         # utils.show_message('decode_html_content', 'okcyan', decode_html_content)
 
-        # get clean content
+        # get clean content for keywords ranking
         data_content = decode_html_content.split('fullText="')
         raw_content = data_content[1].split('audio="')[0]
 
         decode1 = utils.decode_html_content(raw_content)
-        utils.show_message('decode1', 'okgreen', decode1)
-        utils.show_message('decode_html_content', 'okcyan', raw_content)
+        # utils.show_message('decode1', 'okgreen', decode1)
+        # utils.show_message('decode_html_content', 'okcyan', raw_content)
 
         raw_content = raw_content.split('<template data-name="subscription_form"')[0]
         clean_content = remove_tags(raw_content)
-
+        # set keywords
         data['keyword_ranking'] = utils.text_ranking(data, clean_content)
         tag = data['tag']
         data['keyword_ranking'][tag] = '6.5'
@@ -407,25 +384,25 @@ class CoinTelegraphScraperPipeline(object):
     def cointele_get_post(self, data):
         for post in data['data']:
             cointele_sample_data = sample_data()
-            post_badge_title = post['postBadge']['postBadgeTranslates'][0]['title'].lower()
+            post_badge_title = post['postBadge']['postBadgeTranslates'][0]['title'].lower().strip()
             cointele_sample_data['id'] = post['id']
-            cointele_sample_data['title'] = post['postTranslate']['title']
-            cointele_sample_data['subtitle'] = str(post['postTranslate']['leadText'])
-            cointele_sample_data['link_img'] = post['postTranslate']['avatar']
+            cointele_sample_data['title'] = post['postTranslate']['title'].strip()
+            cointele_sample_data['subtitle'] = str(post['postTranslate']['leadText']).strip()
+            cointele_sample_data['link_img'] = post['postTranslate']['avatar'].strip()
             cointele_sample_data['views'] = post['views']
             cointele_sample_data['id_post_translate'] = post['postTranslate']['id']  # postTranslate/id
-            cointele_sample_data['description'] = str(post['postTranslate']['leadText'])  # postTranslate/leadText
+            cointele_sample_data['description'] = str(post['postTranslate']['leadText']).strip()  # postTranslate/leadText
             if post_badge_title == 'experts answer' or post_badge_title == 'explained':
                 cointele_sample_data['link_content'] = self.url.format('explained/' + str(post['slug']))
             else:
                 cointele_sample_data['link_content'] = self.url.format('news/' + str(post['slug']))  # https://cointelegraph.com/news/ + slug
-            cointele_sample_data['slug_content'] = post['slug']  # slug
+            cointele_sample_data['slug_content'] = post['slug'].strip()  # slug
             # 'raw_content': '',
             # 'keyword_ranking': '',
-            cointele_sample_data['author'] = post['author']['authorTranslates'][0]['name']  # author/authorTranslates/name
-            cointele_sample_data['id_author'] = post['author']['authorTranslates'][0]['id']  # author/authorTranslates/id
-            cointele_sample_data['link_author'] = self.url.format('authors/' + str(post['author']['slug']))  # https://cointelegraph.com/authors/ + slug_author
-            cointele_sample_data['slug_author'] = post['author']['slug']  # author/slug
+            cointele_sample_data['author'] = post['author']['authorTranslates'][0]['name'].strip()  # author/authorTranslates/name
+            cointele_sample_data['id_author'] = post['author']['authorTranslates'][0]['id'].strip()  # author/authorTranslates/id
+            cointele_sample_data['link_author'] = self.url.format('authors/' + str(post['author']['slug'])).strip()  # https://cointelegraph.com/authors/ + slug_author
+            cointele_sample_data['slug_author'] = post['author']['slug'].strip()  # author/slug
             # # 'tag': '',
             # # 'link_tag': '',
             # cointele_sample_data['published'] = post['postTranslate']['published']  # postTranslate/published
