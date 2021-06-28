@@ -217,8 +217,8 @@ class IohkScraperPipeline(object):
 class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        # self.coindesk = self.myDatabase['coindeskSample']
-        self.coindesk = self.myDatabase['coindeskLatest1']
+        self.coindesk = self.myDatabase['coindeskSample']
+        # self.coindesk = self.myDatabase['coindeskLatest1']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
@@ -353,8 +353,9 @@ class CoinTelegraphScraperPipeline(object):
     def __init__(self):
         self.url = 'https://cointelegraph.com/{}'
         self.myDatabase = mongoClient['cardanoNews']
-        self.coinTele = self.myDatabase['coinTelegraphSample']
+        # self.coinTele = self.myDatabase['coinTelegraphSample']
         # self.coinTele = self.myDatabase['coinTelegraphSampleTest']
+        self.coinTele = self.myDatabase['coinTelegraphEthereum']
         self.new_posts = []
 
     def close_spider(self, spider):
@@ -393,9 +394,9 @@ class CoinTelegraphScraperPipeline(object):
         raw_content = raw_content.split('<template data-name="subscription_form"')[0]
         clean_content = remove_tags(raw_content)
 
+        data['keyword_ranking'] = utils.text_ranking(data, clean_content)
         tag = data['tag']
         data['keyword_ranking'][tag] = '6.5'
-        data['keyword_ranking'] = utils.text_ranking(data, clean_content)
         utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
 
         data['raw_content'] = str(raw_content)
