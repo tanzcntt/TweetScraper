@@ -350,7 +350,7 @@ class CoindeskAll(Spider):
 
 
 class CoinTelegraphAll(Spider):
-	name = 'allCoinTele'
+	name = 'allCointele'
 
 	def __init__(self):
 		self.url = 'https://cointelegraph.com/{}'
@@ -419,12 +419,13 @@ class CoinTelegraphAll(Spider):
 
 	def parse_content(self, response):
 		page = response.url
-		print(f"{color['okgreen']}crawling raw content in {page}{color['endc']}")
+		print(f"{color['okgreen']}Crawling raw content in {page}{color['endc']}")
 		data = response.css('body')
 		for content in data:
 			item = {
 				"raw_data": content.css('script::text').get(),
 				'link_content': page,
+				'tag': 'bitcoin',
 				"source": "coinTelegraph",
 			}
 			yield item
@@ -432,7 +433,7 @@ class CoinTelegraphAll(Spider):
 
 
 class CoinTelegraphLatest(Spider):
-	name = 'latestCoinTele'
+	name = 'latestCointele'
 
 	def __init__(self):
 		self.url = 'https://cointelegraph.com/{}'
@@ -451,7 +452,7 @@ class CoinTelegraphLatest(Spider):
 	# ================================================
 	# for latest post, we crawl 4 page everyday
 	# ================================================
-	def start_requests(self, total_page=11):
+	def start_requests(self, total_page=1):
 		start_url = 'https://conpletus.cointelegraph.com/v1/'
 		offset = 0
 		length = 15
@@ -489,4 +490,15 @@ class CoinTelegraphLatest(Spider):
 		sleep(3)
 
 	def parse_content(self, response):
-		pass
+		page = response.url
+		print(f"{color['okgreen']}Crawling raw content in {page}{color['endc']}")
+		data = response.css('body')
+		for content in data:
+			item = {
+				'raw_data': content.css('script::text').get(),
+				'link_content': page,
+				'tag': 'bitcoin',
+				"source": "coinTelegraph",
+			}
+			yield item
+			sleep(2)

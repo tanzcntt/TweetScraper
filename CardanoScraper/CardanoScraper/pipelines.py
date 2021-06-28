@@ -11,12 +11,28 @@ from time import sleep
 color = utils.colors_mark()
 mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
 
-# sample_data = """    insetData["title"] = newsData["title"]
-#         insetData["description"] = ""
-#         insetData["content"] = newsData["raw_content"]
-#         insetData["websiteUri"] = newsData["link_content"]
-#         insetData["keywords"] = JSON.stringify(newsData["keyword_ranking"])
-#         insetData["createdAt"] = new Date(newsData["timestamp"] * 1000)"""
+
+def handle_empty_content(table, new_posts):
+    data = table.find()
+    for post in data:
+        if 'raw_content' not in post:
+            link_content = post['link_content']
+            utils.show_message('empty content', 'fail', link_content)
+            # if post['link_content'] in self.new_posts:
+            new_posts.remove(post['link_content'])
+            my_query = {'link_content': post['link_content']}
+            posts = table.find({}, my_query)
+            for empty_content in posts:
+                # utils.show_message('empty content', 'fail', empty_content)
+                pass
+            if table.delete_one(my_query):
+                utils.show_message('Empty content post was deleted!', 'okblue', 1)
+        elif post['raw_content'] == '':
+            my_query = {'link_content': post['link_content']}
+            if table.delete_one(my_query):
+                pass
+        else:
+            pass
 
 
 def sample_data():
@@ -201,31 +217,13 @@ class IohkScraperPipeline(object):
 class CoindeskScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        self.coindesk = self.myDatabase['coindeskSample']
-        # self.coindesk = self.myDatabase['coindeskTest4']
+        # self.coindesk = self.myDatabase['coindeskSample']
+        self.coindesk = self.myDatabase['coindeskLatest1']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
 
     def close_spider(self, spider):
-        data = self.coindesk.find()
-        for post in data:
-            if 'raw_content' not in post:
-                print(post['link_content'])
-                self.new_posts.remove(post['link_content'])
-                my_query = {'link_content': post['link_content']}
-                posts = self.coindesk.find({}, my_query)
-                for empty_content in posts:
-                    # utils.show_message('empty content', 'fail', empty_content)
-                    pass
-                if self.coindesk.delete_one(my_query):
-                    utils.show_message('delete empty content post', 'fail', '')
-            elif post['raw_content'] == '':
-                my_query = {'link_content': post['link_content']}
-                if self.coindesk.delete_one(my_query):
-                    # utils.show_message('delete empty content post', 'fail', '')
-                    pass
-            else:
-                pass
+        handle_empty_content(self.coindesk, self.new_posts)
         for index, value in enumerate(self.new_posts):
             utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}Coindesk Crawl Completed!{color['endc']}")
@@ -356,26 +354,11 @@ class CoinTelegraphScraperPipeline(object):
         self.url = 'https://cointelegraph.com/{}'
         self.myDatabase = mongoClient['cardanoNews']
         self.coinTele = self.myDatabase['coinTelegraphSample']
-        # self.coinTele = self.myDatabase['coinTelegraphSample2']
+        # self.coinTele = self.myDatabase['coinTelegraphSampleTest']
         self.new_posts = []
 
     def close_spider(self, spider):
-        data = self.coinTele.find()
-        for post in data:
-            link_content = post['link_content']
-            if 'raw_content' not in post:
-                utils.show_message('empty content', 'fail', link_content)
-                self.new_posts.remove(link_content)
-                my_query = {'link_content': link_content}
-                if self.coinTele.delete_one(my_query):
-                    utils.show_message('Empty content post was deleted', 'fail', '')
-            elif post['raw_content'] == '':
-                my_query = {'link_content': link_content}
-                if self.coinTele.delete_one(my_query):
-                    print(f"{color['okgreen']}Empty content post was deleted{color['endc']}")
-            else:
-                pass
-
+        handle_empty_content(self.coinTele, self.new_posts)
         for index, value in enumerate(self.new_posts):
             utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}CoinTelegraph Crawl Completed!{color['endc']}")
@@ -399,6 +382,7 @@ class CoinTelegraphScraperPipeline(object):
         decode_html_content = codecs.decode(data_, 'unicode-escape')
         # utils.show_message('decode_html_content', 'okcyan', decode_html_content)
 
+        # get clean content
         data_content = decode_html_content.split('fullText="')
         raw_content = data_content[1].split('audio="')[0]
 
@@ -409,6 +393,8 @@ class CoinTelegraphScraperPipeline(object):
         raw_content = raw_content.split('<template data-name="subscription_form"')[0]
         clean_content = remove_tags(raw_content)
 
+        tag = data['tag']
+        data['keyword_ranking'][tag] = '6.5'
         data['keyword_ranking'] = utils.text_ranking(data, clean_content)
         utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
 
@@ -416,7 +402,6 @@ class CoinTelegraphScraperPipeline(object):
         data['clean_content'] = str(clean_content)
         data['raw_data'] = ''
         self.update_news(self.coinTele, data)
-        # utils.show_message('raw_content', 'warning',data['raw_content'])
 
     def cointele_get_post(self, data):
         for post in data['data']:
@@ -447,12 +432,12 @@ class CoinTelegraphScraperPipeline(object):
             utils.handle_utc_datetime(post['postTranslate']['published'], cointele_sample_data)
             if self.coinTele.find_one({'link_content': cointele_sample_data['link_content']}):
                 self.update_news(self.coinTele, cointele_sample_data)
-                time.sleep(.5)
+                time.sleep(1)
             else:
                 utils.insert_into_table(self.coinTele, cointele_sample_data)
                 utils.show_message('Post', 'okblue', cointele_sample_data['link_content'])
                 self.new_posts.append(cointele_sample_data['link_content'])
-                time.sleep(.5)
+                time.sleep(1)
 
     def update_news(self, table, data):
         query = {
