@@ -351,9 +351,9 @@ class CoinTeleBitcoinAll(Spider):
 			if post_badge_title == 'experts answer' or post_badge_title == 'explained':
 				# link_content = self.url.format('explained/' + str(post['slug']))
 				pass
-			else:
-				link_content = cfg.coinTelegraph_url.format(
-					'news/' + str(post['slug']))  # https://cointelegraph.com/news/ + slug
+			# else:
+			link_content = cfg.coinTelegraph_url.format(
+				'news/' + str(post['slug']))  # https://cointelegraph.com/news/ + slug
 			yield response.follow(url=link_content, callback=self.parse_content, headers=cfg.coinTelegraph_headers)
 		item = {
 			'title': '',
@@ -487,6 +487,63 @@ class CoinTeleBlockchainAll(Spider):
 				"raw_data": content.css('script::text').get(),
 				'link_content': page,
 				'tag': 'blockchain',
+				"source": "coinTelegraph",
+			}
+			yield item
+			sleep(2)
+
+
+# ================================================
+# cointelegraph.com/tags/litecoin
+# ================================================
+class CoinTeleLitecoinAll(Spider):
+	name = 'allCointeleLitecoin'
+
+	def start_requests(self):
+		start_url = cfg.coinTelegraph_api_data
+		offset = 0
+		length = 15
+		for i in range(cfg.coinTelegraph_total_page):
+			body_ = '{"operationName": "TagPagePostsQuery","variables": {"slug": "litecoin","order": "postPublishedTime",' + \
+					'"offset": {},'.format(offset) + \
+					'"length": {},'.format(length) + \
+					'"short": "en","cacheTimeInMS": 300000},"query": ' \
+					'"query TagPagePostsQuery($short: String, $slug: String\u0021, $order: String, $offset: Int\u0021, $length: Int\u0021) {\\n  locale(short: $short) {\\n    tag(slug: $slug) {\\n      cacheKey\\n      id\\n      posts(order: $order, offset: $offset, length: $length) {\\n        data {\\n          cacheKey\\n          id\\n          slug\\n          views\\n          postTranslate {\\n            cacheKey\\n            id\\n            title\\n            avatar\\n            published\\n            publishedHumanFormat\\n            leadText\\n            __typename\\n          }\\n          category {\\n            cacheKey\\n            id\\n            __typename\\n          }\\n          author {\\n            cacheKey\\n            id\\n            slug\\n            authorTranslates {\\n              cacheKey\\n              id\\n              name\\n              __typename\\n            }\\n            __typename\\n          }\\n          postBadge {\\n            cacheKey\\n            id\\n            label\\n            postBadgeTranslates {\\n              cacheKey\\n              id\\n              title\\n              __typename\\n            }\\n            __typename\\n          }\\n          showShares\\n          showStats\\n          __typename\\n        }\\n        postsCount\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"}'
+			yield FormRequest(url=start_url, callback=self.parse,
+							  dont_filter=True, method="POST",
+							  body=body_, headers=cfg.coinTelegraph_headers)
+			offset += 15
+
+	def parse(self, response, **kwargs):
+		print(f"{color['fail']}All Litecoin CoinTelegraph Thread{color['endc']}")
+		data = json.loads(response.body)  # load json data from API
+		data_ = data['data']['locale']['tag']['posts']['data']
+		for post in data_:
+			post_badge_title = post['postBadge']['postBadgeTranslates'][0]['title'].lower()
+			if post_badge_title == 'experts answer' or post_badge_title == 'explained':
+				# link_content = self.url.format('explained/' + str(post['slug']))
+				pass
+			# else:
+			link_content = cfg.coinTelegraph_url.format(
+				'news/' + str(post['slug']))  # https://cointelegraph.com/news/ + slug
+			yield response.follow(url=link_content, callback=self.parse_content, headers=cfg.coinTelegraph_headers)
+		item = {
+			'title': '',
+			'data': data_,
+			'source': 'coinTelegraph',
+		}
+		yield item
+		sleep(3)
+
+	def parse_content(self, response):
+		page = response.url
+		print(f"{color['okgreen']}Crawling raw content in {page}{color['endc']}")
+		data = response.css('body')
+		for content in data:
+			item = {
+				"raw_data": content.css('script::text').get(),
+				'link_content': page,
+				'tag': 'litecoin',
 				"source": "coinTelegraph",
 			}
 			yield item
