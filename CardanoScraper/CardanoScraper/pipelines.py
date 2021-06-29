@@ -329,9 +329,6 @@ class CoinTelegraphScraperPipeline(object):
         self.url = 'https://cointelegraph.com/{}'
         self.myDatabase = mongoClient['cardanoNews']
         self.coinTele = self.myDatabase['coinTelegraphSample']
-        # self.coinTele = self.myDatabase['coinTelegraphSampleTest']
-        # self.coinTele = self.myDatabase['coinTelegraphBlockchain']
-        # self.coinTele = self.myDatabase['coinTelegraphLitecoin2']
         # self.coinTele = self.myDatabase['coinTelegraphLatest']
         self.new_posts = []
 
@@ -354,6 +351,7 @@ class CoinTelegraphScraperPipeline(object):
     # ================================================
     def get_content(self, data):
         data_ = data['raw_data']
+        link_content = data['link_content']
         # decode_html_content = codecs.decode(data_, 'unicode-escape')
         decode_html_content = codecs.decode(data_, 'unicode-escape')
         # utils.show_message('decode_html_content', 'okcyan', decode_html_content)
@@ -373,7 +371,9 @@ class CoinTelegraphScraperPipeline(object):
         if 'tag' in data:
             tag = data['tag']
             data['keyword_ranking'][tag] = '6.5'
-
+        else:
+            post = self.coinTele.find_one({'link_content': link_content})
+            data['keyword_ranking'][post['tag']] = post['tag_point']
         utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
 
         data['raw_content'] = str(raw_content)
@@ -409,7 +409,7 @@ class CoinTelegraphScraperPipeline(object):
                 cointele_sample_data['tag'] = tag_
                 if tag_ != '':
                     cointele_sample_data['link_tag'] = 'https://cointelegraph.com/tags/' + str(tag_)
-                    # cointele_sample_data['keyword_ranking'][tag_] = '5'
+                    cointele_sample_data['tag_point'] = '5.01234321'
                 else:
                     cointele_sample_data['link_tag'] = ''
             cointele_sample_data['source'] = 'coinTelegraph'
