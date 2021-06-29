@@ -797,6 +797,7 @@
   }
 }
 //  data on default page, notice on 'offset' and 'length'
+{
   "data": {
     "locale": {
       "tag": {
@@ -1594,3 +1595,10 @@
     }
   }
 }
+
+litecoin: 26
+bitcoin: 4
+ripple: 581
+ethereum: 553
+blockchain: 11
+business: 414

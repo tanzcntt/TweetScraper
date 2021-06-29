@@ -184,9 +184,9 @@ def handle_empty_content(table, new_posts):
 		link_content = post['link_content']
 		if 'raw_content' not in post:
 			show_message('empty content', 'fail', link_content)
-			# if post['link_content'] in self.new_posts:
-			new_posts.remove(post['link_content'])
-			my_query = {'link_content': post['link_content']}
+			if link_content in new_posts:
+				new_posts.remove(link_content)
+			my_query = {'link_content': link_content}
 			posts = table.find({}, my_query)
 			for empty_content in posts:
 				# utils.show_message('empty content', 'fail', empty_content)
@@ -194,10 +194,13 @@ def handle_empty_content(table, new_posts):
 			if table.delete_one(my_query):
 				show_message('Empty content post was deleted!', 'okblue', 1)
 		elif post['raw_content'] == '':
-			my_query = {'link_content': post['link_content']}
-			show_message('empty content', 'fail', link_content)
-			new_posts.remove(post['link_content'])
+			my_query = {'link_content': link_content}
+			show_message('raw_content = ""', 'fail', link_content)
+			if link_content in new_posts:
+				new_posts.remove(link_content)
 			if table.delete_one(my_query):
 				pass
 		else:
 			pass
+	for index, value in enumerate(new_posts):
+		show_message(message='Latest Post for today', colour='okblue', data={index: value})

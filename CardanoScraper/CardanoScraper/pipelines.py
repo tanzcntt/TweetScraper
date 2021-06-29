@@ -24,7 +24,7 @@ def sample_data():
         'slug_content': '',  # slug
         'link_content': '',  # https://cointelegraph.com/news/ + slug
         'raw_content': '',
-        'keyword_ranking': '',
+        'keyword_ranking': {},
         'author': '',  # author/authorTranslates/name
         'id_author': '',  # author/authorTranslates/id
         'link_author': '',  # https://cointelegraph.com/authors/ + slug_author
@@ -201,8 +201,6 @@ class CoindeskScraperPipeline(object):
 
     def close_spider(self, spider):
         utils.handle_empty_content(self.coindesk, self.new_posts)
-        for index, value in enumerate(self.new_posts):
-            utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}Coindesk Crawl Completed!{color['endc']}")
 
     # ================================================
@@ -330,15 +328,15 @@ class CoinTelegraphScraperPipeline(object):
     def __init__(self):
         self.url = 'https://cointelegraph.com/{}'
         self.myDatabase = mongoClient['cardanoNews']
-        # self.coinTele = self.myDatabase['coinTelegraphSample']
+        self.coinTele = self.myDatabase['coinTelegraphSample']
         # self.coinTele = self.myDatabase['coinTelegraphSampleTest']
-        self.coinTele = self.myDatabase['coinTelegraphBlockchain1']
+        # self.coinTele = self.myDatabase['coinTelegraphBlockchain']
+        # self.coinTele = self.myDatabase['coinTelegraphLitecoin2']
+        # self.coinTele = self.myDatabase['coinTelegraphLatest']
         self.new_posts = []
 
     def close_spider(self, spider):
         utils.handle_empty_content(self.coinTele, self.new_posts)
-        for index, value in enumerate(self.new_posts):
-            utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
         print(f"{color['warning']}CoinTelegraph Crawl Completed!{color['endc']}")
 
     def process_item(self, item, spider):
@@ -372,8 +370,10 @@ class CoinTelegraphScraperPipeline(object):
         clean_content = remove_tags(raw_content)
         # set keywords
         data['keyword_ranking'] = utils.text_ranking(data, clean_content)
-        tag = data['tag']
-        data['keyword_ranking'][tag] = '6.5'
+        if 'tag' in data:
+            tag = data['tag']
+            data['keyword_ranking'][tag] = '6.5'
+
         utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
 
         data['raw_content'] = str(raw_content)
@@ -403,9 +403,15 @@ class CoinTelegraphScraperPipeline(object):
             cointele_sample_data['id_author'] = post['author']['authorTranslates'][0]['id'].strip()  # author/authorTranslates/id
             cointele_sample_data['link_author'] = self.url.format('authors/' + str(post['author']['slug'])).strip()  # https://cointelegraph.com/authors/ + slug_author
             cointele_sample_data['slug_author'] = post['author']['slug'].strip()  # author/slug
-            # # 'tag': '',
-            # # 'link_tag': '',
-            # cointele_sample_data['published'] = post['postTranslate']['published']  # postTranslate/published
+            if 'tag' in data:
+                tag = data['tag']
+                tag_ = self.handle_tag(tag)
+                cointele_sample_data['tag'] = tag_
+                if tag_ != '':
+                    cointele_sample_data['link_tag'] = 'https://cointelegraph.com/tags/' + str(tag_)
+                    # cointele_sample_data['keyword_ranking'][tag_] = '5'
+                else:
+                    cointele_sample_data['link_tag'] = ''
             cointele_sample_data['source'] = 'coinTelegraph'
             utils.handle_utc_datetime(post['postTranslate']['published'], cointele_sample_data)
             if self.coinTele.find_one({'link_content': cointele_sample_data['link_content']}):
@@ -423,3 +429,25 @@ class CoinTelegraphScraperPipeline(object):
         }
         if table.update_one(query, {'$set': data}):
             utils.update_success_notify(table)
+
+    def handle_tag(self, tag):
+        if tag == '4':
+            tag_ = 'bitcoin'
+            return tag_
+        elif tag == '26':
+            tag_ = 'litecoin'
+            return tag_
+        elif tag == '581':
+            tag_ = 'ripple'
+            return tag_
+        elif tag == '553':
+            tag_ = 'ethereum'
+            return tag_
+        elif tag == '11':
+            tag_ = 'blockchain'
+            return tag_
+        elif tag == '414':
+            tag_ = 'business'
+            return tag_
+        else:
+            utils.show_message('other tag', 'fail', 1)
