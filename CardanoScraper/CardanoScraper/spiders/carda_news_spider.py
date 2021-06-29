@@ -81,9 +81,6 @@ class CardanoNewsContent(Spider):
 
 	def parse(self, response, **kwargs):
 		print(f"{color['fail']}All Cardano Thread{color['endc']}")
-		# page = response.url
-		# page = "all", save all page in 1 html file
-		# utils.save_to_html(page, content=response.body)
 		page = response.url
 		posts = response.css('tr.topic-list-item')
 		for post in posts:
@@ -132,16 +129,11 @@ class IohkContent(Spider):
 
 	def start_requests(self):
 		url = "https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json"
-		headers = {
-			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
-			"sec-ch-ua-mobile": "?0",
-			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
-		}
 		total_page = 0
 		while True:
-			yield Request(url=url.format(total_page), callback=self.parse, headers=headers)
+			yield Request(url=url.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS)
 			print(
-				f"{color['warning']}{Request(url=url.format(total_page), callback=self.parse, headers=headers)}{color['endc']}")
+				f"{color['warning']}{Request(url=url.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS)}{color['endc']}")
 			total_page += 1
 			if total_page > 45:
 				break
@@ -160,13 +152,8 @@ class IohkLatest(Spider):
 	def start_requests(self):
 		start_url = 'https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json'
 		total_page = 4
-		headers = {
-			"sec-ch-ua": "\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
-			"sec-ch-ua-mobile": "?0",
-			"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36",
-		}
 		for i in range(total_page):
-			yield Request(url=start_url.format(i), callback=self.parse, headers=headers)
+			yield Request(url=start_url.format(i), callback=self.parse, headers=cfg.IOHK_HEADERS)
 
 	def parse(self, response, **kwargs):
 		print(f"{color['fail']}Latest IOHK Thread{color['endc']}")
@@ -213,7 +200,7 @@ class CoindeskLatest(Spider):
 				'latest': 1,
 				'approve': 1,
 			}
-			yield response.follow(url=link_content, callback=self.parse_content, headers=cfg.coindesk_headers)
+			yield response.follow(url=link_content, callback=self.parse_content, headers=cfg.COINDESK_HEADERS)
 			yield data
 			sleep(.75)
 		# ================================================
