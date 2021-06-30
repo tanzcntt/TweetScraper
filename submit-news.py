@@ -69,7 +69,7 @@ async def push_data_to_dhunt(top_tws, table):
         if 'raw_content' not in tw:
             print(f'{colors["fail"]}Post does not have raw_content. Exist! {tw["title"]}{colors["endc"]}')
             # exit()
-        elif tw['raw_content'] == '':
+        elif tw['raw_content'] == '' or tw['keyword_ranking']:
             print(f'{colors["warning"]}raw_content equals empty. Exist! {tw["title"]}{colors["endc"]}')
             # exit()
         else:
