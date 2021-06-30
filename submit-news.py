@@ -4,6 +4,7 @@ import re
 import sys
 
 import pymongo
+import utils
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 import asyncio
@@ -14,10 +15,13 @@ myDatabase = mongoClient["cardanoNews"]
 news_collection = myDatabase["allNews"]
 iohk_collection = myDatabase['iohkSample']
 coindesk_collection = myDatabase['coindeskSample']
+cointele_collection = myDatabase['coinTelegraphSample']
+# cointele_collection = myDatabase['coinTelegraphLatestTest']
 # Remove 1st argument from the
 # list of command line arguments
 argumentList = sys.argv[1:]
 
+colors = utils.colors_mark()
 # Options
 options = "d:u:t:s:"
 
@@ -62,28 +66,35 @@ async def push_data_to_dhunt(top_tws, table):
         # client = Client(transport=transport, fetch_schema_from_transport=True)
         # Provide a GraphQL query
         # Execute the query on the transport
-        _id = tw['_id']
-        tw.pop("_id", None)
-        params = {"newsData": tw}
-        async with Client(
-                transport=transport, fetch_schema_from_transport=True,
-        ) as session:
-            # Execute single query
-            query = gql(
-                """
-                mutation submitNews($newsData : JSONObject!){
-                  submitNews(newsData : $newsData) {
-                    id
-                    title
-                  }
-                }
-                """
-            )
+        if 'raw_content' not in tw:
+            print(f'{colors["fail"]}Post does not have raw_content. Exist! {tw["title"]}{colors["endc"]}')
+            # exit()
+        elif tw['raw_content'] == '':
+            print(f'{colors["warning"]}raw_content equals empty. Exist! {tw["title"]}{colors["endc"]}')
+            # exit()
+        else:
+            _id = tw['_id']
+            tw.pop("_id", None)
+            params = {"newsData": tw}
+            async with Client(
+                    transport=transport, fetch_schema_from_transport=True,
+            ) as session:
+                # Execute single query
+                query = gql(
+                    """
+                    mutation submitNews($newsData : JSONObject!){
+                      submitNews(newsData : $newsData) {
+                        id
+                        title
+                      }
+                    }
+                    """
+                )
 
-            result = await session.execute(query, variable_values=params)
-            print(i, ':', result)
-            table.update_one(filter={"_id": _id}, update={"$set": {"submit": status}})
-            i += 1
+                result = await session.execute(query, variable_values=params)
+                print(i, ':', result)
+                table.update_one(filter={"_id": _id}, update={"$set": {"submit": status}})
+                i += 1
 
 
 async def main(day_in):
@@ -92,9 +103,11 @@ async def main(day_in):
     task1 = asyncio.create_task(get_news_from(yesterday, news_collection))
     task2 = asyncio.create_task(get_news_from(yesterday, iohk_collection))
     task3 = asyncio.create_task(get_news_from(yesterday, coindesk_collection))
+    task4 = asyncio.create_task(get_news_from(yesterday, cointele_collection))
     await task3
     await task2
     await task1
+    await task4
 
 
 asyncio.run(main(day))
