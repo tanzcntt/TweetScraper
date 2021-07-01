@@ -32,6 +32,10 @@ def colors_mark():
 color = colors_mark()
 
 
+def remove_punctuation(word):
+	return re.sub(r'[!?.:;,"()-]', "", word)
+
+
 def save_to_html(page, content):
 	html_file = f'cardano-{page}.html'
 	html_path = raw_data_path + html_file
@@ -59,7 +63,7 @@ def remove_small_words(words):
 	split_words = words.lower().split(' ')
 	unwanted_words = {'https', 'g', 'm', 'heck', 'ser', '200k', 'longgggg',
 					  'wzrds', 'omarzb5', 'tel', 'haha', 'co',
-					  'https', 'www', 'com', 'boys', 'dan', 'con', 'los', 'que'}
+					  'https', 'www', 'com', 'boys', 'dan', 'con', 'los', 'que', 'url', 'nbsp', 'title'}
 	split_words = [ele for ele in split_words if ele not in unwanted_words]
 
 	for word in split_words:
