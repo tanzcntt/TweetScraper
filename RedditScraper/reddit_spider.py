@@ -1,5 +1,6 @@
 import os
 import json
+import sys
 import pymongo
 import praw
 import pandas as pd
@@ -25,7 +26,7 @@ class RedditCrawl(object):
 		self.subreddit = subreddit  # ['cardano', 'CardanoDevelopers', 'CardanoStakePools', 'Cardano_ELI5', 'CardanoNFTs']
 		self.limit = limit_posts
 		self.mode = mode
-		self.reddit_url = "https://www.reddit.com/r/cardano/{}"
+		self.reddit_url = "https://www.reddit.com{}"
 
 	def sample_data(self, post):
 		data = {
@@ -33,7 +34,7 @@ class RedditCrawl(object):
 			'id': post.id,
 			'name': post.name,
 			'title': post.title,
-			'like': post.score,
+			'upvote': post.score,
 			'upvote_ratio': post.upvote_ratio,
 			'num_comments': post.num_comments,
 			# 'comments': post.comments,
@@ -44,6 +45,7 @@ class RedditCrawl(object):
 			# 'link_flair_template_id': post.link_flair_template_id,
 			'link_flair_text': post.link_flair_text,
 			'raw_content': post.selftext,
+			'keyword_ranking': helpers.text_ranking(post.selftext) if post.selftext != '' else helpers.text_ranking(post.title),
 			'created': datetime.fromtimestamp(post.created).isoformat(),
 			'timestamp': post.created,
 			# 'clicked': post.clicked,  # Whether or not the submission has been clicked by the client.
@@ -51,6 +53,7 @@ class RedditCrawl(object):
 			# 'edited': post.edited,  # Whether or not the submission has been edited.
 			# 'is_original_content': post.is_original_content,  # Whether or not the submission has been set as original content.
 		}
+		helpers.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
 		return data
 
 	def load_posts(self, post):
@@ -58,11 +61,12 @@ class RedditCrawl(object):
 				post.url, post.num_comments, post.selftext, post.created]
 
 	def get_posts(self):
+		helpers.show_message('Crawling', 'fail', self.mode.upper())
 		new_posts = self.check_modes()
 		# data = list(map(self.load_posts, new_posts))
 		# self.save_to_csv(data, 'new')
 		for index, post in enumerate(new_posts):
-			print(f"{index} Inserting...'id': {post.id}, 'title': {post.title}")
+			print(f"{index} Inserting: 'id': {post.id}, 'title': {post.title}")
 			self.insert_into_table(table=self.redditSample, data=self.sample_data(post))
 			sleep(.02)
 
@@ -120,6 +124,22 @@ class RedditCrawl(object):
 
 
 if __name__ == '__main__':
-	RedditCrawl(subreddit='cardano', limit_posts=50, mode='new').main()
-	RedditCrawl(subreddit='cardano', limit_posts=50, mode='top').main()
-	RedditCrawl(subreddit='cardano', limit_posts=50, mode='hot').main()
+	args = sys.argv[1:]
+	# subreddit, mode = args
+	# subreddit, mode, limit_posts = ['cardano', 'all', 2000]
+	subreddit, mode, limit_posts = ['CardanoDevelopers', 'all', 2000]
+	# subreddit, mode, limit_posts = ['Cardano_ELI5', 'all', 2000]
+	# subreddit, mode, limit_posts = ['CardanoNFTs', 'all', 2000]
+	# subreddit, mode, limit_posts = ['CardanoStakePools', 'all', 2000]
+
+	print(args)
+	if mode == 'all':
+		helpers.show_message('All', 'okgreen', 1)
+		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='new').main()
+		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='top').main()
+		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='hot').main()
+	elif mode == 'latest':
+		helpers.show_message('Latest', 'okgreen', 1)
+		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='new').main()
+		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='top').main()
+		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='hot').main()
