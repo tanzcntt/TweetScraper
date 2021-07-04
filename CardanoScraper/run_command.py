@@ -13,7 +13,7 @@ options = 'm:'
 
 long_options = ['mode']
 mode = 'latest'
-sources = ['Carda', 'Iohk', 'Coindesk']
+sources = ['Carda', 'Iohk', 'Coindesk']  # , 'Cointele']
 try:
 	# Parsing argument
 	arguments, values = getopt.getopt(argumentList, options)
@@ -24,6 +24,7 @@ except getopt.error as err:
 	print(err)
 
 print(mode)
+print(sources)
 
 
 class MyThread(threading.Thread):
@@ -59,6 +60,10 @@ def check_condition(source, mode):
 		os.system(command)
 	else:
 		print('Invalid Mode')
+
+
+def show_latest_post():
+	pass
 
 
 # ================================================

@@ -5,9 +5,14 @@ import pymongo
 import praw
 import pandas as pd
 import utils
-from datetime import datetime
+import time
+import threading
 from time import sleep
+from datetime import datetime, timedelta
 
+mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
+myDatabase = mongoClient['dhuntData']
+redditSample = myDatabase['reddit']
 
 helpers = utils.Utils()
 cardano_systems = ['cardano', 'CardanoDevelopers', 'CardanoStakePools', 'Cardano_ELI5', 'CardanoNFTs']
@@ -17,13 +22,29 @@ def post_reddit(post):
 	return [post.title, post.score, post.id, post.subreddit, post.url, post.num_comments, post.selftext, post.created]
 
 
+class MyThread(threading.Thread):
+	def __init__(self, subreddit, mode, limit_posts):
+		super().__init__()
+		self.subreddit = subreddit
+		self.mode = mode
+		self.limit_posts = limit_posts
+
+	def run(self):
+		start_time = time.time()
+		try:
+			# thread_lock.acquire()  # force threads to run synchronously
+			run_crawl(self.subreddit, self.mode, self.limit_posts)
+			# thread_lock.release()  # release the lock whe no longer required
+		except NameError:
+			print(NameError)
+		end_time = time.time()
+		print(f"\n\n\ntotal time: {timedelta(seconds=(end_time - start_time))}")
+
+
 class RedditCrawl(object):
 	def __init__(self, subreddit, limit_posts, mode):
-		self.mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
-		self.myDatabase = self.mongoClient['dhuntData']
-		self.redditSample = self.myDatabase['reddit']
 		self.reddit = praw.Reddit(client_id='2joBTPQGTQc9hw', client_secret='AJniSlLx_9B2xdoXSZVSlhGz56Ebww', user_agent='Scraping Cardano')
-		self.subreddit = subreddit  # ['cardano', 'CardanoDevelopers', 'CardanoStakePools', 'Cardano_ELI5', 'CardanoNFTs']
+		self.subreddit = subreddit
 		self.limit = limit_posts
 		self.mode = mode
 		self.reddit_url = "https://www.reddit.com{}"
@@ -44,7 +65,7 @@ class RedditCrawl(object):
 			'urls_in_post': post.url,
 			# 'link_flair_template_id': post.link_flair_template_id,
 			'link_flair_text': post.link_flair_text,
-			'raw_content': post.selftext,
+			'raw_content': post.selftext if post.selftext != '' else post.title,
 			'keyword_ranking': helpers.text_ranking(post.selftext) if post.selftext != '' else helpers.text_ranking(post.title),
 			'created': datetime.fromtimestamp(post.created).isoformat(),
 			'timestamp': post.created,
@@ -67,7 +88,7 @@ class RedditCrawl(object):
 		# self.save_to_csv(data, 'new')
 		for index, post in enumerate(new_posts):
 			print(f"{index} Inserting: 'id': {post.id}, 'title': {post.title}")
-			self.insert_into_table(table=self.redditSample, data=self.sample_data(post))
+			self.insert_into_table(table=redditSample, data=self.sample_data(post))
 			sleep(.02)
 
 	def check_modes(self):
@@ -123,23 +144,52 @@ class RedditCrawl(object):
 		self.get_posts()
 
 
+def handle_empty_content():
+		data = redditSample.find()
+		for post in data:
+			link_content = post['link_content']
+			my_query = {'link_content': link_content}
+			if 'raw_content' not in post:
+				helpers.show_message('empty content', 'fail', link_content)
+				if redditSample.delete_one(my_query):
+					helpers.show_message('Empty content post was deleted!', 'okblue', 1)
+			elif post['keyword_ranking'] == {}:  # or post['raw_content'] == '':
+				helpers.show_message('raw_content = ""', 'fail', link_content)
+				if redditSample.delete_one(my_query):
+					pass
+			else:
+				pass
+
+
+def run_crawl(subreddit_, limit_posts_, mode_):
+	if mode_ == 'all':
+		helpers.show_message('All', 'okgreen', subreddit_)
+		RedditCrawl(subreddit=subreddit_, limit_posts=limit_posts_, mode='new').main()
+		RedditCrawl(subreddit=subreddit_, limit_posts=limit_posts_, mode='top').main()
+		RedditCrawl(subreddit=subreddit_, limit_posts=limit_posts_, mode='hot').main()
+	elif mode_ == 'latest':
+		helpers.show_message('Latest', 'okgreen', subreddit_)
+		RedditCrawl(subreddit=subreddit_, limit_posts=limit_posts_, mode='new').main()
+		RedditCrawl(subreddit=subreddit_, limit_posts=limit_posts_, mode='top').main()
+		RedditCrawl(subreddit=subreddit_, limit_posts=limit_posts_, mode='hot').main()
+
+
 if __name__ == '__main__':
 	args = sys.argv[1:]
-	# subreddit, mode = args
-	# subreddit, mode, limit_posts = ['cardano', 'all', 2000]
-	subreddit, mode, limit_posts = ['CardanoDevelopers', 'all', 2000]
-	# subreddit, mode, limit_posts = ['Cardano_ELI5', 'all', 2000]
-	# subreddit, mode, limit_posts = ['CardanoNFTs', 'all', 2000]
-	# subreddit, mode, limit_posts = ['CardanoStakePools', 'all', 2000]
-
+	# mode, limit_posts = args
+	mode, limit_posts = ['latest', 200]
+	# mode, limit_posts = ['all', 1500]
 	print(args)
-	if mode == 'all':
-		helpers.show_message('All', 'okgreen', 1)
-		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='new').main()
-		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='top').main()
-		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='hot').main()
-	elif mode == 'latest':
-		helpers.show_message('Latest', 'okgreen', 1)
-		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='new').main()
-		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='top').main()
-		RedditCrawl(subreddit=subreddit, limit_posts=limit_posts, mode='hot').main()
+	thread_lock = threading.Lock()  # allow to synchronize threads
+	threads = []
+
+	for i, source in enumerate(cardano_systems):
+		thread = MyThread(source, limit_posts, mode)
+		thread.start()
+		threads.append(thread)
+
+	# wait for all threads to complete
+	for t in threads:
+		t.join()
+	print("Crawling completed!")
+	handle_empty_content()
