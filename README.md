@@ -55,6 +55,47 @@ conda activate tweetscraper
 
 //sudo docker-compose -d up
 
+# II. Reddit scraper #
+# Introduction #
+Crawl some `Cardano subreddit pages`.
+
+Currently, I crawled some sources for instance: ['cardano', 'CardanoDevelopers', 'CardanoStakePools', 'Cardano_ELI5', 'CardanoNFTs']
+
+We can add more subreddit page to get more data normally by insert into `cardano_systems` in *TweetScraper/RedditScraper/reddit_spider.py*
+
+Data in mongoDb follow:
+	
+	author : Provides an instance of Redditor
+	id : ID of the submission
+	name : Fullname of the submission
+	title : The title of the submission
+	upvote
+	upvote_ratio
+	num_comments
+	subreddit : Provides an instance of Subreddit
+	link_content
+	permalink : A permalink for the submission
+	urls_in_post : The URL the submission links to, or the permalink if a selfpost
+	link_flair_text : The link flair’s text content, or None if not flaired
+	raw_content
+	created
+	timestamp
+	keyword_ranking
+
+# Installation #
+Install `praw` package follow requirements.txt
+
+# Usage #
+Open `reddit_spider.py` in *TweetScraper/RedditScraper/reddit_spider.py*
+
++ Get data:
+	+ crawl all data: Uncomment line 182 and comment line 181 to 
+
+	+ crawl latest data: Uncomment line 181 and comment line 182 to 
+
+
+		Run: ctrl+shift+f10
+
 # II. user-scraper #
 # Introduction #
 `user-scraper` can get all user through specific [User Page](https://twitter.com/elonmusk). 
@@ -180,3 +221,4 @@ Open directory *TweetScraper/CardanoScraper/CardanoScraper* and run a command:
 		-m: is mode
 		-m all: crawl and update all posts
 		-m latest: crawl and update the latest posts
+

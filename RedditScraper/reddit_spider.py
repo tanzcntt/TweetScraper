@@ -177,8 +177,10 @@ def run_crawl(subreddit_, limit_posts_, mode_):
 if __name__ == '__main__':
 	args = sys.argv[1:]
 	# mode, limit_posts = args
-	mode, limit_posts = ['latest', 200]
-	# mode, limit_posts = ['all', 1500]
+
+	# mode, limit_posts = ['latest', 200]
+	mode, limit_posts = ['all', 2000]
+
 	print(args)
 	thread_lock = threading.Lock()  # allow to synchronize threads
 	threads = []

@@ -14,3 +14,4 @@ aiohttp
 dash
 jupyter-dash
 chompjs
+praw
