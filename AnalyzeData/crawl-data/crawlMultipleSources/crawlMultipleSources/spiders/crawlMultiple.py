@@ -1,4 +1,5 @@
 import scrapy
+from datetime import datetime
 from time import sleep
 from .. import utils
 from scrapy.linkextractors import LinkExtractor
@@ -6,7 +7,7 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy import Request
 
 colors = utils.colors_mark()
-
+current_datetime = datetime.now().timestamp()
 
 class BlockchaininfluencersSpider(CrawlSpider):
 	name = 'influencers'
@@ -97,7 +98,7 @@ class LatestCardanoNews(CrawlSpider):
 
 	def start_requests(self):
 		url = 'https://forum.cardano.org/c/english/announcements/13?page={}'
-		total_pages = 10
+		total_pages = 6
 		for i in range(total_pages):
 			yield Request(url=url.format(i), callback=self.parse)
 
@@ -114,6 +115,7 @@ class LatestCardanoNews(CrawlSpider):
 				'replies': post.css('td.replies span.posts::text').get(),
 				'views': post.css('td.views span.views::text').get(),
 				'date': post.css('td::text').getall()[-1].strip(),
+				'date_crawled': current_datetime,
 				'source': 'news.cardano',
 				'latest': 1,
 				'approve': 1
@@ -148,10 +150,12 @@ class AllCardanoTrading(CrawlSpider):
 
 class LatestCardanoTrading(CrawlSpider):
 	name = 'latestCardanoTrading'
+	# scrapy crawl latestCardanoTrading
+	# scrapy crawl latestCardanoNews
 
 	def start_requests(self):
 		url = 'https://forum.cardano.org/c/english/trading/12?page={}'
-		total_pages = 10
+		total_pages = 6
 		for i in range(total_pages):
 			yield Request(url=url.format(i), callback=self.parse)
 			sleep(1)
@@ -169,6 +173,7 @@ class LatestCardanoTrading(CrawlSpider):
 				'replies': post.css('td.replies span.posts::text').get(),
 				'views': post.css('td.views span.views::text').get(),
 				'date': post.css('td::text').getall()[-1].strip(),
+				'date_crawled': current_datetime,
 				'source': 'trading.cardano',
 				'latest': 1,
 				'approve': 1
