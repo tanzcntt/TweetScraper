@@ -349,7 +349,7 @@ class CoinTelegraphScraperPipeline(object):
                 self.cointele_get_post(item)
             elif 'raw_data' in item:
                 self.get_content(item)
-        # return item
+        return item
 
     # ================================================
     # decode html tag and clean content
@@ -456,3 +456,14 @@ class CoinTelegraphScraperPipeline(object):
             return tag_
         else:
             utils.show_message('other tag', 'fail', 1)
+
+
+class AdapulseScraperPipeline(object):
+    def __init__(self):
+        self.link_website_logo = 'https://adapulse.io/wp-content/uploads/2021/03/logonew@2x.png'
+        pass
+
+    def process_item(self, item, spider):
+        # if item['source'] == 'ada':
+        # return item
+        pass
