@@ -385,7 +385,8 @@ class CoinTelegraphScraperPipeline(object):
         data['raw_content'] = str(raw_content)
         data['clean_content'] = str(clean_content)
         data['raw_data'] = ''
-        self.update_news(self.coinTele, data)
+        # self.update_news(self.coinTele, data)
+        utils.update_news(self.coinTele, data)
 
     def cointele_get_post(self, data):
         for post in data['data']:
@@ -420,20 +421,14 @@ class CoinTelegraphScraperPipeline(object):
             cointele_sample_data['source'] = 'coinTelegraph'
             utils.handle_utc_datetime(post['postTranslate']['published'], cointele_sample_data)
             if self.coinTele.find_one({'link_content': cointele_sample_data['link_content']}):
-                self.update_news(self.coinTele, cointele_sample_data)
+                # self.update_news(self.coinTele, cointele_sample_data)
+                utils.update_news(self.coinTele, cointele_sample_data)
                 time.sleep(1)
             else:
                 utils.insert_into_table(self.coinTele, cointele_sample_data)
                 utils.show_message('Post', 'okblue', cointele_sample_data['link_content'])
                 self.new_posts.append(cointele_sample_data['link_content'])
                 time.sleep(1)
-
-    def update_news(self, table, data):
-        query = {
-            'link_content': data['link_content'],
-        }
-        if table.update_one(query, {'$set': data}):
-            utils.update_success_notify(table)
 
     def handle_tag(self, tag):
         if tag == '4':
@@ -461,9 +456,29 @@ class CoinTelegraphScraperPipeline(object):
 class AdapulseScraperPipeline(object):
     def __init__(self):
         self.link_website_logo = 'https://adapulse.io/wp-content/uploads/2021/03/logonew@2x.png'
-        pass
+        self.myDatabase = mongoClient['cardanoNews']
+        self.adaPulse = self.myDatabase['adaPulseSample']
+        self.new_posts = []
+
+    def close_spider(self, spider):
+        for i, post in enumerate(self.new_posts):
+            utils.show_message('New posts for today', 'okcyan', {i, post})
 
     def process_item(self, item, spider):
-        # if item['source'] == 'ada':
+        if item['source'] == 'adapulse.io':
+            if 'title' in item:
+                utils.show_message('', 'okblue', 'AdaPulse Pipeline handling...')
+                # self.adaPulse.insert_one(item)
+                self.get_posts(item)
         # return item
-        pass
+
+    def get_posts(self, item):
+        item['timestamp'] = utils.handle_datetime(item, item[''])
+        if self.adaPulse.find_one({'link_content': item['link_content']}):
+            utils.update_news(self.adaPulse, item)
+            time.sleep(.5)
+        else:
+            utils.insert_into_table(self.adaPulse, item)
+            utils.show_message('Post', 'okblue', item['link_content'])
+            self.new_posts.append(item['link_content'])
+            time.sleep(.5)

@@ -166,6 +166,17 @@ def insert_into_table(table, data):
 	sleep(1)
 
 
+# ================================================
+# update table: query follows link_content
+# ================================================
+def update_news(table, data):
+	query = {
+		'link_content': data['link_content'],
+	}
+	if table.update_one(query, {'$set': data}):
+		update_success_notify(table)
+
+
 def update_success_notify(table):
 	print(f"{color['okcyan']}Updating {get_table(table)} table{color['endc']}\n")
 
