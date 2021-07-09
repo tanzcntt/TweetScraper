@@ -16,7 +16,8 @@ news_collection = myDatabase["allNews"]
 iohk_collection = myDatabase['iohkSample']
 coindesk_collection = myDatabase['coindeskSample']
 cointele_collection = myDatabase['coinTelegraphSample']
-# cointele_collection = myDatabase['coinTelegraphLatestTest']
+adapulse_collection = myDatabase['adaPulseSample']
+# cointele_collection = myDatabase['coinTelegraphSampleTest1']
 # Remove 1st argument from the
 # list of command line arguments
 argumentList = sys.argv[1:]
@@ -67,10 +68,10 @@ async def push_data_to_dhunt(top_tws, table):
         # Provide a GraphQL query
         # Execute the query on the transport
         if 'raw_content' not in tw:
-            print(f'{colors["fail"]}Post does not have raw_content. Exist! {tw["title"]}{colors["endc"]}')
+            print(f'Post does not have raw_content. {colors["fail"]}{tw["title"]} || {tw["source"]}{colors["endc"]}')
             # exit()
-        elif tw['raw_content'] == '' or tw['keyword_ranking']:
-            print(f'{colors["warning"]}raw_content equals empty. Exist! {tw["title"]}{colors["endc"]}')
+        elif tw['raw_content'] == '' or tw['keyword_ranking'] == '':
+            print(f'raw_content equals empty.{colors["warning"]}{tw["title"]} || {tw["source"]}{colors["endc"]}')
             # exit()
         else:
             _id = tw['_id']
@@ -104,10 +105,12 @@ async def main(day_in):
     task2 = asyncio.create_task(get_news_from(yesterday, iohk_collection))
     task3 = asyncio.create_task(get_news_from(yesterday, coindesk_collection))
     task4 = asyncio.create_task(get_news_from(yesterday, cointele_collection))
+    task5 = asyncio.create_task(get_news_from(yesterday, adapulse_collection))
     await task3
     await task2
     await task1
     await task4
+    await task5
 
 
 asyncio.run(main(day))
