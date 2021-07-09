@@ -2,6 +2,7 @@ import os
 import re
 import json
 import shutil
+import calendar
 from w3lib import html
 from dateutil.parser import parse
 from time import sleep
@@ -117,7 +118,10 @@ def handle_datetime(data, date_time):
 		return data['timestamp']
 	# datetime of coindesk
 	elif ',' in date_time and len(date_time) != 0:
-		data['timestamp'] = datetime.strptime(date_time, '%b %d, %Y').timestamp()
+		# data['timestamp'] = datetime.strptime(date_time, '%b %d, %Y').timestamp()
+		data['timestamp'] = datetime.strptime(date_time, '%B %d, %Y').timestamp() \
+			if date_time.split(' ')[0] in calendar.month_name \
+			else datetime.strptime(date_time, '%b %d, %Y').timestamp()
 		return data['timestamp']
 	elif len(date_time) == 0:  # date is '' in recent posts: source returns: Yesterday at 4:39 p.m, Yesterday at 4:39 p.m,..
 		data['timestamp'] = datetime.now().timestamp()
@@ -130,7 +134,7 @@ def handle_datetime(data, date_time):
 def handle_utc_datetime(str_date, data):
 	my_date = parse(str_date)
 	data['published'] = str_date
-	data['date'] = str_date
+	# data['date'] = str_date
 	data['timestamp'] = my_date.timestamp()
 
 
@@ -178,7 +182,7 @@ def update_news(table, data):
 
 
 def update_success_notify(table):
-	print(f"{color['okcyan']}Updating {get_table(table)} table{color['endc']}\n")
+	print(f"{color['okcyan']}Updated {get_table(table)} table Successfully!{color['endc']}\n")
 
 
 def update_rawcontent_notify(table, data):
@@ -190,7 +194,7 @@ def insert_success_notify(table):
 
 
 def show_message(message, colour, data):
-	print(f"{message}: {color[colour]}{data}{color['endc']}")
+	print(f"{message} {color[colour]}{data}{color['endc']}")
 
 
 def handle_empty_content(table, new_posts):

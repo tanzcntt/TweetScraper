@@ -457,12 +457,12 @@ class AdapulseScraperPipeline(object):
     def __init__(self):
         self.link_website_logo = 'https://adapulse.io/wp-content/uploads/2021/03/logonew@2x.png'
         self.myDatabase = mongoClient['cardanoNews']
-        self.adaPulse = self.myDatabase['adaPulseSample']
+        self.adaPulse = self.myDatabase['adaPulseSample1']
         self.new_posts = []
 
     def close_spider(self, spider):
-        for i, post in enumerate(self.new_posts):
-            utils.show_message('New posts for today', 'okcyan', {i, post})
+        utils.handle_empty_content(self.adaPulse, self.new_posts)
+        utils.show_message('', 'warning', 'AdaPulse Crawl Completed!')
 
     def process_item(self, item, spider):
         if item['source'] == 'adapulse.io':
@@ -470,15 +470,27 @@ class AdapulseScraperPipeline(object):
                 utils.show_message('', 'okblue', 'AdaPulse Pipeline handling...')
                 # self.adaPulse.insert_one(item)
                 self.get_posts(item)
+            elif 'raw_content' in item:
+                self.get_content(item)
         # return item
 
-    def get_posts(self, item):
-        item['timestamp'] = utils.handle_datetime(item, item[''])
-        if self.adaPulse.find_one({'link_content': item['link_content']}):
-            utils.update_news(self.adaPulse, item)
+    def get_posts(self, data):
+        data['timestamp'] = utils.handle_datetime(data, data['published'])
+        if self.adaPulse.find_one({'link_content': data['link_content']}):
+            utils.update_news(self.adaPulse, data)
             time.sleep(.5)
         else:
-            utils.insert_into_table(self.adaPulse, item)
-            utils.show_message('Post', 'okblue', item['link_content'])
-            self.new_posts.append(item['link_content'])
+            utils.insert_into_table(self.adaPulse, data)
+            utils.show_message('Post', 'okblue', data['link_content'])
+            self.new_posts.append(data['link_content'])
             time.sleep(.5)
+
+    def get_content(self, data):
+        utils.handle_utc_datetime(data['datePublished'], data)
+        raw_content = data['raw_content']
+        clean_content = remove_tags(raw_content)
+        data['keyword_ranking'] = utils.text_ranking(data, clean_content)
+        data['clean_content'] = str(clean_content)
+        utils.show_message('Getting raw_content', 'okcyan', data['link_content'])
+        utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
+        utils.update_news(self.adaPulse, data)

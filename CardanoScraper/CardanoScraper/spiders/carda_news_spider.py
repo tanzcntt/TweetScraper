@@ -627,7 +627,6 @@ class AdapulseAll(Spider):
 			return post.css(query).get(default='').strip()
 
 		response_ = HtmlResponse(url='url', body=raw_contents, encoding='utf-8')
-		utils.show_message('response_', 'okcyan', response_)
 		# title = Selector(response=response_).xpath('//h2/a/text()').getall()
 		for post in response_.xpath('//article'):
 			item = {
@@ -648,36 +647,23 @@ class AdapulseAll(Spider):
 			}
 			yield response.follow(url=item['link_content'], callback=self.parse_content, headers=cfg.ADAPULSE_HEADERS)
 			utils.show_message('', 'warning', response.follow(url=item['link_content'], callback=self.parse_content, headers=cfg.ADAPULSE_HEADERS))
-			utils.show_message('title', 'okcyan', item)
+			# utils.show_message('title', 'okcyan', item)
 			yield item
 		sleep(1.5)
-		# for post in response_:
-		# 	item = {
-		# 		# 'title': Selector(text=raw_contents).xpath('//h2[@class="cs-entry__title "]/a/text()').getall(),
-		# 		'link_content': extraction_with_css(post, 'a::attr(href)'),
-		# 		'source': 'adapulse'
-		# 	}
-		# item = {
-		# 	'title': Selector(text=raw_contents).xpath('//h2[@class="cs-entry__title "]/a/text()').getall(),
-		# 	# 'link_content': extraction_with_css('a::attr(href)'),
-		# 	'source': 'adapulse'
-		# }
-
-			# utils.show_message('data', 'okgreen', item)
-			# yield item
-			# sleep(1)
-		# <class 'scrapy.http.response.html.HtmlResponse'>
 
 	def parse_content(self, response):
 		def extraction_with_css(query):
 			return response.css(query).get(default='').strip()
-
+		# get datePublished and dateModified
+		json_data = response.css('head')
+		json_data = json.loads(json_data.css('script[type="application/ld+json"]::text').extract_first())
+		json_data = json_data['@graph'][2]
 		data = {
 			'raw_content': extraction_with_css('div.entry-content'),
 			'link_content': extraction_with_css('div.pk-share-buttons-wrap::attr(data-share-url)'),
-			# 'post_time': extraction_with_css('time.post-time::text'),
+			'datePublished': json_data['datePublished'] if 'datePublished' in json_data else '',
+			'dateModified': json_data['dateModified'] if 'dateModified' in json_data else '',
 			'source': 'adapulse.io',
-			'latest': 1,
 		}
-		utils.show_message('', 'okgreen', data)
-		# yield data
+		yield data
+		sleep(.5)
