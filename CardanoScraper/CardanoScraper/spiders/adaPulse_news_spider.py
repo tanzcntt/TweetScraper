@@ -6,7 +6,7 @@ from scrapy.http import Request, FormRequest, HtmlResponse
 from .. import config as cfg
 
 
-class AdapulseAll(Spider):
+class AdapulseSpider(Spider):
     name = 'adaPulse'
 
     def __init__(self, mode, **kwargs):
@@ -33,9 +33,11 @@ class AdapulseAll(Spider):
                 yield FormRequest(url=start_url, callback=self.parse,
                                   dont_filter=True, method='POST',
                                   body=body_, headers=cfg.ADAPULSE_HEADERS)
+        else:
+            utils.show_message('', 'fail', 'Please retype mode: `latest` or `all`')
 
     def parse(self, response, **kwargs):
-        utils.show_message('', 'fail', 'All Adapulse Thread')
+        utils.show_message('', 'fail', f'{self.mode.upper()} Adapulse Thread')
         data = json.loads(response.body)
         raw_contents = data['data']['content']
 
@@ -58,7 +60,7 @@ class AdapulseAll(Spider):
                 'link_tag': post.css('li a::attr(href)').getall(),
                 'published': extraction_with_css(post, 'div.cs-meta-date::text'),
                 'source': 'adapulse.io',
-                'latest': 0,
+                'latest': 1 if self.mode == 'latest' else 0,
                 'approve': 1,
             }
             yield response.follow(url=item['link_content'], callback=self.parse_content, headers=cfg.ADAPULSE_HEADERS)
