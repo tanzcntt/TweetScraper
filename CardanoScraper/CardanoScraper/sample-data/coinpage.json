@@ -1,0 +1,854 @@
+[
+  {
+    "@context": "https:\/\/schema.org",
+    "@type": "CollectionPage",
+    "@id": "https:\/\/coingape.com\/category\/news\/#CollectionPage",
+    "headline": "News Category",
+    "description": "Coingape is the most trusted platform for Blockchain and Cryptocurrency information. Here you get Cryptocurrency News, Bitcoin News.",
+    "url": "https:\/\/coingape.com\/category\/news\/",
+    "hasPart": [
+      {
+        "@type": "Article",
+        "headline": "DOGE Price Analysis: Yet Again, DOGE Fails to Break Major Resistance Zone, What&#8217;s Next?",
+        "url": "https:\/\/coingape.com\/doge-price-yet-again-doge-fails-to-break-top-trend-of-channel\/",
+        "datePublished": "2021-07-11T14:04:45+05:30",
+        "dateModified": "2021-07-11T14:07:14+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/doge-price-yet-again-doge-fails-to-break-top-trend-of-channel\/",
+        "author": {
+          "@type": "Person",
+          "name": "Domenic CoinGape",
+          "description": "Domenic Fiore has a love for the financial markets. He decided to skip the college route to pursue entrepreneurship. He saw the vision to become an entrepreneur and wanted to achieve success from a young age. Domenic owned &amp; operated a car detailing business since the age of 16, along with being a part of two CBD businesses through 2018 &amp; 2019. He started his investment and trading career early trading in 2017 when he bought a newly released cryptocurrency alt-coin and saw 10x return in a few months. He then realized there was much potential and dove head first into learning everything he could. He became very passionate about technical analysis and knew it was his route to financial freedom. Over the last 4 years, Domenic has shared his analysis with many groups and received amazing feedback. Shortly after he wanted to help assist in the pursuit of spreading and helping others achieve success in the trading industry.",
+          "url": "https:\/\/coingape.com\/author\/domenic\/",
+          "sameAs": [
+            "https:\/\/www.tradingview.com\/u\/traderview2\/",
+            "https:\/\/twitter.com\/Tradersvieww"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/03232ad2aa6f876b8e4e6671b4f67a45?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/doge-price-yet-again-doge-fails-to-break-top-trend-of-channel\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "ETH Price Analysis: Ethereum (ETH) Bulls Need to Hold this Key Support to Avoid Further Price Crash",
+        "url": "https:\/\/coingape.com\/eth-fails-to-regain-6-month-trend\/",
+        "datePublished": "2021-07-11T13:32:00+05:30",
+        "dateModified": "2021-07-11T13:32:00+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/eth-fails-to-regain-6-month-trend\/",
+        "author": {
+          "@type": "Person",
+          "name": "Domenic CoinGape",
+          "description": "Domenic Fiore has a love for the financial markets. He decided to skip the college route to pursue entrepreneurship. He saw the vision to become an entrepreneur and wanted to achieve success from a young age. Domenic owned &amp; operated a car detailing business since the age of 16, along with being a part of two CBD businesses through 2018 &amp; 2019. He started his investment and trading career early trading in 2017 when he bought a newly released cryptocurrency alt-coin and saw 10x return in a few months. He then realized there was much potential and dove head first into learning everything he could. He became very passionate about technical analysis and knew it was his route to financial freedom. Over the last 4 years, Domenic has shared his analysis with many groups and received amazing feedback. Shortly after he wanted to help assist in the pursuit of spreading and helping others achieve success in the trading industry.",
+          "url": "https:\/\/coingape.com\/author\/domenic\/",
+          "sameAs": [
+            "https:\/\/www.tradingview.com\/u\/traderview2\/",
+            "https:\/\/twitter.com\/Tradersvieww"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/03232ad2aa6f876b8e4e6671b4f67a45?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/eth-fails-to-regain-6-month-trend\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "BTC Price Analysis: Bitcoin (BTC) Heads Towards Last Major Support, Will Price Dip Below $30,000",
+        "url": "https:\/\/coingape.com\/btc-price-analysis-bitcoin-btc-heads-towards-last-major-support-will-price-dip-30000\/",
+        "datePublished": "2021-07-11T03:21:48+05:30",
+        "dateModified": "2021-07-11T03:21:48+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/btc-price-analysis-bitcoin-btc-heads-towards-last-major-support-will-price-dip-30000\/",
+        "author": {
+          "@type": "Person",
+          "name": "Domenic CoinGape",
+          "description": "Domenic Fiore has a love for the financial markets. He decided to skip the college route to pursue entrepreneurship. He saw the vision to become an entrepreneur and wanted to achieve success from a young age. Domenic owned &amp; operated a car detailing business since the age of 16, along with being a part of two CBD businesses through 2018 &amp; 2019. He started his investment and trading career early trading in 2017 when he bought a newly released cryptocurrency alt-coin and saw 10x return in a few months. He then realized there was much potential and dove head first into learning everything he could. He became very passionate about technical analysis and knew it was his route to financial freedom. Over the last 4 years, Domenic has shared his analysis with many groups and received amazing feedback. Shortly after he wanted to help assist in the pursuit of spreading and helping others achieve success in the trading industry.",
+          "url": "https:\/\/coingape.com\/author\/domenic\/",
+          "sameAs": [
+            "https:\/\/www.tradingview.com\/u\/traderview2\/",
+            "https:\/\/twitter.com\/Tradersvieww"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/03232ad2aa6f876b8e4e6671b4f67a45?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/btc-price-analysis-bitcoin-btc-heads-towards-last-major-support-will-price-dip-30000\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Bloomberg Takes A Jibe at Binance, Calls Founder CZ &#8220;Elusive&#8221;",
+        "url": "https:\/\/coingape.com\/bloomberg-takes-a-jibe-at-binance-calls-founder-cz-elusive\/",
+        "datePublished": "2021-07-11T01:40:22+05:30",
+        "dateModified": "2021-07-11T01:47:46+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/bloomberg-takes-a-jibe-at-binance-calls-founder-cz-elusive\/",
+        "author": {
+          "@type": "Person",
+          "name": "Sunil Sharma",
+          "description": "Sunil is a serial entrepreneur and has been working in blockchain and cryptocurrency space for 2 years now. Previously he co-founded Govt. of India supported startup InThinks and is currently Chief Editor at Coingape and CEO at SquadX, a fintech startup. He has published more than 100 articles on cryptocurrency and blockchain and has assisted a number of ICO's in their success. He has co-designed blockchain development industrial training and has hosted many interviews in past. Follow him on Twitter at @sharmasunil8114  and reach out to him at sunil (at) coingape.com",
+          "url": "https:\/\/coingape.com\/author\/sunil\/",
+          "sameAs": [
+            "https:\/\/coingape.com",
+            "https:\/\/www.facebook.com\/profile.php?id=100003925364399",
+            "https:\/\/twitter.com\/sharmasunil8114",
+            "https:\/\/www.linkedin.com\/in\/sharmasunil93\/"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/bb2db02531ca08606aa5fdd533609d02?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/bloomberg-takes-a-jibe-at-binance-calls-founder-cz-elusive\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "&#8220;This Time He Is Mostly Right&#8221;- FTX CEO On Elon Musk",
+        "url": "https:\/\/coingape.com\/he-is-mostly-right-elon-musk\/",
+        "datePublished": "2021-07-11T00:52:51+05:30",
+        "dateModified": "2021-07-11T00:52:51+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/he-is-mostly-right-elon-musk\/",
+        "author": {
+          "@type": "Person",
+          "name": "Lujan Odera",
+          "description": "Been in the field since 2015 and he still love everything blockchain and crypto! FC Barcelona fan. Author and journalist. Follow him at @lujanodera.",
+          "url": "https:\/\/coingape.com\/author\/lujan\/",
+          "sameAs": [
+            "https:\/\/twitter.com\/lujanodera\/",
+            "https:\/\/www.linkedin.com\/in\/lujan-odera-737834108\/"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/d7f1b8293b4a2afd6dd753f8351e8009?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/he-is-mostly-right-elon-musk\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "This Country Could Make Bitcoin a Legal Tender After El Salvador",
+        "url": "https:\/\/coingape.com\/this-country-could-make-bitcoin-a-legal-tender-after-el-salvador\/",
+        "datePublished": "2021-07-10T19:32:36+05:30",
+        "dateModified": "2021-07-11T00:56:46+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/this-country-could-make-bitcoin-a-legal-tender-after-el-salvador\/",
+        "author": {
+          "@type": "Person",
+          "name": "Prashant Jha",
+          "description": "An engineering graduate, Prashant focuses on UK and Indian markets. As a crypto-journalist, his interests lie in blockchain technology adoption across emerging economies.",
+          "url": "https:\/\/coingape.com\/author\/prashant\/",
+          "sameAs": [
+            "https:\/\/twitter.com\/_prashantjha",
+            "https:\/\/in.linkedin.com\/in\/prashant-jha-a7a665b8"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/81a738f51fe024edfab8d258334b4082?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/this-country-could-make-bitcoin-a-legal-tender-after-el-salvador\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Ripple (XRP) Reschedules Ex SEC Director&#8217;s Deposition Despite SEC&#8217;s Call For Dismissal",
+        "url": "https:\/\/coingape.com\/ripple-reschedules-ex-sec-directors-deposition-despite-secs-call-for-dismissal\/",
+        "datePublished": "2021-07-10T18:02:44+05:30",
+        "dateModified": "2021-07-10T20:03:02+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/ripple-reschedules-ex-sec-directors-deposition-despite-secs-call-for-dismissal\/",
+        "author": {
+          "@type": "Person",
+          "name": "Palak Malhotra",
+          "description": "Journalism &amp; Mass Comm. \u201821 graduate, Palak is a GenZ journalist with background in Lifestyle journalism &amp; PR. At CoinGape, Palak is a junior crypto journalist preparing for Web 3.0",
+          "url": "https:\/\/coingape.com\/author\/palak\/",
+          "sameAs": [],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/fe51eb11104f4b4086f4b4e83eb74953?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/ripple-reschedules-ex-sec-directors-deposition-despite-secs-call-for-dismissal\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Bitcoin (BTC) Mining Hashrate Shows Strong Rebound as BTC Price Looks to Solidify $34K",
+        "url": "https:\/\/coingape.com\/bitcoinbtc-mining-hashrate-shows-strong-rebound-as-btc-price-looks-to-solidify-34k\/",
+        "datePublished": "2021-07-10T16:03:55+05:30",
+        "dateModified": "2021-07-10T17:36:27+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/bitcoinbtc-mining-hashrate-shows-strong-rebound-as-btc-price-looks-to-solidify-34k\/",
+        "author": {
+          "@type": "Person",
+          "name": "Prashant Jha",
+          "description": "An engineering graduate, Prashant focuses on UK and Indian markets. As a crypto-journalist, his interests lie in blockchain technology adoption across emerging economies.",
+          "url": "https:\/\/coingape.com\/author\/prashant\/",
+          "sameAs": [
+            "https:\/\/twitter.com\/_prashantjha",
+            "https:\/\/in.linkedin.com\/in\/prashant-jha-a7a665b8"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/81a738f51fe024edfab8d258334b4082?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/bitcoinbtc-mining-hashrate-shows-strong-rebound-as-btc-price-looks-to-solidify-34k\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "UN\u2019s ECLAC not in favor of El Salvador\u2019s Bitcoin (BTC) Legal Tender",
+        "url": "https:\/\/coingape.com\/uns-eclac-not-in-favor-of-el-salvadors-bitcoin-btc-legal-tender\/",
+        "datePublished": "2021-07-10T15:15:14+05:30",
+        "dateModified": "2021-07-10T15:15:14+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/uns-eclac-not-in-favor-of-el-salvadors-bitcoin-btc-legal-tender\/",
+        "author": {
+          "@type": "Person",
+          "name": "Palak Malhotra",
+          "description": "Journalism &amp; Mass Comm. \u201821 graduate, Palak is a GenZ journalist with background in Lifestyle journalism &amp; PR. At CoinGape, Palak is a junior crypto journalist preparing for Web 3.0",
+          "url": "https:\/\/coingape.com\/author\/palak\/",
+          "sameAs": [],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/fe51eb11104f4b4086f4b4e83eb74953?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/uns-eclac-not-in-favor-of-el-salvadors-bitcoin-btc-legal-tender\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Is It Game Over for Tesla In China? Will Tesla Sell Bitcoin [BTC]?",
+        "url": "https:\/\/coingape.com\/is-it-game-over-for-tesla-in-china-will-tesla-sell-bitcoin-btc\/",
+        "datePublished": "2021-07-10T13:49:50+05:30",
+        "dateModified": "2021-07-10T15:30:13+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/is-it-game-over-for-tesla-in-china-will-tesla-sell-bitcoin-btc\/",
+        "author": {
+          "@type": "Person",
+          "name": "Prashant Jha",
+          "description": "An engineering graduate, Prashant focuses on UK and Indian markets. As a crypto-journalist, his interests lie in blockchain technology adoption across emerging economies.",
+          "url": "https:\/\/coingape.com\/author\/prashant\/",
+          "sameAs": [
+            "https:\/\/twitter.com\/_prashantjha",
+            "https:\/\/in.linkedin.com\/in\/prashant-jha-a7a665b8"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/81a738f51fe024edfab8d258334b4082?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/is-it-game-over-for-tesla-in-china-will-tesla-sell-bitcoin-btc\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "TikTok Bans Crypto Influencers Amid Rising Scams",
+        "url": "https:\/\/coingape.com\/tiktok-bans-crypto-influencers-amid-rising-scams\/",
+        "datePublished": "2021-07-10T12:51:43+05:30",
+        "dateModified": "2021-07-10T12:51:43+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/tiktok-bans-crypto-influencers-amid-rising-scams\/",
+        "author": {
+          "@type": "Person",
+          "name": "Palak Malhotra",
+          "description": "Journalism &amp; Mass Comm. \u201821 graduate, Palak is a GenZ journalist with background in Lifestyle journalism &amp; PR. At CoinGape, Palak is a junior crypto journalist preparing for Web 3.0",
+          "url": "https:\/\/coingape.com\/author\/palak\/",
+          "sameAs": [],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/fe51eb11104f4b4086f4b4e83eb74953?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/tiktok-bans-crypto-influencers-amid-rising-scams\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Popular Video Platform TikTok Bans Crypto Promotion Ads",
+        "url": "https:\/\/coingape.com\/popular-video-platform-tiktok-bans-crypto-promotion-ads\/",
+        "datePublished": "2021-07-10T12:22:02+05:30",
+        "dateModified": "2021-07-10T12:22:02+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/popular-video-platform-tiktok-bans-crypto-promotion-ads\/",
+        "author": {
+          "@type": "Person",
+          "name": "Bhushan Akolkar",
+          "description": "Bhushan is a FinTech enthusiast and holds a good flair in understanding financial markets. His interest in economics and finance draw his attention towards the new emerging Blockchain Technology and Cryptocurrency markets. He is continuously in a learning process and keeps himself motivated by sharing his acquired knowledge. In free time he reads thriller fictions novels and sometimes explore his culinary skills.",
+          "url": "https:\/\/coingape.com\/author\/bhushan\/",
+          "sameAs": [
+            "https:\/\/www.facebook.com\/bhushan.akolkar.7",
+            "https:\/\/twitter.com\/bhushanakolkar",
+            "https:\/\/in.linkedin.com\/in\/bhushan-akolkar-556171184"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/6d622b7613c3c79c72d94a2e7cffa3b2?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/popular-video-platform-tiktok-bans-crypto-promotion-ads\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Uniswap (UNI) Climbs Over 19% in a Week to Solidify its Dominance in DeFi",
+        "url": "https:\/\/coingape.com\/uniswap-dominates-defi\/",
+        "datePublished": "2021-07-09T22:54:25+05:30",
+        "dateModified": "2021-07-09T22:54:25+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/uniswap-dominates-defi\/",
+        "author": {
+          "@type": "Person",
+          "name": "Lujan Odera",
+          "description": "Been in the field since 2015 and he still love everything blockchain and crypto! FC Barcelona fan. Author and journalist. Follow him at @lujanodera.",
+          "url": "https:\/\/coingape.com\/author\/lujan\/",
+          "sameAs": [
+            "https:\/\/twitter.com\/lujanodera\/",
+            "https:\/\/www.linkedin.com\/in\/lujan-odera-737834108\/"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/d7f1b8293b4a2afd6dd753f8351e8009?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/uniswap-dominates-defi\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "NBA&#8217;s Shaq will not be dribbling with Crypto anytime soon",
+        "url": "https:\/\/coingape.com\/nbas-shaq-will-not-be-dribbling-with-crypto-anytime-soon\/",
+        "datePublished": "2021-07-09T19:39:58+05:30",
+        "dateModified": "2021-07-09T19:39:58+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/nbas-shaq-will-not-be-dribbling-with-crypto-anytime-soon\/",
+        "author": {
+          "@type": "Person",
+          "name": "Palak Malhotra",
+          "description": "Journalism &amp; Mass Comm. \u201821 graduate, Palak is a GenZ journalist with background in Lifestyle journalism &amp; PR. At CoinGape, Palak is a junior crypto journalist preparing for Web 3.0",
+          "url": "https:\/\/coingape.com\/author\/palak\/",
+          "sameAs": [],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/fe51eb11104f4b4086f4b4e83eb74953?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/nbas-shaq-will-not-be-dribbling-with-crypto-anytime-soon\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Block.One Subsidiary Bullish Set to go Public In a SPAC Deal Valued at $9 Billion",
+        "url": "https:\/\/coingape.com\/block-one-subsidiary-bullish-set-to-go-public-in-a-spac-deal-valued-at-9-billion\/",
+        "datePublished": "2021-07-09T19:30:18+05:30",
+        "dateModified": "2021-07-10T09:01:02+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/block-one-subsidiary-bullish-set-to-go-public-in-a-spac-deal-valued-at-9-billion\/",
+        "author": {
+          "@type": "Person",
+          "name": "Prashant Jha",
+          "description": "An engineering graduate, Prashant focuses on UK and Indian markets. As a crypto-journalist, his interests lie in blockchain technology adoption across emerging economies.",
+          "url": "https:\/\/coingape.com\/author\/prashant\/",
+          "sameAs": [
+            "https:\/\/twitter.com\/_prashantjha",
+            "https:\/\/in.linkedin.com\/in\/prashant-jha-a7a665b8"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/81a738f51fe024edfab8d258334b4082?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/block-one-subsidiary-bullish-set-to-go-public-in-a-spac-deal-valued-at-9-billion\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Analyst Predicts Key Event to Spot End Of Bull run",
+        "url": "https:\/\/coingape.com\/analyst-predicts-key-event-to-spot-end-of-bull-run\/",
+        "datePublished": "2021-07-09T18:18:31+05:30",
+        "dateModified": "2021-07-09T18:28:36+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/analyst-predicts-key-event-to-spot-end-of-bull-run\/",
+        "author": {
+          "@type": "Person",
+          "name": "Prashant Jha",
+          "description": "An engineering graduate, Prashant focuses on UK and Indian markets. As a crypto-journalist, his interests lie in blockchain technology adoption across emerging economies.",
+          "url": "https:\/\/coingape.com\/author\/prashant\/",
+          "sameAs": [
+            "https:\/\/twitter.com\/_prashantjha",
+            "https:\/\/in.linkedin.com\/in\/prashant-jha-a7a665b8"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/81a738f51fe024edfab8d258334b4082?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/analyst-predicts-key-event-to-spot-end-of-bull-run\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Israel Starts Seizing Bitcoin Being Used by Hamas",
+        "url": "https:\/\/coingape.com\/israel-to-start-seizing-bitcoin-being-used-by-hamas\/",
+        "datePublished": "2021-07-09T17:17:02+05:30",
+        "dateModified": "2021-07-09T17:24:10+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/israel-to-start-seizing-bitcoin-being-used-by-hamas\/",
+        "author": {
+          "@type": "Person",
+          "name": "Palak Malhotra",
+          "description": "Journalism &amp; Mass Comm. \u201821 graduate, Palak is a GenZ journalist with background in Lifestyle journalism &amp; PR. At CoinGape, Palak is a junior crypto journalist preparing for Web 3.0",
+          "url": "https:\/\/coingape.com\/author\/palak\/",
+          "sameAs": [],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/fe51eb11104f4b4086f4b4e83eb74953?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/israel-to-start-seizing-bitcoin-being-used-by-hamas\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Will Crypto Market Crash Again This Weekend?",
+        "url": "https:\/\/coingape.com\/will-crypto-market-crash-again-this-weekend\/",
+        "datePublished": "2021-07-09T15:19:52+05:30",
+        "dateModified": "2021-07-09T16:01:52+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/will-crypto-market-crash-again-this-weekend\/",
+        "author": {
+          "@type": "Person",
+          "name": "Prashant Jha",
+          "description": "An engineering graduate, Prashant focuses on UK and Indian markets. As a crypto-journalist, his interests lie in blockchain technology adoption across emerging economies.",
+          "url": "https:\/\/coingape.com\/author\/prashant\/",
+          "sameAs": [
+            "https:\/\/twitter.com\/_prashantjha",
+            "https:\/\/in.linkedin.com\/in\/prashant-jha-a7a665b8"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/81a738f51fe024edfab8d258334b4082?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/will-crypto-market-crash-again-this-weekend\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Elon Musk Sides With Dogecoin (DOGE), Calls BTC &#038; ETH Slow",
+        "url": "https:\/\/coingape.com\/elon-musk-sides-with-dogecoin-doge-calls-btc-eth-slow\/",
+        "datePublished": "2021-07-09T14:49:34+05:30",
+        "dateModified": "2021-07-10T12:48:05+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/elon-musk-sides-with-dogecoin-doge-calls-btc-eth-slow\/",
+        "author": {
+          "@type": "Person",
+          "name": "Palak Malhotra",
+          "description": "Journalism &amp; Mass Comm. \u201821 graduate, Palak is a GenZ journalist with background in Lifestyle journalism &amp; PR. At CoinGape, Palak is a junior crypto journalist preparing for Web 3.0",
+          "url": "https:\/\/coingape.com\/author\/palak\/",
+          "sameAs": [],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/fe51eb11104f4b4086f4b4e83eb74953?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/elon-musk-sides-with-dogecoin-doge-calls-btc-eth-slow\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "Dogecoin (DOGE) Price Worst Hit As Altcoin Bloodbath Intensifies",
+        "url": "https:\/\/coingape.com\/dogecoin-doge-price-worst-hit-as-altcoin-bloodbath-intensifies\/",
+        "datePublished": "2021-07-09T13:17:40+05:30",
+        "dateModified": "2021-07-09T13:36:03+05:30",
+        "mainEntityOfPage": "https:\/\/coingape.com\/dogecoin-doge-price-worst-hit-as-altcoin-bloodbath-intensifies\/",
+        "author": {
+          "@type": "Person",
+          "name": "Prashant Jha",
+          "description": "An engineering graduate, Prashant focuses on UK and Indian markets. As a crypto-journalist, his interests lie in blockchain technology adoption across emerging economies.",
+          "url": "https:\/\/coingape.com\/author\/prashant\/",
+          "sameAs": [
+            "https:\/\/twitter.com\/_prashantjha",
+            "https:\/\/in.linkedin.com\/in\/prashant-jha-a7a665b8"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/secure.gravatar.com\/avatar\/81a738f51fe024edfab8d258334b4082?s=96&d=mm&r=g",
+            "height": 96,
+            "width": 96
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CoinGape",
+          "url": "https:\/\/coingape.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2020\/02\/04134109\/Webp.net-resizeimage-min.png",
+            "width": "160",
+            "height": "50"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https:\/\/coingape.com\/dogecoin-doge-price-worst-hit-as-altcoin-bloodbath-intensifies\/#primaryimage",
+          "url": "https:\/\/cdn.coingape.com\/wp-content\/uploads\/2019\/04\/05133129\/dogecoin.png",
+          "width": "1000",
+          "height": "668"
+        }
+      }
+    ]
+  }
+]
+{
+  'title': 'Ripple (XRP) Reschedules Ex SEC Director’s Deposition Despite SEC’s Call For Dismissal',
+  'link_content': 'https://coingape.com/ripple-reschedules-ex-sec-directors-deposition-despite-secs-call-for-dismissal/',
+  'slug_content': '',
+  'author': 'Palak Malhotra',
+  'link_author': 'https://coingape.com/author/palak/',
+  'link_author_img': 'https://secure.gravatar.com/avatar/fe51eb11104f4b4086f4b4e83eb74953?s=96&d=mm&r=g',
+  'tag': 'bitcoin',
+  'link_tag': '',
+  'datePublished': '2021-07-10T18:02:44+05:30',
+  'dateModified': '2021-07-10T20:03:02+05:30',
+  'source': 'coinpage.com',
+  'latest': 1,
+  'approve': 1,
+  'subtitle': 'Cryptocurrency trading volumes on major exchanges fell by more than 40% in June aided by the market crash in May and the ongoing crackdown in China. As the Bitcoin slump continued, a daily volume maximum of $138.23bn was traded on 22nd of June, down 42.3% from the intra-month high in May. According to data from',
+  'link_img': ''
+}
