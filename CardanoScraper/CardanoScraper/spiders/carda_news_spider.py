@@ -20,14 +20,12 @@ class IohkContent(Spider):
 	name = "allIohk"
 
 	def start_requests(self):
-		url = "https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json"
 		total_page = 0
 		while True:
-			yield Request(url=url.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS)
-			print(
-				f"{color['warning']}{Request(url=url.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS)}{color['endc']}")
+			yield Request(url=cfg.IOHK_API_DATA.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS)
+			utils.show_message('', 'warning', Request(url=cfg.IOHK_API_DATA.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS))
 			total_page += 1
-			if total_page > 45:
+			if total_page > cfg.IOHK_TOTAL_PAGE:
 				break
 
 	def parse_item(self, response):
@@ -42,10 +40,9 @@ class IohkLatest(Spider):
 	name = 'latestIohk'
 
 	def start_requests(self):
-		start_url = 'https://iohk.io/page-data/en/blog/posts/page-{}/page-data.json'
-		total_page = 4
+		total_page = cfg.LATEST_PAGE
 		for i in range(total_page):
-			yield Request(url=start_url.format(i), callback=self.parse, headers=cfg.IOHK_HEADERS)
+			yield Request(url=cfg.IOHK_API_DATA.format(i), callback=self.parse, headers=cfg.IOHK_HEADERS)
 
 	def parse(self, response, **kwargs):
 		print(f"{color['fail']}Latest IOHK Thread{color['endc']}")

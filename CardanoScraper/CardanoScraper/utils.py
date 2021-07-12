@@ -179,6 +179,7 @@ def update_news(table, data):
 	}
 	if table.update_one(query, {'$set': data}):
 		update_success_notify(table)
+	sleep(.5)
 
 
 def update_success_notify(table):

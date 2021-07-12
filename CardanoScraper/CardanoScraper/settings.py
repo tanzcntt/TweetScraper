@@ -69,6 +69,7 @@ ITEM_PIPELINES = {
    'CardanoScraper.pipelines.CoindeskScraperPipeline': 170,
    'CardanoScraper.pipelines.CoinTelegraphScraperPipeline': 190,
    'CardanoScraper.pipelines.AdapulseScraperPipeline': 210,
+   'CardanoScraper.pipelines.CoinpageScraperPipeline': 230,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

@@ -95,6 +95,8 @@ class CardanoscraperPipeline(object):
         query = {
             "link_post": data['link_content'].strip()
         }
+        utils.show_message('Getting raw_content', 'okcyan', data['link_content'])
+        utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
         if table.update_one(query, {'$set': data}):
             # print(f"{color['okcyan']}Updating Raw Content into {get_table(table)}{color['endc']} for post: {data['link_content']}")
             utils.update_rawcontent_notify(table, data)
@@ -170,10 +172,12 @@ class IohkScraperPipeline(object):
 
             keyword_ranking = utils.text_ranking(iohk_all_posts, iohk_all_posts['raw_content'])
 
-            print(f"Current page: {iohk_all_posts['current_url_page']}")
-            print(f"Current post: {iohk_all_posts['title']}")
+            # print(f"Current page: {iohk_all_posts['current_url_page']}")
+            # print(f"Current post: {iohk_all_posts['title']}")
             iohk_all_posts['raw_data'] = post
             iohk_all_posts['keyword_ranking'] = keyword_ranking
+            utils.show_message('Getting raw_content', 'okcyan', iohk_all_posts['link_content'])
+            utils.show_message('keyword_ranking', 'warning', iohk_all_posts['keyword_ranking'])
             if self.iohk_sample1.find_one({'link_content': iohk_all_posts['link_content']}):
                 self.update_iohk(self.iohk_sample1, iohk_all_posts)
                 sleep(.05)
@@ -436,7 +440,6 @@ class CoinTelegraphScraperPipeline(object):
 
 class AdapulseScraperPipeline(object):
     def __init__(self):
-        self.link_website_logo = 'https://adapulse.io/wp-content/uploads/2021/03/logonew@2x.png'
         self.myDatabase = mongoClient['cardanoNews']
         self.adaPulse = self.myDatabase['adaPulseSample']
         self.new_posts = []
@@ -453,7 +456,7 @@ class AdapulseScraperPipeline(object):
                 self.get_posts(item)
             elif 'raw_content' in item:
                 self.get_content(item)
-        # return item
+        return item
 
     def get_posts(self, data):
         data['timestamp'] = utils.handle_datetime(data, data['published'])
@@ -464,7 +467,6 @@ class AdapulseScraperPipeline(object):
             utils.insert_into_table(self.adaPulse, data)
             utils.show_message('Post', 'okblue', data['link_content'])
             self.new_posts.append(data['link_content'])
-            time.sleep(.5)
 
     def get_content(self, data):
         utils.handle_utc_datetime(data['datePublished'], data)
@@ -475,3 +477,22 @@ class AdapulseScraperPipeline(object):
         utils.show_message('Getting raw_content', 'okcyan', data['link_content'])
         utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
         utils.update_news(self.adaPulse, data)
+
+
+class CoinpageScraperPipeline(object):
+    def __init__(self):
+        self.myDatabase = mongoClient['cardanoNews']
+        self.coinPage = self.myDatabase['coinPageSample1']
+        self.new_posts = []
+
+    def process_item(self, item, spider):
+        if item['source'] == 'coinpage.com':
+            utils.show_message('', 'fail', item)
+            if 'title' in item:
+                if self.coinPage.find_one({'link_content': item['link_content']}):
+                    utils.update_news(self.coinPage, item)
+                else:
+                    utils.insert_into_table(self.coinPage, item)
+                    utils.show_message('Post', 'okblue', item['link_content'])
+            elif 'raw_content' in item:
+                utils.show_message('raw_content', 'okcyan', item)
