@@ -6,7 +6,7 @@ from scrapy.http import Request, FormRequest, HtmlResponse
 from .. import config as cfg
 
 
-class Coinpage(Spider):
+class Coingape(Spider):
     name = 'coinPage'
 
     def __int__(self, mode, **kwargs):
@@ -17,11 +17,11 @@ class Coinpage(Spider):
         start_url = cfg.COINPAGE_URL
 
         if self.mode == 'latest':
-            utils.show_message('Crawling:', 'okgreen', self.mode)
-            for i in range(1):
+            utils.show_message('Crawling:', 'okgreen', self.mode.upper())
+            for i in range(cfg.LATEST_PAGE):
                 yield Request(url=start_url.format(i), callback=self.parse, headers=cfg.IOHK_HEADERS)
         elif self.mode == 'all':
-            utils.show_message('Crawling', 'okgreen', self.mode)
+            utils.show_message('Crawling', 'okgreen', self.mode.upper())
             for i in range(cfg.COINPAGE_TOTAL_PAGE):
                 yield Request(url=start_url.format(i), callback=self.parse)
         else:
@@ -45,7 +45,7 @@ class Coinpage(Spider):
                 'link_author_img': post['author']['image']['url'],
                 'datePublished': post['datePublished'],
                 'dateModified': post['dateModified'],
-                'source': 'coinpage.com',
+                'source': 'coingape.com',
                 'latest': 1 if self.mode == 'latest' else 0,
                 'approve': 1,
                 'data_from': 'script',
@@ -58,12 +58,12 @@ class Coinpage(Spider):
                 'title': utils.decode_html_content(extraction_with_css(post, 'h3[class="entry-title mh-posts-list-title"] a::text')),
                 'subtitle': utils.decode_html_content(extraction_with_css(post, 'div div.mh-excerpt p::text')),
                 'link_content': extraction_with_css(post, 'h3 a::attr(href)'),
-                'link_img': extraction_with_css(post, 'a.mh-thumb-icon img::attr(src)'),
+                # 'link_img': extraction_with_css(post, 'figure a img::attr(data-lazy-src)'),
+                'link_img': extraction_with_css(post, 'noscript img::attr(src)'),
                 'tag': extraction_with_css(post, 'div[class="mh-image-caption mh-posts-list-caption"]::text').split(' ')[0].lower(),
-                'source': 'coinpage.com',
+                'source': 'coingape.com',
                 'data_from': 'article',
             }
-            # utils.show_message('data', 'okcyan', item1)
             yield response.follow(url=item1['link_content'], callback=self.parse_content, headers=cfg.IOHK_HEADERS)
             yield item1
         sleep(.75)
@@ -95,13 +95,12 @@ class Coinpage(Spider):
         item = {
             'dirty_raw_content': raw_data,
             'link_content': response.url,
-            'clean_content': clean_content,
+            'clean_content': utils.decode_html_content(clean_content),
             'remove_tag': [ads, ads_m, quads_location1, quads_location2, social_section, mh_social_bottom, disclam, authorclam, newNewsletter, mobile_handpic, tranding_handlight],
-            'source': 'coinpage.com',
+            'source': 'coingape.com',
         }
-
+        # remove the unwanted tag to get only raw content
         for value in item['remove_tag']:
             raw_data = raw_data.replace(value, '')
-        item['raw_content'] = raw_data
-        utils.show_message('raw_content', 'warning', raw_data)
-        utils.show_message('raw_content', 'fail', item['link_content'])
+        item['raw_content'] = utils.decode_html_content(raw_data)
+        yield item

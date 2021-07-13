@@ -413,11 +413,8 @@ class CoinTelegraphScraperPipeline(object):
                 id_tag = data['tag']
                 tag_ = self.handle_tag(id_tag)
                 cointele_sample_data['tag'] = tag_
-                # if tag_ != '':
                 cointele_sample_data['link_tag'] = 'https://cointelegraph.com/tags/' + str(tag_)
                 cointele_sample_data['tag_point'] = '5.01234321'
-                # else:
-                # cointele_sample_data['link_tag'] = ''
             cointele_sample_data['source'] = 'coinTelegraph'
             utils.handle_utc_datetime(post['postTranslate']['published'], cointele_sample_data)
             if self.coinTele.find_one({'link_content': cointele_sample_data['link_content']}):
@@ -452,7 +449,6 @@ class AdapulseScraperPipeline(object):
         if item['source'] == 'adapulse.io':
             if 'title' in item:
                 utils.show_message('', 'okblue', 'AdaPulse Pipeline handling...')
-                # self.adaPulse.insert_one(item)
                 self.get_posts(item)
             elif 'raw_content' in item:
                 self.get_content(item)
@@ -474,30 +470,41 @@ class AdapulseScraperPipeline(object):
         clean_content = remove_tags(raw_content)
         data['keyword_ranking'] = utils.text_ranking(data, clean_content)
         data['clean_content'] = str(clean_content)
-        utils.show_message('Getting raw_content', 'okcyan', data['link_content'])
-        utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
+        utils.show_keyword(data)
         utils.update_news(self.adaPulse, data)
 
 
-class CoinpageScraperPipeline(object):
+class CoingapeScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        self.coinPage = self.myDatabase['coinPageSample1']
+        self.coinPage = self.myDatabase['coinPageSample']
         self.new_posts = []
 
-    def close_spider(self):
-        for i, value in enumerate(self.new_posts):
-            utils.show_message('Latest post for today: ', 'okcyan', {i: value})
+    def close_spider(self, spider):
+        utils.handle_empty_content(self.coinPage, self.new_posts)
+        utils.show_message('', 'warning', 'CoinPage Crawl Completed!')
 
     def process_item(self, item, spider):
-        if item['source'] == 'coinpage.com':
-            utils.show_message('', 'fail', item)
+        if item['source'] == 'coingape.com':
             if 'title' in item:
-                if self.coinPage.find_one({'link_content': item['link_content']}):
-                    utils.update_news(self.coinPage, item)
-                else:
-                    utils.insert_into_table(self.coinPage, item)
-                    utils.show_message('Post', 'okblue', item['link_content'])
-                    self.new_posts.append(item['link_content'])
+                self.get_posts(item)
             elif 'raw_content' in item:
-                utils.show_message('raw_content', 'okcyan', item)
+                self.get_content(item)
+
+    def get_content(self, data):
+        data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
+        post = self.coinPage.find_one({'link_content': data['link_content']})
+        data['keyword_ranking'][post['tag']] = '4.5177178763007'
+        utils.show_keyword(data)
+        utils.update_news(self.coinPage, data)
+
+    def get_posts(self, data):
+        if self.coinPage.find_one({'link_content': data['link_content']}):
+            utils.update_news(self.coinPage, data)
+        else:
+            if 'datePublished' in data:
+                utils.handle_utc_datetime(data['datePublished'], data)
+            else:
+                utils.handle_utc_datetime(data['dateModified'], data)
+            utils.insert_into_table(self.coinPage, data)
+            self.new_posts.append(data['link_content'])
