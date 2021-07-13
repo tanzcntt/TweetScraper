@@ -15,12 +15,12 @@ class CardanoSpider(Spider):
 
     def start_requests(self):
         if self.mode == 'latest':
-            utils.show_message('Crawling:', 'okgreen', self.mode)
+            utils.show_message('Crawling:', 'okgreen', self.mode.upper())
             for i in range(cfg.LATEST_PAGE):
                 yield Request(url=cfg.FCARDANO_URL + str(i), callback=self.parse)
                 sleep(1)
         elif self.mode == 'all':
-            utils.show_message('Crawling:', 'okgreen', self.mode)
+            utils.show_message('Crawling:', 'okgreen', self.mode.upper())
             for i in range(cfg.FCARDANO_TOTAL_PAGE):
                 yield Request(url=cfg.FCARDANO_URL + str(i), callback=self.parse)
                 sleep(1)

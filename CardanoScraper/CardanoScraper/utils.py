@@ -9,6 +9,7 @@ from time import sleep
 from itemadapter import ItemAdapter
 from . import text_rank_4_keyword
 from datetime import datetime, timezone
+from scrapy.http import Request
 
 csv_path = 'CardanoScraper/CardanoScraper/Data/csv/'
 raw_data_path = 'CardanoScraper/CardanoScraper/Data/raw/'
@@ -133,7 +134,7 @@ def handle_datetime(data, date_time):
 
 def handle_utc_datetime(str_date, data):
 	my_date = parse(str_date)
-	data['published'] = str_date
+	# data['published'] = str_date
 	# data['date'] = str_date
 	data['timestamp'] = my_date.timestamp()
 
@@ -166,7 +167,7 @@ def text_ranking(data, raw_content_):
 
 def insert_into_table(table, data):
 	if table.insert_one(data):
-		print(f"{color['okgreen']}Imported Posts {get_table(table)} success!!!{color['endc']}")
+		show_message('', 'okgreen', f'Imported into table: {get_table(table)} | Post: {data["link_content"] if "link_content" in data else data["link_post"]}')
 	sleep(1)
 
 
@@ -178,7 +179,7 @@ def update_news(table, data):
 		'link_content': data['link_content'],
 	}
 	if table.update_one(query, {'$set': data}):
-		update_success_notify(table)
+		show_message('', 'okcyan', f'Updated into table: {get_table(table)} | Post: {data["link_content"] if "link_content" in data else data["link_post"]}')
 	sleep(.5)
 
 
@@ -196,6 +197,11 @@ def insert_success_notify(table):
 
 def show_message(message, colour, data):
 	print(f"{message} {color[colour]}{data}{color['endc']}")
+
+
+def show_keyword(data):
+	show_message('Getting raw_content', 'okcyan', data['link_content'])
+	show_message('keyword_ranking', 'warning', data['keyword_ranking'])
 
 
 def handle_empty_content(table, new_posts):
