@@ -26,6 +26,7 @@ class CardanoSpider(Spider):
                 sleep(1)
         else:
             utils.show_message('', 'fail', 'Please retype mode: `latest` or `all`')
+            exit()
 
     def parse(self, response, **kwargs):
         utils.show_message('', 'fail', f'{self.mode.upper()} Forum.Cardano Thread')

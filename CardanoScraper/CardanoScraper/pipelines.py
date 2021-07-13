@@ -485,6 +485,10 @@ class CoinpageScraperPipeline(object):
         self.coinPage = self.myDatabase['coinPageSample1']
         self.new_posts = []
 
+    def close_spider(self):
+        for i, value in enumerate(self.new_posts):
+            utils.show_message('Latest post for today: ', 'okcyan', {i: value})
+
     def process_item(self, item, spider):
         if item['source'] == 'coinpage.com':
             utils.show_message('', 'fail', item)
@@ -494,5 +498,6 @@ class CoinpageScraperPipeline(object):
                 else:
                     utils.insert_into_table(self.coinPage, item)
                     utils.show_message('Post', 'okblue', item['link_content'])
+                    self.new_posts.append(item['link_content'])
             elif 'raw_content' in item:
                 utils.show_message('raw_content', 'okcyan', item)
