@@ -15,25 +15,18 @@ class Coinpage(Spider):
 
     def start_requests(self):
         start_url = cfg.COINPAGE_URL
-        total_page = 0
-        # yield Request(url=cfg.COINPAGE_URL.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS)
 
         if self.mode == 'latest':
             utils.show_message('Crawling:', 'okgreen', self.mode)
-            # while True:
-            #     yield Request(url=cfg.COINPAGE_URL.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS)
-            #     utils.show_message('', 'warning', Request(url=cfg.IOHK_API_DATA.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS))
-            #     total_page += 1
-            #     if total_page > cfg.LATEST_PAGE + 1:
-            #         break
-            # for i in range(cfg.LATEST_PAGE):
             for i in range(1):
-                yield Request(url=start_url.format(i), callback=self.parse)
+                yield Request(url=start_url.format(i), callback=self.parse, headers=cfg.IOHK_HEADERS)
         elif self.mode == 'all':
-            utils.show_message('', 'okcyan', 'crawling all pages')
-            pass
+            utils.show_message('Crawling', 'okgreen', self.mode)
+            for i in range(cfg.COINPAGE_TOTAL_PAGE):
+                yield Request(url=start_url.format(i), callback=self.parse)
         else:
             utils.show_message('', 'fail', 'Please retype mode: `latest` or `all`')
+            exit()
 
     def parse(self, response, **kwargs):
         def extraction_with_css(post, query):
@@ -58,24 +51,6 @@ class Coinpage(Spider):
                 'data_from': 'script',
             }
             yield item
-            # item['title'] = utils.decode_html_content(post['headline'])  # decode text
-            # item['link_content'] = post['url']
-            # item['subtitle'] = ''
-            # item['link_img'] = '',
-            # item['slug_content'] = ''
-            # item['author'] = post['author']['name']
-            # item['link_author'] = post['author']['url']
-            # item['link_author_img'] = post['author']['image']['url']
-            # item['tag'] = ''
-            # item['link_tag'] = ''
-            # item['datePublished'] = post['datePublished']
-            # item['dateModified'] = post['dateModified']
-            # item['source'] = 'coinpage.com'
-            # item['latest'] = 1 if self.mode == 'latest' else 0
-            # item['approve'] = 1
-            # utils.show_message('raw_data1', 'okgreen', item)
-            # yield item
-
         html_data = response.css('article')
         utils.show_message('', 'okgreen', response.url)
         for post in html_data:
@@ -89,8 +64,44 @@ class Coinpage(Spider):
                 'data_from': 'article',
             }
             # utils.show_message('data', 'okcyan', item1)
+            yield response.follow(url=item1['link_content'], callback=self.parse_content, headers=cfg.IOHK_HEADERS)
             yield item1
         sleep(.75)
 
     def parse_content(self, response):
-        pass
+        def extraction_with_css(post, query):
+            return post.css(query).get(default='').strip()
+        json_data = response.css('head')
+        json_data = json.loads(json_data.css('script[type="application/ld+json"]::text').extract_first())
+        clean_content = json_data[1]['articleBody']
+
+        # dirty raw content but type is Selector
+        raw_ = response.css('div[class="main c-content"]')
+
+        # dirty raw content, type is String
+        raw_data = extraction_with_css(response, 'div[class="main c-content"]')
+        ads = extraction_with_css(raw_, 'div.ads')
+        ads_m = extraction_with_css(raw_, 'div.ads-m')
+        quads_location1 = extraction_with_css(raw_, 'div[id="quads-ad86062"]')
+        quads_location2 = extraction_with_css(raw_, 'div[id="quads-ad86313"]')
+        social_section = extraction_with_css(raw_, 'div[id="social-section-new"]')
+        mh_social_bottom = extraction_with_css(raw_, 'div[class="mh-social-bottom"]')
+        disclam = extraction_with_css(raw_, 'div[class="disclam"]')
+        authorclam = extraction_with_css(raw_, 'div[class="authorclam"]')
+        newNewsletter = extraction_with_css(raw_, 'div[class="newNewsletter"]')
+        mobile_handpic = extraction_with_css(raw_, 'div[class="mobile-handpic"]')
+        tranding_handlight = extraction_with_css(raw_, 'div[class="tranding-handlight dektophandpic"]')
+
+        item = {
+            'dirty_raw_content': raw_data,
+            'link_content': response.url,
+            'clean_content': clean_content,
+            'remove_tag': [ads, ads_m, quads_location1, quads_location2, social_section, mh_social_bottom, disclam, authorclam, newNewsletter, mobile_handpic, tranding_handlight],
+            'source': 'coinpage.com',
+        }
+
+        for value in item['remove_tag']:
+            raw_data = raw_data.replace(value, '')
+        item['raw_content'] = raw_data
+        utils.show_message('raw_content', 'warning', raw_data)
+        utils.show_message('raw_content', 'fail', item['link_content'])
