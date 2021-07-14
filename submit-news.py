@@ -17,6 +17,8 @@ iohk_collection = myDatabase['iohkSample']
 coindesk_collection = myDatabase['coindeskSample']
 cointele_collection = myDatabase['coinTelegraphSample']
 adapulse_collection = myDatabase['adaPulseSample']
+coinpage_collection = myDatabase['coinGapeSample']
+# coinpage_collection = myDatabase['coinPageSampleTest1']
 # cointele_collection = myDatabase['coinTelegraphSampleTest1']
 # Remove 1st argument from the
 # list of command line arguments
@@ -106,11 +108,13 @@ async def main(day_in):
     task3 = asyncio.create_task(get_news_from(yesterday, coindesk_collection))
     task4 = asyncio.create_task(get_news_from(yesterday, cointele_collection))
     task5 = asyncio.create_task(get_news_from(yesterday, adapulse_collection))
+    task6 = asyncio.create_task(get_news_from(yesterday, coinpage_collection))
     await task3
     await task2
     await task1
     await task4
     await task5
+    await task6
 
 
 asyncio.run(main(day))

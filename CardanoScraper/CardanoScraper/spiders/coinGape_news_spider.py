@@ -7,7 +7,7 @@ from .. import config as cfg
 
 
 class Coingape(Spider):
-    name = 'coinPage'
+    name = 'coinGape'
 
     def __int__(self, mode, **kwargs):
         super.__init__(**kwargs)
@@ -18,7 +18,7 @@ class Coingape(Spider):
 
         if self.mode == 'latest':
             utils.show_message('Crawling:', 'okgreen', self.mode.upper())
-            for i in range(cfg.LATEST_PAGE):
+            for i in range(cfg.LATEST_PAGE+1):
                 yield Request(url=start_url.format(i), callback=self.parse, headers=cfg.IOHK_HEADERS)
         elif self.mode == 'all':
             utils.show_message('Crawling', 'okgreen', self.mode.upper())

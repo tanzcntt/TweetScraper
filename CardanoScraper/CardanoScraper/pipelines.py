@@ -420,12 +420,12 @@ class CoinTelegraphScraperPipeline(object):
             if self.coinTele.find_one({'link_content': cointele_sample_data['link_content']}):
                 # self.update_news(self.coinTele, cointele_sample_data)
                 utils.update_news(self.coinTele, cointele_sample_data)
-                time.sleep(1)
+                # time.sleep(1)
             else:
                 utils.insert_into_table(self.coinTele, cointele_sample_data)
-                utils.show_message('Post', 'okblue', cointele_sample_data['link_content'])
+                # utils.show_message('Post', 'okblue', cointele_sample_data['link_content'])
                 self.new_posts.append(cointele_sample_data['link_content'])
-                time.sleep(1)
+                # time.sleep(1)
 
     def handle_tag(self, tag_id):
         tag_list = cfg.COINTELEGRAPH_ID_TAGS
@@ -477,7 +477,7 @@ class AdapulseScraperPipeline(object):
 class CoingapeScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        self.coinPage = self.myDatabase['coinPageSample']
+        self.coinPage = self.myDatabase['coinGapeSample']
         self.new_posts = []
 
     def close_spider(self, spider):
