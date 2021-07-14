@@ -14,45 +14,6 @@ myDatabase = mongoClient["cardanoNews"]
 
 
 # ================================================================================================
-# iohk.io/en/blog/posts/page-1
-# ================================================================================================
-class IohkContent(Spider):
-	name = "allIohk"
-
-	def start_requests(self):
-		total_page = 0
-		while True:
-			yield Request(url=cfg.IOHK_API_DATA.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS)
-			utils.show_message('', 'warning', Request(url=cfg.IOHK_API_DATA.format(total_page), callback=self.parse, headers=cfg.IOHK_HEADERS))
-			total_page += 1
-			if total_page > cfg.IOHK_TOTAL_PAGE:
-				break
-
-	def parse_item(self, response):
-		# page = response.url
-		content = json.loads(response.body)
-		content['source'] = 'iohk'
-		yield content
-		time.sleep(2)
-
-
-class IohkLatest(Spider):
-	name = 'latestIohk'
-
-	def start_requests(self):
-		total_page = cfg.LATEST_PAGE
-		for i in range(total_page):
-			yield Request(url=cfg.IOHK_API_DATA.format(i), callback=self.parse, headers=cfg.IOHK_HEADERS)
-
-	def parse(self, response, **kwargs):
-		print(f"{color['fail']}Latest IOHK Thread{color['endc']}")
-		content = json.loads(response.body)
-		content['source'] = 'iohk'
-		yield content
-		time.sleep(2)
-
-
-# ================================================================================================
 # Coindesk.com
 # ================================================================================================
 # coindesk.com
