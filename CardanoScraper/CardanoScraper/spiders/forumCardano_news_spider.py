@@ -61,6 +61,7 @@ class CardanoSpider(Spider):
             'raw_content': extraction_with_css('div.post'),
             'link_content': extraction_with_css('div.crawler-post-meta span + link::attr(href)'),
             'post_time': extraction_with_css('time.post-time::text'),
+            'link_img': extraction_with_css('div.lightbox-wrapper a::attr(href)'),
             'source': 'cardano',
             'latest': 1 if self.mode == 'latest' else 0,
         }

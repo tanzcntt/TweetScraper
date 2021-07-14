@@ -53,8 +53,7 @@ class CardanoscraperPipeline(object):
     # handle put data to GraphQl
     # ================================================
     def close_spider(self, spider):
-        for index, value in enumerate(self.new_posts):
-            utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
+        utils.handle_empty_content(self.postContents, self.new_posts)
         print(f"{color['warning']}Cardano Crawl Completed!{color['endc']}")
 
     # call every item pipeline component
