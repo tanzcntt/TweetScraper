@@ -121,8 +121,7 @@ class IohkScraperPipeline(object):
         self.new_posts = []
 
     def close_spider(self, spider):
-        for index, value in enumerate(self.new_posts):
-            utils.show_message(message='Latest Post for today', colour='okblue', data={index: value})
+        utils.handle_empty_content(self.iohk_sample1, self.new_posts)
         print(f"{color['warning']}IOHK Crawl Completed!{color['endc']}")
 
     def process_item(self, item, spider):
@@ -153,7 +152,7 @@ class IohkScraperPipeline(object):
             iohk_all_posts['author_thumbnail'] = author_info['thumbnail']
             iohk_all_posts['author_job_titles'] = author_info['job_titles']
             iohk_all_posts['author_profile_links'] = author_info['profile_links']  # all social links of the author
-            iohk_all_posts['post_main_img'] = post['main_image']
+            iohk_all_posts['link_img'] = post['main_image']
             # iohk_all_posts['link_website_logo'] = self.link_website_logo
             iohk_all_posts['lang'] = post['lang']
             iohk_all_posts['title'] = post['title'].strip()
@@ -478,6 +477,7 @@ class CoingapeScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
         self.coinPage = self.myDatabase['coinGapeSample']
+        # self.coinPage = self.myDatabase['coinGapeSampleTest1']
         self.new_posts = []
 
     def close_spider(self, spider):

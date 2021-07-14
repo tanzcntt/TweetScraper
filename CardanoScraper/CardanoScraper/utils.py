@@ -168,7 +168,7 @@ def text_ranking(data, raw_content_):
 def insert_into_table(table, data):
 	if table.insert_one(data):
 		show_message('', 'okgreen', f'Imported into table: {get_table(table)} | Post: {data["link_content"] if "link_content" in data else data["link_post"]}')
-	sleep(1)
+	sleep(.75)
 
 
 # ================================================
@@ -219,7 +219,7 @@ def handle_empty_content(table, new_posts):
 				pass
 			if table.delete_one(my_query):
 				show_message('Empty content post was deleted!', 'okblue', 1)
-		elif post['raw_content'] == '':
+		elif post['raw_content'] == '' or post['keyword_ranking'] == {}:
 			my_query = {'link_content': link_content}
 			show_message('raw_content = ""', 'fail', link_content)
 			if link_content in new_posts:
