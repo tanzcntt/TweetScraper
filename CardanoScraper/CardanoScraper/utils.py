@@ -160,7 +160,7 @@ def clean_html_tags(raw_content):
 def text_ranking(data, raw_content_):
 	raw_content = clean_html_tags(raw_content_)
 	raw_content = remove_html_tags(raw_content)
-	# data['clean_content'] = raw_content
+	data['clean_content'] = raw_content
 	# raw_content = remove_small_words(raw_content)
 	textRank.analyze(raw_content, window_size=6)
 	data['keyword_ranking'] = textRank.get_keywords(10)

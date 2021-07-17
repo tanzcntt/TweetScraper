@@ -511,12 +511,12 @@ class CoingapeScraperPipeline(object):
 class BitcoinistScraperPipeline(object):
     def __init__(self):
         self.myDatabase = mongoClient['cardanoNews']
-        # self.bitcoinistSample = self.myDatabase['bitcoinistSample']
-        self.bitcoinistSample = self.myDatabase['bitcoinistSample2']
+        self.bitcoinistSample = self.myDatabase['bitcoinistSample']
+        # self.bitcoinistSample = self.myDatabase['bitcoinistSample2']
         self.new_posts = []
 
     def close_spider(self, spider):
-        utils.handle_empty_content(self.bitcoinistSample, self.new_posts)
+        # utils.handle_empty_content(self.bitcoinistSample, self.new_posts)
         utils.show_message('', 'warning', 'Bitcoinist Crawl Completed!')
 
     def process_item(self, item, spider):
@@ -543,11 +543,14 @@ class BitcoinistScraperPipeline(object):
             utils.show_message('', 'warning', 'Timestamp was set as default following the Published post.')
         # assign point to keyword randomly in range 1 to 6
         if 'keyword_ranking' not in data:
-            data_ = {}
-            keyword_set_point = list(map(lambda x: {x: str(random.uniform(2.5, 6))}, data['keywords']))
-            [data_.update(item) for item in keyword_set_point]
-            data_.update(utils.text_ranking(data, data['raw_content']))
-            data['keyword_ranking'] = data_
+            if 'keywords' in data or len(data['keywords']) != 0:
+                data_ = {}
+                keyword_set_point = list(map(lambda x: {x: str(random.uniform(2.5, 6))}, data['keywords']))
+                [data_.update(item) for item in keyword_set_point]
+                data_.update(utils.text_ranking(data, data['raw_content']))
+                data['keyword_ranking'] = data_
+            else:
+                utils.text_ranking(data, data['raw_content'])
         else:
             pass
         utils.show_keyword(data)
