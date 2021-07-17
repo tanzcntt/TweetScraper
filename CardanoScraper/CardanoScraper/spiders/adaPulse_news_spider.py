@@ -49,11 +49,11 @@ class AdapulseSpider(Spider):
         # title = Selector(response=response_).xpath('//h2/a/text()').getall()
         for post in response_.xpath('//article'):
             item = {
-                'title': extraction_with_css(post, 'h2 a::text'),
+                'title': utils.decode_html_content(extraction_with_css(post, 'h2 a::text')),
                 'link_content': extraction_with_css(post, 'a::attr(href)'),
-                'subtitle': extraction_with_css(post, 'div.cs-entry__excerpt::text'),
+                'subtitle': utils.decode_html_content(extraction_with_css(post, 'div.cs-entry__excerpt::text')),
                 'link_img': extraction_with_css(post, 'noscript img::attr(src)'),
-                'description': extraction_with_css(post, 'div.cs-entry__excerpt::text'),
+                'description': utils.decode_html_content(extraction_with_css(post, 'div.cs-entry__excerpt::text')),
                 'slug_content': extraction_with_css(post, 'a::attr(href)').split('.io')[1],
                 'author': extraction_with_css(post, 'span.cs-author::text'),
                 'link_author': extraction_with_css(post, 'a.cs-meta-author-inner::attr(href)'),
