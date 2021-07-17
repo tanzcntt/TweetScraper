@@ -1,9 +1,7 @@
 import time
 import codecs
-import json
-import re
 import pymongo
-import html
+import random
 from . import config as cfg
 from datetime import datetime
 from w3lib.html import remove_tags
@@ -381,7 +379,7 @@ class CoinTelegraphScraperPipeline(object):
         utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
 
         data['raw_content'] = str(raw_content)
-        data['clean_content'] = str(clean_content)
+        # data['clean_content'] = str(clean_content)
         data['raw_data'] = ''
         # self.update_news(self.coinTele, data)
         utils.update_news(self.coinTele, data)
@@ -467,7 +465,7 @@ class AdapulseScraperPipeline(object):
         raw_content = data['raw_content']
         clean_content = remove_tags(raw_content)
         data['keyword_ranking'] = utils.text_ranking(data, clean_content)
-        data['clean_content'] = str(clean_content)
+        # data['clean_content'] = str(clean_content)
         utils.show_keyword(data)
         utils.update_news(self.adaPulse, data)
 
@@ -489,6 +487,7 @@ class CoingapeScraperPipeline(object):
                 self.get_posts(item)
             elif 'raw_content' in item:
                 self.get_content(item)
+        return item
 
     def get_content(self, data):
         data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
@@ -507,3 +506,49 @@ class CoingapeScraperPipeline(object):
                 utils.handle_utc_datetime(data['dateModified'], data)
             utils.insert_into_table(self.coinPage, data)
             self.new_posts.append(data['link_content'])
+
+
+class BitcoinistScraperPipeline(object):
+    def __init__(self):
+        self.myDatabase = mongoClient['cardanoNews']
+        # self.bitcoinistSample = self.myDatabase['bitcoinistSample']
+        self.bitcoinistSample = self.myDatabase['bitcoinistSample2']
+        self.new_posts = []
+
+    def close_spider(self, spider):
+        utils.handle_empty_content(self.bitcoinistSample, self.new_posts)
+        utils.show_message('', 'warning', 'Bitcoinist Crawl Completed!')
+
+    def process_item(self, item, spider):
+        if item['source'] == 'bitcoinist.com':
+            if 'title' in item:
+                self.get_posts(item)
+            elif 'raw_content' in item:
+                self.get_content(item)
+
+    def get_posts(self, data):
+        if self.bitcoinistSample.find_one({'link_content': data['link_content']}):
+            utils.update_news(self.bitcoinistSample, data)
+        else:
+            utils.handle_datetime(data, data['published'])
+            utils.insert_into_table(self.bitcoinistSample, data)
+            self.new_posts.append(data['link_content'])
+
+    def get_content(self, data):
+        if 'datePublished' in data:
+            utils.handle_utc_datetime(data['datePublished'], data)
+        elif 'dateModified' in data:
+            utils.handle_utc_datetime(data['dateModified'], data)
+        else:
+            utils.show_message('', 'warning', 'Timestamp was set as default following the Published post.')
+        # assign point to keyword randomly in range 1 to 6
+        if 'keyword_ranking' not in data:
+            data_ = {}
+            keyword_set_point = list(map(lambda x: {x: str(random.uniform(2.5, 6))}, data['keywords']))
+            [data_.update(item) for item in keyword_set_point]
+            data_.update(utils.text_ranking(data, data['raw_content']))
+            data['keyword_ranking'] = data_
+        else:
+            pass
+        utils.show_keyword(data)
+        utils.update_news(self.bitcoinistSample, data)

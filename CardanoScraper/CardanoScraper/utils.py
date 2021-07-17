@@ -3,6 +3,7 @@ import re
 import json
 import shutil
 import calendar
+import logging
 from w3lib import html
 from dateutil.parser import parse
 from time import sleep
@@ -159,10 +160,11 @@ def clean_html_tags(raw_content):
 def text_ranking(data, raw_content_):
 	raw_content = clean_html_tags(raw_content_)
 	raw_content = remove_html_tags(raw_content)
+	# data['clean_content'] = raw_content
 	# raw_content = remove_small_words(raw_content)
 	textRank.analyze(raw_content, window_size=6)
 	data['keyword_ranking'] = textRank.get_keywords(10)
-	return data['keyword_ranking']
+	return textRank.get_keywords(10)  # , data['keyword_ranking']
 
 
 def insert_into_table(table, data):
@@ -230,3 +232,15 @@ def handle_empty_content(table, new_posts):
 			pass
 	for index, value in enumerate(new_posts):
 		show_message(message='Latest Post for today', colour='okblue', data={index: value})
+
+
+def log_record(file_name):
+	logging.basicConfig(
+		handlers=[logging.FileHandler(filename='CardanoScraper/LOG/{}.txt'.format(file_name), encoding='utf-8', mode='a+')],
+		format="[%(asctime)s] {%(filename)s:%(lineno)d} %(name)s:%(levelname)s:%(message)s",
+		datefmt="%F %A %T",
+		level=logging.INFO)
+
+
+def extraction_with_css(response, query):
+	return response.css(query).get(default='').strip()

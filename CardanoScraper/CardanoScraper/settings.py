@@ -65,11 +65,12 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'CardanoScraper.pipelines.CardanoscraperPipeline': 100,
-   'CardanoScraper.pipelines.IohkScraperPipeline': 150,
-   'CardanoScraper.pipelines.CoindeskScraperPipeline': 170,
-   'CardanoScraper.pipelines.CoinTelegraphScraperPipeline': 190,
-   'CardanoScraper.pipelines.AdapulseScraperPipeline': 210,
-   'CardanoScraper.pipelines.CoingapeScraperPipeline': 230,
+   'CardanoScraper.pipelines.IohkScraperPipeline': 120,
+   'CardanoScraper.pipelines.CoindeskScraperPipeline': 140,
+   'CardanoScraper.pipelines.CoinTelegraphScraperPipeline': 160,
+   'CardanoScraper.pipelines.AdapulseScraperPipeline': 180,
+   'CardanoScraper.pipelines.CoingapeScraperPipeline': 200,
+   'CardanoScraper.pipelines.BitcoinistScraperPipeline': 220,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
