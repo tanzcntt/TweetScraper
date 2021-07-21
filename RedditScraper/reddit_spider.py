@@ -127,7 +127,7 @@ class RedditCrawl(object):
 			self.update_table(table, data)
 		else:
 			if table.insert_one(data):
-				helpers.show_message('Import data success', 'okgreen', 1)
+				helpers.show_message('', 'okgreen', 'Import New Post success')
 
 	def update_table(self, table, data):
 		query = {
@@ -161,6 +161,10 @@ def handle_empty_content():
 				pass
 
 
+def new_contents():
+	pass
+
+
 def run_crawl(subreddit_, limit_posts_, mode_):
 	if mode_ == 'all':
 		helpers.show_message('All', 'okgreen', subreddit_)
@@ -178,8 +182,8 @@ if __name__ == '__main__':
 	args = sys.argv[1:]
 	# mode, limit_posts = args
 
-	# mode, limit_posts = ['latest', 200]
-	mode, limit_posts = ['all', 2000]
+	mode, limit_posts = ['latest', 200]
+	# mode, limit_posts = ['all', 2000]
 
 	print(args)
 	thread_lock = threading.Lock()  # allow to synchronize threads
