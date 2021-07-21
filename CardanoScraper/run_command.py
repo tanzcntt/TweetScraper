@@ -1,85 +1,54 @@
-import getopt
 import os, sys
-import time
-import threading
-from datetime import datetime, timedelta
-
-# ================================================
-# Give param to command
-# ================================================
-argumentList = sys.argv[1:]
-
-options = 'm:'
-
-long_options = ['mode']
-mode = 'latest'
-sources = ['Carda', 'Iohk', 'Coindesk']  # , 'Cointele']
-try:
-	# Parsing argument
-	arguments, values = getopt.getopt(argumentList, options)
-	for currentArgument, currentValue in arguments:
-		if currentArgument in ('-m', '--mode'):
-			mode = str(currentValue)
-except getopt.error as err:
-	print(err)
-
-print(mode)
-print(sources)
+import subprocess
+from tqdm import tqdm
+from time import sleep
+from CardanoScraper import config as cfg
+from CardanoScraper.utils import *
 
 
-class MyThread(threading.Thread):
-	def __init__(self, source, mode):
-		super().__init__()
-		self.source = source
-		self.mode = mode
-
-	def run(self):
-		start_time = time.time()
-		try:
-			# thread_lock.acquire()  # force threads to run synchronously
-			run_command(self.source, self.mode)
-			# thread_lock.release()  # release the lock whe no longer required
-		except NameError:
-			print(NameError)
-		end_time = time.time()
-		print(f"\n\n\ntotal time: {timedelta(seconds=(end_time - start_time))}")
-
-
-def run_command(source, mode):
-	for source_ in sources:
-		if source == source_:
-			check_condition(source=source_, mode=mode)
+def run_command(sources, mode):
+	for source in sources:
+		show_message('\n\n\n', 'okgreen', f'Start crawling: {source}!')
+		check_condition(source, mode)
+		show_message('', 'warning', f'Crawling {source} complete!')
+		sleep(3)
 
 
 def check_condition(source, mode):
 	if mode == 'latest':
-		command = f'scrapy crawl {mode}{source}'
+		command = f'scrapy crawl {source} -a mode={mode}'
 		os.system(command)
 	elif mode == 'all':
-		command = f'scrapy crawl {mode}{source}'
+		command = f'scrapy crawl {source} -a mode={mode}'
 		os.system(command)
 	else:
 		print('Invalid Mode')
+		exit()
 
 
-def show_latest_post():
-	pass
+if __name__ == '__main__':
+	print('main is running...')
+	args = sys.argv[1:]
+	mode, number_of_runs, break_time = args
+	number_of_runs = int(number_of_runs)
+	break_time = float(break_time) * 60 * 60
 
+	working_directory = os.getcwd().split('/')
+	working_directory.remove(working_directory[-1])
+	working_directory = '/'.join(working_directory)
 
-# ================================================
-# Synchronizing threads
-# ================================================
-# A new lock is created
-thread_lock = threading.Lock()  # allow to synchronize threads
-threads = []
-
-for i, value in enumerate(sources):
-	thread = MyThread(f'{value}', mode)
-	thread.start()
-	threads.append(thread)
-
-
-# wait for all threads to complete
-for t in threads:
-	t.join()
-print("Crawling completed!")
+	time = {
+		1: '1st',
+		2: '2nd',
+		3: '3rd',
+	}
+	for i in range(1, number_of_runs):
+		show_message('\n\n\n', 'okcyan', f'{time[i] if i in time else f"{i}th"} Run || Break_time: {break_time} hour(s)')
+		run_command(cfg.SOURCES, mode)
+		show_message('', 'fail', f'{time[i] if i in time else f"{i}th"} Run completed!')
+		show_message('', 'okcyan', 'Push data to Dhunt.')
+		p = subprocess.Popen(['python3', 'submit-news.py', '-u', 'https://gql.dhunt.io', '-t', 'defaulttoken'], cwd=working_directory)
+		p.wait()
+		for j in tqdm(range(int(break_time))):
+			sleep(1)
+		# sleep(break_time)
