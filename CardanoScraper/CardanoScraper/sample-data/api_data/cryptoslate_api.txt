@@ -1,0 +1,14 @@
+curl 'https://cryptoslate.com/wp-admin/admin-ajax.php?action=get_holepunched_content&postViewsId=&viewedAlready=' \
+  -H 'authority: cryptoslate.com' \
+  -H 'sec-ch-ua: " Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"' \
+  -H 'accept: application/json, text/javascript, */*; q=0.01' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://cryptoslate.com/news/bitcoin/page/3/' \
+  -H 'accept-language: vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7' \
+  -H 'cookie: _ga=GA1.2.791465157.1626517412; _gid=GA1.2.361696072.1626517412; __stripe_mid=d1c3cd93-8179-4ea8-a728-f60f8f057685db1b7f; __stripe_sid=ee4050f5-a114-4b02-a004-304685829a2b761fcb; _gat_gtag_UA_109660210_1=1' \
+  --compressed
