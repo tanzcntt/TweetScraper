@@ -39,7 +39,7 @@ class BitcoinistNewsSpiderSpider(Spider):
             utils.show_message('Crawling:', 'okgreen', self.mode.upper())
             for source in cfg.BITCOINIST_ID_TAGS:
                 utils.show_message('source: ', 'fail', source)
-                for i in range(cfg.LATEST_PAGE):
+                for i in range(cfg.BITCOINIST_LATEST_PAGE):
                     body_ = 'lang=en_US&action=jnews_module_ajax_jnews_block_3&module=true&data%5Bfilter%5D=0&data%5Bfilter_type%5D=all&data%5B' + \
                             'current_page%5D={}&data%5Battribute%5D%5Bheader_icon%5D=&data%5Battribute%5D%5B'.format(i+1) + \
                             'first_title%5D=&data%5Battribute%5D%5Bsecond_title%5D=&data%5Battribute%5D%5Burl%5D=&data%5Battribute%5D%5Bheader_type%5D=heading_6&data%5Battribute%5D%5Bheader_background%5D=&data%5Battribute%5D%5Bheader_secondary_background%5D=&data%5Battribute%5D%5Bheader_text_color%5D=&data%5Battribute%5D%5Bheader_line_color%5D=&data%5Battribute%5D%5Bheader_accent_color%5D=&data%5Battribute%5D%5Bheader_filter_category%5D=&data%5Battribute%5D%5Bheader_filter_author%5D=&data%5Battribute%5D%5Bheader_filter_tag%5D=&data%5Battribute%5D%5Bheader_filter_text%5D=All&data%5Battribute%5D%5Bpost_type%5D=post&data%5Battribute%5D%5Bcontent_type%5D=all&data%5B' + \
@@ -61,20 +61,20 @@ class BitcoinistNewsSpiderSpider(Spider):
         json_data = json.loads(response.body)
         raw_contents = json_data['content']
 
-        def extraction_with_css(post, query):
-            return post.css(query).get(default='').strip()
+        # def extraction_with_css(post, query):
+        #     return post.css(query).get(default='').strip()
 
         response_ = HtmlResponse(url='url', body=raw_contents, encoding='utf-8')
         for post in response_.xpath('//article'):
             item = {
-                'title': utils.decode_html_content(extraction_with_css(post, 'h3[class="jeg_post_title"] a::text')),
-                'link_content': extraction_with_css(post, 'h3[class="jeg_post_title"] a::attr(href)'),
-                'subtitle': utils.decode_html_content(extraction_with_css(post, 'div[class="jeg_post_excerpt"] p::text')),
-                'link_img': extraction_with_css(post, 'div.thumbnail-container img::attr(data-src)'),
-                'slug_content': extraction_with_css(post, 'h3[class="jeg_post_title"] a::attr(href)').split('.com')[1],
-                'author': extraction_with_css(post, 'div[class="jeg_meta_author"] a::text'),
-                'link_author': extraction_with_css(post, 'div[class="jeg_meta_author"] a::attr(href)'),
-                'published': extraction_with_css(post, 'div[class="jeg_meta_date"] a::text'),
+                'title': utils.decode_html_content(utils.extraction_with_css(post, 'h3[class="jeg_post_title"] a::text')),
+                'link_content': utils.extraction_with_css(post, 'h3[class="jeg_post_title"] a::attr(href)'),
+                'subtitle': utils.decode_html_content(utils.extraction_with_css(post, 'div[class="jeg_post_excerpt"] p::text')),
+                'link_img': utils.extraction_with_css(post, 'div.thumbnail-container img::attr(data-src)'),
+                'slug_content': utils.extraction_with_css(post, 'h3[class="jeg_post_title"] a::attr(href)').split('.com')[1],
+                'author': utils.extraction_with_css(post, 'div[class="jeg_meta_author"] a::text'),
+                'link_author': utils.extraction_with_css(post, 'div[class="jeg_meta_author"] a::attr(href)'),
+                'published': utils.extraction_with_css(post, 'div[class="jeg_meta_date"] a::text'),
                 'source': 'bitcoinist.com',
                 'latest': 1 if self.mode == 'latest' else 0,
                 'approve': 1,
