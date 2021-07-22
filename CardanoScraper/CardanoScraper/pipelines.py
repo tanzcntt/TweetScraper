@@ -298,10 +298,12 @@ class CoindeskScraperPipeline(object):
     def coindesk_get_raw_content(self, table, data):
         raw_content = data['raw_content']
         data['clean_content'] = utils.clean_html_tags(data['raw_content'])
-        utils.show_message('raw_content', 'okgreen', raw_content)
+        # utils.show_message('raw_content', 'okgreen', raw_content)
         keyword_ranking = utils.text_ranking(data, raw_content)
         data['keyword_ranking'] = keyword_ranking
         data['raw_data'] = ''
+        utils.show_message('Getting raw_content', 'okcyan', data['link_content'])
+        utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
         if table.find_one({'slug_content': data['slug_content']}):
             self.update_latest_news(self.coindesk, data=data)
         sleep(.05)
@@ -516,7 +518,7 @@ class BitcoinistScraperPipeline(object):
         self.new_posts = []
 
     def close_spider(self, spider):
-        # utils.handle_empty_content(self.bitcoinistSample, self.new_posts)
+        utils.handle_empty_content(self.bitcoinistSample, self.new_posts)
         utils.show_message('', 'warning', 'Bitcoinist Crawl Completed!')
 
     def process_item(self, item, spider):
