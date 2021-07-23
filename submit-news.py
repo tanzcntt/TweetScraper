@@ -18,7 +18,8 @@ coindesk_collection = myDatabase['coindeskSample']
 cointele_collection = myDatabase['coinTelegraphSample']
 adapulse_collection = myDatabase['adaPulseSample']
 coinpage_collection = myDatabase['coinGapeSample']
-# coinpage_collection = myDatabase['coinPageSampleTest1']
+bitcoinist_collection = myDatabase['bitcoinistSample']
+# coinpage_collection = myDatabase['coinGapeSampleTest1']
 # cointele_collection = myDatabase['coinTelegraphSampleTest1']
 # Remove 1st argument from the
 # list of command line arguments
@@ -56,7 +57,8 @@ async def get_news_from(x, table):
                                                                          {"submit": {"$exists": True,
                                                                                      "$ne": status}}]}) \
         .sort([("timestamp", -1)]) \
-        .limit(100)
+        .limit(100)  # .limit(2000)  #
+
     await push_data_to_dhunt(top_tws, table)
 
 
@@ -109,12 +111,14 @@ async def main(day_in):
     task4 = asyncio.create_task(get_news_from(yesterday, cointele_collection))
     task5 = asyncio.create_task(get_news_from(yesterday, adapulse_collection))
     task6 = asyncio.create_task(get_news_from(yesterday, coinpage_collection))
+    task7 = asyncio.create_task(get_news_from(yesterday, bitcoinist_collection))
     await task3
     await task2
     await task1
     await task4
     await task5
     await task6
+    await task7
 
 
 asyncio.run(main(day))

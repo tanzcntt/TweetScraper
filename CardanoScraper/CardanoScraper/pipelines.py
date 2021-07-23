@@ -7,8 +7,11 @@ from datetime import datetime
 from w3lib.html import remove_tags
 from . import utils
 from time import sleep
+
+
 color = utils.colors_mark()
 mongoClient = pymongo.MongoClient("mongodb://root:password@localhost:27017/")
+myDatabase = mongoClient['cardanoNews']
 
 
 def sample_data():
@@ -41,10 +44,9 @@ def sample_data():
 
 class CardanoscraperPipeline(object):
     def __init__(self):
-        self.myDatabase = mongoClient["cardanoNews"]
-        self.postContents = self.myDatabase['allNews']
+        self.postContents = myDatabase['allNews']
         # self.postContents = self.myDatabase['allNews1']
-        self.testCarda = self.myDatabase['testAllNews2']
+        self.testCarda = myDatabase['testAllNews2']
         self.new_posts = []
 
     # ================================================
@@ -112,8 +114,7 @@ class CardanoscraperPipeline(object):
 
 class IohkScraperPipeline(object):
     def __init__(self):
-        self.myDatabase = mongoClient["cardanoNews"]
-        self.iohk_sample1 = self.myDatabase['iohkSample']
+        self.iohk_sample1 = myDatabase['iohkSample']
         # self.iohk_sample1 = self.myDatabase['iohkSample2']
         self.new_posts = []
 
@@ -194,8 +195,7 @@ class IohkScraperPipeline(object):
 
 class CoindeskScraperPipeline(object):
     def __init__(self):
-        self.myDatabase = mongoClient['cardanoNews']
-        self.coindesk = self.myDatabase['coindeskSample']
+        self.coindesk = myDatabase['coindeskSample']
         # self.coindesk = self.myDatabase['coindeskLatest1']
         self.url = 'https://www.coindesk.com{}'
         self.new_posts = []
@@ -331,8 +331,7 @@ class CoindeskScraperPipeline(object):
 class CoinTelegraphScraperPipeline(object):
     def __init__(self):
         self.url = 'https://cointelegraph.com/{}'
-        self.myDatabase = mongoClient['cardanoNews']
-        self.coinTele = self.myDatabase['coinTelegraphSample']
+        self.coinTele = myDatabase['coinTelegraphSample']
         # self.coinTele = self.myDatabase['coinTelegraphLatestTest']
         self.new_posts = []
 
@@ -435,8 +434,7 @@ class CoinTelegraphScraperPipeline(object):
 
 class AdapulseScraperPipeline(object):
     def __init__(self):
-        self.myDatabase = mongoClient['cardanoNews']
-        self.adaPulse = self.myDatabase['adaPulseSample']
+        self.adaPulse = myDatabase['adaPulseSample']
         self.new_posts = []
 
     def close_spider(self, spider):
@@ -474,8 +472,7 @@ class AdapulseScraperPipeline(object):
 
 class CoingapeScraperPipeline(object):
     def __init__(self):
-        self.myDatabase = mongoClient['cardanoNews']
-        self.coinPage = self.myDatabase['coinGapeSample']
+        self.coinPage = myDatabase['coinGapeSample']
         # self.coinPage = self.myDatabase['coinGapeSampleTest1']
         self.new_posts = []
 
@@ -512,8 +509,7 @@ class CoingapeScraperPipeline(object):
 
 class BitcoinistScraperPipeline(object):
     def __init__(self):
-        self.myDatabase = mongoClient['cardanoNews']
-        self.bitcoinistSample = self.myDatabase['bitcoinistSample']
+        self.bitcoinistSample = myDatabase['bitcoinistSample']
         # self.bitcoinistSample = self.myDatabase['bitcoinistSample2']
         self.new_posts = []
 
@@ -527,6 +523,7 @@ class BitcoinistScraperPipeline(object):
                 self.get_posts(item)
             elif 'raw_content' in item:
                 self.get_content(item)
+        return item
 
     def get_posts(self, data):
         if self.bitcoinistSample.find_one({'link_content': data['link_content']}):
@@ -557,3 +554,52 @@ class BitcoinistScraperPipeline(object):
             pass
         utils.show_keyword(data)
         utils.update_news(self.bitcoinistSample, data)
+
+
+class CryptoslateScraperPipeline(object):
+    def __init__(self):
+        self.cryptoSlateSample = myDatabase['cryptoSlateSample']
+        # self.cryptoSlateSample = myDatabase['cryptoSlateSampleTest']
+        self.new_posts = []
+
+    def close_spider(self, spider):
+        utils.handle_empty_content(self.cryptoSlateSample, self.new_posts)
+        utils.show_message('', 'warning', 'CryptoSlate Crawl Completed!')
+
+    def process_item(self, item, spider):
+        if item['source'] == 'cryptoslate.com':
+            if 'title' in item:
+                self.get_posts(item)
+            elif 'raw_content' in item:
+                self.get_content(item)
+
+    def get_posts(self, data):
+        if self.cryptoSlateSample.find_one({'link_content': data['link_content']}):
+            utils.update_news(self.cryptoSlateSample, data)
+        else:
+            utils.insert_into_table(self.cryptoSlateSample, data)
+            self.new_posts.append(data['link_content'])
+
+    def get_content(self, data):
+        if 'datePublished' in data:
+            utils.handle_utc_datetime(data['datePublished'], data)
+        elif 'dateModified' in data:
+            utils.handle_utc_datetime(data['dateModified'], data)
+        else:
+            utils.show_message('', 'warning', 'Timestamp was set as default following the Published post.')
+        raw_content = data['raw_content']
+        # data['keyword_ranking'] = utils.text_ranking(data, clean_content)
+        # assign point to keyword randomly in range 1 to 6
+        if 'keyword_ranking' not in data:
+            if 'keywords' in data or len(data['keywords']) != 0:
+                data_ = {}
+                keyword_set_point = list(map(lambda x: {x.lower(): str(random.uniform(2.5, 6))}, data['keywords']))
+                [data_.update(item) for item in keyword_set_point]
+                data_.update(utils.text_ranking(data, data['raw_content']))
+                data['keyword_ranking'] = data_
+            else:
+                utils.text_ranking(data, data['raw_content'])
+        else:
+            pass
+        utils.show_keyword(data)
+        utils.update_news(self.cryptoSlateSample, data)
