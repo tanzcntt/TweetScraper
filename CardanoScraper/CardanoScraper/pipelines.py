@@ -332,7 +332,7 @@ class CoinTelegraphScraperPipeline(object):
     def __init__(self):
         self.url = 'https://cointelegraph.com/{}'
         self.coinTele = myDatabase['coinTelegraphSample']
-        # self.coinTele = self.myDatabase['coinTelegraphLatestTest']
+        # self.coinTele = myDatabase['coinTelegraphTest']
         self.new_posts = []
 
     def close_spider(self, spider):
@@ -344,7 +344,7 @@ class CoinTelegraphScraperPipeline(object):
             if 'title' in item:
                 print(f"{color['okblue']}Cointelegraph Pipeline handling...{color['endc']}\n")
                 self.cointele_get_post(item)
-            elif 'raw_data' in item:
+            elif 'raw_content' in item:
                 self.get_content(item)
         return item
 
@@ -353,36 +353,17 @@ class CoinTelegraphScraperPipeline(object):
     # get keyword ranking
     # ================================================
     def get_content(self, data):
-        data_ = data['raw_data']
         link_content = data['link_content']
         # decode_html_content = codecs.decode(data_, 'unicode-escape')
-        decode_html_content = codecs.decode(data_, 'unicode-escape')
-        # utils.show_message('decode_html_content', 'okcyan', decode_html_content)
-
-        # get clean content for keywords ranking
-        data_content = decode_html_content.split('fullText="')
-        raw_content = data_content[1].split('audio="')[0]
-
-        decode1 = utils.decode_html_content(raw_content)
-        # utils.show_message('decode1', 'okgreen', decode1)
-        # utils.show_message('decode_html_content', 'okcyan', raw_content)
-
-        raw_content = raw_content.split('<template data-name="subscription_form"')[0]
-        clean_content = remove_tags(raw_content)
         # set keywords
-        data['keyword_ranking'] = utils.text_ranking(data, clean_content)
+        data['keyword_ranking'] = utils.text_ranking(data, data['raw_content'])
         if 'tag' in data:
             tag = data['tag']
             data['keyword_ranking'][tag] = '6.5'
         else:
             post = self.coinTele.find_one({'link_content': link_content})
             data['keyword_ranking'][post['tag']] = post['tag_point']
-        utils.show_message('keyword_ranking', 'warning', data['keyword_ranking'])
-
-        data['raw_content'] = str(raw_content)
-        # data['clean_content'] = str(clean_content)
-        data['raw_data'] = ''
-        # self.update_news(self.coinTele, data)
+        utils.show_keyword(data)
         utils.update_news(self.coinTele, data)
 
     def cointele_get_post(self, data):
