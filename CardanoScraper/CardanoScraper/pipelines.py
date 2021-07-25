@@ -553,6 +553,7 @@ class CryptoslateScraperPipeline(object):
                 self.get_posts(item)
             elif 'raw_content' in item:
                 self.get_content(item)
+        return item
 
     def get_posts(self, data):
         if self.cryptoSlateSample.find_one({'link_content': data['link_content']}):
@@ -584,3 +585,45 @@ class CryptoslateScraperPipeline(object):
             pass
         utils.show_keyword(data)
         utils.update_news(self.cryptoSlateSample, data)
+
+
+class NewsbtcScraperPipeline(object):
+    def __init__(self):
+        self.newsbtcSample = myDatabase['newsbtcSample']
+        # self.newsbtcSample = myDatabase['newsbtcSampleTest']
+        self.new_posts = []
+
+    def close_spider(self, spider):
+        utils.handle_empty_content(self.newsbtcSample, self.new_posts)
+        utils.show_message('', 'warning', 'Bitcoinist Crawl Completed!')
+
+    def process_item(self, item, spider):
+        if item['source'] == 'newsbtc.com':
+            if 'title' in item:
+                self.get_posts(item)
+            elif 'raw_content' in item:
+                self.get_content(item)
+        # return item
+
+    def get_posts(self, data):
+        if self.newsbtcSample.find_one({'link_content': data['link_content']}):
+            utils.update_news(self.newsbtcSample, data)
+        else:
+            utils.handle_datetime(data, data['published'])
+            utils.insert_into_table(self.newsbtcSample, data)
+            self.new_posts.append(data['link_content'])
+
+    def get_content(self, data):
+        if 'keyword_ranking' not in data:
+            if 'keywords' in data or len(data['keywords']) != 0:
+                data_ = {}
+                keyword_set_point = list(map(lambda x: {x: str(random.uniform(2.5, 6))}, data['keywords']))
+                [data_.update(item) for item in keyword_set_point]
+                data_.update(utils.text_ranking(data, data['raw_content']))
+                data['keyword_ranking'] = data_
+            else:
+                utils.text_ranking(data, data['raw_content'])
+        else:
+            pass
+        utils.show_keyword(data)
+        utils.update_news(self.newsbtcSample, data)
