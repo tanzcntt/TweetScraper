@@ -56,7 +56,7 @@ class CryptoslateNewsSpider(Spider):
                 # 'subtitle': utils.decode_html_content(utils.extraction_with_css(post, 'a div.content div.title p::text')),
                 'link_img': utils.extraction_with_css(post, 'a div.cover img::attr(data-src)'),
                 # 'link_img2': utils.extraction_with_css(post, 'a div.cover noscript img::attr(src)'),
-                'slug_content': utils.extraction_with_css(post, 'a[class="img-link"]::attr(href)').split('.com')[1],
+                # 'slug_content': utils.extraction_with_css(post, 'a[class="img-link"]::attr(href)').split('.com')[1],
                 'author': utils.extraction_with_css(post, 'a div.content div.title span strong::text'),
                 'source': 'cryptoslate.com',
                 'latest': 1 if self.mode == 'latest' else 0,
