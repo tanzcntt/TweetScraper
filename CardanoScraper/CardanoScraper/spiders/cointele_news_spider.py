@@ -7,11 +7,11 @@ from scrapy.http import Request, FormRequest, HtmlResponse
 from .. import config as cfg
 
 
-class CointeleNewsSpiderSpider(Spider):
+class CointeleNewsSpider(Spider):
     name = 'cointele'
 
     def __init__(self, mode):
-        super(CointeleNewsSpiderSpider, self).__init__()
+        super(CointeleNewsSpider, self).__init__()
         self.mode = mode
 
     def start_requests(self):
