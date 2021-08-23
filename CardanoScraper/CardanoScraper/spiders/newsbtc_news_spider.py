@@ -68,14 +68,15 @@ class NewsbtcSpider(Spider):
 			}
 			yield response.follow(url=item['link_content'], callback=self.parse_content, headers=cfg.NEWSBTC_HEADERS)
 			yield item
-			sleep(.5)
+			sleep(.25)
 
 	def parse_content(self, response):
 		json_data = response.css('head')
 		json_data = json.loads(json_data.css('script[type="application/ld+json"]::text').extract_first())
 		json_data = json_data['@graph'][0]
+		default_img = 'https://www.newsbtc.com/wp-content/uploads/2021/04/cropped-cropped-cropped-favicon-200x200.png'
 		item = {
-			'link_img': json_data['image']['url'],
+			'link_img': json_data['image']['url'] if 'image' in json_data else default_img,
 			'link_content': response.url,
 			'datePublished': json_data['datePublished'] if 'datePublished' in json_data else '',
 			'dateModified': json_data['dateModified'] if 'dateModified' in json_data else json_data['datePublished'],
@@ -95,4 +96,4 @@ class NewsbtcSpider(Spider):
 			raw_data = raw_data.replace(value, '')
 		item['raw_content'] = utils.decode_html_content(raw_data)
 		yield item
-		sleep(.2)
+		# sleep(.2)
