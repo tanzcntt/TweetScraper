@@ -54,7 +54,7 @@ class CoindeskNewsSpiderSpider(Spider):
         data_json = response.css('body')
         for content in data_json:
             raw_data = json.loads(content.css('script[type="application/json"]::text').extract_first())
-            data = raw_data['props']['initialProps']['pageProps']['data']
+            data = raw_data['props']['pageProps']['data']
             item = {
                 'slug_content': data['slug'],
                 'raw_content': data['amp'],
