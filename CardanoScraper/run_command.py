@@ -47,7 +47,7 @@ if __name__ == '__main__':
 		run_command(cfg.SOURCES, mode)
 		show_message('', 'fail', f'{time[i] if i in time else f"{i}th"} Run completed!')
 		show_message('', 'okcyan', 'Push data to Dhunt.')
-		p = subprocess.Popen(['python3', 'submit-news.py', '-u', 'https://gql.dhunt.io', '-t', 'defaulttoken'], cwd=working_directory)
+		p = subprocess.Popen(['python3', 'submit-news.py', '-u', cfg.SITE, '-t', 'defaulttoken'], cwd=working_directory)
 		p.wait()
 		show_message('', 'warning', '\nCounting to next Crawl!')
 		for j in tqdm(range(int(break_time))):
